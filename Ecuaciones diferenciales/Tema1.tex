@@ -1,0 +1,336 @@
+\documentclass[12pt]{article}
+\usepackage{style}
+
+\begin{document}
+\section{Tema 1: Introducción}
+%\subsection{}
+\begin{defn}[Tipos de ecuaciones diferenciales]
+    \item[] 
+    \begin{enumerate}[topsep=1pt, itemsep=1pt,parsep=3pt]
+        \item Según el número de variables
+        \begin{enumerate}[topsep=1pt, itemsep=1pt,parsep=3pt]
+            \item E. D. Ordinarias: Una variable $\appl{y}{I\subset \R}{\R}$
+            \item E. D. Parciales: Varias variables $\appl{u}{\Omega\subset \R^{n}}{\R}$
+        \end{enumerate}
+        \item Según las derivadas de mayor orden. \\$F\left(x,y,y', \dots, y^{(n)}\right)=0$ es de orden $n$ \(\iff F\) es no constante en su variable $n+2$.
+        \item Según si la derivada de mayor orden se puede despejar o no.
+        \begin{enumerate}[topsep=1pt, itemsep=1pt,parsep=3pt]
+            \item En forma normal $y^{(n)} = f(x, y, \dots, y^{(n-1)})$.
+            \\ Reducción de orden:
+            $\begin{cases}
+                y_j' = y^{(j)}, j=1, \dots, n-1\\
+                y_n'=f(x,y_1, \dots, y_{n-1})
+            \end{cases}$
+        \end{enumerate}
+    \end{enumerate}    
+\end{defn}
+\begin{defn}[Solución de una EDO]
+    Sea $I\subset \R$ un intervalo y $\appl{y}{I}{\R}$ una función, $y$ es solución de la EDO $F\left(x,y,y', \dots, y^{(n)}\right)=0$ en $I$
+    \[\iff \exists \tex{ las derivadas de } y \tex{ hasta orden } n \we \forall x \in I : F\left(x,y(x),y'(x), \dots, y^{(n)}(x)\right)=0\]
+\end{defn}
+\begin{ejem}
+    La familia de funciones $y(x)=Ce^x$ con $C\in \R \wedge x\in \R (=I)$ cumple la ecuación $y'=y$. Si además de la EDO, imponemos un dato incial $y(x_0)=y_0 \in \R$
+    \[\implies y(x_0)=y_0=Ce^{x_0} \implies C=e^{-x_0}y_0\]
+    ¿Existe alguna otra solución de $\{y'=y \we y(x_0)=y_0\}$?
+    Para comprobarlo, basta con derivar:
+    \[\odv{}{x}\left(y(x)e^{-x}\right)=\left(y'(x) - y(x)\right)e^{-x}\]
+    \[\tex{Si } y'=y \tex{ en } \R \implies \forall x \in \R : \odv{}{x}\left(y(x)e^{-x}\right)=0 \implies \forall x \in \R : y(x)e^{-x} = C\]
+    \[\implies y(x)=Ce^x \implies y(x)=\left(e^{-x_0}y_0\right)e^x \tex{ es la única solución al sistema.}\]
+\end{ejem}
+
+\begin{ejem}
+    $\ds \left\{y' = \frac{e^{-y^2}}{1+x^2} \we y(0)=0\right\}$
+    Supongamos que $\ds\exists\,\appl{y}{\R}{\R}$ derivable solución del problema de valores iniciales (PVI). Veamos que podemos decir de $y$:
+    \begin{enumerate}
+        \item Como sabemos $\ds y(0)=0 \implies y'(0)=\frac{e^{-(y(0))^2}}{1+0^2}=1$
+        \item $\ds \forall x \in \R : y'(x)>0 \implies y$ es estrictamente creciente $\ds\implies y$ es inyectiva. \\
+        $\ds y(0)=0 \implies \forall x>0 : y(x)<0 \we \forall x<0 : y(x)>0$
+        \item $\ds y''=\frac{(-2yy'2(1+x^2)-2x)e^{-y^2}}{(1+x^2)^2}=\frac{-2e^{-y^2}(ye^{-y^2}+x)}{(1+x^2)^2}$ \\
+        Si $\ds x>0 \implies y''(x)<0$ y si $x<0 \implies y''(x)>0$
+        \[ \implies y \tex{ es convexa en } (-\infty, 0) \tex{ y cóncava en }(0, +\infty)\]
+        \item $\ds y'\leq \frac{1}{1+x^2}$ \\
+        Si $\ds x>0 \implies y(x)=\int_0^x y'(s)\odif{s}\leq\int_0^x \frac{1}{1+s^2}\odif{s}=\arctan{x}$ \\
+        Si $\ds x<0 \implies -y(x)=\int_x^0 y'(s)\odif{s}\leq\int_x^0 \frac{1}{1+s^2}\odif{s}=-\arctan{x}$ \\
+        \[\implies |y(x)| \leq |\arctan{x}| \leq \frac{\pi}{2} \implies y \text{ es constante.}\]
+        Como y es creciente y acotada $\ds\implies \exists\lim_{x\to\infty} y(x) \we \exists\lim_{x\to-\infty} y(x)$.
+        \item Si $y(x)$ es solución, entonces $z(x)=-y(-x)$ también lo es, porque:
+        \[z'(x)=y'(-x)=\frac{e^{-(y(-x))^2}}{1+(-x)^2}=\frac{e^{-(z(x))^2}}{1+x^2} \,\we \, z(0)=0\]
+        \item Si hay solo una solución, entonces $\ds y(x)=z(x)=-y(-x)\iff y(x)$ es impar.
+    \end{enumerate}
+    \ifdraft{\vspace{5cm}}{\input{graphs/graph1}}
+\end{ejem}
+\subsection{Algunos métodos de resolución de EDO}
+\subsubsection{Ecuaciones tipo primitiva}
+Son del tipo $\ds y'(x)=f(x)$ y se resuelven integrando a ambos lados: $\ds \int_{x_0}^x y'(s)\odif{s}=\int_{x_0}^x f(s) \odif{s}$
+$\ds \iff y(x)-y(x_0)=\int_{x_0}^x f(s) \,\odif{s} \iff \boxed{y(x) = y_0 + \int_{x_0}^x f(s)\odif{s}}$
+\subsubsection{Ecuaciones de variables separadas (o separables)}
+\begin{defn}
+    Sea una EDO de primer orden, es de variables separadas
+    \[\iff \tex{ es de la forma } \boxed{h(y)y'=f(x)}\]
+\end{defn}
+\begin{prop}
+    Si $H, F$ son primitivas de $h, f$ respectivamente, entonces la familia de funciones, definida implícitamente por $H(y(x))-F(x)=0$, es solución de la EDO.
+    \begin{dem}
+        \[H(y(x))-F(x)=0 \implies \left(H(y(x))-F(x)\right)'=0 \implies h(y(x))y'(x)-f(x)=0\]
+    \end{dem}
+\end{prop}
+\begin{ejem}
+    $\ds y'=\frac{1+x^4}{1+y^2} \implies (1+y^2)y'=1+x^4$
+    \[\left(h(y)=1+y^2 \implies H(y)=y + \frac{y^3}{3}\right) \, \we \, \left(f(x)=1+x^4 \implies F(x)=x+\frac{x^5}{5}\right)\]
+    \[H(y(x))-F(x)=C \iff y + \frac{y^3}{3}-x-\frac{x^5}{5} = C\]
+    Determinamos unos datos iniciales $\ds \begin{cases}
+        y'=\frac{1+x^4}{1+y^2}, \\
+        y(x_0)=y_0
+    \end{cases}$definimos $\ds \Psi(x, y)=y + \frac{y^3}{3}-x-\frac{x^5}{5}-C$
+    \[\frac{\partial\Psi}{\partial y}(x_0, y_0) = 1+ y_0^2>0 \xRightarrow{TFIm} \exists \tex{ un entorno } I \tex{ de } x_0 \tex{ tal que } \appl{y}{I}{\R} \tex{ es solución}\]
+\end{ejem}
+
+\begin{obs}
+    \begin{enumerate}
+    \item[] 
+        \item Las ecuaciones autónomas $\ds y'=f(y)$ son un tipo especial de ecuaciones separables donde $h(y)=\frac{1}{f(y)}$
+        \item En las ecuaciones separables, hay una cantidad que se conserva (a lo largo del tiempo).
+    \end{enumerate}
+\end{obs}
+
+%05/02/2024
+En general, si se conserva una cantidad de la forma $F(x, y(x))$, ¿qué ecuación satisface $y$?
+\[\forall x \in I : g(x)\defeq F(x, y(x))= c\]
+\[\forall x \in I : g'(x)=\pdv{F}{x}(x,y(x)) + \pdv{F}{y}(x, y(x))y'(x)=0\] % Posible error: '=' en vez de '+'
+\subsubsection{Ecuaciones exactas}
+\begin{defn}[EDO exacta]
+    Sea $\ds M(x, y(x))+N(x, y(x))y'=0$ una EDO, es exacta
+    \[\iff \exists F(x, y) : \nabla F=(M, N) \iff \pdv{F}{x}=M \we \pdv{F}{y}=N\] 
+\end{defn}
+\begin{obs}
+    \begin{enumerate}[topsep=0pt, itemsep=1pt,parsep=3pt]
+        \item[] 
+        \item $y$ solución de EDO exacta $\implies F(x, y(x))=C$
+        \item Un caso particular de EDO exactas son las de variables separadas.
+    \end{enumerate}
+\end{obs}
+
+\begin{prop}
+    Sean $\Omega\subset \R^2$ un conjunto abierto y $M, N \in C^1(\Omega)$
+    \[\exists F \in C^2(\Omega) : \nabla F=(M,N) \iff \forall (x,y) \in \Omega :\pdv{M}{y}(x,y)=\pdv{N}{x}(x,y)\]
+    \begin{dem}
+        $[\implies]$ Suponemos que $\exists F \in C^2(\Omega):\nabla F = (M, N)$
+        \[\implies \pdv{M}{y}=\pdv{F}{y, x}=\pdv{F}{x, y}=\pdv{N}{x} \tex{ porque } F \in C^2(\Omega) \]
+        $[\impliedby]$ Supongamos que $\ds\pdv{M}{y}=\pdv{N}{x}$. Fijados $x_0, y_0 \in \Omega$, definimos
+        \[\forall (x, y) \in \Omega : F(x, y)\defeq \int_{x_0}^xM(s,y)\odif{s}+\int_{y_0}^yM(x_0,s)\odif{s}\]
+        Por un lado, $\ds \pdv{F}{x}(x,y)=M(x,y)$ \\
+        Por otro lado, $\ds \pdv{F}{y}(x, y)=N(x_0, y) + \pdv{}{y} \int_{x_0}^x M(s,y) \odif{s} = N(x_0, y)+\int_{x_0}^x \pdv{M}{y}(s,y)\odif{s}$
+        $\ds= N(x_0, y)+\int_{x_0}^x \pdv{N}{x}(s,y)\odif{s}=N(x_0, y)+N(x,y)-N(x_0, y)=N(x,y)$
+    \end{dem}
+\end{prop}
+
+\begin{ejem}[$y+2xy'=0$]
+    \[\implies M(x, y)=y \we N(x,y) = 2x \implies \pdv{M}{y}=1 \ne 2 = \pdv{N}{x} \implies \tex{no es exacta.}\]
+    Multiplicando por $xy^3$, obtenemos $xy^4+2x^2y^3y'=0$
+    \[\implies M(x, y)=xy^4 \we N(x,y)=2x^2y^3 \implies \pdv{M}{y}=4xy^3 = \pdv{N}{x}\implies \tex{esta sí es exacta.}\]
+    Y resolvemos:
+    \[F(x, y)\defeq \int_{x_0}^xM(s,y)\odif{s}+\int_{y_0}^yM(x_0,s)\odif{s} = \int_{x_0}^xsy^4\odif{s}+\int_{y_0}^y2x_0^2s^3\odif{s}=\]
+    \[\left[\frac{s^2}{2}y^4\right]_{s=x_0}^{s=x} + \left[2x_0^2\frac{s^4}{4}\right]_{s=y_0}^{s=y}=\frac{x^2y^4}{2}-\frac{x_0^2y^4}{2}+\frac{x_0^2y^4}{2}-\frac{x_0^2y_0^4}{2}=\frac{x^2y^4}{2}-\frac{x_0^2y_0^4}{2}\]
+    \[\{F(x,y)=C \we F(x_0, y_0)=0\} \implies x^2y^2=x_0^2y_0^4\]
+    Por ejemplo, si $x_0>0, y_0>0$, entonces, como $y$ es continua, existe un entorno $I$ de $x_0$ tal que $I\subset (0, \infty), y(x)>0$ en $I$. Con lo cual:
+    \[\forall x \in I : \sqrt{x}y(x)=\sqrt{x_0}y_0 \implies \boxed{y(x)=\frac{\sqrt{x_0}y_0}{\sqrt{x}}}\]
+\end{ejem}
+
+\begin{defn}[Factor integrante]
+    Sea $p(x,y) + q(x.y)y'=0$ una EDO y $\mu(x,y)$ una función, $\mu$ es un factor integrante de la EDO
+    \[\iff \mu(x,y)p(x,y)+\mu(x,y)q(x,y)y'=0 \tex{ es exacta}\]
+\end{defn}
+\begin{defn}[EDO lineales de primer orden]
+    Una EDO se denomina lineal de primer orden $\iff$ es de la forma $y'=a(x)y+f(x)$. \\
+    \indent En realidad, las soluciones de esta EDO formarían un espacio afín, pero se le sigue llamando "lineal".
+\end{defn}
+\subsubsection{Comodín: cambios de variable}
+\begin{defn}[Ecuaciones homogéneas]
+    Sea una EDO de la forma $y'=f(x,y)$ con $\appl{f}{\Omega}{\R}, \Omega \subset \R^2$ abierto, es homogénea
+    \[\iff \forall (x, y) \in \Omega : \forall \lambda\in \R : (\lambda x, \lambda y) \in \Omega : f(\lambda x, \lambda y) = f(x,y)\]
+\end{defn}
+
+\begin{prop}
+    Sea $y'=f(x,y)$ una EDO homogénea \\
+    $\implies$ el cambio de variable $\ds u(x)=\frac{y(x)}{x}$ la transforma en una de variables separadas.
+    \begin{dem}
+        \[xu(x)=y(x) \implies u(x)+xu(x)=y'(x)=f(x, y(x))=f(x, xu(x))\]
+        \[\implies xu'(x)=f(1, u(x))-u(x) \implies \frac{u'(x)}{f(1, u(s))-u(x)}=\frac{1}{x}\]
+    \end{dem}
+\end{prop}
+\begin{ejem}[$4x-3y+y'(2y-3x)=0$]
+    Hacemos el cambio de variable $u(x)=\frac{y(x)}{x}$
+    \[\implies y'=\frac{3y-4x}{2y-3x}=f(x,y) \implies f(1, u)=\frac{3u-4}{2u-3}\]
+    \[\implies f(\lambda x, \lambda y)=\frac{3\lambda x-4\lambda y}{2\lambda y-3\lambda x}=\frac{3y-4x}{2y-3x}=f(x,y) \implies \tex{es homogénea}\]
+    \[\implies \frac{u'}{\frac{3u-4}{2u-3}-u}=\frac{1}{x} \implies \frac{2u-3}{-4-2u^2+6u}u'=\frac{1}{x}\]
+    \[\implies -\frac{1}{2}\log{|u^2-3u+2|}-\log{|x|}=C_1 \implies |u^2-3u+2|=\frac{C_2}{x^2}\]
+    \[\implies \frac{(y(x))^2}{x}-\frac{3y(x)}{x}+2=\frac{C_2}{x^2} \implies \abs{(y(x))^2-3y(x)x+2x^2}=C_2\]
+    \[\implies \boxed{y(x)=\frac{3x\pm \sqrt{9x^2-8x}}{2}}\]
+\end{ejem}
+
+\begin{teo}[Ejercicio 2.3]
+    Sea $I\subset \R$ un intervalo abierto y sean $\appl{a, f}{I}{\R}$ funciones continuas y $x_0 \in I \we y_0 \in \R$
+    \[\implies \tex{El PVI } \begin{cases}
+        y'=a(x)y + f(x), x\in I\\
+        y(x_0) = y_0
+    \end{cases} \tex{admite una única solución:}\]
+    \[\boxed{y(x)=y(x_0)e^{\int_{x_0}^xa(t)\odif{t}}+\int_{x_0}^xf(s)e^{\int_s^xa(t)\odif{t}}}\]
+    \begin{dem}
+        Para $\forall x : f(x)=0$, la EDO es lineal porque, si $y, z$ son soluciones, entonces $\alpha y +\beta z$ es solución con $\alpha, \beta \in \R$.
+    \[(\alpha y +\beta z)'=\alpha y' + \beta z'= \alpha a(x)y+ \beta a(x)z=a(x)\left(\alpha y + \beta z\right)\]
+    Además podemos encontrar un factor integrante:
+    \[y'-a(x)y=f(x) \tex{ (que es exacta)} \implies (y'-a(x)y)e^{-\int_{x_0}^xa(s)\odif{s}}=f(x)e^{-\int_{x_0}^xa(s)\odif{s}}\]
+    \[\implies \odv{}{x}\left(y(x)e^{-\int_{x_0}^xa(s)\odif{s}}\right)=f(x)e^{-\int_{x_0}^xa(s)\odif{s}}\]
+    \[\implies \int_{x_0}^x\odv{}{s}\left(y(s)e^{-\int_{x_0}^sa(t)\odif{t}}\right)\odif{s}=\int_{x_0}^xf(s)e^{-\int_{x_0}^sa(t)\odif{t}}\odif{s}\]
+    \[\implies y(x)e^{-\int_{x_0}^xa(t)\odif{t}}-y(x_0)=\int_{x_0}^xf(s)e^{-\int_{x_0}^sa(t)\odif{t}}\odif{s}\]
+    \[\implies y(x)=y(x_0)e^{\int_{x_0}^xa(t)\odif{t}}+e^{\int_{x_0}^xa(t)\odif{t}}\int_{x_0}^xf(s)e^{-\int_{x_0}^sa(t)\odif{t}}\odif{s}\]
+    \[\implies y(x)=y(x_0)e^{\int_{x_0}^xa(t)\odif{t}}+\int_{x_0}^xf(s)e^{\int_{x_0}^xa(t)\odif{t}-\int_{x_0}^sa(t)\odif{t}}\odif{s}\]
+    \[\implies \boxed{y(x)=y(x_0)e^{\int_{x_0}^xa(t)\odif{t}}+\int_{x_0}^xf(s)e^{\int_s^xa(t)\odif{t}}}\]
+    Además, es única porque si $y, z$ son soluciones del PVI, consideremos $\omega = y-z$
+    \[\implies \forall x \in I :\omega'=y'-z'=(a(x)y+f(x)) - (a(x)z+f(x))=a(x)(y-z)=a(x)\omega\]
+    \[\implies \omega'=a(x)\omega=0 \implies \odv{}{s}\left(\omega(x)e^{-\int_{x_0}^xa(s)\odif{s}}\right)=(\omega' - \omega(x))e^{-\int_{x_0}^xa(s)\odif{s} } = 0\]
+    \[\forall x\in I : \omega(x)e^{-\int_{x_0}^xa(s)\odif{s} }=c \xRightarrow{x=x_0} c=0 \implies y=z\]
+    \end{dem}
+\end{teo}
+
+\subsection{Modelización}
+\subsubsection{Crecimiento Malthusiano}
+\label{sec:malthusiano}
+\[x(t)\defeq \tex{Población a tiempo $t$}\]
+El modelo asume que el espacio y loas recursos son ilimitados, y además, el crecimiento en cada instante es proporcional a la población en ese instante. En términos matemáticos:
+\[\frac{x(t+h)-x(t)}{h}=ax(t)+o(1) \tex{ donde } o(1)\xrightarrow{h\rightarrow 0}0\]
+\[\{x'(t) = ax(t) \we x(0) = x_0\} \implies x(t)=x_0e^{at}\]
+
+\subsubsection{Decrecimiento radiactivo}
+\[x(t)\defeq\tex{El número de núcleos a tiempo $t$}\]
+\[\{x'(t)=-kx(t)\we x(0)=x_0 \we k > 0\} \implies x(t)=x_0e^{-kt}\]
+
+\subsubsection{Ley de enfriamiento de Newton}
+\[T(t)\defeq \tex{Temperatura del objeto a tiempo $t$} \we \begin{cases}
+    T_{ext} \defeq \tex{Temperatura exterior} \\
+    T_{0} \defeq \tex{Temperatura inicial} \\
+    k\defeq \tex{Constante de proporcionalidad} > 0
+\end{cases}\]
+El cambio en la temperatura de un cuerpo en un medio a temperatura constante es proporcional a la diferencia de temperatura entre ambos en cada instante.
+\[\{T'(t)=-k(T(t)-T_{ext})\we T(0)=T_0\} \implies T(t)=T_0e^{\int_0^t(-k)\odif{s}}+\int_0^tkT_{ext}e^{\int_s^t(-k)\odif{x}}\odif{s}\]
+\[\implies T(t)=T_0e^{-kt}+\int_0^tkT_{ext}e^{-k(t-s)}\odif{s}=T_0e^{-kt}+T_{ext}e^{-kt}(e^{kt}-1)\]
+\[\implies \boxed{T(t)= T_{ext} + e^{-kt}(T_0-T_{ext})}\]
+\subsubsection{Crecimiento logístico}
+Si los recursos son limitados y hay que competir por ellos, el modelo Malthusiano \ref{sec:malthusiano} no parece razonable. Lo adecuado es suponer que la tasa de crecimiento depende de la población en cada instante.
+\[x'(t)=a\left(1-\frac{x(t)}{b}\right)x(t) \tex{ con } a, b > 0\]
+Soluciones:
+\begin{enumerate}
+    \item $\forall t\in \R : x(t)=0$
+    \item $\forall t\in \R : x(t)=b$
+    \item Si hay solución $\forall t\in I:x(t)\in (0,b)$
+    \[\implies \forall t\in I: \left(1-\frac{x(t)}{b}\right)x(t)>0 \implies \frac{x'}{\left(1-\frac{x(t)}{b}\right)x(t)}=a\]
+    \[\implies \frac{x'b}{(b-x)x}=a\implies \frac{x'}{(b-x)}+\frac{x'}{x}=a \implies \int_0^t\left(\frac{x'(s)}{(b-x(s))}+\frac{x'(s)}{x(s)}\right)\odif{s}=\int_0^t a \odif{s}\]
+    \[\implies \int_0^t\odv{}{s}\left(-\log{(b-x(s))}+\log{(x(s))}\right)\odif{s}=\int_0^t\odv{}{s}(as)\odif{s}\]
+    \[\implies -\log{(b-x(t))}+\log{(x(t)}-\left(-\log{(b-x_0)}+\log{(x_0)}\right)=at\]
+    \[\implies \log{\left(\frac{x(t)}{b-x(t)}\right)}=\log{\left(\frac{x_0}{b-x_0}\right)}+at\]
+    \[\implies \frac{x(t)}{b-x(t)}=\frac{x_0}{b-x_0}e^{at}\implies x(t)=\frac{x_0}{b-x_0}be^{at}-\frac{x_0}{b-x_0}x(t)e^{at}\]
+    \[\implies \left(1+\frac{x_0}{b-x_0}e^{at}\right)x(t)=\frac{x_0}{b-x_0}be^{at}\implies x(t)=\frac{\frac{x_0}{b-x_0}be^{at}}  {1+\frac{x_0}{b-x_0}e^{at}}\]
+    \[\implies \forall t \in \R : \boxed{x(t) = \frac{x_0\cdot b\cdot e^{at}}{b+x_0(e^{at}-1)}} \implies x'=a\left(1-\frac{x}{b}\right)x\]
+\end{enumerate}
+
+\subsubsection{Depredador / presa}
+Hay dos especies (por ejemplo, conejos y zorros), en un espacio muy grande donde hay alimento ilimitado para los conejos, mientras que los zorros solo se alimentan de conejos.
+\begin{itemize}
+    \item $C(t)$ es la población de conejos en tiempo t.
+    \item $Z(t)$ es la población de zorros en tiempo t.
+\end{itemize}
+Si no hubiera zorros $\ds \implies C'(t)=\alpha C(t)$ con $\alpha > 0$ \\
+Si no hubiera conejos $\ds \implies Z'(t)=-\beta Z(t)$ con $\beta < 0$ \\
+Si coexisten, los encuentros serían "malos" para los conejos y "buenos" para los zorros:
+\[\begin{cases}
+    C'(t) = \alpha C(t) - \gamma C(t)Z(t) \\
+    Z'(t) = -\beta Z(t) + \delta C(t)Z(t)
+\end{cases}\]
+
+\subsubsection{Catenaria}
+¿Qué forma toma un cable flexible, de densidad constante $(\rho)$, fijos sus extremos a la misma altura y sometido a la acción de la gravedad?\\
+\indent Como el cuerpo está en reposo,
+\[\vv{T}\]
+\[\lambda\int_0^x\sqrt{1+(y'(\tau))^2}\odif{\tau}=\frac{\rho g}{T_0}s=\tan{\theta}=y'(x)\]
+\[\implies y''(x)=\lambda\sqrt{1+(y'(x))^2}\]
+Reducimos el orden de la EDO mediante el cambio de variable $y'=q \we q'=\lambda\sqrt{1+q^2}$ y usando el método de variables separadas obtenemos $q(x)=\sinh{(\lambda x +c)}$.
+\[y'(0)=0 \implies c=0 \implies y'(x)=\sinh{\lambda x}\]
+\[\implies y(x)=\int_0^x \sinh{\lambda s} \odif{s}\implies \boxed{y(x)=\lambda \left(\cosh{(\lambda x)}-1\right)}\]
+Preguntas pertinentes:
+\begin{enumerate}
+    \item ¿Qué sucede si la tensión inicial es muy grande?
+    \item ¿Es razonable aproximar esta curva como una parábola? (Al menos para cables de longitud pequeña)
+\end{enumerate}
+\subsubsection{Familias de curvas ortogonales}
+
+Ya hemos visto que es típico que las soluciones de una EDO de primer orden $y'=f(x,y)$ formen una familia uniparamétrica de curvas dadas en forma explícita casi siempre. \\
+\indent Razonando de forma inversa, muchas veces es posible demostrar que la familia de curvas
+\[\F = \{\Gamma_c\}_{c\in \R} \we \Gamma_c=\{(x,y)\in \R^2:F(x,y,c)=0\}\]
+satisface (localmente) una EDO $y'=f(x,y)$ de primer orden.
+\begin{defn}[EDO asociada]
+    Esta EDO se denomina ecuación asociada a $\F$.
+\end{defn}
+
+\begin{ejem} \label{circums}
+    $\ds \F = \{\Gamma_c\}_{c\in \R} \we \Gamma_c=\{(x,y)\in \R^2:F(x,y,c)=0\}$ y definimos 
+    \[F(x,y,c)=x^2+y^2+2cx=(x+c)^2+y^2-c^2\] \begin{figure}[htbp]
+        \centering
+        \vspace{-0.7cm} % adjust the space as needed
+        \includesvg[width=6cm]{img/desmos-graph.svg}
+        \vspace{-0.2cm} % adjust the space as needed
+        %\caption{svg image}
+    \end{figure}
+    
+    \noindent Si $\appl{y}{I}{\R}$ es derivable, con $I\subset\R$ un intervalo abierto, y su gráfica está contenida en $\F$, entonces $\forall x \in I : x^2+(y(x))^2+2cx=0 \implies 2x+2yy'+2c=0\implies 2x^2+2xyy'+2cx=0$
+    \[\implies x^2+2xyy'-y^2=0 \implies y'=\frac{y^2-x^2}{2xy}\]
+\end{ejem}
+
+\begin{defn}
+    Sean $\F=\{\Gamma_c\}_{c\in \R}$ y $\mathcal{C}=\{\sim{\Gamma_c}\}_{c\in \R}$ dos familias de curvas, son ortogonales
+    \[\iff \F \perp \mathcal{C}\iff \forall \left(\Gamma_{c_1}, \widetilde{\Gamma}_{c_2}\right) \in \F\times\mathcal{C}: \Gamma_{c_1}\cap\widetilde{\Gamma}_{c_2}\ne \phi : \tex{se cortan perpendicularmente.}\]
+\end{defn}
+
+\begin{prop}
+    Sea $\F$ una familia de curvas con EDO asociada $y'=f(x,y)$
+    \[\implies \tex{las soluciones de } z'=-\frac{1}{f(x,y)} \tex{ forman una familia $(\mathcal{C})$ de curvas ortogonal a } \F\]
+    \begin{dem}
+        Sean $I_1, I_2 \subset \R$ conjuntos abiertos con $I_1\cap I_2\ne \phi$ y sean $\appl{y}{I_1}{\R}, \appl{z}{I_2}{\R}$ dos funciones tales que $y(I_1)\in \F \we z(I_2)\in \mathcal{C}$.
+        \[\implies \forall x\in I_1 : y'=f(x,y) \we \forall x\in I_2 : z'=-\frac{1}{f(x,y)}\]
+        Como se cortan, $\exists x_0\in I_1\cap I_2 : y(x_0)=z(x_0)$
+        \[\implies y'(x_0)=f(x_0, y(x_0))=f(x_0, z(x_0))=-\frac{1}{z'(x_0)}\]
+        \[\implies \tex{Las rectas tangentes a cada curva se cortan perpendicularmente}\]
+    \end{dem}
+\end{prop}
+
+\begin{ejem}
+    Siguiendo el Ejemplo \ref{circums}, podemos encontrar una familia de curvas ortogonal a $\F$ $(\mathcal{C})$ tomando las soluciones de la EDO:
+    \[\ds z'=\frac{2xz}{x^2-z^2} \tex{ que es homogénea.}\]
+    \[\implies \mathcal{C} =\left\{\{(x,z)\in \R^2 : (z-c)^2+x^2=c^2\} : c\in\R\right\}\]
+    \begin{figure}[htbp]
+        \centering
+        \vspace{-0.7cm} % adjust the space as needed
+        \includesvg[width=6cm]{img/desmos-graph_ortogonalidad.svg}
+        \vspace{-0.2cm} % adjust the space as needed
+        %\caption{svg image}
+    \end{figure}
+\end{ejem}
+
+\subsection{Análisis cualitativo y campos de pendientes}
+\begin{defn}[Campo de pendientes]
+    Sea una EDO $y'=f(x,y)$, su campo de pendientes es el diagrama que asigna a cada punto $(x,y)\in \R^2$ un "pequeño" segmento con pendiente igual a $f(x,y)$. Claramente, si existen soluciones, entonces las curvas solución son tangentes a esos segmentos.
+\end{defn}
+
+\begin{ejem}\mbox{}\\
+    \hspace{-1cm}
+    \begin{tabular}{cc}
+        1. $y'=y \implies y=Ce^x$ & 2. $\ds y'=x \implies y=\frac{x^2}{2}+C$ \\
+        %\input{slopefield1} & \input{slopefield2}
+        \ifdraft{\framebox(7cm,7cm){} & \framebox(7cm,7cm){}}{\input{graphs/slopefield1}&\input{graphs/slopefield2}}
+    \end{tabular}
+\end{ejem}
+
+\begin{defn}[Isolínea]
+    Sea $y'=f(x,y)$ una EDO, sus isolíneas son los conjuntos de la forma $f(x, y)=c$ con $c\in \R$.
+\end{defn}
+\end{document}
+

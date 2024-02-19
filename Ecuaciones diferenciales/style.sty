@@ -1,0 +1,76 @@
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{changepage}
+\usepackage{thmtools}
+\usepackage{setspace} % para controlar interlineado
+\usepackage{ragged2e} % para controlar formato de texto
+\usepackage{xfrac}
+\usepackage{mathtools}
+\usepackage{derivative}
+\usepackage{ifdraft} % for \ifdraft command
+%\usepackage{enumitem} % para listas numeradas
+\usepackage[inline]{enumitem}
+\usepackage[margin=2.5cm]{geometry} % Configuración de márgenes
+\usepackage{pgfplots, pgfplotstable}
+\usepackage{esvect}
+\usepackage{svg}
+
+\pgfplotsset{compat=1.8}
+
+% Configuración de teoremas y definiciones
+\declaretheoremstyle[
+  spaceabove=10pt,
+  spacebelow=5pt,
+  headfont=\normalfont\bfseries,
+  notefont=\bfseries,
+  notebraces={(}{)},
+  bodyfont=\normalfont,
+]{definicionstyle}
+\declaretheorem[
+  style=definicionstyle,
+  name=Definición,
+  numberwithin=section,
+]{defn}
+\declaretheorem[
+  style=definicionstyle,
+  name=Observación,
+  numberwithin=section,
+]{obs}
+\declaretheorem[
+  style=definicionstyle,
+  name=Ejemplo,
+  numberwithin=section,
+]{ejem}
+
+\theoremstyle{plain}
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{lem}{Lema}[section]
+\newtheorem{prop}{Proposición}[section]
+
+\newenvironment{dem}[1][]{%
+  \begin{adjustwidth}{1cm}{0cm} \begin{proof}[\textbf{Demostración\ifx\relax#1\relax\else{ (#1)}\fi}]
+}{\end{proof}\end{adjustwidth}}
+
+\AtBeginEnvironment{document}{\setlength{\topsep}{10pt}}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\SIN}[1]{\sin{\left( #1 \right)}}
+\newcommand{\COS}[1]{\cos{\left( #1 \right)}}
+\newcommand{\appl}[3]{#1 \colon #2 \longrightarrow #3}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\we}{\; _{\wedge} \;}
+\newcommand{\ve}{\; _{\vee} \;}
+\newcommand{\tex}[1]{\text{#1}}
+\newcommand{\trz}[1]{\operatorname{traza}\left(#1\right)}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\eqdef}{=\vcentcolon}
+\renewcommand\qedsymbol{$\blacksquare$}
+\renewcommand\labelitemi{\raisebox{0.25ex}{\tiny$\bullet$}}
+\newcommand\til[1]{\tilde{#1}}

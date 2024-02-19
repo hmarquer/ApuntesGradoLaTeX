@@ -1,0 +1,316 @@
+\section{Tema 1: Sucesos y probabilidades}
+\subsection{Formalizando}
+\begin{defn}[Espacio muestral]
+    En un experimento aleatorio, el espacio muestral es el conjunto (no vacío) de sus posibles resultados y se denota por $\Omega$. Puede ser:
+    \begin{enumerate}[topsep=1pt, itemsep=1pt,parsep=3pt]
+        \item Finito: $\Omega = \{\omega_1, \dots, \omega_N\}$
+        \item Infinito numerable: $\Omega = \{\omega_1, \omega_2, \dots\}$
+        \item Infinito no numerable, ej.: $\Omega = \left[0, 1\right) \ve \Omega = \mathcal{P}\left(\left[0, 1\right)\right)$
+    \end{enumerate}
+\end{defn}
+\begin{defn}[Espacio de sucesos por Kolmogórov]
+    Dado el espacio muestral $\Omega$ de un experimento aleatorio, $\F \subset \mathcal{P}(\Omega)$ es su espcio de sucesos
+    \[\iff \left(\F \ne \phi\right) \we \left(A \in \F \implies A^C \in \F\right) \we \left(A_1,A_2, \dots \in \F \implies \bigcup_{j=1}^{\infty} A_j \in \F\right)\]
+\end{defn}
+
+
+\begin{obs}
+    De la definición se deduce: \\
+    \centerline{
+        \begin{itemize*}[itemjoin=\hspace{1cm}]
+            \item $\ds \phi \in \F \we \Omega \in \F$
+            \item $\ds A_1, \dots, A_n \in \F \implies \bigcup_{j=1}^{n} A_j \in \F$
+            \item $\forall A, B \in \F \implies A\cap B \in \F$
+        \end{itemize*}
+    }
+\end{obs}
+
+\begin{defn} [Función o medida de probabilidad]
+    Dados espacio muestral $(\Omega)$ y de sucesos $(\F)$ de un experimento aleatorio, la aplicación $\appl{P}{\F}{[0, 1]} : $ es una medida de probabilidad
+    \[ \iff \left(P(\Omega) = 1\right) \we \left[P\left(\bigcup_{j=1}^{\infty} A_j\right) = \sum_{j=1}^{\infty} P(A_j) \iff A_i\cap A_j = \phi \tex{ cuando } i \ne j\right] \]
+\end{defn}
+\begin{prop}
+    De la definición se deduce: \\
+    \begin{enumerate*}[itemjoin=\hspace{1cm}]
+        \item $\ds P\left(\bigcup_{j=1}^n A_j\right) = \sum_{j=1}^{n} P(A_j)$
+        \item $\ds P\left(A^C\right) = 1-P(A)$
+        \item $\ds P(\phi) = 0$ \\
+        \item $\ds P(A\cup B) = P(A) + P(B) - P(A\cap B)$
+        \item $\ds A \subseteq B \implies P(A) \leq P(B)$
+    \end{enumerate*}
+\end{prop}
+\begin{dem}
+    (ejercicio)
+\end{dem}
+\begin{ejem}
+    En un experimento aleatorio con espacio muestral finito, tomamos \\
+    $\ds \Omega = \{\omega_1, \dots, \omega_N\}  \we \F = \mathcal{P} \rightarrow 2^N$. Asignamos $\ds P(\{\omega_j\}) = p_j \we j = 1, \dots, N$ tales que $\ds p_j\geq 0 \we \sum_{j=1}^{N} p_j = 1$. Entonces, $\ds\forall A \in \F : P(A) = \sum_{\omega \in A} P(\omega)$ \\
+    \textbf{Caso particular: }$\ds \forall j \in \{1,\dots, N\} : p_j = \frac{1}{N} \implies \forall A \in \F : P(A) = \frac{|A|}{N} = \frac{\tex{"Casos favorables"}}{\tex{"Total de casos"}}$    
+\end{ejem}
+
+%05/02/2024
+\begin{enumerate}%[Ejemplos]
+    \item (Muy tonto) $\ds\Omega \ne \phi$, tomas $\ds A \subset \Omega : A\ne \phi, \Omega$. \\
+    Dato $\ds p\in (0, 1)$. $\ds\F = \{\phi, A, A^c, \Omega\}$ con $\ds P(A) = p$.
+    \item (Bastante general) $\ds\Omega = \{\omega_1, \dots, \omega_N\} \rightarrow |\Omega| = N$ \\
+    $\ds\F = P(\Omega) \rightarrow |\F|=2^N$. Dato: $\ds p_1, \dots, p_N \ge 0 \implies \sum_{j=1}^N p_j=1$.
+    Asignamos $\ds P(\{\omega_j\})=p_j$ para cada $\ds j=1, \dots, N$.\\
+    Defines, para $\ds A\subset \Omega P(A) = \sum_{\omega \in A}P(\omega)$.\\
+    Caso particular: $\ds p_j=\frac{1}{N}, j = 1,\dots, N \implies P(A)=\frac{|A|}{N}$
+    \item Lanzas $n$ veces la moneda. \\
+    Dato: $p \in (0,1)$
+    $\Omega = \{111\cdots1, \dots, 000\cdots0\}, |\Omega|=2^N$. $\F=P(\Omega)$. \\
+    $\ds P(\omega)= p^{\#\tex{unos de }\omega} (1-p)^{\#\tex{ceros de }\omega}$ \\
+    Comprobamos:
+    \begin{equation*}
+        \begin{split}
+            \ds\sum_{\omega \in \Omega} P(\omega)&=\sum_{k=0}^n \left(\sum_{\substack{\omega\in \Omega \\
+            \#\tex{ceros de }\omega = k}} P(\omega)\right)=\sum_{k=0}^n p^k (1-p)^{n-k}\left(|\{\omega\in \Omega :\#\tex{ unos de } \omega\tex{ en }k\}|\right) \\
+            &=\sum_{k=0}^np^k(1-p)^{n-k} \binom{n}{k} = (p+1-p)^n=1
+        \end{split}
+    \end{equation*}
+    \item Lanzamos moneda hasta que sale una cara. Dato $\ds p\in (0,1)$. \\
+    $\ds \Omega = \{C, XC, XXC, \dots\} \we \F=P(\Omega)$. \\
+    $\ds \implies P(C)=p \we P(XC)=p(1-p) \we P(XXC)=p(1-p)^2 \we \dots$ \\
+    Comprobamos: $\ds\sum_{j=1}^{\infty} p(1-p)^{j-1} = p\sum_{k=0}^\infty(1-p)^k = p \frac{1}{1-(1-p)} = 1$
+\end{enumerate}
+
+\subsection{Probabilidad condicionada y total, independencia y regla de Bayes}
+Tienes $(\Omega, \F, P)$ y un suceso $A\in \F \rightarrow P(A)$. Llega "nueva información": ha ocurrido el suceso $B\in F \rightarrow$ ¿Debo reasignar la probabilidad de $A$?
+\begin{ejem}
+    Lanzas 10 veces la moneda (regular). \\
+    $\ds A=\{\tex{salen 6 caras}\} \implies P(A)=\frac{\binom{10}{6}}{2^10} \approx 20.51 \%$
+    $\ds B=\{\tex{sale C en 1º}\} \implies P(A)\tex{ sube a }\frac{\binom{9}{5}}{2^9}$
+\end{ejem}
+
+\begin{defn}
+    Sea $(\Omega, \F, P)$, sucesos $A, B \in \F, P(B)>0$, $P(A|B)$ es la probabilidad de $A$ condicionada a $B$
+    \[\iff P(A|B)=\frac{P(A\cap B)}{P(B)}\]
+    \begin{obs}
+        En general, $P(A|B)\ne P(B|A)$
+    \end{obs}
+\end{defn}
+\begin{prop}[Calculamos $P(A|B)$ para cada $A \in \F$]
+    Sea $(\Omega, \F, P)$ un espacio de probabilidad y $B \in \F$ un suceso con $P(B)>0$
+    \[\implies (\Omega, \F, Q_B) \tex{, donde } \appl{Q_B}{\F}{\left[0,1\right]}:Q_B(A)=P(A|B) \tex{, es un espacio de probabilidad}\]
+    \begin{dem}
+        \[\left(Q_B(A)=P(A|B)=\frac{P(A\cap B)}{P(B)} \in \left[0, 1\right]\right) \we \left(Q_B(\Omega)=P(\Omega|B)=\frac{P(\Omega\cap B)}{P(B)}=\frac{P(B)}{P(B)}=1\right)\]
+        Sean $A_1, A_2, \dots \in \F$ disjuntos dos a dos.
+        \begin{equation*}
+            \begin{split}
+                \implies Q_B\left(\bigcup_{j=1}^\infty A_j\right)&=P\left(\bigcup_{j=1}^\infty A_j\;\middle|\; B\right)=\frac{P\left(\bigcup_{j=1}^\infty A_j \cap B\right)}{P(B)}\\
+                &=\frac{1}{P(B)}P\left(\bigcup_{j=1}^\infty (A_j \cap B)\right)=\frac{1}{P(B)}\sum_{j=1}^\infty P(A_j\cap B) = \sum_{j=1}^\infty Q_B(A_j)
+            \end{split}
+        \end{equation*}
+    \end{dem}
+\end{prop}
+
+\begin{defn}[Independencia]
+    Sean $A,B \in \F$ dos sucesos con $P(A), P(B) \geq 0$ son independientes
+    \[\iff P(A|B) = P(A) \left(\we P(B|A)=P(B)\right) \tex{ para entender}\]
+    \[\iff P(A\cap B)=P(A)\cdot P(B) \tex{ la adecuada}\]
+    \begin{itemize}[topsep=1pt, itemsep=1pt,parsep=3pt]
+        \item $A, B$ disjuntos $\implies$ no independientes.
+        \item $A_1, \dots, A_N \in \F$ independientes $\ds \iff \forall J \subset \N_N: P\left(\bigcap_{j\in I} A_j\right)=\prod_{j\in J}P(A_j)$ \\
+        $\ds \iff P\left(\overline{A_1}\cap\cdots\cap\overline{A_N}\right)=\prod_{i=1}^N P\left(\overline{A_i}\right)$ donde $\overline{A_i}=A_i, (A_i)^c$
+    \end{itemize}
+\end{defn}
+\begin{ejer}
+    Encontrar un espacio de probabilidad en la que haya un conjunto de sucesos independientes dos a dos pero no completamente independientes.
+    %SOL
+    \[\textbf{SOL: }\Omega = \{1, 2, 3, 4\} \we A=\{1, 2\} \we B=\{2, 3\} \we C=\{1,3\}\]
+\end{ejer}
+
+\begin{prop}[Regla de Bayes]
+    Sean $(\Omega, \F, P)$ un espacio de probabilidad y $A, B \in \F$ sucesos con $P(A), P(B)>0$
+    \[\implies P(A|B)=P(B|A)\cdot \frac{P(A)}{P(B)}\]
+    \begin{dem}
+        \[P(A|B)=\frac{P(A\cap B)}{P(B)} \we P(B|A)=\frac{P(A\cap B)}{P(A)}\]
+        \[\implies P(A|B)\cdot P(B) = P(A\cap B) = P(B|A)\cdot P(A) \implies P(A|B)=P(B|A)\cdot \frac{P(A)}{P(B)}\]
+    \end{dem}
+\end{prop}
+
+\subsubsection{Probabilidad Total}
+Tenemos una partición de $\Omega B_1, B_2, \dots : \left(B_i\cap B_j = \phi \iff i\ne j\right) \we \left(\bigcup_jB_j=\Omega\right)$
+\[\implies P\left(\bigcup_j(A\cap B_j)\right)=\sum_j(A\cap B)=\sum_jP(A|B_j)\cdot P(B_j)\]
+
+\begin{ejem}
+    $U_1=\{10b, 3n\} \we U_2=\{5b, 5n\} \we U_3=\{2b, 6n\}$ \\
+    Procedimiento:
+    \begin{enumerate}
+        \item Sorteamos una urna $\sfrac{1}{4} \rightarrow U_1 \we \sfrac{1}{4} \rightarrow U_2 \we \sfrac{1}{2} \rightarrow U_3$
+        \item Sacamos bola de la urna seleccionada.
+    \end{enumerate}
+    ¿Cuál es la probabilidad de que sea blanca?
+    \[P(b)=P(b|U_1)P(U_1)+P(b|U_2)P(U_2)+P(b|U_3)P(U_3)\]
+\end{ejem}
+
+\begin{ejem}[Peso de la evidencia]
+    $U_1=\{80\%b, 20\%n\} \we U_2=\{20\%b, 80\%n\}$ \\
+    Procedimiento:
+    \begin{enumerate}
+        \item Sorteamos la urna con $\sfrac{1}{2}$ y $\sfrac{1}{2}$ de probabilidad.
+        \item Sacamos $10$ bolas (con reemplazamiento).
+    \end{enumerate}
+    Observamos la evidencia: $bb\dots nb$ ¿qué urna se usó?
+    \[P(U_1|5b5n)=P(5b5n|U_1)\frac{P(U_1)}{P(5b5n)}=\frac{P(5b5n|U_1)P(U_1)}{P(5b5n|U_1)P(U_1)+P(5b5n|U_2)P(U_2)}\]
+    \[P(5b5n|U_1)=\binom{10}{5}0.8^50.2^5=P(5b5n|U_2) \implies P(U_1|5b5n)=\frac{1}{2}\]
+    \[P(U_1|6b4n)=\frac{P(6b4n|U_1)P(U_1)}{P(6b4n|U_1)P(U_1)+P(6b4n|U_2)P(U_2)} = \frac{\binom{10}{6}0.8^60.2^4\cdot\sfrac{1}{2}}{\binom{10}{6}0.8^60.2^4\cdot\sfrac{1}{2} + \binom{10}{6}0.8^40.2^6\cdot\sfrac{1}{2}}\approx90\%\]
+\end{ejem}
+
+\begin{ejem}[Falsos positivos/negativos]
+    Hay una enfermedad $\rightarrow E \ve S$ y hay una prueba para detectar $\rightarrow + \ve -$. Datos: $P(+ | E)=95\% \we P(-| S)=99\%$.\\
+    Te haces la prueba y sale $+$:
+    \[P(E|+)=P(+|E)\frac{P(E)}{P(+)}=\frac{P(+|E)P(E)}
+    {P(+|E)P(E)+P(+|S)P(S)}\]
+    Conozco todas estas probabilidades excepto $p\defeq P(E) \implies P(S)=1-p$.\\
+    Si definimos $f(p)\defeq P(E|+)$ \[\implies \{f(0.5)=98.95\% \we f(\sfrac{1}{100}) = 48.97\%\we f(\sfrac{1}{1000}) = 0.90\% \}\]
+    Es decir, si la incidencia es muy baja, no tiene sentido hacer pruebas masivamente porque la mayoría de positivos serán falsos.
+\end{ejem}
+ \begin{ejem}[Sobre independencia]
+     $(\Omega, \F, P) \we A_1, \dots, A_n$ sucesos independientes tal que $\forall j \in \N_n : P(A_j)=\frac{1}{n}$. ¿Qué sabemos sobre $P\left(\bigcup_{j=1}^n A_j\right)$?
+     \[\tex{En general, sabemos que } \frac{1}{n}\leq P\left(\bigcup_{j=1}^n A_j\right) \leq \sum_{j=1}^nP(A_j)\leq 1\]
+     $n=2$: $\ds P(A\cup B)=P(A)+P(B)-P(A\cap B)=\sfrac{3}{4}$ \\
+     $n=3$: $\ds P(A\cup B\cup C)=\binom{3}{1}\frac{1}{3}-\binom{3}{2}\frac{1}{3^2}+\binom{3}{3}\frac{1}{3^3}=\sfrac{19}{27}$ \\
+     $n$ general: $\ds P\left(\bigcup_{j=1}^n A_j\right)=\sum_{j=1}^nP(A_j)-\sum_{1\leq i<y\leq n} P(A_i\cap A_j) + \cdots$ (Inclusión exclusión)
+     \[\implies P\left(\bigcup_{j=1}^n A_j\right)= \binom{n}{1}\frac{1}{n} - \binom{n}{2}\frac{1}{n^2} + \binom{n}{3}\frac{1}{n^3} + \cdots=\sum_{j=1}^n\binom{n}{j}\frac{1}{n^j}(-1)^{j+1}\]
+     \[\implies P\left(\bigcup_{j=1}^n A_j\right)= 1-\sum_{j=0}^n\binom{n}{j}\left(\frac{-1}{n}\right)^j=1-\left(1-\frac{1}{n}\right)^n\xrightarrow{n\rightarrow\infty}1-\frac{1}{e}\]
+ \end{ejem}
+
+ \subsubsection{Continuidad de la probabilidad: detalle técnico}
+
+\begin{prop}
+    Sea $(\Omega, \F, P) \we A_1, \dots : A_1 \subset A_2 \subset \cdots$ una sucesión creciente de conjuntos
+    \[\implies P\left(\bigcup_{j=1}^\infty A_j\right)=\lim_{n\rightarrow\infty}P\left(A_n\right)\]
+    \begin{dem}
+        Se trata de describir $\bigcup_{j=1}^n A_j$ como la unión de conjuntos disjuntos.
+        \[P\left(\bigcup_{j=1}^n A_j\right)=P\left(A_1\cup\bigcup_{j=1}^{n-1} \left(A_{j+1}\setminus A_j\right)\right)=P(A_1)+\sum_{j=1}^{n-1}\left(P(A_{j+1})-P(A_j)\right)=P(A_n)\]
+        \[\implies P\left(\bigcup_{j=1}^\infty A_j\right) = P(A_1)+\sum_{j=1}^{\infty}\left(P(A_{j+1})-P(A_j)\right)=\lim_{n\rightarrow\infty}P(A_n)\]
+    \end{dem}
+\end{prop}
+
+%12/02/2024
+\begin{prop}
+     Si la sucesión $A_1, \dots$ es decreciente
+    $\ds\implies P\left(\bigcap_{j=1}^\infty A_j\right)=\lim_{n\rightarrow\infty}P\left(A_n\right)$
+\end{prop}
+
+\begin{teo}[Continuidad de la probabilidad]
+    En $(\Omega, \F, P) \we A_1, A_2, \dots$ sucesión $: \forall j \in \N : A_j \in \F$
+    \[\implies P\left(\bigcup_{j=1}^\infty A_j\right)=\lim_{n\rightarrow\infty}P\left(\bigcup_{j=1}^n A_j\right)\]
+    \begin{dem}
+        
+    \end{dem}
+\end{teo}
+
+\subsection{Variables aleatorias (discretas)}
+\begin{defn}
+    Sea $(\Omega, \F, P)$ un espacio de probabilidades, $\appl{X}{\Omega}{\R}$ es una variable aleatoria discreta* (v.a.d.)
+    \[\iff \tex{(1) } X(\Omega) \tex{ es numerable*} \we \tex{ (2) }\forall x \in \R : \{\omega \in \Omega : X(\omega)=x\} \in \F\]
+    En realidad, solo interesa (2) cuando $x=x_j$
+\end{defn}
+\begin{defn}
+    Sea $X$ una v.a.d. en $(\Omega, \F, P)$, $p_X$ es su función de masa
+    \[\iff \appl{p_X}{\R}{\left[0,1\right]} \we x\longmapsto p_X(x)=P(X=x)\defeq P(\{\omega \in \Omega : X(\omega)=x\})\]
+    Vemos que 
+    \[\sum_{j\geq1}p_X(x_j)=\sum_{j\geq1}P(X=x_j)=\sum_{j\geq1} P(\{\omega \in \Omega : X(\omega)=x_j\})=P\left(\bigcup_{j\geq1}\{x_j\}\right)=P(\Omega)=1\]
+    Lo relevante es la lista de posibles valores de $X$ $\{x_1, x_2, \dots\}$ numerable y la lista (también numerable) de probabilidades $p_1, p_2, \dots$ donde $\forall j \geq 1 : p_j=P(x=x_j) \we p_j\geq 0 \we \sum_{j\geq 1}p_j=1$
+\end{defn}
+
+%13/02/2024
+\begin{teo}
+    Sea $S=\{x_1, x_2, \dots \}$ un conjunto numerable y $\Pi_1, \Pi_2, \dots, \Pi_j\geq0 \we \sum_{j\geq 1}\Pi_j=1$ una lista
+    \[\implies \exists (\Omega, \F, P) \we X\tex{ v.a.d }:\forall  x\notin S :p_x(x)= 0 \we p_x(x_j)=\Pi_j\]
+    \begin{dem}
+        Fijamos $\Omega = S$ y $\F=\mathcal{P}(S)$.
+        \[A\in \F \implies P(A)=\sum_{j:x_j\in A}\Pi_j \we X(x_j)=x_j\]
+    \end{dem}
+\end{teo}
+
+\begin{ejem}[Dados]
+    \begin{enumerate}
+        \item Uniforme en $\{1, \cdots, N\}, N\geq2$.
+        \[S=\{1, \cdots, N\} \we {\Pi_j}={\sfrac{1}{N}, \dots, \sfrac{1}{N}}\]
+        \item $X$ sigue una distribución de Bernoulli ($X\sim\ber{p}$) con parámetro $p$
+        \[\iff \begin{cases}
+            p_X(x)=0 \iff x\ne 0, 1 \\
+            p_X(1)=p \we p_X(0)=1-p
+        \end{cases}\iff\begin{cases}
+            1, p\\
+            0, 1-p
+        \end{cases}\tex{ donde $1$ es éxito y $0$ fracaso}\]
+        \item $X$ sigue una binomial de parámetro $n\geq 1 \we p\in (0, 1)$ ($X\sim\bin{n, p}$)
+        \[\iff S=\{0, 1, \dots, n\} \we \forall j\in \{0, 1, \dots, n\}:P(x=j)=\binom{n}{j}p^j(1-p)^{n-j}\]
+        Sirve para modelizar el número de caras que salen al lanzar $n$ veces una moneda de probabilidad $p$.
+        \[n! \sim n^ne^{-n}\sqrt{2\pi n}\implies \binom{n}{\sfrac{n}{2}}\sim\frac{n^ne^{-n}\sqrt{2\pi n}}{(\sfrac{n}        {2})^{(\sfrac{n}{2})}e^{-(\sfrac{n}{2})}\sqrt{2\pi (\sfrac{n}{2})}(\sfrac{n}{2})^{(\sfrac{n}{2})}e^{-(\sfrac{n}     {2})}\sqrt{2\pi (\sfrac{n}{2})}}\]
+        
+        \[\implies \frac{n^n\sqrt{n}}{(\sfrac{n}{2})^{(\sfrac{n}{2})}\sqrt{2\pi (\sfrac{n}{2})}(\sfrac{n}{2})^{(\sfrac{n}       {2})}\sqrt{(\sfrac{n}{2})}} = 
+        \frac{n^n\sqrt{n}}
+        {(\sfrac{n}{2})^{n}\sqrt{2\pi}(\sfrac{n}        {2})}=\frac{n^n\sqrt{2}}{(\sfrac{n}{2})^n\sqrt{\pi      n}}=2^n\sqrt{\frac{2}{\pi n}}\]
+        \item La variable $X$ sigue una distribución geométrica de parámetro $p\in(0,1)$ ($X\sim\geom{p}$).
+        \[\iff S=\{1, 2, \dots\} \we \forall j \geq 1 : P(x=j)=p(1-p)^{j-1}\]
+        Sirve para modelizar el número de lanzamientos hasta que sale un resultado $C$ en cuestión.
+        \begin{obs}
+            Cuidado porque existen variables aleatorias que también se dicen de distribución geométrica en las que $S=\{0, 1, 2, \dots\}$. Se habla de cuantas veces has obtenido el resultado complementario a $C$ antes de que halla salido $C$.
+        \end{obs}
+        \item La variable $X$ sigue una distribución de Poisson con parámetro $\lambda>0$ ($X\sim \poisson{\lambda}$)
+        \[\iff S=\{0, 1, \dots\} \we \forall j \geq 0 : P(x=j)=e^{-\lambda}\frac{\lambda^j}{j!}\]
+    \end{enumerate}
+\end{ejem}
+
+\begin{prop}
+    Sea $X\sim \bin{n, p}$ una v.a.d.
+    \[\implies \tex{cuando $n$ es grande, }\bin{n, p}\sim\poisson{np}\]
+    \begin{dem}
+        Fijo $\ds\lambda>0 \we p=\frac{\lambda}{n}$.
+        \[\lim_{n\rightarrow\infty} \binom{n}{k}\frac{\lambda^k}{n^k}\left(1-\frac{\lambda}{n}\right)^{n-k}=\frac{\lambda^k}{k!}\lim_{n\rightarrow\infty} \frac{n!}{(n-k)!}\frac{1}{n^k}\left(1-\frac{\lambda}{n}\right)^n\left(1-\frac{\lambda}{n}\right)^{-k}=e^{-k}\frac{\lambda^k}{k!}\]
+        
+    \end{dem}
+\end{prop}
+
+\begin{ejem}[¿Hay más ejemplos?]
+    \begin{itemize}
+        \item[] 
+        \item Binomial negativa
+        \item Hipergeométrica
+        \item Dada cualquier serie convergente $\ds \sum_{n=1}^\infty a_n = s$, se puede definir la variable aleatoria $X$ tal que $\ds S=\{1, 2, \dots\} \we P(x=k)=\frac{a_k}{s}$
+    \end{itemize}
+\end{ejem}
+
+\subsubsection{Funciones transformadoras de variables aleatorias (discretas)}
+Sea $X$ una v.a.d. y $\appl{g}{\R}{\R}$ una función, definimos $Y\defeq g(X)$.
+\[\implies \{\omega \in\Omega:Y(\omega)=g(X(\omega))=y\} \in \F \imples Y\tex{ es una v.a.d}\]
+Por otro lado, 
+\[\implies \forall y \in \R:P(Y=y)=P(g(X)=y)=P(X\in g^{-1}(y))=\sum_{x\in g^{-1}(y)}P(X=x)\]
+
+
+\section{Ejercicios}
+\subsection{Hoja 1}
+
+\noindent \textbf{14.*} Dos jugadores de tenis, $A$ y $B$, tienen probabilidades $p$ y $1-p$ de ganar un punto cuando sirve $A$.
+\begin{enumerate}
+    \item Halla la probabilidad de que A gane un juego en el que sirve y que en este momento está en situación de deuce.
+    \item Halla la probabilidad de que A gane un juego en el que sirve.
+\end{enumerate}
+
+\noindent \textbf{21. Urna de Pólya}
+\[\Omega= \tex{Listas infinitas de $0$s y $1$s} \we B_n=\tex{suceso "blanca" en }n\]
+\begin{itemize}%a,b,c,d, ...
+    \item $\ds P(B_1)=\frac{b}{a+b}$
+    \item $\ds P(B_2)=P(B_2|B_1)P(B_1)+P(B_2|A_1)P(A_1)=P(B_2|B_1)\frac{b}{a+b}+P(B_2|A_1)\frac{a}{a+b}$ \\
+    $\ds \implies P(B_2)=\frac{b+1}{a+b+1}\frac{b}{a+b}+\frac{b}{a+b+1}\frac{a}{a+b}=\frac{b(b+1)+ba}{(a+b)(a+b+1)}=\frac{b}{a+b}$
+\end{itemize}
+\begin{dem}
+    Veamos por inducción que $\ds \forall n \in \N :P(B_n)=\frac{b}{a+b}$ \\
+    Suponemos que $\ds \forall a,b \in \N: \forall k \in \{1, \dots, n\}:P(B_k)=P(B_1)=\frac{b}{a+b}$
+    \[\implies P(B_{n+1})=P(B_{n+1}|B_1)P(B_1)+P(B_{n+1}|A_1)P(A_1)\]
+    \[=P(B_{n+1}|B_1)\frac{b}{a+b}+P(B_{n+1}|A_1)\frac{a}{a+b}\]
+    Por tanto, por hipótesis de inducción:
+    \[\implies P(B_{n+1})=\frac{b+1}{a+b+1}\cdot\frac{b}{a+b} + \frac{b}{a+b+1}\cdot\frac{a}{a+b}=\frac{b}{a+b}\]
+\end{dem}
+
+
+
+
+
+
