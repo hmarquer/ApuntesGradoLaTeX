@@ -1,0 +1,33 @@
+\section{EDOs autónomas}
+
+\begin{defn}
+    Una ecuación diferencial ordinaria (EDO) de primer orden se dice autónoma si no depende explícitamente de la variable independiente. Es decir, 
+    \[\iff \tex{es de la forma } y'=f(y)\]
+\end{defn}
+
+\begin{prop}[Propiedades de EDOs autónomas]
+    \begin{enumerate}
+        \item[]
+        \item (Isoclinas) Todos los puntos de cada recta horizontal $y=c$ pertenecen a la misma isoclina. ¡Cuidado! A veces una isoclina puede contener más de una recta horizontal.
+        \begin{ejem}[$y'=y^2$]
+            \[\{(x,y)\in \R:y^2=c\}=\{(x,\sqrt{c}):x\in\R\}\cup\{(x,-\sqrt{c}):x\in\R\}\]
+        \end{ejem}
+        \item (Traslaciones) Si y es solución $\implies \forall c \in \R : w(x)\defeq y(x+c)$ es solución.
+        \item (Soluciones triviales) Si $\exists a \in \operatorname{Dom}(f) : f(a)=0 \implies y(x)=a$ es solución.
+        \begin{dem}
+            $y'(x)=0=f(a)=f(y(x))$
+        \end{dem}
+    \end{enumerate}
+\end{prop}
+
+\begin{teo}
+    Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua $ \we y_0 \in (a,b) : f(y_0) \ne 0$
+    \[\implies \exists \varepsilon : (y_0-\varepsilon, y_0+\varepsilon) \subset (a,b) \we \forall z \in (y_0-\varepsilon, y_0+\varepsilon) : f(z)\ne 0\]
+    Sea $\appl{y}{I}{(a,b)}$ una función derivable con $I\subset \R$ intervalo abierto tal que
+    $$\forall x \in I : y'(x)=f(y(x)) \we y(x_0)=y_0 \tex{ para algún }x_0 \in I$$.
+    Como $y$ es continua, $\exists \delta > 0 : \forall x \in (x_0-\delta, x_0+\delta) :y(x)\in(y_0-\varepsilon, y_0+\varepsilon)$
+    \[\implies \forall x \in (x_0-\delta, x_0+\delta) : f(y(x))\ne 0\]
+    Así, $\ds \forall x \in (x_0-\delta, x_0+\delta) : \frac{y'(x)}{f(y(x))}=1 \implies \forall x \in (x_0-\delta, x_0+\delta) : \int_{x_0}^{x} \frac{y'(z)}{f(y(z))}\odif{z} = x-x_0$
+    \[\implies \boxed{\forall x \in (x_0-\delta, x_0+\delta) : \int_{y_0}^{y(x)} \frac{1}{f(z)} \odif{z} + x_0 = x}\]
+\end{teo}
+

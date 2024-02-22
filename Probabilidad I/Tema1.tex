@@ -279,37 +279,128 @@ Tenemos una partición de $\Omega B_1, B_2, \dots : \left(B_i\cap B_j = \phi \if
 
 \subsubsection{Funciones transformadoras de variables aleatorias (discretas)}
 Sea $X$ una v.a.d. y $\appl{g}{\R}{\R}$ una función, definimos $Y\defeq g(X)$.
-\[\implies \{\omega \in\Omega:Y(\omega)=g(X(\omega))=y\} \in \F \imples Y\tex{ es una v.a.d}\]
+\[\implies \{\omega \in\Omega:Y(\omega)=g(X(\omega))=y\} \in \F \implies Y\tex{ es una v.a.d}\]
 Por otro lado, 
-\[\implies \forall y \in \R:P(Y=y)=P(g(X)=y)=P(X\in g^{-1}(y))=\sum_{x\in g^{-1}(y)}P(X=x)\]
+\[\implies \forall y \in \R:P(Y=y)=P(g(X)=y)=P(X\in g^{-1}(y))=\sum_{x\in g^{-1}(y)}P(X=x)=p_X(x)\]
 
+\begin{ejem}[$Y=x^2$]
+    $$p_Y(y) = P(Y=y)=P(X^2=y)=\begin{cases}
+        0 \iff y <0 \\
+        P(X=0)=p_X(0) \iff y=0 \\
+        P\left(X=\pm\sqrt{y}\right)=p_X\left(\sqrt{y}\right)+p_X\left(-\sqrt{y}\right) \iff y>0
+    \end{cases}$$
+\end{ejem}
 
-\section{Ejercicios}
-\subsection{Hoja 1}
+\subsubsection{Resúmenes: esperanza, varianza, momentos}
 
-\noindent \textbf{14.*} Dos jugadores de tenis, $A$ y $B$, tienen probabilidades $p$ y $1-p$ de ganar un punto cuando sirve $A$.
-\begin{enumerate}
-    \item Halla la probabilidad de que A gane un juego en el que sirve y que en este momento está en situación de deuce.
-    \item Halla la probabilidad de que A gane un juego en el que sirve.
-\end{enumerate}
+\begin{defn}[Esperanza]
+    Sea $(\Omega, \F, P)$ un espacio de probabilidad y $X$ una v.a.d. con función de masa $p_X$, $E$ es la esperanza de $X$ (también llamada media o \emph{expectatio})
+    \[\iff E(X)=\sum_{x\in X(\Omega)}x\cdot P(X=x)=\sum_{j\geq 1}x_j\cdot p_X(x_j)\]
+    Pero ojo, solo si la serie es absolutamente convergente.
 
-\noindent \textbf{21. Urna de Pólya}
-\[\Omega= \tex{Listas infinitas de $0$s y $1$s} \we B_n=\tex{suceso "blanca" en }n\]
-\begin{itemize}%a,b,c,d, ...
-    \item $\ds P(B_1)=\frac{b}{a+b}$
-    \item $\ds P(B_2)=P(B_2|B_1)P(B_1)+P(B_2|A_1)P(A_1)=P(B_2|B_1)\frac{b}{a+b}+P(B_2|A_1)\frac{a}{a+b}$ \\
-    $\ds \implies P(B_2)=\frac{b+1}{a+b+1}\frac{b}{a+b}+\frac{b}{a+b+1}\frac{a}{a+b}=\frac{b(b+1)+ba}{(a+b)(a+b+1)}=\frac{b}{a+b}$
-\end{itemize}
-\begin{dem}
-    Veamos por inducción que $\ds \forall n \in \N :P(B_n)=\frac{b}{a+b}$ \\
-    Suponemos que $\ds \forall a,b \in \N: \forall k \in \{1, \dots, n\}:P(B_k)=P(B_1)=\frac{b}{a+b}$
-    \[\implies P(B_{n+1})=P(B_{n+1}|B_1)P(B_1)+P(B_{n+1}|A_1)P(A_1)\]
-    \[=P(B_{n+1}|B_1)\frac{b}{a+b}+P(B_{n+1}|A_1)\frac{a}{a+b}\]
-    Por tanto, por hipótesis de inducción:
-    \[\implies P(B_{n+1})=\frac{b+1}{a+b+1}\cdot\frac{b}{a+b} + \frac{b}{a+b+1}\cdot\frac{a}{a+b}=\frac{b}{a+b}\]
-\end{dem}
+    Si $x_1, \dots, x_N$ finito, la suma obviamente converge.
+    
+    Si los $x_j$ son positivos, la serie converge si y solo si es acotada. Si no lo es diverge a $\infty$.
+\end{defn}
 
+\begin{ejem}
+    \begin{itemize}
+        \item[]
+        \item $\ds x_1, \dots, x_N \we p_1, \dots, p_N \implies E(X)=\sum_{j=1}^N x_j\cdot p_j$ 
+        \item $\ds X\sim\ber{p} \implies E(X)=1\cdot p+0\cdot(1-p)=p$
+        \item $\ds X\sim\unif{1, \dots, N} \implies E(X)=\frac{1}{N}\sum_{n=1}^N n = \frac{N+1}{2}$
+        \item $\ds X\sim\bin{n, p} \implies E(X)=\sum_{j=0}^n j\binom{n}{j}p^j(1-p)^{n-j}=np$ \\
+        Se obtiene derivando el binomio de Newton $\ds (1+x)^n=\sum_{j=0}^n \binom{n}{j} x^j$
+        \[\implies \odv{}{x}(1+x)^n=\sum_{j=0}^n \binom{n}{j} j\cdot x^{j-1} \implies xn(1+x)^{n-1}=\sum_{j=0}^n \binom{n}{j} jx^{j}\]
+        Si $\ds x=\frac{p}{1-p} \implies \frac{p}{1-p}n\left(1+\frac{p}{1-p}\right)^{n-1}=\sum_{j=0}^n \binom{n}{j} j\left(\frac{p}{1-p}\right)^{j}$
+        \[\implies \frac{p}{1-p}n\left(\frac{1}{1-p}\right)^{n-1}=\sum_{j=0}^n \binom{n}{j} j\left(\frac{p}{1-p}\right)^{j}\]
+        \[\implies np=(1-p)^n\sum_{j=0}^n \binom{n}{j} j\left(\frac{p}{1-p}\right)^{j} = \sum_{j=0}^n j\binom{n}{j}p^j(1-p)^{n-j} = E(X)\]
+        \item $X\sim \geom{p}$ $\ds \implies E(X)=\sum_{k=1}^\infty k\cdot p\cdot(1-p)^{k-1}$
+        \[\forall  x :\abs{x}<1: \frac{1}{1-x}=\sum_{n=0}^\infty x^n\implies \frac{1}{(1-x)^2}=\sum_{n=1}^\infty nx^{n-1}\implies E(X)= p \frac{1}{p^2}=\frac{1}{p}\]
+        \item $\ds X\sim\poisson{\lambda} \implies E(X)=\sum_{j=0}^\infty j\frac{\lambda^j}{j!}e^{-\lambda}=\lambda$
+        \[\implies E(X)=e^{-\lambda}\lambda\sum_{k=1}^\infty \frac{\lambda^{k-1}}{(k-1)!}=\lambda e^{-\lambda}\sum_{j=0}^{\infty} \frac{\lambda^j}{j!}=\lambda\]
+    \end{itemize}
+\end{ejem}
 
+\begin{ejem}
+    Sea $X$ una v.a.d. con $\ds \forall k \geq 0 : P(X=x)=\frac{6}{\pi^2}\frac{1}{k^2}$
+    \[\implies E(X)=\sum_{k=1}^\infty k\frac{6}{\pi^2}\frac{1}{k^2}=\frac{6}{\pi^2}\sum_{k=1}^\infty \frac{1}{k} \tex{  que diverge a } \infty\]
+\end{ejem}
+\begin{ejem}
+    Sea $X$ una v.a.d. que toma valores en $\{(-1)^{k+1}k : k \geq 1\} = \{1, -2, 3, -4, \dots\}$
+    \[P(X=(-1)^{k+1}k)=\frac{6}{\pi^2}\frac{1}{k^2} \implies E(X)=\sum_{k=1}^\infty \frac{(-1)^{k+1}}{k} \tex{ que sabemos que tiende a } \ln{2}\]
+    Sin embargo, la serie no converge absolutamente, por tanto, mediante argumentos de reordenación, se puede argumentar que $E(X)$ toma cualquier valor real. Entonces $E(X)$ no tiene sentido.
+\end{ejem}
+
+\begin{teo}
+    Sea $X$ una v.a.d. que toma los valores $x_j$ y probabilidades $p_j$ con $j \geq 1$. Sea $\appl{g}{\R}{\R}$ una función.
+    \[\implies E(g(X))=\sum_{j\geq 1}g(x_j)p_j\]
+    \begin{dem}
+        POR REVISAR
+        \[\sum_{j\geq 1}g(x_j)p_j=\sum_{j\geq 1}g(x_j)P(X=x_j)=\sum_{j\geq 1}g(x_j)\sum_{\substack{\omega\in\Omega \\ X(\omega)=x_j}}P(\{\omega\})=\sum_{\omega\in\Omega}g(X(\omega))P(\{\omega\})=E(g(X))\]
+    \end{dem}
+\end{teo}
+
+\begin{obs}
+    \begin{enumerate}
+        \item[]
+        \item Si $X$ es tal que $P(X=a)=1\implies E(X)=a$
+        \item $X \sim \unif{\{-1, 0, 1\}} \we Y=X^2 \implies E(X)=0 \we E(Y)=\sfrac{2}{3}$
+        \item $E(aX+b)=aE(X)+b$ porque
+        \[\sum_{j\geq 1}(ax_j+b)p_j=a\sum_{j\geq 1}x_jp_j+b\sum_{j\geq 1}p_j=aE(X)+b\]
+        \item En general $E(g(X)) \ne g(E(X))$
+        \begin{ejem}[$X\sim\poisson{\lambda} \implies E(X)=\lambda$]
+            Si $Y=g(X)=e^X$
+  		      \[\implies E(Y)=E(e^Y)=\sum_{j=0}^\infty e^j\frac{\lambda^j}{j!}e^{-\lambda}=e^{-\lambda}\sum_{j=0}^\infty \frac{(e\lambda)^{j}}{j!}=e^{-\lambda}e^{e\lambda}=e^{\lambda(e-1)}\ne e^\lambda\]
+        \end{ejem}
+    \end{enumerate}
+\end{obs}
+
+\begin{defn}
+	Sea $(\Omega, \F, P)$ un espacio de probabilidad y $X$ una v.a.d. con función de masa $p_X$, $V(X)$ es la varianza de $X$
+	\[\iff V(X)=E\left[(X-E(X))^2\right]\] 
+	Si $X$ toma valores $x_1, x_2, \dots$ con probabilidades $p_1, p_2, \dots$ y denominamos $\mu \defeq E(X)$
+	\[\implies V(X)=\sum_{j\geq 1}(x_j-\mu)^2\cdot p_j = \sum_{j\geq 1}(x_j-\mu)^2\cdot p_j = \sum_{j\geq 1}(x_j^2-2x_j\mu+\mu^2)\cdot p_j\]
+    \[\implies V(X)=\sum_{j\geq 1}x_j^2p_j -2\sum_{j\geq 1}x_j\mu p_j +\sum_{j\geq 1}\mu^2p_j\]
+\end{defn}
+
+\begin{obs}
+    \begin{enumerate}
+        \item[] 
+        \item Es medidad de dispersión de $X$ alrededor de $\mu$.
+        \item $V(X)\geq 0$
+        \item $V(X)=0\implies P(X=E(X))=1$
+        \item $V(aX+b)=E[(aX+b-E(aX+b))^2]=E[(aX.-aE(X))^2]=a^2V(X)$
+        \item Las unidades de $V(X)$ son las de $X^2$ $$\implies \tex{definimos la desviación típica de $X$ como } \sigma(X)\defeq\sqrt{V(X)}$$
+        \item ¿Por qué no $E(|X-E(X)|)$? \\
+        Porque el valor absoluto no es diferenciable y no se puede trabajar con él.
+    \end{enumerate}
+\end{obs}
+
+\begin{ejem}
+    \begin{enumerate}
+        \item[]
+        \item $\ds X\sim\ber{p} \implies E(X)=p \we V(X)=p-p^2=p(1-p)$
+        \item $\ds X\sim \unif{\{1, \dots, N\}} \implies E(X)=\frac{N+1}{2} \we V(X)=\frac{N^2-1}{12}$
+        \[\implies V(X)=\frac{1}{N}\sum_{j=1}^N j^2=\frac{1}{N}\cdot\frac{N(N+1)(2N+1)}{6}=\frac{(N+1)(N-1)}{12}\]
+        \item $\ds X\sim\bin{n, p} \implies E(X)=np \we V(X)=np(1-p)$
+        \begin{dem}
+            
+        \end{dem}
+        \item $\ds X\sim\geom{p} \implies E(X)=\frac{1}{p} \we V(X)=\frac{1-p}{p^2}$
+        \begin{dem}
+            
+        \end{dem}
+        \item $X\sim\poisson{\lambda} \implies E(X)=\lambda \we V(X)=\lambda$
+        \begin{dem}
+            \[E(X^2)=\sum_{k=0}^{\infty} k^2 e^{-k}\frac{\lambda^k}{k!}\]
+        \end{dem}
+    \end{enumerate}
+\end{ejem}
+
+\begin{defn}[Momentos de $X$]
+    
+\end{defn}
 
 
 

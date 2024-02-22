@@ -1,7 +1,3 @@
-\documentclass[12pt]{article}
-\usepackage{style}
-
-\begin{document}
 \section{Tema 1: Introducción}
 %\subsection{}
 \begin{defn}[Tipos de ecuaciones diferenciales]
@@ -48,7 +44,7 @@
         \item $\ds y''=\frac{(-2yy'2(1+x^2)-2x)e^{-y^2}}{(1+x^2)^2}=\frac{-2e^{-y^2}(ye^{-y^2}+x)}{(1+x^2)^2}$ \\
         Si $\ds x>0 \implies y''(x)<0$ y si $x<0 \implies y''(x)>0$
         \[ \implies y \tex{ es convexa en } (-\infty, 0) \tex{ y cóncava en }(0, +\infty)\]
-        \item $\ds y'\leq \frac{1}{1+x^2}$ \\
+        \item $\ds y' \leq \frac{1}{1+x^2}$ \\
         Si $\ds x>0 \implies y(x)=\int_0^x y'(s)\odif{s}\leq\int_0^x \frac{1}{1+s^2}\odif{s}=\arctan{x}$ \\
         Si $\ds x<0 \implies -y(x)=\int_x^0 y'(s)\odif{s}\leq\int_x^0 \frac{1}{1+s^2}\odif{s}=-\arctan{x}$ \\
         \[\implies |y(x)| \leq |\arctan{x}| \leq \frac{\pi}{2} \implies y \text{ es constante.}\]
@@ -194,8 +190,7 @@ En general, si se conserva una cantidad de la forma $F(x, y(x))$, ¿qué ecuaci�
 \end{teo}
 
 \subsection{Modelización}
-\subsubsection{Crecimiento Malthusiano}
-\label{sec:malthusiano}
+\subsubsection{Crecimiento Malthusiano}\label{sec:malthusiano}
 \[x(t)\defeq \tex{Población a tiempo $t$}\]
 El modelo asume que el espacio y loas recursos son ilimitados, y además, el crecimiento en cada instante es proporcional a la población en ese instante. En términos matemáticos:
 \[\frac{x(t+h)-x(t)}{h}=ax(t)+o(1) \tex{ donde } o(1)\xrightarrow{h\rightarrow 0}0\]
@@ -303,7 +298,7 @@ satisface (localmente) una EDO $y'=f(x,y)$ de primer orden.
 \end{prop}
 
 \begin{ejem}
-    Siguiendo el Ejemplo \ref{circums}, podemos encontrar una familia de curvas ortogonal a $\F$ $(\mathcal{C})$ tomando las soluciones de la EDO:
+    Siguiendo el Ejemplo \cref{circums}, podemos encontrar una familia de curvas ortogonal a $\F$ $(\mathcal{C})$ tomando las soluciones de la EDO:
     \[\ds z'=\frac{2xz}{x^2-z^2} \tex{ que es homogénea.}\]
     \[\implies \mathcal{C} =\left\{\{(x,z)\in \R^2 : (z-c)^2+x^2=c^2\} : c\in\R\right\}\]
     \begin{figure}[htbp]
@@ -329,8 +324,70 @@ satisface (localmente) una EDO $y'=f(x,y)$ de primer orden.
     \end{tabular}
 \end{ejem}
 
-\begin{defn}[Isolínea]
-    Sea $y'=f(x,y)$ una EDO, sus isolíneas son los conjuntos de la forma $f(x, y)=c$ con $c\in \R$.
+\begin{defn}[Isoclina]
+    Sea $y'=f(x,y)$ una EDO, sus isoclinas son los conjuntos de la forma $f(x, y)=c$ con $c\in \R$.
 \end{defn}
-\end{document}
 
+\begin{ejem}[$x'=x^2-t^2$]
+    \begin{enumerate}
+        \item[]
+        \item La función $y=-x(-t)$ también es solución porque
+        \[\forall t \in \R : y'=x'(-t)=(-x(-t))^2-(-t)^2=(y(t))^2-t^2\]
+        \item Existe $t\in \R : x(t)>-t$\\
+        Razonando por contradicción, supongamos que $\forall t\in \R:x(t)\leq -t$. En particular, $\forall t \geq 0: x(t) \leq -t$.
+        Entonces, $\forall t \geq 0 : x^2(t)\geq t^2$. Por tanto, $\forall t \geq 0 : x'(t)=x(t)^2-t^2\geq 0$. \\
+        Integrando $x(t)-x(0)\geq 0$ Entonces $\forall t \geq 0: x(0) \leq x(t) \leq -t$, pero tomando $t\geq -x(0)$, llegamos a una contradicción.
+        \item Si $x(t_0)=-t_0$ para algún $t_0\in \R$, entonces $x(t)\geq-t$ para todo $t\geq t_0$.
+        \begin{obs}
+            Se puede pensar que $b(t)=-t$ actúa como una barrera que no se puede atravesar. De hecho, $b(t)$ es una isoclina (porque $b(t)^2-t^2=cte$).\\
+            Estas son candidatas a barreras.
+        \end{obs}
+        Definimos $\forall t \geq t_0 : \varphi(t) \defeq x(t)-(-t)=x(t)+t$.
+
+        Por un lado, $\varphi(t_0)=x(t_0)-t_0=0$
+
+
+        Por otro lado, $\varphi'(t)=x'(t)+1=(x(t)^2-t^2)+1 \implies \varphi'(t_0) = 1 >0$ \\
+        Entonces, existe $\varepsilon > 0 : \forall t\in (t_0, t_0+\varepsilon) \varphi(t) > 0$.
+
+        Razonando por contradicción, supongamos que $\exists t_1 > t_0$ tal que $\varphi (t_1)=0$. Podemos asumir que $t_1$ es el más pequeño que lo cumple y, por tanto, $\forall t \in (t_0, t_1):\varphi (t)>0$ \\
+        \[\implies \varphi'(t_1)=x(t_1)^2-t_1^2+1=(-t_1)^2-t_1^2+1=1>0 \]
+    \end{enumerate}
+\end{ejem}
+
+\begin{ejem}[$x'=x^2\arctan(x)$]
+    \begin{enumerate}
+        \item[]
+        \item La fucknión $\appl{y}{I}{\R}$ dada por $y(t)=-x(t)$ es solución, porque
+        \[\forall t \in I: y'(t)=-x'(t)=-x^2\arctan(x(t)) = (-x(t))^2\arctan(-x(t))=y(t)^2\arctan(y(t))\]
+        \item Sean $t_0 \in I, x_0 >0$, con $x(t_0)=x_0$. Entonces, $\forall t \in (t_0, \infty)\cap I : x(t) > x_0$
+        \begin{dem}
+            Sea $\varphi(t)=x(t)-x_0, \forall t \in [t_0, \infty)\cap I$. \\
+            Por un lado, $\varphi(t_0)=x(t_0)-x_0=0$. \\
+            Por otro lado, $\varphi'(t)=x'(t)=x(t)^2\arctan(x(t))>0 \implies \varphi'(t_0)>0$. \\
+            Razonando por contradicción, supongamos que $\exists t_1 \in I\cap (t_0, \infty)$ tal que $\varphi(t_1)=0$. Podemos asumir que $t_1$ es el más pequeño que lo cumple y, por tanto, $\varphi'(t_1)\leq0$, pero $\varphi'(t_1)=x'(t_1)=x(t_1)^2\arctan(x(t_1))=x_0^2\arctan(x_0)>0$
+        \end{dem}
+        \begin{obs}
+            La función $b(t)=x_0>0$ cumple que $b'(t)<b(t)^2\arctan(b(t))$. Es decir, es una \emph{subsolución}.
+        \end{obs}
+        \item Si $\exists t_0 \in I : x(t_0)=x_0>0$, entonces $ \forall t \in I : x(t) \geq 0$.
+        \begin{dem}
+            Supongamos que $\exists t_1 \in I : x(t_1)<0$, entonces por 2., $t_1<t_0$. Sea $t_2 \in (t_1, t_0)$ tal que $x(t_2)=0$ y lo elijo de forma que $\forall t \in (t_1, t_2) : x(t)<0$. \\
+            Por el TVM, $\ds \exists s \in (t_1, t_2) : x'(s)=\frac{x(t_2)-x(t_1)}{t_2-t_1}=\frac{0-x(t_1)}{t_2-t_1}>0$. \\
+            Sin embargo, $x'(s)=x(s)^2\arctan(x(s))<0$, lo cual es una contradicción.
+        \end{dem}
+        \item Si $x(t_0)=x_0>0 \we \inf(I)=-\infty$, entonces $\ds \exists \lim_{t\to-\infty}x(t)=L \we L=0$.
+        \begin{dem}
+            Como $x$ es creciente y acotada inferiormente, $\exists L$. La ecuación dice que también existe $\lim_{t\to-\infty}x'(t)$ con $\lim_{t\to -\infty} x'(t)=L^2\arctan (L)$. Por otro lado, vamos a ver que $\lim_{t\to-\infty}x'(t)=0$. En efecto, por el TVM, $\exists s \in (t, t-1) : x'(s)=\frac{x(t)-x(t-1)}{t-(t-1)}=x(t)-x(t-1)$. Entonces, $\lim_{t\to-\infty}x'(t)=0 \implies L^2\arctan(L)=0 \implies L=0$.
+        \end{dem}
+
+        \item $\sup(I)<\infty$
+        \begin{dem}
+            Si $x(t_0) = x_0>0$, entonces $\forall t > t_0:x(t)>x_0$. \\
+            Por tanto, $\forall t >t_0:x'(t)>x(t)^2\arctan(x_0)=\lambda x(t)^2$
+            \[\implies \forall t>t_0:\frac{x'(t)}{x^2(t)}>\lambda\implies \int_{t_0}^t \frac{x'(s)}{x(s)^2} \odif{s} > \lambda(t-t_0)\]
+            \[\implies \int_{x_0}^{x(t)} \frac{1}{r^2}\odif{r} > \lambda(t-t_0) \implies -\frac{1}{x(t)}+\frac{1}{x_0}>\lambda(t-t_0)\]
+            \[\implies \frac{1}{x_0}>\lambda(t-t_0) \implies t < t_0+\frac{1}{\lambda x_0}\]
+        \end{dem}
+    \end{enumerate}
+\end{ejem}
