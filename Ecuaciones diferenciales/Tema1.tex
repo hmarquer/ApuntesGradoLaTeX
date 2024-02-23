@@ -12,7 +12,7 @@
         \item Según si la derivada de mayor orden se puede despejar o no.
         \begin{enumerate}[topsep=1pt, itemsep=1pt,parsep=3pt]
             \item En forma normal $y^{(n)} = f(x, y, \dots, y^{(n-1)})$.
-            \\ Reducción de orden:
+            \\ $\iff$ por reducción de orden:
             $\begin{cases}
                 y_j' = y^{(j)}, j=1, \dots, n-1\\
                 y_n'=f(x,y_1, \dots, y_{n-1})
@@ -65,9 +65,9 @@ $\ds \iff y(x)-y(x_0)=\int_{x_0}^x f(s) \,\odif{s} \iff \boxed{y(x) = y_0 + \int
     \[\iff \tex{ es de la forma } \boxed{h(y)y'=f(x)}\]
 \end{defn}
 \begin{prop}
-    Si $H, F$ son primitivas de $h, f$ respectivamente, entonces la familia de funciones, definida implícitamente por $H(y(x))-F(x)=0$, es solución de la EDO.
+    Si $H, F$ son primitivas de $h, f$ respectivamente, entonces la familia de funciones, definida implícitamente por $H(y(x))-F(x)=C$, es solución de la EDO.
     \begin{dem}
-        \[H(y(x))-F(x)=0 \implies \left(H(y(x))-F(x)\right)'=0 \implies h(y(x))y'(x)-f(x)=0\]
+        \[H(y(x))-F(x)=C \iff \left(H(y(x))-F(x)\right)'=0 \iff h(y(x))y'(x)-f(x)=0\]
     \end{dem}
 \end{prop}
 \begin{ejem}
@@ -89,7 +89,7 @@ $\ds \iff y(x)-y(x_0)=\int_{x_0}^x f(s) \,\odif{s} \iff \boxed{y(x) = y_0 + \int
     \end{enumerate}
 \end{obs}
 
-%05/02/2024
+\fecha{05/02/2024}\\
 En general, si se conserva una cantidad de la forma $F(x, y(x))$, ¿qué ecuación satisface $y$?
 \[\forall x \in I : g(x)\defeq F(x, y(x))= c\]
 \[\forall x \in I : g'(x)=\pdv{F}{x}(x,y(x)) + \pdv{F}{y}(x, y(x))y'(x)=0\] % Posible error: '=' en vez de '+'

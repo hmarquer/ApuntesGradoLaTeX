@@ -19,15 +19,65 @@
         \end{dem}
     \end{enumerate}
 \end{prop}
+% \begin{teo}
+%     Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua $ \we y_0 \in (a,b) : f(y_0) \ne 0$
+%     \[\implies \exists \varepsilon : (y_0-\varepsilon, y_0+\varepsilon) \subset (a,b) \we \forall z \in (y_0-\varepsilon, y_0+\varepsilon) : f(z)\ne 0\]
+%     Sea $\appl{y}{I}{(a,b)}$ una función derivable con $I\subset \R$ intervalo abierto tal que
+%     $$\forall x \in I : y'(x)=f(y(x)) \we y(x_0)=y_0 \tex{ para algún }x_0 \in I$$.
+%     Como $y$ es continua, $\exists \delta > 0 : \forall x \in (x_0-\delta, x_0+\delta) :y(x)\in(y_0-\varepsilon, y_0+\varepsilon)$
+%     \[\implies \forall x \in (x_0-\delta, x_0+\delta) : f(y(x))\ne 0\]
+%     Así, $\ds \forall x \in (x_0-\delta, x_0+\delta) : \frac{y'(x)}{f(y(x))}=1 \implies \forall x \in (x_0-\delta, x_0+\delta) : \int_{x_0}^{x} \frac{y'(z)}{f(y(z))}\odif{z} = x-x_0$
+%     \[\implies \boxed{\forall x \in (x_0-\delta, x_0+\delta) : \int_{y_0}^{y(x)} \frac{1}{f(z)} \odif{z} + x_0 = x}\]
+% \end{teo}
+
+\fecha{22/02/2024}
 
 \begin{teo}
-    Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua $ \we y_0 \in (a,b) : f(y_0) \ne 0$
-    \[\implies \exists \varepsilon : (y_0-\varepsilon, y_0+\varepsilon) \subset (a,b) \we \forall z \in (y_0-\varepsilon, y_0+\varepsilon) : f(z)\ne 0\]
-    Sea $\appl{y}{I}{(a,b)}$ una función derivable con $I\subset \R$ intervalo abierto tal que
-    $$\forall x \in I : y'(x)=f(y(x)) \we y(x_0)=y_0 \tex{ para algún }x_0 \in I$$.
-    Como $y$ es continua, $\exists \delta > 0 : \forall x \in (x_0-\delta, x_0+\delta) :y(x)\in(y_0-\varepsilon, y_0+\varepsilon)$
-    \[\implies \forall x \in (x_0-\delta, x_0+\delta) : f(y(x))\ne 0\]
-    Así, $\ds \forall x \in (x_0-\delta, x_0+\delta) : \frac{y'(x)}{f(y(x))}=1 \implies \forall x \in (x_0-\delta, x_0+\delta) : \int_{x_0}^{x} \frac{y'(z)}{f(y(z))}\odif{z} = x-x_0$
-    \[\implies \boxed{\forall x \in (x_0-\delta, x_0+\delta) : \int_{y_0}^{y(x)} \frac{1}{f(z)} \odif{z} + x_0 = x}\]
+    Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua \\
+    Supongamos que $\forall x \in (a,b) : f(x) \ne 0$ y que $\begin{cases}
+        a>-\infty \implies f(a)=0 \\
+        b<\infty \implies f(b)=0
+    \end{cases}$ \\
+    Sea $x_0 \in (a,b)$ definimos $\ds \forall x \in (a,b) : F(x)\defeq\int_{x_0}^{x} \frac{1}{f(s)} \odif{s}$ \\
+    Si $f(x)>0$ en $(a,b)$, definimos 
+    $$\ds T_-\defeq \lim_{x\to a^+}F(x)\in [-\infty, 0) \we T_+\defeq \lim_{x\to b^-}F(x) \in (0, \infty]$$
+    Si $f(x) < 0$ en $(a,b)$, intercambiamos $T_-$ por $T_+$.
+    \[\implies \exists \appl{x}{(T_-, T_+)}{(a,b)} \tex{ derivable}: \begin{cases}
+        x'(t)=f(x(t)) \\
+        x(0)=x_0
+    \end{cases}\]
+    \begin{dem}
+        Supongamos sin pérdida de generalidad que $\forall x \in (a,b) : f(x)>0$
+        \[\implies \forall x \in (a,b) : F'(x)=\frac{1}{f(x)}>0 \implies F \tex{ es creciente en }(a,b)\]
+        \[\implies F \tex{ tiene inversa en } (a, b) \implies \exists x\defeq \appl{F^{-1}}{(T_-,T_+)}{(a,b)}\]
+        \[\tex{Por un lado, }\quad x'(t) = (F^{-1})'(t)=\frac{1}{F'(F^{-1}(t))}=\frac{1}{F'(x(t))}\]
+        \[\tex{Por otro lado, }\quad F(x_0)=0 \implies x_0= F^{-1}(F(x_0))=F^{-1}(0)=x(0)\]
+    \end{dem}
 \end{teo}
+
+\begin{teo}[Unicidad local]
+    Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua. Supongamos que $f(x)\ne 0$ en $(a,b)$. Sea $x_0 \in (a,b)$, sea $I\subset \R$ un intervalo abierto tal que $0\in I$ y sean $\appl{x}{I}{(a,b)} \we \appl{y}{I}{(a,b)}$ cumpliendo
+    \[\begin{cases}
+        x'(t)=f(x(t)) \\
+        y'(t)=f(y(t)) \\
+        x(0)=x_0=y(0)
+    \end{cases} \implies \forall t \in I : x(t)=y(t)\]
+    \begin{dem}
+        \[\forall s \in (a,b) : F(s)=\int_{x_0}^{s} \frac{1}{f(r)}\odif{r} \implies \forall t \in I : F(x(t))=t=F(y(t))\]
+        \[\implies \forall t \in I : F^{-1}(F(x(t)))=F^{-1}(F(y(t))) \implies \implies \forall t \in I : x(t)=y(t)\]
+    \end{dem}
+\end{teo}
+
+\begin{cor}
+    En las condiciones del teorema de unicidad local, sea $a\in \R : f(a)\defeq \lim_{x\to a^-} f(x)=0$. Supongamos que
+    \[\forall k \in (a,b) : \lim_{x\to a^+}\int_{k}^{x} \frac{1}{f(s)} \odif{s} = \begin{cases}
+        -\infty \iff f>0 \tex{ en } (a,b) \\
+        \infty \iff f<0 \tex{ en } (a,b)
+    \end{cases}\]
+    \[\implies \tex{Para cada intervalo} \begin{cases}
+        I=[0, t_0) \iff f>0 \tex{ en } (a,b) \\
+        I=(-t_0, 0] \iff f<0 \tex{ en } (a,b)
+    \end{cases} \tex{ se tiene que $x=a$ es la única solución.}\]
+\end{cor}
+
 

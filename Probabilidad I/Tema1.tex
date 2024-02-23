@@ -399,8 +399,23 @@ Por otro lado,
 \end{ejem}
 
 \begin{defn}[Momentos de $X$]
-    
+    Sea $X$ una v.a.d. con función de masa $p_X$, $\mu_k$ es el $k$-ésimo momento de $X \iff \mu_k= E\left((X-E(X))^k\right)$
 \end{defn}
+
+\begin{obs}
+    \begin{enumerate}
+        \item[]
+        \item $\mu_1=0$
+        \item $\mu_2=V(X)$
+        \item $\mu_3$ es la asimetría de $X$
+        \item $\mu_4$ es la curtosis de $X$
+    \end{enumerate}
+\end{obs}
+
+\begin{teo}[Desigualdades de Markov/Chebyshev]
+    Sea $X$ una v.a.d. con función de masa $p_X$
+    \[\implies P(|X-E(X)| > 3\sigma(X))\leq \frac{1}{9}\]
+\end{teo}
 
 
 

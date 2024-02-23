@@ -14,6 +14,7 @@
 \usepackage{esvect}
 \usepackage{svg}
 \usepackage{epstopdf}
+\usepackage{parskip}
 
 \pgfplotsset{compat=1.8}
 
@@ -41,17 +42,32 @@
   name=Ejemplo,
   numberwithin=section,
 ]{ejem}
+\declaretheorem[
+  style=definicionstyle,
+  name=Corolario,
+  numberwithin=section,
+]{cor}
 
 \theoremstyle{plain}
 \newtheorem{teo}{Teorema}[section]
 \newtheorem{lem}{Lema}[section]
 \newtheorem{prop}{Proposición}[section]
 
+\newcommand{\hangingindentvalue}{0.25cm}
+
 \newenvironment{dem}[1][]{%
-  \begin{adjustwidth}{1cm}{0cm} \begin{proof}[\textbf{Demostración\ifx\relax#1\relax\else{ (#1)}\fi}]
+  \begin{adjustwidth}{\hangingindentvalue}{0cm} \begin{proof}[\textbf{Demostración\ifx\relax#1\relax\else{ (#1)}\fi}]
 }{\end{proof}\end{adjustwidth}}
 
-\AtBeginEnvironment{document}{\setlength{\topsep}{10pt}}
+\AtBeginEnvironment{defn}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{prop}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{ejem}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{ejer}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{teo}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{dem}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{cor}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{cor}{\hangindent=\hangingindentvalue}
+%\AtEndEnvironment{defn}{\end{hangparas}}
 
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
 \newcommand{\R}{\mathbb{R}}
@@ -75,3 +91,14 @@
 \renewcommand\qedsymbol{$\blacksquare$}
 \renewcommand\labelitemi{\raisebox{0.25ex}{\tiny$\bullet$}}
 \newcommand\til[1]{\tilde{#1}}
+\newcommand\fecha[1]{
+	\vspace*{0.5cm}
+    \par\hfill\textbf{#1}\hspace*{-1cm}\par\noindent
+}
+\newcommand{\myquote}[1]{%
+    \par\addvspace{\baselineskip}%
+    \list{}{\leftmargin=1em\rightmargin=1em}\item[]%
+    #1\par\addvspace{\baselineskip}%
+    \endlist%
+    \noindent\ignorespaces%
+}
