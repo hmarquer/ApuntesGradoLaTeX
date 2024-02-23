@@ -12,32 +12,32 @@
 
 % Configuración de teoremas y definiciones
 \declaretheoremstyle[
-  spaceabove=10pt,
-  spacebelow=5pt,
-  headfont=\normalfont\bfseries,
-  notefont=\bfseries,
-  notebraces={(}{)},
-  bodyfont=\normalfont,
+	spaceabove=10pt,
+	spacebelow=5pt,
+	headfont=\normalfont\bfseries,
+	notefont=\bfseries,
+	notebraces={(}{)},
+	bodyfont=\normalfont,
 ]{definicionstyle}
 \declaretheorem[
-  style=definicionstyle,
-  name=Definición,
-  numberwithin=subsection,
+	style=definicionstyle,
+	name=Definición,
+	numberwithin=subsection,
 ]{defn}
 \declaretheorem[
-  style=definicionstyle,
-  name=Observación,
-  numberwithin=subsection,
+	style=definicionstyle,
+	name=Observación,
+	numberwithin=subsection,
 ]{obs}
 \declaretheorem[
-  style=definicionstyle,
-  name=Ejemplo,
-  numberwithin=subsection,
+	style=definicionstyle,
+	name=Ejemplo,
+	numberwithin=subsection,
 ]{ejem}
 \declaretheorem[
-  style=definicionstyle,
-  name=Ejercicio,
-  numberwithin=subsection,
+	style=definicionstyle,
+	name=Ejercicio,
+	numberwithin=subsection,
 ]{ejer}
 
 \theoremstyle{plain}
@@ -47,7 +47,7 @@
 
 % Entorno para demostraciones personalizado
 \newenvironment{dem}[1][]{%
-  \begin{adjustwidth}{1cm}{0cm} \begin{proof}[Demostración\ifx\relax#1\relax\else{ (#1)}\fi]
+	\begin{adjustwidth}{1cm}{0cm} \begin{proof}[Demostración\ifx\relax#1\relax\else{ (#1)}\fi]
 }{\end{proof}\end{adjustwidth}}
 
 \AtBeginEnvironment{document}{\setlength{\topsep}{10pt}}

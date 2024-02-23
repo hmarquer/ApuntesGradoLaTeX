@@ -12,26 +12,26 @@
 \begin{center}
 \begin{tikzpicture}[scale=1] % Adjust the scale factor as needed
 \begin{axis}[
-    width=7cm, % Adjust the width of the graph
-    height=7cm, % Adjust the height of the graph
-    view={0}{90},
-    domain=\minimumX:\maximumX,
-    y domain=\minimumY:\maximumY,
-    xmax=\maximumX, ymax=\maximumY,
-    xmin=\minimumX, ymin=\minimumY,
-    samples=\arrowSamples,
-    % x={(3cm,0cm)}, y={(0cm,3cm)}, 
+	width=7cm, % Adjust the width of the graph
+	height=7cm, % Adjust the height of the graph
+	view={0}{90},
+	domain=\minimumX:\maximumX,
+	y domain=\minimumY:\maximumY,
+	xmax=\maximumX, ymax=\maximumY,
+	xmin=\minimumX, ymin=\minimumY,
+	samples=\arrowSamples,
+	% x={(3cm,0cm)}, y={(0cm,3cm)}, 
 ]
 \foreach \c in {-5,...,5} {
-    \addplot[line width=1.75pt, red, domain=\minimumX:\maximumX] {\c*e^(x))};
+	\addplot[line width=1.75pt, red, domain=\minimumX:\maximumX] {\c*e^(x))};
 }
 \addplot[line width=1.75pt, red, domain=\minimumX:\maximumX] {0.3*e^(x))};
 \addplot[line width=1.75pt, red, domain=\minimumX:\maximumX] {-0.3*e^(x))};
 \draw[black, thick] (axis cs: \minimumX,0,0) -- (axis cs: \maximumX,0,0);
 \draw[black, thick] (axis cs: 0,\minimumY,0) -- (axis cs: 0,\maximumY,0);
 \addplot3 [gray, quiver={u={1}, v={\yprime{x}{y}},
-    scale arrows=\arrowScaler,
-    every arrow/.append style={-latex}}] (x,y,0);
+	scale arrows=\arrowScaler,
+	every arrow/.append style={-latex}}] (x,y,0);
 \end{axis}
 \end{tikzpicture}
 \end{center}

@@ -1,23 +1,23 @@
 \section{EDOs autónomas}
 
 \begin{defn}
-    Una ecuación diferencial ordinaria (EDO) de primer orden se dice autónoma si no depende explícitamente de la variable independiente. Es decir, 
-    \[\iff \tex{es de la forma } y'=f(y)\]
+	Una ecuación diferencial ordinaria (EDO) de primer orden se dice autónoma si no depende explícitamente de la variable independiente. Es decir, 
+	\[\iff \tex{es de la forma } y'=f(y)\]
 \end{defn}
 
 \begin{prop}[Propiedades de EDOs autónomas]
-    \begin{enumerate}
-        \item[]
-        \item (Isoclinas) Todos los puntos de cada recta horizontal $y=c$ pertenecen a la misma isoclina. ¡Cuidado! A veces una isoclina puede contener más de una recta horizontal.
-        \begin{ejem}[$y'=y^2$]
-            \[\{(x,y)\in \R:y^2=c\}=\{(x,\sqrt{c}):x\in\R\}\cup\{(x,-\sqrt{c}):x\in\R\}\]
-        \end{ejem}
-        \item (Traslaciones) Si y es solución $\implies \forall c \in \R : w(x)\defeq y(x+c)$ es solución.
-        \item (Soluciones triviales) Si $\exists a \in \operatorname{Dom}(f) : f(a)=0 \implies y(x)=a$ es solución.
-        \begin{dem}
-            $y'(x)=0=f(a)=f(y(x))$
-        \end{dem}
-    \end{enumerate}
+	\begin{enumerate}
+		\item[]
+		\item (Isoclinas) Todos los puntos de cada recta horizontal $y=c$ pertenecen a la misma isoclina. ¡Cuidado! A veces una isoclina puede contener más de una recta horizontal.
+		\begin{ejem}[$y'=y^2$]
+			\[\{(x,y)\in \R:y^2=c\}=\{(x,\sqrt{c}):x\in\R\}\cup\{(x,-\sqrt{c}):x\in\R\}\]
+		\end{ejem}
+		\item (Traslaciones) Si y es solución $\implies \forall c \in \R : w(x)\defeq y(x+c)$ es solución.
+		\item (Soluciones triviales) Si $\exists a \in \operatorname{Dom}(f) : f(a)=0 \implies y(x)=a$ es solución.
+		\begin{dem}
+			$y'(x)=0=f(a)=f(y(x))$
+		\end{dem}
+	\end{enumerate}
 \end{prop}
 % \begin{teo}
 %     Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua $ \we y_0 \in (a,b) : f(y_0) \ne 0$
@@ -33,51 +33,51 @@
 \fecha{22/02/2024}
 
 \begin{teo}
-    Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua \\
-    Supongamos que $\forall x \in (a,b) : f(x) \ne 0$ y que $\begin{cases}
-        a>-\infty \implies f(a)=0 \\
-        b<\infty \implies f(b)=0
-    \end{cases}$ \\
-    Sea $x_0 \in (a,b)$ definimos $\ds \forall x \in (a,b) : F(x)\defeq\int_{x_0}^{x} \frac{1}{f(s)} \odif{s}$ \\
-    Si $f(x)>0$ en $(a,b)$, definimos 
-    $$\ds T_-\defeq \lim_{x\to a^+}F(x)\in [-\infty, 0) \we T_+\defeq \lim_{x\to b^-}F(x) \in (0, \infty]$$
-    Si $f(x) < 0$ en $(a,b)$, intercambiamos $T_-$ por $T_+$.
-    \[\implies \exists \appl{x}{(T_-, T_+)}{(a,b)} \tex{ derivable}: \begin{cases}
-        x'(t)=f(x(t)) \\
-        x(0)=x_0
-    \end{cases}\]
-    \begin{dem}
-        Supongamos sin pérdida de generalidad que $\forall x \in (a,b) : f(x)>0$
-        \[\implies \forall x \in (a,b) : F'(x)=\frac{1}{f(x)}>0 \implies F \tex{ es creciente en }(a,b)\]
-        \[\implies F \tex{ tiene inversa en } (a, b) \implies \exists x\defeq \appl{F^{-1}}{(T_-,T_+)}{(a,b)}\]
-        \[\tex{Por un lado, }\quad x'(t) = (F^{-1})'(t)=\frac{1}{F'(F^{-1}(t))}=\frac{1}{F'(x(t))}\]
-        \[\tex{Por otro lado, }\quad F(x_0)=0 \implies x_0= F^{-1}(F(x_0))=F^{-1}(0)=x(0)\]
-    \end{dem}
+	Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua \\
+	Supongamos que $\forall x \in (a,b) : f(x) \ne 0$ y que $\begin{cases}
+		a>-\infty \implies f(a)=0 \\
+		b<\infty \implies f(b)=0
+	\end{cases}$ \\
+	Sea $x_0 \in (a,b)$ definimos $\ds \forall x \in (a,b) : F(x)\defeq\int_{x_0}^{x} \frac{1}{f(s)} \odif{s}$ \\
+	Si $f(x)>0$ en $(a,b)$, definimos 
+	$$\ds T_-\defeq \lim_{x\to a^+}F(x)\in [-\infty, 0) \we T_+\defeq \lim_{x\to b^-}F(x) \in (0, \infty]$$
+	Si $f(x) < 0$ en $(a,b)$, intercambiamos $T_-$ por $T_+$.
+	\[\implies \exists \appl{x}{(T_-, T_+)}{(a,b)} \tex{ derivable}: \begin{cases}
+		x'(t)=f(x(t)) \\
+		x(0)=x_0
+	\end{cases}\]
+	\begin{dem}
+		Supongamos sin pérdida de generalidad que $\forall x \in (a,b) : f(x)>0$
+		\[\implies \forall x \in (a,b) : F'(x)=\frac{1}{f(x)}>0 \implies F \tex{ es creciente en }(a,b)\]
+		\[\implies F \tex{ tiene inversa en } (a, b) \implies \exists x\defeq \appl{F^{-1}}{(T_-,T_+)}{(a,b)}\]
+		\[\tex{Por un lado, }\quad x'(t) = (F^{-1})'(t)=\frac{1}{F'(F^{-1}(t))}=\frac{1}{F'(x(t))}\]
+		\[\tex{Por otro lado, }\quad F(x_0)=0 \implies x_0= F^{-1}(F(x_0))=F^{-1}(0)=x(0)\]
+	\end{dem}
 \end{teo}
 
 \begin{teo}[Unicidad local]
-    Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua. Supongamos que $f(x)\ne 0$ en $(a,b)$. Sea $x_0 \in (a,b)$, sea $I\subset \R$ un intervalo abierto tal que $0\in I$ y sean $\appl{x}{I}{(a,b)} \we \appl{y}{I}{(a,b)}$ cumpliendo
-    \[\begin{cases}
-        x'(t)=f(x(t)) \\
-        y'(t)=f(y(t)) \\
-        x(0)=x_0=y(0)
-    \end{cases} \implies \forall t \in I : x(t)=y(t)\]
-    \begin{dem}
-        \[\forall s \in (a,b) : F(s)=\int_{x_0}^{s} \frac{1}{f(r)}\odif{r} \implies \forall t \in I : F(x(t))=t=F(y(t))\]
-        \[\implies \forall t \in I : F^{-1}(F(x(t)))=F^{-1}(F(y(t))) \implies \implies \forall t \in I : x(t)=y(t)\]
-    \end{dem}
+	Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua. Supongamos que $f(x)\ne 0$ en $(a,b)$. Sea $x_0 \in (a,b)$, sea $I\subset \R$ un intervalo abierto tal que $0\in I$ y sean $\appl{x}{I}{(a,b)} \we \appl{y}{I}{(a,b)}$ cumpliendo
+	\[\begin{cases}
+		x'(t)=f(x(t)) \\
+		y'(t)=f(y(t)) \\
+		x(0)=x_0=y(0)
+	\end{cases} \implies \forall t \in I : x(t)=y(t)\]
+	\begin{dem}
+		\[\forall s \in (a,b) : F(s)=\int_{x_0}^{s} \frac{1}{f(r)}\odif{r} \implies \forall t \in I : F(x(t))=t=F(y(t))\]
+		\[\implies \forall t \in I : F^{-1}(F(x(t)))=F^{-1}(F(y(t))) \implies \implies \forall t \in I : x(t)=y(t)\]
+	\end{dem}
 \end{teo}
 
 \begin{cor}
-    En las condiciones del teorema de unicidad local, sea $a\in \R : f(a)\defeq \lim_{x\to a^-} f(x)=0$. Supongamos que
-    \[\forall k \in (a,b) : \lim_{x\to a^+}\int_{k}^{x} \frac{1}{f(s)} \odif{s} = \begin{cases}
-        -\infty \iff f>0 \tex{ en } (a,b) \\
-        \infty \iff f<0 \tex{ en } (a,b)
-    \end{cases}\]
-    \[\implies \tex{Para cada intervalo} \begin{cases}
-        I=[0, t_0) \iff f>0 \tex{ en } (a,b) \\
-        I=(-t_0, 0] \iff f<0 \tex{ en } (a,b)
-    \end{cases} \tex{ se tiene que $x=a$ es la única solución.}\]
+	En las condiciones del teorema de unicidad local, sea $a\in \R : f(a)\defeq \lim_{x\to a^-} f(x)=0$. Supongamos que
+	\[\forall k \in (a,b) : \lim_{x\to a^+}\int_{k}^{x} \frac{1}{f(s)} \odif{s} = \begin{cases}
+		-\infty \iff f>0 \tex{ en } (a,b) \\
+		\infty \iff f<0 \tex{ en } (a,b)
+	\end{cases}\]
+	\[\implies \tex{Para cada intervalo} \begin{cases}
+		I=[0, t_0) \iff f>0 \tex{ en } (a,b) \\
+		I=(-t_0, 0] \iff f<0 \tex{ en } (a,b)
+	\end{cases} \tex{ se tiene que $x=a$ es la única solución.}\]
 \end{cor}
 
 

@@ -20,32 +20,32 @@
 
 % Configuración de teoremas y definiciones
 \declaretheoremstyle[
-  spaceabove=10pt,
-  spacebelow=5pt,
-  headfont=\normalfont\bfseries,
-  notefont=\bfseries,
-  notebraces={(}{)},
-  bodyfont=\normalfont,
+	spaceabove=10pt,
+	spacebelow=5pt,
+	headfont=\normalfont\bfseries,
+	notefont=\bfseries,
+	notebraces={(}{)},
+	bodyfont=\normalfont,
 ]{definicionstyle}
 \declaretheorem[
-  style=definicionstyle,
-  name=Definición,
-  numberwithin=section,
+	style=definicionstyle,
+	name=Definición,
+	numberwithin=section,
 ]{defn}
 \declaretheorem[
-  style=definicionstyle,
-  name=Observación,
-  numberwithin=section,
+	style=definicionstyle,
+	name=Observación,
+	numberwithin=section,
 ]{obs}
 \declaretheorem[
-  style=definicionstyle,
-  name=Ejemplo,
-  numberwithin=section,
+	style=definicionstyle,
+	name=Ejemplo,
+	numberwithin=section,
 ]{ejem}
 \declaretheorem[
-  style=definicionstyle,
-  name=Corolario,
-  numberwithin=section,
+	style=definicionstyle,
+	name=Corolario,
+	numberwithin=section,
 ]{cor}
 
 \theoremstyle{plain}
@@ -56,7 +56,7 @@
 \newcommand{\hangingindentvalue}{0.25cm}
 
 \newenvironment{dem}[1][]{%
-  \begin{adjustwidth}{\hangingindentvalue}{0cm} \begin{proof}[\textbf{Demostración\ifx\relax#1\relax\else{ (#1)}\fi}]
+	\begin{adjustwidth}{\hangingindentvalue}{0cm} \begin{proof}[\textbf{Demostración\ifx\relax#1\relax\else{ (#1)}\fi}]
 }{\end{proof}\end{adjustwidth}}
 
 \AtBeginEnvironment{defn}{\hangindent=\hangingindentvalue}
@@ -93,12 +93,12 @@
 \newcommand\til[1]{\tilde{#1}}
 \newcommand\fecha[1]{
 	\vspace*{0.5cm}
-    \par\hfill\textbf{#1}\hspace*{-1cm}\par\noindent
+	\par\hfill\textbf{#1}\hspace*{-1cm}\par\noindent
 }
 \newcommand{\myquote}[1]{%
-    \par\addvspace{\baselineskip}%
-    \list{}{\leftmargin=1em\rightmargin=1em}\item[]%
-    #1\par\addvspace{\baselineskip}%
-    \endlist%
-    \noindent\ignorespaces%
+	\par\addvspace{\baselineskip}%
+	\list{}{\leftmargin=1em\rightmargin=1em}\item[]%
+	#1\par\addvspace{\baselineskip}%
+	\endlist%
+	\noindent\ignorespaces%
 }

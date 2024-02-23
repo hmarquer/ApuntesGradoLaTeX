@@ -6,4 +6,7 @@
 *.pdf
 *.pdf_tex
 *.auxlock
-*.synctex.gz.sum.synctex 
+*.synctex.gz.sum.synctex
+.vscode
+*.json
+.vscode/settings.json
