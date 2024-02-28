@@ -44,6 +44,11 @@
 ]{ejem}
 \declaretheorem[
 	style=definicionstyle,
+	name=Ejercicio,
+	numberwithin=subsection,
+]{ejer}
+\declaretheorem[
+	style=definicionstyle,
 	name=Corolario,
 	numberwithin=section,
 ]{cor}
@@ -53,7 +58,7 @@
 \newtheorem{lem}{Lema}[section]
 \newtheorem{prop}{Proposición}[section]
 
-\newcommand{\hangingindentvalue}{0.25cm}
+\newcommand{\hangingindentvalue}{0.5cm}
 
 \newenvironment{dem}[1][]{%
 	\begin{adjustwidth}{\hangingindentvalue}{0cm} \begin{proof}[\textbf{Demostración\ifx\relax#1\relax\else{ (#1)}\fi}]
@@ -67,7 +72,7 @@
 \AtBeginEnvironment{dem}{\hangindent=\hangingindentvalue}
 \AtBeginEnvironment{cor}{\hangindent=\hangingindentvalue}
 \AtBeginEnvironment{cor}{\hangindent=\hangingindentvalue}
-%\AtEndEnvironment{defn}{\end{hangparas}}
+\AtBeginEnvironment{document}{\setlength{\topsep}{10pt}}
 
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
 \newcommand{\R}{\mathbb{R}}
@@ -95,10 +100,12 @@
 	\vspace*{0.5cm}
 	\par\hfill\textbf{#1}\hspace*{-1cm}\par\noindent
 }
-\newcommand{\myquote}[1]{%
-	\par\addvspace{\baselineskip}%
-	\list{}{\leftmargin=1em\rightmargin=1em}\item[]%
-	#1\par\addvspace{\baselineskip}%
-	\endlist%
-	\noindent\ignorespaces%
-}
+
+
+% \newcommand{\myquote}[1]{%
+% 	\par\addvspace{\baselineskip}%
+% 	\list{}{\leftmargin=1em\rightmargin=1em}\item[]%
+% 	#1\par\addvspace{\baselineskip}%
+% 	\endlist%
+% 	\noindent\ignorespaces%
+% }

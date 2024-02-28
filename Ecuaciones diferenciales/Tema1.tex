@@ -1,5 +1,5 @@
 \section{Tema 1: Introducción}
-%\subsection{}
+\subsection{Conceptos básicos}
 \begin{defn}[Tipos de ecuaciones diferenciales]
 	\item[] 
 	\begin{enumerate}[topsep=1pt, itemsep=1pt,parsep=3pt]
@@ -113,10 +113,10 @@ En general, si se conserva una cantidad de la forma $F(x, y(x))$, ¿qué ecuaci�
 		$[\implies]$ Suponemos que $\exists F \in C^2(\Omega):\nabla F = (M, N)$
 		\[\implies \pdv{M}{y}=\pdv{F}{y, x}=\pdv{F}{x, y}=\pdv{N}{x} \tex{ porque } F \in C^2(\Omega) \]
 		$[\impliedby]$ Supongamos que $\ds\pdv{M}{y}=\pdv{N}{x}$. Fijados $x_0, y_0 \in \Omega$, definimos
-		\[\forall (x, y) \in \Omega : F(x, y)\defeq \int_{x_0}^xM(s,y)\odif{s}+\int_{y_0}^yM(x_0,s)\odif{s}\]
+		\[\forall (x, y) \in \Omega : F(x, y)\defeq \int_{x_0}^xM(s,y)\odif{s}+ \int_{y_0}^yN(x_0,s)\odif{s}\]
 		Por un lado, $\ds \pdv{F}{x}(x,y)=M(x,y)$ \\
-		Por otro lado, $\ds \pdv{F}{y}(x, y)=N(x_0, y) + \pdv{}{y} \int_{x_0}^x M(s,y) \odif{s} = N(x_0, y)+\int_{x_0}^x \pdv{M}{y}(s,y)\odif{s}$
-		$\ds= N(x_0, y)+\int_{x_0}^x \pdv{N}{x}(s,y)\odif{s}=N(x_0, y)+N(x,y)-N(x_0, y)=N(x,y)$
+		Por otro lado, $\ds \pdv{F}{y}(x, y)=\pdv{}{y} \int_{x_0}^x M(s,y) \odif{s} + N(x_0, y) = \int_{x_0}^x \pdv{M}{y}(s,y)\odif{s} + N(x_0, y)$
+		$\ds= \int_{x_0}^x \pdv{N}{x}(s,y)\odif{s} + N(x_0, y)=N(x,y)-N(x_0, y)+ N(x_0, y)=N(x,y)$
 	\end{dem}
 \end{prop}
 
@@ -125,7 +125,7 @@ En general, si se conserva una cantidad de la forma $F(x, y(x))$, ¿qué ecuaci�
 	Multiplicando por $xy^3$, obtenemos $xy^4+2x^2y^3y'=0$
 	\[\implies M(x, y)=xy^4 \we N(x,y)=2x^2y^3 \implies \pdv{M}{y}=4xy^3 = \pdv{N}{x}\implies \tex{esta sí es exacta.}\]
 	Y resolvemos:
-	\[F(x, y)\defeq \int_{x_0}^xM(s,y)\odif{s}+\int_{y_0}^yM(x_0,s)\odif{s} = \int_{x_0}^xsy^4\odif{s}+\int_{y_0}^y2x_0^2s^3\odif{s}=\]
+	\[F(x, y)\defeq \int_{x_0}^xM(s,y)\odif{s}+\int_{y_0}^yN(x_0,s)\odif{s} = \int_{x_0}^xsy^4\odif{s}+\int_{y_0}^y2x_0^2s^3\odif{s}=\]
 	\[\left[\frac{s^2}{2}y^4\right]_{s=x_0}^{s=x} + \left[2x_0^2\frac{s^4}{4}\right]_{s=y_0}^{s=y}=\frac{x^2y^4}{2}-\frac{x_0^2y^4}{2}+\frac{x_0^2y^4}{2}-\frac{x_0^2y_0^4}{2}=\frac{x^2y^4}{2}-\frac{x_0^2y_0^4}{2}\]
 	\[\{F(x,y)=C \we F(x_0, y_0)=0\} \implies x^2y^2=x_0^2y_0^4\]
 	Por ejemplo, si $x_0>0, y_0>0$, entonces, como $y$ es continua, existe un entorno $I$ de $x_0$ tal que $I\subset (0, \infty), y(x)>0$ en $I$. Con lo cual:

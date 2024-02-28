@@ -1,0 +1,79 @@
+\section{Ejercicios}
+
+\subsection{Hoja 1}
+
+\subsubsection{Conceptos básicos}
+
+\subsubsection{Algunos métodos de resolución de EDOs}
+\textbf{2.18} \begin{enumerate}
+	\item $yy'' + (y')^2=0$ \\
+	Resulta razonable buscar soluciones en forma de polinomios $y(x)=x^\alpha$ porque:
+	\[\implies y'=\alpha x ^{(\alpha-1)} \we y''=\alpha(\alpha-1)x^{(\alpha-2)}\]
+	\[\implies x^{\alpha}\alpha(\alpha-1)x^{(\alpha-2)} + \alpha^2 x ^{2(\alpha-1)} = 0\implies (2\alpha^2-\alpha)x^\alpha=0\]
+	\[\implies 2\alpha^2-\alpha=0 \implies \alpha(2\alpha-1)=0 \implies \alpha=0 \ve \alpha=\frac{1}{2}\]
+	Opción 1: Integramos la EDO:
+	\[\int_{0}^{t} y(s) y''(s)\odif{s} + \int_{0}^{t} {(y'(s))}^2 \odif{s} = 0\]
+	\[-\int_{0}^t {(y'(s))}^2 \odif{s} + [y(s)y'(s)]^t_{s=0} + \int_{0}^{t} {(y'(s))}^2 \odif{s}\]
+	\[\implies y(t)y'(t)-y(0)y'(0)=0 \implies y(t)y'(t)=y(0)y'(0)\eqdef C\]
+	\[\implies \int_{0}^{t} y(s)y'(s)\odif{s}=Ct \implies \frac{{(y(t))}^2}{2}  -\frac{{(y(0))}^2}{2}=Ct\]
+	\[\implies y(t)=\sqrt{2Ct+(y(0))^2}\]
+	\item $xy''=y'+(y')^2$ \\
+	No depende de $y \implies$ Hacemos un cambio de variable $x=y'$:
+	\[\implies xz'=z+z^3 \tex{ que es de variables separadas.}\]
+	\item $x^2y''=2xy'+(y')^2$ \\
+	Nuevamente hacemos un cambio de variable $z=y' \implies x^2z'=2xz+z^2$
+	\[\forall x \ne 0 : z'=2\frac{z}{x} + \left(\frac{z}{x}\right)^2 \implies \tex{ mediante el cambio de variables } \omega = \frac{z}{x}\]
+	Obtenemos una EDO de variables separadas en $\omega$.
+	\item $2yy''-(y')^2=1$ \\
+	Otra vez resulta razonable buscar soluciones de la forma $y(x)=Ax^2 + Bx +C$
+\end{enumerate}
+
+\subsubsection{Modelización}
+
+\textbf{3.4} $C(t)="\tex{Cantidad de sal}"$ en el tanque en el tiempo $t$. 
+\[C'(t)=10-\frac{1}{10}C(t) \implies \int_{C(0)}^{C(t)} \frac{1}{100-y}\odif{y} = \int_{0}^{t}\frac{1}{10}\odif{t}\]
+\[\implies \log{(100-C(t))} - \log{(100-C(0))}=-\frac{1}{10}\implies \log{\frac{100-C(t)}{100}}=-\frac{t}{10}\]
+\[\implies \frac{100-C(t)}{100}=e^{-\frac{t}{10}}\implies C(t)=100(1-e^{-\frac{t}{10}})\]
+\[\implies C(1)=100(1-e^{-\frac{1}{10}}) \we \lim_{t\to \infty} C(t) = 100\]
+
+% \textbf{3.7} \begin{enumerate}
+% 	\item $xy=C \implies y(x)=\frac{C}{x}$ \\
+% 	\begin{enumerate}
+% 		\item Sacamos la EDO asociada $\odv{}{x}(xy(x))=\odv{}{x}(C)$
+% 		\[\implies y(x) + xy'(x) = 0 \implies y'(x) = -\frac{y(x)}{x}=f(x,y(x))\]
+% 		\item Las soluciones de $z'=-\frac{1}{f(x,y(x))}$ son ortogonales a las soluciones de la EDO $y'=f(x,y(x))$.
+% 		\item \[z'=-\frac{1}{\frac{z}{x}}=\frac{x}{z} \implies zz'=x \implies \left(\frac{}{}\right)^2\]
+% 	\end{enumerate}
+% \end{enumerate}
+\subsubsection{Análisis cualitativo y campos de pendientes}
+
+\textbf{4.6} $\ds \forall t > \frac{5}{4} : \forall x\left(\frac{5}{4}\right) \in \left(-\sqrt{\frac{5}{4}}, -\frac{1}{2}\right) : x'=x^2-t \implies -\sqrt{t} < x(t) < -\sqrt{t-1}$
+\[f_1(t)\defeq-\sqrt{t} \we f_2 \defeq -\sqrt{t-1} \implies f\left(\frac{5}{4}\right)=-\sqrt{\frac{5}{4}} \we f_2\left(\frac{5}{4} - 1\right)=-\frac{1}{2}\]
+Sabemos que $\ds \tilde{t} = \frac{5}{4} \implies -\sqrt{\tilde{t}} < x(\tilde{t}) < -\sqrt{\tilde{t}-1}$
+\[\implies \tex{Por contunuidad, al menos en un tiempo, estas cotas se siguen manteniendo.}\]
+Atendiendo a las isoclinas de este ejercicio $(\{x^2-t=C : C\in \R\})$, observamos que:
+\begin{itemize}
+	\item $C=0 \implies x^2=t \implies x=\pm\sqrt{t}$ que es precisamente la cota inferior que buscábamos.
+	\item $C=-1 \implies x^2-t=-1 \implies x=\pm\sqrt{t-1}$ que es la cota superior.
+\end{itemize}
+Inicialmente $x(t)>-\sqrt{t}$ ''durante un rato''.
+\begin{enumerate}
+	\item Supongamos que $\exists t^* : x(t^*)=-\sqrt{t^*}$.
+	\item Por un lado, la isoclina nos dice que $x'(t^*)=0$.
+	\item Por otro lado, $\ds x'(t^*)\leq \left[\odv{}{t} (-\sqrt{t})\right]_{t=t^*} = -\frac{1}{2}\frac{1}{\sqrt{t^*}}<0$.
+\end{enumerate}
+
+\textbf{4.7} $\ds \begin{cases}
+	x' = x^2 + t^2, t >0 \\
+	x(0)>0
+\end{cases}$ Sea $\appl{x}{[0, T)}{\R}$ derivable.
+\begin{enumerate}
+	\item Queremos ver si $\ds \forall t \in [0, T) : x(t)> \frac{t^3}{3}$ \\
+	Como $\ds x'\geq t^2 \implies \int_{0}^{t} x'(s) \odif{s} \geq \int_{0}^{t} s^2 \odif{s} \implies x(t)-x(0)\geq \frac{t^3}{3}$
+	\[\implies \boxed{\forall t \in [0, T) : x(t)>\frac{t^3}{3}}\]
+	\item Queremos ver si $\ds \forall t \in \left(\sqrt{3}, T\right), T>\sqrt{3} : x(t)> \frac{1}{\frac{4}{\sqrt{3}}-t}$ \\
+	Como $\ds x'\geq x^2 \implies x^{-2}x'\geq 1 \implies \int_{\sqrt{3}}^{t} \frac{x'(s)}{x(s)^2} \odif{s} \geq t-\sqrt{3}$
+	\[\implies -\frac{1}{x(t)}+ \frac{1}{x(\sqrt{3})} \geq t-\sqrt{3} \implies t \leq \sqrt{3} +\frac{1}{x(\sqrt{3})}- \frac{1}{x(t)}\]
+	\[\implies t< \sqrt{3} + \frac{3}{\left(\sqrt{3}\right)^3} = \sqrt{3} + \frac{1}{\sqrt{3}}=\frac{4}{\sqrt{3}}\]
+	\[\implies t < \frac{4}{\sqrt{3}}-\frac{1}{x(t)} \implies \frac{1}{x(t)} < \frac{4}{\sqrt{3}}-t \implies \boxed{\forall t > \sqrt{3} : x(t) > \frac{1}{\frac{4}{\sqrt{3}}-t}}\]
+\end{enumerate}

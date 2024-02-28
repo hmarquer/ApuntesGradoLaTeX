@@ -75,7 +75,7 @@
 	Comprobamos: $\ds\sum_{j=1}^{\infty} p(1-p)^{j-1} = p\sum_{k=0}^\infty(1-p)^k = p \frac{1}{1-(1-p)} = 1$
 \end{enumerate}
 
-\subsection{Probabilidad condicionada y total, independencia y regla de Bayes}
+\subsection{Probabilidad condicionada y total, independencia y Bayes}
 Tienes $(\Omega, \F, P)$ y un suceso $A\in \F \rightarrow P(A)$. Llega "nueva información": ha ocurrido el suceso $B\in F \rightarrow$ ¿Debo reasignar la probabilidad de $A$?
 \begin{ejem}
 	Lanzas 10 veces la moneda (regular). \\
@@ -370,7 +370,7 @@ Por otro lado,
 		\item Es medidad de dispersión de $X$ alrededor de $\mu$.
 		\item $V(X)\geq 0$
 		\item $V(X)=0\implies P(X=E(X))=1$
-		\item $V(aX+b)=E[(aX+b-E(aX+b))^2]=E[(aX.-aE(X))^2]=a^2V(X)$
+		\item $V(aX+b)=E[(aX+b-E(aX+b))^2]=E[(aX-aE(X))^2]=a^2V(X)$
 		\item Las unidades de $V(X)$ son las de $X^2$ $$\implies \tex{definimos la desviación típica de $X$ como } \sigma(X)\defeq\sqrt{V(X)}$$
 		\item ¿Por qué no $E(|X-E(X)|)$? \\
 		Porque el valor absoluto no es diferenciable y no se puede trabajar con él.
@@ -412,10 +412,160 @@ Por otro lado,
 	\end{enumerate}
 \end{obs}
 
-\begin{teo}[Desigualdades de Markov/Chebyshev]
-	Sea $X$ una v.a.d. con función de masa $p_X$
-	\[\implies P(|X-E(X)| > 3\sigma(X))\leq \frac{1}{9}\]
+% \begin{teo}[Desigualdades de Markov/Chebyshev]
+% 	Sea $X$ una v.a.d. con función de masa $p_X$
+% 	\[\implies P(|X-E(X)| > 3\sigma(X))\leq \frac{1}{9}\]
+% \end{teo}
+
+\begin{teo}[Desigualdad de Markov]
+	Sea $X$ una v.a.d. ''no negativa'' $(P(X<0)=0)$ y con $E(X)$ finita.
+	\[\implies \forall t >0 : P(X\geq t) \leq \frac{E(X)}{t}\]
+	\begin{dem}
+		\textbf{Notación: } $(\Omega, \F, P), A\subset \F$ $\mathbb{1}_A \longrightarrow \begin{cases}
+			1 \tex{ si } \omega \in A \\
+			0 \tex{ si } \omega \notin A
+		\end{cases}$ \\
+		Fijamos $t>0$ y definimos $Y_t=t\cdot \mathbb{1}_{\{x\geq t\}}=\begin{cases}
+			t, P(x\geq t) \\
+			0, 1-P(x\geq t)
+		\end{cases}$
+		\begin{obs}
+			$\forall \omega : Y_t(\omega)\leq X(\omega) \implies E(Y_t)=t\cdot P(X\geq t)\leq E(X)$
+		\end{obs}
+		Así que $\ds \forall t >0 : P(X\geq t) \leq \frac{E(X)}{t}$
+	\end{dem}
 \end{teo}
 
+\begin{teo}[Desigualdad de Chebyshev]
+	En $(\Omega, \F, P)$, sea $X$ una v.a.d. con $E(X)$ y $V(X)$ finitas.
+	\[\implies \forall \lambda>0 : P(|X-E(X)|\geq \lambda\cdot \sigma(X)) \leq \frac{1}{\lambda^2}\]
+	\[\iff P\left(|X-E(X)|\geq \alpha\right) \leq \frac{V(X)}{\alpha^2}\]
+	\begin{dem}
+		Definimos $Y=|X-E(X)|^2$ y aplicamos la desigualdad de Markov.
+		\[\implies \forall t > 0 : P(Y\geq t) \leq \frac{E(Y)}{t} \implies \forall t>0: P(\abs{X-E(X)}^2\geq t)\leq \frac{E(Y)}{t}\]
+		\[\tex{Como } E(Y) = E(|X-E(X)|^2) = V(X) \tex{ por la def de varianza,}\]
+		\[\implies \forall t>0: P\left(|X-E(X)|\geq \sqrt{t}\right)\leq \frac{V(X)}{t}\]
+		Definimos $\ds \alpha\defeq \sqrt{t} \implies \forall \alpha>0: P\left(|X-E(X)|\geq \alpha\right)\leq \frac{V(X)}{\alpha^2}$\\
+		y para la desigualdad equivalente definimos $\ds \lambda \defeq \frac{\alpha}{\sigma(X)}$
+		\[\implies \forall \lambda>0 : P\left(\abs{X-E(X)}\geq \lambda\cdot \sigma(X)\right) \leq \frac{1}{\lambda^2}\]
+	\end{dem}
+\end{teo}
 
+\subsubsection{Esperanza condicionada}
+
+\begin{defn}[Esperanza condicionada]
+	Sea $(\Omega, \F, P)$ un espacio de probabilidad $B\in \F$ un suceso tal que $P(B)>0$ y  $X$ una v.a.d. con esperanza $E(X)$, $E(X|B)$ es la esperanza de $X$ condicionada a $B$
+	\[\iff E(X|B) = \sum_{x\in X(\Omega)} x \cdot P(X=x | B) = \sum_{x\in X(\Omega)} x \cdot \frac{P(\{X=x\}\cap B)}{P(B)}\]
+	(Siempre que la serie sea absolutamente convergente).
+\end{defn}
+
+\begin{teo}[Esperanza total]
+	En $(\Omega, \F, P)$, sea $X$ una v.a.d. y $\{B_1, B_2, \dots\}$ una partición de $\Omega$
+	\[\implies E(X)=\sum_{i\geq 1} E(X|B_i)\cdot P(B_i)\]
+	(Siempre que la serie sea absolutamente convergente).
+	\begin{dem}
+		POR REVISAR
+		\[\sum_{i\geq 1} E(X|B_i)\cdot P(B_i)=\sum_{i\geq 1}\sum_{x\in X(\Omega)} x\cdot P(X=x|B_i)\cdot P(B_i)=\sum_{x\in X(\Omega)} x\cdot \sum_{i\geq 1} P(X=x|B_i)\cdot P(B_i)\]
+		\[\sum_{i\geq 1} P(X=x|B_i)\cdot P(B_i)=P(X=x)\]
+	\end{dem}
+\end{teo}
+
+\begin{ejem}
+	Lanzamos una moneda con probabilidad $p$ de cara y $1-p$ de cruz y definimos $X$ como la longitud de la racha inicial, i.e. el número de caras/cruces consecutivas.
+	\[\implies E(X)=E(X|C)\cdot p + E(X|\times)\cdot (1-p)\]
+	\[\implies E(X)=\left(\sum_{j \geq 1} j \cdot P(X=j | C)\right)p + \left(\sum_{j \geq 1} j \cdot P(X=j | \times)\right)(1-p) \]
+	\[\implies E(X)=p\sum_{k=1}^\infty k p^{k-1} (1-p) + (1-p)\sum_{k=1}^\infty k (1-p)^{k-1} p\]
+	\[\implies E(X)=\frac{1}{1-p}\cdot p + \frac{1}{p} \cdot (1-p) = \frac{1}{p(1-p)}-2\]
+
+	También se puede abordar el problema pensando en las variables geométricas.
+\end{ejem}
+
+\subsection{Varias variables aleatorias}
+
+En $(\Omega, \F, P)$, sea $\X=X_1, X_2, \dots, X_n$ una colección de variables aleatorias discretas.
+
+En el caso $n=2$, tenemos $X$ e $Y$ variables aleatorias discretas, se genera una tabla con las probabilidades conjuntas:
+\[p_{X,Y}(x,y)\defeq P({\omega \in \Omega : X(\omega)=x \we Y(\omega)=y})=P(X=x\we Y=y)\]
+
+\begin{defn}[Función de masa conjunta]
+	En $(\Omega, \F, P)$, sean $X$ e $Y$ v.a.d., $p_{X,Y}$ es su función de masa conjunta
+	\[\iff \appl{p_{X,Y}}{\R^2}{[0,1]} \we \forall (x,y) \in X(\Omega)\times Y(\Omega) : p_{X, Y}(x,y)=P(X=x\we Y=y)\]
+	tal que $\ds\sum_{x\in X(\Omega)}\sum_{y\in Y(\Omega)}p_{X,Y}(x,y)=1$
+\end{defn}
+
+% \begin{ejem}
+% 	De una baraja española sacamos 2 cartas sin reemplazamiento. Sea $X$ el número de ases que se han sacado y $Y$ el número de cuatros que se han sacado. \\
+% 	\centering
+% 	\begin{tabular}{| c | c | c | c | c |}
+% 		0 & 0 & 1 & 2 \\ 
+% 		0 & 4 & 1 & 1 \\
+% 		1 & 1 & 1 & 1 \\
+% 		2 & 3 & 1 & 1 \\
+% 	\end{tabular}
+% \end{ejem}
+
+Ya tenemos $X$ e $Y$ en $(\Omega, \F, P)$ con $P_{X,Y}$
+\begin{enumerate}
+	\item ¿Qué sabemos de $X$ e $Y$ por separado?
+	\item Esperanzas: nos interesa calcular $E(X), E(Y), E(X+Y), E(X\cdot Y)$
+	\item Independencia
+\end{enumerate}
+\begin{defn}[Funciones marginales]
+	En $(\Omega, \F, P)$, sean $X$ e $Y$ v.a.d., $p_{X}, p_{Y}$ son sus funciones de masa marginales
+	\[\iff p_X(x)=\sum_{y\in Y(\Omega)} P_{X, Y} (x, y) \we p_Y(y)=\sum_{x\in X(\Omega)} P_{X, Y} (x, y)\]
+\end{defn}
+
+\begin{teo}
+	En $(\Omega, \F, P)$, sean $X$ e $Y$ v.a.d. y sea $\appl{g}{\R^2}{\R}$ una función
+	\[\implies E(g(X, Y))=\sum_{x\in X(\Omega)} \sum_{y\in Y(\Omega)} g(x, y) \cdot P_{X,Y}(x,y)\]
+	Si converge absolutamente.
+	\begin{dem}
+
+	\end{dem}
+\end{teo}
+
+\begin{obs}
+	Si $\appl{g}{\R}{\R}$
+	\[\implies E(g(x)) = \sum_{x\in X(\Omega)} \sum_{y\in Y(\Omega)} g(x) \cdot P_{X,Y}(x,y) = \sum_{x\in X(\Omega)} \left(g(x)\sum_{y\in Y(\Omega)}P_{X,Y}(x,y)\right)\]
+	\[\implies E(g(X))=\sum_{x\in X(\Omega)} g(x) p_X(x)\]
+	De manera análoga, $\ds E(g(Y))=\sum_{y\in Y(\Omega)} g(y) p_Y(y)$
+\end{obs}
+
+\begin{ejem}[$E(aX+bY)=aE(X)+bE(Y)$]
+	\[E(aX+bY)=\sum_{x\in X(\Omega)} \sum_{y\in Y(\Omega)} (ax+by)\cdot P_{X,Y}(x,y)\]
+	\[\implies E(aX+bY)=a\sum_{x\in X(\Omega)} \sum_{y\in Y(\Omega)} x\cdot P_{X,Y}(x,y) + b\sum_{x\in X(\Omega)} \sum_{y\in Y(\Omega)} y\cdot P_{X,Y}(x,y)\]
+\end{ejem}
+
+\begin{defn}[Independencia de v.a.d.]
+	En $(\Omega, \F, P)$, sean $X$ e $Y$ v.a.d., $X$ e $Y$ son independientes
+	\[\iff \forall (x,y) \in X(\Omega)\times Y(\Omega) : {X=x} \tex{ y } {Y=y} \tex{ son sucesos independientes.}\]
+	\[\iff \forall (x,y) \in X(\Omega)\times Y(\Omega) : P(X=x\we Y=y)=P(X=x)\cdot P(Y=y)\]
+\end{defn}
+
+\begin{teo}
+	En $(\Omega, \F, P)$, sean $X$ e $Y$ v.a.d., $X$ e $Y$ son independientes
+	\[\iff \exists \, \appl{g, h}{\R}{\R} : P_{X,Y}(x,y)=g(x)\cdot h(y)\]
+\end{teo}
+
+\begin{ejem}
+	\[P_{X, Y}(x,y) = e^{-(\lambda+\mu)}\frac{\lambda^x\mu^y}{x! y!} \tex{ con } x,y \in \Z \tex{ y } \lambda, \mu >0\]
+	$\implies$ Se puede interpretar como $X\sim\poisson{\lambda}$ e $Y\sim\poisson{\mu}$ independientes.
+\end{ejem}
+
+\begin{obs}
+	Si $X$ e $Y$ son independientes $\implies E(X\cdot Y)=E(X)\cdot E(Y)$. \\
+	Sin embargo, la implicación recíproca no es cierta. \hfill \textbf{(Motivo de excomunión)}
+\end{obs}
+
+\begin{defn}[Covarianza]
+	En $(\Omega, \F, P)$, sean $X$ e $Y$ v.a.d., $\cov{X, Y}$ es la covarianza de $X$ e $Y$
+	\[\iff \cov{X, Y} = E\left[(X-E(X))\cdot (Y-E(Y))\right] = E(X\cdot Y)-E(X)\cdot E(Y)\]
+\end{defn}
+
+\begin{obs}
+	\begin{enumerate}
+		\item La covarianza tiene signo. 
+		\item Tiene las unidades de $X\cdot Y$. Por tanto definimos el coeficiente de correlación de $X$ e $Y$.
+	\end{enumerate}
+\end{obs}
 

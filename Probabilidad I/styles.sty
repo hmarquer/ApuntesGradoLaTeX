@@ -9,6 +9,8 @@
 \usepackage{xfrac}
 \usepackage[inline]{enumitem}
 \usepackage[margin=2.5cm]{geometry} % Configuración de márgenes
+\usepackage{epstopdf}
+\usepackage{parskip}
 
 % Configuración de teoremas y definiciones
 \declaretheoremstyle[
@@ -39,17 +41,31 @@
 	name=Ejercicio,
 	numberwithin=subsection,
 ]{ejer}
+\declaretheorem[
+	style=definicionstyle,
+	name=Corolario,
+	numberwithin=section,
+]{cor}
 
 \theoremstyle{plain}
 \newtheorem{teo}{Teorema}[subsection]
 \newtheorem{lem}{Lema}[subsection]
 \newtheorem{prop}{Proposición}[subsection]
 
-% Entorno para demostraciones personalizado
+\newcommand{\hangingindentvalue}{0.5cm}
+
 \newenvironment{dem}[1][]{%
-	\begin{adjustwidth}{1cm}{0cm} \begin{proof}[Demostración\ifx\relax#1\relax\else{ (#1)}\fi]
+	\begin{adjustwidth}{\hangingindentvalue}{0cm} \begin{proof}[\textbf{Demostración\ifx\relax#1\relax\else{ (#1)}\fi}]
 }{\end{proof}\end{adjustwidth}}
 
+\AtBeginEnvironment{defn}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{prop}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{ejem}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{ejer}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{teo}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{dem}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{cor}{\hangindent=\hangingindentvalue}
+\AtBeginEnvironment{cor}{\hangindent=\hangingindentvalue}
 \AtBeginEnvironment{document}{\setlength{\topsep}{10pt}}
 
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
@@ -74,6 +90,10 @@
 \renewcommand\qedsymbol{$\blacksquare$}
 \renewcommand\labelitemi{\raisebox{0.25ex}{\tiny$\bullet$}}
 \newcommand\til[1]{\tilde{#1}}
+\newcommand\fecha[1]{
+	\vspace*{0.5cm}
+	\par\hfill\textbf{#1}\hspace*{-1cm}\par\noindent
+}
 
 
 
@@ -82,3 +102,5 @@
 \newcommand{\unif}[1]{\operatorname{UNIF}\left(#1\right)}
 \newcommand{\geom}[1]{\operatorname{GEOM}\left(#1\right)}
 \newcommand{\poisson}[1]{\operatorname{POISSON}\left(#1\right)}
+\newcommand{\X}{\mathcal{X}}
+\newcommand{\cov}[1]{\operatorname{cov}\left(#1\right)}

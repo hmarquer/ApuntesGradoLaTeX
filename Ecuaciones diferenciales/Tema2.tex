@@ -32,7 +32,7 @@
 
 \fecha{22/02/2024}
 
-\begin{teo}
+\begin{teo}[Existencia de soluciones]
 	Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua \\
 	Supongamos que $\forall x \in (a,b) : f(x) \ne 0$ y que $\begin{cases}
 		a>-\infty \implies f(a)=0 \\
@@ -69,7 +69,7 @@
 \end{teo}
 
 \begin{cor}
-	En las condiciones del teorema de unicidad local, sea $a\in \R : f(a)\defeq \lim_{x\to a^-} f(x)=0$. Supongamos que
+	En las condiciones del teorema de unicidad local, sea $\ds a\in \R : f(a)\defeq \lim_{x\to a^-} f(x)=0$. Supongamos que
 	\[\forall k \in (a,b) : \lim_{x\to a^+}\int_{k}^{x} \frac{1}{f(s)} \odif{s} = \begin{cases}
 		-\infty \iff f>0 \tex{ en } (a,b) \\
 		\infty \iff f<0 \tex{ en } (a,b)
@@ -77,7 +77,47 @@
 	\[\implies \tex{Para cada intervalo} \begin{cases}
 		I=[0, t_0) \iff f>0 \tex{ en } (a,b) \\
 		I=(-t_0, 0] \iff f<0 \tex{ en } (a,b)
-	\end{cases} \tex{ se tiene que $x=a$ es la única solución.}\]
+	\end{cases} x=a\tex{ es la única solución.}\]
 \end{cor}
 
+\fecha{26/02/2024}
 
+\fecha{27/02/2024}
+
+\begin{ejem}[$y'=\sqrt{1-y^2}$]
+	\[\appl{f}{[-1, 1]}{\R} \we f(y)\defeq\sqrt{1-y^2} \we \begin{cases}
+		f(y)>0 \iff y\in (-1, 1) \\
+		f(-1)=f(1)=0
+	\end{cases}\]
+	Si $y(0)\eqdef y_0 \in (-1, 1)$, entonces existe una única solución del PVI. Esa solución está definida en $(T_-, T_+)$, donde 
+	\[T_-=\lim_{y\to -1^+}\int_{y_0}^{y} \frac{1}{\sqrt{1-s^2}}\odif{s}=\lim_{y\to -1^+}\arcsin(y)-\arcsin(y_0)=-\frac{\pi}{2}-\arcsin(y_0)\]
+	\[T_+=\lim_{y\to 1^-}\int_{y_0}^{y} \frac{1}{\sqrt{1-s^2}}\odif{s}=\frac{\pi}{2}-\arcsin(y_0)\]
+	\[\tex{Si $y_0=1$, }\lim_{y\to 1^-} \int_{k}^{y} \frac{1}{\sqrt{1-s^2}} \odif{s} = \frac{\pi}{2} -\arcsin(k) \in \R \implies \exists \tex{ un solución \underline{no trivial} del PVI}\]	
+	\[\tex{Si $y_0=-1$, }\lim_{y\to -1^+} \int_{k}^{y} \frac{1}{\sqrt{1-s^2}} \odif{s}  \in \R \implies \exists \tex{ un solución \underline{no trivial} del PVI}\]
+	Por tanto, la solución general del PVI es
+	\[y_k(x)=\begin{cases}
+		-1 &\iff x\leq -\frac{\pi}{2}-k \\
+		\sin(x+k) &\iff x \in \left(-\frac{\pi}{2}-k, \frac{\pi}{2}-k\right) \\
+		1 &\iff x\geq \frac{\pi}{2}-k \\
+	\end{cases}\]
+	\begin{enumerate}
+		\item La única $y_k$ que satisface $y_k(0)=0 \in (-1, 1)$ es $y_k(x)=y_0$
+		\item Las funciones $y_k$ con $\ds k > \frac{\pi}{2}$ cumplen $y_k(0)=1$
+		\item Las funciones $y_k$ con $\ds k < -\frac{\pi}{2}$ cumplen $y_k(0)=-1$ 
+	\end{enumerate}
+\end{ejem}
+
+\begin{obs}
+	Sea $a\in \R$, $b \in (-\infty, \infty] : b>a$ y $\appl{f}{[a,b)}{\R}$ continua tal que $\forall x \in (a,b) : f(x)\ne 0$ y $f(a)=0$. \\
+	Supongamos que $\exists\, c >0, \delta \in (0, b-a) : \forall s \in [a, a+\delta) : |f(s)|\leq C(s -a)$ \\
+	Vamos a comprobar que se cumplen las condiciones de unicidad para el PVI con $x(0)=x_0=a$ tanto en el caso $f>0$ como en el caso $f<0$.
+	\begin{itemize}
+		\item $\boxed{f>0}$ Queremos ver que $\ds \lim_{z\to a^+}\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} = -\infty$
+		\[\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} = \int_{a+\delta}^{z} \frac{1}{\abs{f(s)}}\odif{s}=-\int_{z}^{a+\delta} \frac{1}{\abs{f(s)}}\odif{s} \leq -\frac{1}{C} \int_{z}^{a+\delta} \frac{1}{s-a}\odif{s}\]
+		\[\implies \int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} \leq -\frac{1}{C}\left(\log(\delta)-\log(z-a)\right)\]
+		\[\implies \lim_{z\to a^+}\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} \leq -\infty \implies \tex{ Hay unicidad de PVI con }x(0)=a \tex{ en } [0, \tilde{t})\]
+		\item $\boxed{f<0}$ De forma análoga $\ds \lim_{z\to a^+}\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} = \cdots = \infty$
+	\end{itemize}
+	Si $f$ derivable con $f'$ acotada
+	\[\implies \forall s \in [a, a+\delta) : \abs{f(s)}=\abs{f(s)-f(a)}=\abs{f'(r)}\abs{s-a}\leq C(s-a)\]
+\end{obs}
