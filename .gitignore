@@ -11,3 +11,4 @@
 *.json
 .vscode/settings.json
 *.synctex(busy)
+*/build

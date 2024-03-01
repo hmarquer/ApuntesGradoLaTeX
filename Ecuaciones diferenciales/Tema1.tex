@@ -150,7 +150,7 @@ En general, si se conserva una cantidad de la forma $F(x, y(x))$, ¿qué ecuaci�
 	Sea $y'=f(x,y)$ una EDO homogénea \\
 	$\implies$ el cambio de variable $\ds u(x)=\frac{y(x)}{x}$ la transforma en una de variables separadas.
 	\begin{dem}
-		\[xu(x)=y(x) \implies u(x)+xu(x)=y'(x)=f(x, y(x))=f(x, xu(x))\]
+		\[xu(x)=y(x) \implies u(x)+xu'(x)=y'(x)=f(x, y(x))=f(x, xu(x))\]
 		\[\implies xu'(x)=f(1, u(x))-u(x) \implies \frac{u'(x)}{f(1, u(s))-u(x)}=\frac{1}{x}\]
 	\end{dem}
 \end{prop}
@@ -170,9 +170,9 @@ En general, si se conserva una cantidad de la forma $F(x, y(x))$, ¿qué ecuaci�
 		y'=a(x)y + f(x), x\in I\\
 		y(x_0) = y_0
 	\end{cases} \tex{admite una única solución:}\]
-	\[\boxed{y(x)=y(x_0)e^{\int_{x_0}^xa(t)\odif{t}}+\int_{x_0}^xf(s)e^{\int_s^xa(t)\odif{t}}}\]
+	\[\boxed{y(x)=y(x_0)e^{\int_{x_0}^xa(t)\odif{t}}+\int_{x_0}^xf(s)e^{\int_s^xa(t)\odif{t}}} \odif{s}\]
 	\begin{dem}
-		Para $\forall x : f(x)=0$, la EDO es lineal porque, si $y, z$ son soluciones, entonces $\alpha y +\beta z$ es solución con $\alpha, \beta \in \R$.
+		$\forall x : f(x)=0$, la EDO es lineal porque, si $y, z$ son soluciones, entonces $\alpha y +\beta z$ es solución con $\alpha, \beta \in \R$.
 	\[(\alpha y +\beta z)'=\alpha y' + \beta z'= \alpha a(x)y+ \beta a(x)z=a(x)\left(\alpha y + \beta z\right)\]
 	Además podemos encontrar un factor integrante:
 	\[y'-a(x)y=f(x) \tex{ (que es exacta)} \implies (y'-a(x)y)e^{-\int_{x_0}^xa(s)\odif{s}}=f(x)e^{-\int_{x_0}^xa(s)\odif{s}}\]
@@ -181,7 +181,7 @@ En general, si se conserva una cantidad de la forma $F(x, y(x))$, ¿qué ecuaci�
 	\[\implies y(x)e^{-\int_{x_0}^xa(t)\odif{t}}-y(x_0)=\int_{x_0}^xf(s)e^{-\int_{x_0}^sa(t)\odif{t}}\odif{s}\]
 	\[\implies y(x)=y(x_0)e^{\int_{x_0}^xa(t)\odif{t}}+e^{\int_{x_0}^xa(t)\odif{t}}\int_{x_0}^xf(s)e^{-\int_{x_0}^sa(t)\odif{t}}\odif{s}\]
 	\[\implies y(x)=y(x_0)e^{\int_{x_0}^xa(t)\odif{t}}+\int_{x_0}^xf(s)e^{\int_{x_0}^xa(t)\odif{t}-\int_{x_0}^sa(t)\odif{t}}\odif{s}\]
-	\[\implies \boxed{y(x)=y(x_0)e^{\int_{x_0}^xa(t)\odif{t}}+\int_{x_0}^xf(s)e^{\int_s^xa(t)\odif{t}}}\]
+	\[\implies \boxed{y(x)=y(x_0)e^{\int_{x_0}^xa(t)\odif{t}}+\int_{x_0}^xf(s)e^{\int_s^xa(t)\odif{t}}} \odif{s}\]
 	Además, es única porque si $y, z$ son soluciones del PVI, consideremos $\omega = y-z$
 	\[\implies \forall x \in I :\omega'=y'-z'=(a(x)y+f(x)) - (a(x)z+f(x))=a(x)(y-z)=a(x)\omega\]
 	\[\implies \omega'=a(x)\omega=0 \implies \odv{}{s}\left(\omega(x)e^{-\int_{x_0}^xa(s)\odif{s}}\right)=(\omega' - \omega(x))e^{-\int_{x_0}^xa(s)\odif{s} } = 0\]
@@ -260,14 +260,14 @@ Preguntas pertinentes:
 
 Ya hemos visto que es típico que las soluciones de una EDO de primer orden $y'=f(x,y)$ formen una familia uniparamétrica de curvas dadas en forma explícita casi siempre. \\
 \indent Razonando de forma inversa, muchas veces es posible demostrar que la familia de curvas
-\[\F = \{\Gamma_c\}_{c\in \R} \we \Gamma_c=\{(x,y)\in \R^2:F(x,y,c)=0\}\]
+\[\mathcal{F} = \{\Gamma_c\}_{c\in \R} \we \Gamma_c=\{(x,y)\in \R^2:F(x,y,c)=0\}\]
 satisface (localmente) una EDO $y'=f(x,y)$ de primer orden.
 \begin{defn}[EDO asociada]
-	Esta EDO se denomina ecuación asociada a $\F$.
+	Esta EDO se denomina ecuación asociada a $\mathcal{F}$.
 \end{defn}
 
 \begin{ejem} \label{circums}
-	$\ds \F = \{\Gamma_c\}_{c\in \R} \we \Gamma_c=\{(x,y)\in \R^2:F(x,y,c)=0\}$ y definimos 
+	$\ds \mathcal{F} = \{\Gamma_c\}_{c\in \R} \we \Gamma_c=\{(x,y)\in \R^2:F(x,y,c)=0\}$ y definimos 
 	\[F(x,y,c)=x^2+y^2+2cx=(x+c)^2+y^2-c^2\] \begin{figure}[htbp]
 		\centering
 		\vspace{-0.7cm} % adjust the space as needed
@@ -276,20 +276,20 @@ satisface (localmente) una EDO $y'=f(x,y)$ de primer orden.
 		%\caption{svg image}
 	\end{figure}
 	
-	\noindent Si $\appl{y}{I}{\R}$ es derivable, con $I\subset\R$ un intervalo abierto, y su gráfica está contenida en $\F$, entonces $\forall x \in I : x^2+(y(x))^2+2cx=0 \implies 2x+2yy'+2c=0\implies 2x^2+2xyy'+2cx=0$
+	\noindent Si $\appl{y}{I}{\R}$ es derivable, con $I\subset\R$ un intervalo abierto, y su gráfica está contenida en $\mathcal{F}$, entonces $\forall x \in I : x^2+(y(x))^2+2cx=0 \implies 2x+2yy'+2c=0\implies 2x^2+2xyy'+2cx=0$
 	\[\implies x^2+2xyy'-y^2=0 \implies y'=\frac{y^2-x^2}{2xy}\]
 \end{ejem}
 
 \begin{defn}
-	Sean $\F=\{\Gamma_c\}_{c\in \R}$ y $\mathcal{C}=\{\sim{\Gamma_c}\}_{c\in \R}$ dos familias de curvas, son ortogonales
-	\[\iff \F \perp \mathcal{C}\iff \forall \left(\Gamma_{c_1}, \widetilde{\Gamma}_{c_2}\right) \in \F\times\mathcal{C}: \Gamma_{c_1}\cap\widetilde{\Gamma}_{c_2}\ne \phi : \tex{se cortan perpendicularmente.}\]
+	Sean $\mathcal{F}=\{\Gamma_c\}_{c\in \R}$ y $\mathcal{C}=\{\sim{\Gamma_c}\}_{c\in \R}$ dos familias de curvas, son ortogonales
+	\[\iff \mathcal{F} \perp \mathcal{C}\iff \forall \left(\Gamma_{c_1}, \widetilde{\Gamma}_{c_2}\right) \in \mathcal{F}\times\mathcal{C}: \Gamma_{c_1}\cap\widetilde{\Gamma}_{c_2}\ne \phi : \tex{se cortan perpendicularmente.}\]
 \end{defn}
 
 \begin{prop}
-	Sea $\F$ una familia de curvas con EDO asociada $y'=f(x,y)$
-	\[\implies \tex{las soluciones de } z'=-\frac{1}{f(x,y)} \tex{ forman una familia $(\mathcal{C})$ de curvas ortogonal a } \F\]
+	Sea $\mathcal{F}$ una familia de curvas con EDO asociada $y'=f(x,y)$
+	\[\implies \tex{las soluciones de } z'=-\frac{1}{f(x,y)} \tex{ forman una familia $(\mathcal{C})$ de curvas ortogonal a } \mathcal{F}\]
 	\begin{dem}
-		Sean $I_1, I_2 \subset \R$ conjuntos abiertos con $I_1\cap I_2\ne \phi$ y sean $\appl{y}{I_1}{\R}, \appl{z}{I_2}{\R}$ dos funciones tales que $y(I_1)\in \F \we z(I_2)\in \mathcal{C}$.
+		Sean $I_1, I_2 \subset \R$ conjuntos abiertos con $I_1\cap I_2\ne \phi$ y sean $\appl{y}{I_1}{\R}, \appl{z}{I_2}{\R}$ dos funciones tales que $y(I_1)\in \mathcal{F} \we z(I_2)\in \mathcal{C}$.
 		\[\implies \forall x\in I_1 : y'=f(x,y) \we \forall x\in I_2 : z'=-\frac{1}{f(x,y)}\]
 		Como se cortan, $\exists x_0\in I_1\cap I_2 : y(x_0)=z(x_0)$
 		\[\implies y'(x_0)=f(x_0, y(x_0))=f(x_0, z(x_0))=-\frac{1}{z'(x_0)}\]
@@ -298,7 +298,7 @@ satisface (localmente) una EDO $y'=f(x,y)$ de primer orden.
 \end{prop}
 
 \begin{ejem}
-	Siguiendo el Ejemplo \cref{circums}, podemos encontrar una familia de curvas ortogonal a $\F$ $(\mathcal{C})$ tomando las soluciones de la EDO:
+	Siguiendo el Ejemplo \ref{circums}, podemos encontrar una familia de curvas ortogonal a $\mathcal{F}$ $(\mathcal{C})$ tomando las soluciones de la EDO:
 	\[\ds z'=\frac{2xz}{x^2-z^2} \tex{ que es homogénea.}\]
 	\[\implies \mathcal{C} =\left\{\{(x,z)\in \R^2 : (z-c)^2+x^2=c^2\} : c\in\R\right\}\]
 	\begin{figure}[htbp]

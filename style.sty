@@ -12,7 +12,6 @@
 \usepackage[margin=2.5cm]{geometry} % Configuración de márgenes
 \usepackage{pgfplots, pgfplotstable}
 \usepackage{esvect}
-\usepackage{svg}
 \usepackage{epstopdf}
 \usepackage{parskip}
 
@@ -26,6 +25,7 @@
 	notefont=\bfseries,
 	notebraces={(}{)},
 	bodyfont=\normalfont,
+	%postheadspace=\newline,
 ]{definicionstyle}
 \declaretheorem[
 	style=definicionstyle,
@@ -86,7 +86,6 @@
 \newcommand{\COS}[1]{\cos{\left( #1 \right)}}
 \newcommand{\appl}[3]{#1 \colon #2 \longrightarrow #3}
 \newcommand{\ds}{\displaystyle}
-\newcommand{\F}{\mathcal{F}}
 \newcommand{\we}{\; _{\wedge} \;}
 \newcommand{\ve}{\; _{\vee} \;}
 \newcommand{\tex}[1]{\text{#1}}

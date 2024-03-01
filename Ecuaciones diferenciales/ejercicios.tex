@@ -6,31 +6,31 @@
 
 \subsubsection{Algunos métodos de resolución de EDOs}
 \textbf{2.18} \begin{enumerate}
-	\item $yy'' + (y')^2=0$ \\
+	\item $yy'' + {(y')}^2=0$ \\
 	Resulta razonable buscar soluciones en forma de polinomios $y(x)=x^\alpha$ porque:
 	\[\implies y'=\alpha x ^{(\alpha-1)} \we y''=\alpha(\alpha-1)x^{(\alpha-2)}\]
 	\[\implies x^{\alpha}\alpha(\alpha-1)x^{(\alpha-2)} + \alpha^2 x ^{2(\alpha-1)} = 0\implies (2\alpha^2-\alpha)x^\alpha=0\]
 	\[\implies 2\alpha^2-\alpha=0 \implies \alpha(2\alpha-1)=0 \implies \alpha=0 \ve \alpha=\frac{1}{2}\]
-	Opción 1: Integramos la EDO:
+	Opción 1: Integramos la EDO:%\@
 	\[\int_{0}^{t} y(s) y''(s)\odif{s} + \int_{0}^{t} {(y'(s))}^2 \odif{s} = 0\]
-	\[-\int_{0}^t {(y'(s))}^2 \odif{s} + [y(s)y'(s)]^t_{s=0} + \int_{0}^{t} {(y'(s))}^2 \odif{s}\]
+	\[-\int_{0}^t {(y'(s))}^2 \odif{s} + {[y(s)y'(s)]}^t_{s=0} + \int_{0}^{t} {(y'(s))}^2 \odif{s}\]
 	\[\implies y(t)y'(t)-y(0)y'(0)=0 \implies y(t)y'(t)=y(0)y'(0)\eqdef C\]
 	\[\implies \int_{0}^{t} y(s)y'(s)\odif{s}=Ct \implies \frac{{(y(t))}^2}{2}  -\frac{{(y(0))}^2}{2}=Ct\]
-	\[\implies y(t)=\sqrt{2Ct+(y(0))^2}\]
-	\item $xy''=y'+(y')^2$ \\
+	\[\implies y(t)=\sqrt{2Ct+{(y(0))}^2}\]
+	\item $xy''=y'+{(y')}^2$ \\
 	No depende de $y \implies$ Hacemos un cambio de variable $x=y'$:
 	\[\implies xz'=z+z^3 \tex{ que es de variables separadas.}\]
-	\item $x^2y''=2xy'+(y')^2$ \\
+	\item $x^2y''=2xy'+{(y')}^2$ \\
 	Nuevamente hacemos un cambio de variable $z=y' \implies x^2z'=2xz+z^2$
-	\[\forall x \ne 0 : z'=2\frac{z}{x} + \left(\frac{z}{x}\right)^2 \implies \tex{ mediante el cambio de variables } \omega = \frac{z}{x}\]
+	\[\forall x \ne 0 : z'=2\frac{z}{x} + {\left(\frac{z}{x}\right)}^2 \implies \tex{ mediante el cambio de variables } \omega = \frac{z}{x}\]
 	Obtenemos una EDO de variables separadas en $\omega$.
-	\item $2yy''-(y')^2=1$ \\
+	\item $2yy''-{(y')}^2=1$ \\
 	Otra vez resulta razonable buscar soluciones de la forma $y(x)=Ax^2 + Bx +C$
 \end{enumerate}
 
 \subsubsection{Modelización}
 
-\textbf{3.4} $C(t)="\tex{Cantidad de sal}"$ en el tanque en el tiempo $t$. 
+\textbf{3.4} $C(t)=\tex{``Cantidad de sal''}$ en el tanque en el tiempo $t$. 
 \[C'(t)=10-\frac{1}{10}C(t) \implies \int_{C(0)}^{C(t)} \frac{1}{100-y}\odif{y} = \int_{0}^{t}\frac{1}{10}\odif{t}\]
 \[\implies \log{(100-C(t))} - \log{(100-C(0))}=-\frac{1}{10}\implies \log{\frac{100-C(t)}{100}}=-\frac{t}{10}\]
 \[\implies \frac{100-C(t)}{100}=e^{-\frac{t}{10}}\implies C(t)=100(1-e^{-\frac{t}{10}})\]
@@ -56,11 +56,11 @@ Atendiendo a las isoclinas de este ejercicio $(\{x^2-t=C : C\in \R\})$, observam
 	\item $C=0 \implies x^2=t \implies x=\pm\sqrt{t}$ que es precisamente la cota inferior que buscábamos.
 	\item $C=-1 \implies x^2-t=-1 \implies x=\pm\sqrt{t-1}$ que es la cota superior.
 \end{itemize}
-Inicialmente $x(t)>-\sqrt{t}$ ''durante un rato''.
+Inicialmente $x(t)>-\sqrt{t}$ ``durante un rato''.
 \begin{enumerate}
 	\item Supongamos que $\exists t^* : x(t^*)=-\sqrt{t^*}$.
 	\item Por un lado, la isoclina nos dice que $x'(t^*)=0$.
-	\item Por otro lado, $\ds x'(t^*)\leq \left[\odv{}{t} (-\sqrt{t})\right]_{t=t^*} = -\frac{1}{2}\frac{1}{\sqrt{t^*}}<0$.
+	\item Por otro lado, $\ds x'(t^*)\leq {\left[\odv{}{t} (-\sqrt{t})\right]}_{t=t^*} = -\frac{1}{2}\frac{1}{\sqrt{t^*}}<0$.
 \end{enumerate}
 
 \textbf{4.7} $\ds \begin{cases}
@@ -72,8 +72,8 @@ Inicialmente $x(t)>-\sqrt{t}$ ''durante un rato''.
 	Como $\ds x'\geq t^2 \implies \int_{0}^{t} x'(s) \odif{s} \geq \int_{0}^{t} s^2 \odif{s} \implies x(t)-x(0)\geq \frac{t^3}{3}$
 	\[\implies \boxed{\forall t \in [0, T) : x(t)>\frac{t^3}{3}}\]
 	\item Queremos ver si $\ds \forall t \in \left(\sqrt{3}, T\right), T>\sqrt{3} : x(t)> \frac{1}{\frac{4}{\sqrt{3}}-t}$ \\
-	Como $\ds x'\geq x^2 \implies x^{-2}x'\geq 1 \implies \int_{\sqrt{3}}^{t} \frac{x'(s)}{x(s)^2} \odif{s} \geq t-\sqrt{3}$
+	Como $\ds x'\geq x^2 \implies x^{-2}x'\geq 1 \implies \int_{\sqrt{3}}^{t} \frac{x'(s)}{{x(s)}^2} \odif{s} \geq t-\sqrt{3}$
 	\[\implies -\frac{1}{x(t)}+ \frac{1}{x(\sqrt{3})} \geq t-\sqrt{3} \implies t \leq \sqrt{3} +\frac{1}{x(\sqrt{3})}- \frac{1}{x(t)}\]
-	\[\implies t< \sqrt{3} + \frac{3}{\left(\sqrt{3}\right)^3} = \sqrt{3} + \frac{1}{\sqrt{3}}=\frac{4}{\sqrt{3}}\]
+	\[\implies t< \sqrt{3} + \frac{3}{{\left(\sqrt{3}\right)}^3} - \frac{1}{x(t)}= \sqrt{3} + \frac{1}{\sqrt{3}}- \frac{1}{x(t)}=\frac{4}{\sqrt{3}}- \frac{1}{x(t)}\]
 	\[\implies t < \frac{4}{\sqrt{3}}-\frac{1}{x(t)} \implies \frac{1}{x(t)} < \frac{4}{\sqrt{3}}-t \implies \boxed{\forall t > \sqrt{3} : x(t) > \frac{1}{\frac{4}{\sqrt{3}}-t}}\]
 \end{enumerate}

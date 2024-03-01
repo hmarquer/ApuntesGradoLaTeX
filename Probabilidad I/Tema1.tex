@@ -562,10 +562,56 @@ Ya tenemos $X$ e $Y$ en $(\Omega, \F, P)$ con $P_{X,Y}$
 	\[\iff \cov{X, Y} = E\left[(X-E(X))\cdot (Y-E(Y))\right] = E(X\cdot Y)-E(X)\cdot E(Y)\]
 \end{defn}
 
+% \begin{obs}
+% 	\begin{enumerate}
+% 		\item La covarianza tiene signo. 
+% 		\item Unidades de $X\cdot Y$. Por tanto definimos el coeficiente de correlación de $X$ e $Y$.
+% 	\end{enumerate}
+% \end{obs}
+
+\fecha{29/02/2024}
+
 \begin{obs}
 	\begin{enumerate}
-		\item La covarianza tiene signo. 
-		\item Tiene las unidades de $X\cdot Y$. Por tanto definimos el coeficiente de correlación de $X$ e $Y$.
+		\item[]
+		\item Cálculo de la covarianza
+		\[\cov{X, Y} = \sum_{i,j}x_iy_jP(X=x_i \we Y=y_j) - \left(\sum_{i} x_iP(X=x_i)\right)\left(\sum_{j} y_jP(Y=y_j)\right)\]
+		\item Signo de la covarianza (y coeficiente de correlación)
+		\[\cov{X, Y} = \sum_{i,j}(x_i-E(X))(y_j-E(Y))P(X=x_i \we Y=y_j)\]
+		Entonces, si la covarianza es positiva, $X$ e $Y$ tienden a crecer juntas. Si es negativa, tienden a decrecer juntas. Si es 0, no hay relación lineal entre $X$ e $Y$.
+		\item Cálculo fundamental
+		\begin{align*}
+			V(X+ Y) &= E((X+Y)^2)- (E(X+Y))^2 \\
+			&= E(X^2+2XY+Y^2)- (E(X)+E(Y))^2 \\
+			&= E(X^2)+2E(XY)+E(Y^2)- (E(X))^2-2E(Y)E(X) - (E(Y))^2
+		\end{align*}
+		\[\implies V(X+ Y) = V(X) + V(Y) + 2\cov{X, Y}\]
+		Pero cuidado: $V(X-Y)=V(X) + V(Y) -2\cov{X, Y}$ \\
+		De forma más general:
+		\begin{align*}
+			V(aX+ bY) &= V(aX) + V(bY) + 2\cov{aX, bY} \\
+			&= a^2V(X) + b^2V(Y) + 2ab\cov{aX, bY}
+		\end{align*}
+		\[\implies \boxed{V(aX+ bY)=a^2V(X) + b^2V(Y) + 2ab\cov{aX, bY}}\]
+		\item \begin{defn}[coeficiente de correlación]
+			\[\rho\defeq \frac{\cov(X, Y)}{\sqrt{V(X)\cdot V(Y)}}\]
+		\end{defn}
+		\[\implies \abs{\rho(X, Y)} \leq 1\]
+		\begin{prop}[Desigualdad de Cauchy-Schwarz]
+			\[E(X\cdot Y)^2 \leq E(X^2)\cdot E(Y^2)\]
+			La igualdad se da cuando una variable es transformación lineal de la otra, i.e. $Y=aX+b$.
+			\begin{dem}
+				Definimos $W=sX+Y, W^2\geq 0$ con probabilidad 1.
+				\begin{align*}
+					0  &\leq E(W^2)=E((sX+Y)^2)=E(s^2X^2+Y^2+2sXY) \\
+					&= s^2E(X^2)+E(Y^2)+2sE(XY) \\
+					&= E(X^2)\cdot s^2+2E(XY)\cdot s+E(Y^2) 
+				\end{align*}
+				\[\implies 4E(XY)^2-4E(X^2)E(Y^2)\leq 0\]
+			\end{dem}
+		\end{prop}
+		Por tanto,
+		\[\cov{X, Y}^2 = E((X-E(X))(Y-E(Y)))^2 \leq V(X)\cdot V(Y)\cov{X, Y}\]
+		\item Si $X$ e $Y$ son independientes $\implies \cov{X, Y}=0$
 	\end{enumerate}
 \end{obs}
-
