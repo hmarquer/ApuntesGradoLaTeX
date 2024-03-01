@@ -1,5 +1,7 @@
 \section{Ejercicios}
 
+%\renewcommand{\theenumi}{(\alph{enumi})}
+
 \subsection{Hoja 1}
 
 \subsubsection{Conceptos básicos}
@@ -77,3 +79,96 @@ Inicialmente $x(t)>-\sqrt{t}$ ``durante un rato''.
 	\[\implies t< \sqrt{3} + \frac{3}{{\left(\sqrt{3}\right)}^3} - \frac{1}{x(t)}= \sqrt{3} + \frac{1}{\sqrt{3}}- \frac{1}{x(t)}=\frac{4}{\sqrt{3}}- \frac{1}{x(t)}\]
 	\[\implies t < \frac{4}{\sqrt{3}}-\frac{1}{x(t)} \implies \frac{1}{x(t)} < \frac{4}{\sqrt{3}}-t \implies \boxed{\forall t > \sqrt{3} : x(t) > \frac{1}{\frac{4}{\sqrt{3}}-t}}\]
 \end{enumerate}
+
+\subsection{Hoja 2}
+
+\textbf{1.1} $\ds \begin{cases}
+	x' = f(x) \\
+	x(t_0) = x_0
+\end{cases}$ tiene sol única.
+\begin{enumerate}
+	\item Toda solución que no sea constante es estrictamente monótona.
+	\begin{dem}
+		Por contrarecíproco, veamos que
+		\[\ds \exists t^* : x'(t)=0 \implies x(t)\equiv C\defeq x(t^*)\]
+		Definimos $\forall t \in \R:y(t)=x(t^*)$. Por hipótesis, $f(C)=f(x(t^*))=x'(t)=0$
+		\[\implies y'(t)=\odv{}{t}(C)=0=f(C)=f(y(t))\implies y \tex{ es solución}\]
+		\[\begin{cases}
+			y'(t)=f(y(t)) \\
+			y(t^*)=C
+		\end{cases} \implies \tex{Por unicidad, } x(t)=y(t)\equiv C\]
+	\end{dem}
+	\item $\ds \lim_{t\to \infty} x(t) = C_0 \implies u(t) \equiv C$ es solución.
+	\begin{dem}
+		\begin{enumerate}
+			\item $\ds \lim_{t\to \infty} x'(t)=\lim_{t\to \infty}f(x(t)) = f\left(\lim_{t\to \infty} x(t)\right) = f(C_0)$
+			\item Veamos que $f(C_0)=0$. Por contradicción, supongamos que $f(C_0)=A>0$
+			\[\implies \lim_{t\to \infty} x'(t)=A \implies \exists \, \til{t} : \forall t \geq \til{t} : x'(t)>\frac{A}{2}\]
+			\[\implies \int_{\til{t}}^{t} x'(\tau) \odif{\tau} > \int_{\til{t}}^{t} \frac{A}{2} \odif{\tau} \implies x(t)-x\left(\til{t}\right)> \frac{A}{2}(t-\til{t})\]
+			\[\implies \lim_{t\to\infty} x(t) = \lim_{t\to\infty}\left(x\left(\til{t}+\frac{A}{2}\left(t-\til{t}\right)\right)\right)=\infty \contr\]
+			\item $\ds u'(t) = \odv{}{t}(C_0)=0=f(C_0)=f(u(t)) \implies u \tex{ es solución}$.
+		\end{enumerate}
+	\end{dem}
+\end{enumerate}
+
+\textbf{1.2} $x'=f(x)$ La unicidad solo se puede perder cuando $f(x)=0$
+\begin{enumerate}
+	\item $\ds f(x)\defeq x'=\begin{cases}
+		\sqrt{-x} & x<0 \\
+		x^2 & x\geq 0
+	\end{cases}$
+	\begin{obs}\begin{enumerate}
+		\item[]
+		\item $x\equiv 0$ es solución $\left(f(0)=0\right)$ y solo puede haber problemas de unicidad en $x=0$.
+		\item $x(t)$ es estrictamente creciente si $x(t)\ne 0$
+	\end{enumerate}\end{obs}
+	No habría unicidad en $\ds x=0 \iff \lim_{x\to 0} \int_{0}^{x_0} \frac{1}{f(\tau)} \odif{\tau} \in \R$ con $x_0>x$ \\
+	En nuestro caso, $\ds \int_{x}^{x_0} \frac{1}{\tau^2} \odif{\tau} = \frac{1}{x} - \frac{1}{x_0} \xrightarrow{x\to 0^+} \infty \implies \tex{ hay unicidad por arriba.}$ \\
+	Para la unicidad por abajo, $\ds \int_{x_0}^{x} \frac{1}{\sqrt{-\tau}} \odif{\tau} = -2\left(\sqrt{-x} - \sqrt{-x_0}\right) \xrightarrow{x\to 0^-} 2 \sqrt{x_0} \in \R$
+	\[\implies \tex{No hay unicidad por abajo.}\]
+	Por tanto, podemos encontrar una solución de la siguiente forma:
+	\[y(t)\defeq \begin{cases}
+		-\frac{t^2}{4} & t<0 \\
+		0 & t\geq 0
+	\end{cases} \implies y'(t)=\begin{cases}
+		-\frac{t}{2} & t<0 \\
+		0 & t\geq 0
+	\end{cases}\]
+	Es solución porque:
+	\[f(y(t))=\begin{cases}
+		f(-\frac{t^2}{4}) & t<0 \\
+		f(0) & t\geq 0
+	\end{cases} = \begin{cases}
+		\sqrt{-\left(-\frac{t^2}{4}\right)} & t<0 \\
+		0 & t\geq 0
+	\end{cases} = \begin{cases}
+		-\frac{t}{2} & t<0 \\
+		0 & t\geq 0
+	\end{cases} = y'(t)\]
+	Por un lado, $\ds x(t_0)=0 \implies \lim_{t\to \infty}x(t)=0 \tex{ por la unicidad por arriba.}$ \\
+	Por otro lado, si $x(t_0)<0$ sabemos que
+	\begin{itemize}
+		\item $x(t)$ no decrece.
+		\item $x(t)$ está acotada por arriba por 0.
+	\end{itemize}
+	\[\implies \exists \lim_{t\to \infty} x(t) \leq 0\]
+	Supongamos que $\ds \exists A > 0 : \lim_{x(t)} = -A$. \\
+	Como $x(t)$ no decrece,
+	\[\ds \implies x(t) \leq -A \implies x'(t) = \sqrt{-x(t)}\geq \sqrt{A} \implies x(t)\geq x(c) + \sqrt{A}t \xrightarrow{t\to \infty} \infty \contr\]
+	\[\implies \lim_{t\to \infty} x(t) =0 \]
+	\item
+\end{enumerate}
+
+\textbf{1.3} $\ds x' = f(t,x) \we x$ es solución.
+\[f\tex{ no depende de } t \iff \forall b \in \R : y(t)\defeq x(t+b) \tex{ es sol.}\]
+\begin{dem}
+	$(\implies)$ Supongamos que $f$ no depende de $t$.
+	\[\implies x'=f(x) \implies y(t)=x(t+b)\implies y'(t)=\odv{}{t} (x(t+b)) = x'(t+b)\]
+	\[\implies y'(t)=f(x(t+b))=f(y(t))\]
+	$(\impliedby)$ Supongamos que $\forall b \in \R : y(t)\defeq x(t+b) \tex{ es sol.}$
+	\[x'=f(t, x(t)) \implies y(t)=x(t+b) \tex{ también es solución}\]
+	\[x'(t+b)=f(t, x(t+b)) \implies x'(t) = f(t-b, x(t))\]
+	\[\implies \forall b \in \R : f(t-b, x(t))=f(t, x(t))\]
+	En particular, $x(0)=x_0 \in \R \implies \forall b \in \R : \forall x_0 \in \R : f(-b,x_0)=f(0,x_0)$
+	\[\implies f\tex{ no depende de su primera variable}\]
+\end{dem}
