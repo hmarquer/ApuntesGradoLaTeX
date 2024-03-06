@@ -3,7 +3,6 @@
 *.fls
 *.log
 *.synctex.gz
-*.pdf
 *.pdf_tex
 *.auxlock
 *.synctex.gz.sum.synctex

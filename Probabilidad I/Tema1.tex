@@ -616,3 +616,99 @@ Ya tenemos $X$ e $Y$ en $(\Omega, \F, P)$ con $P_{X,Y}$
 \end{prop}
 Por tanto,
 \[\cov{X, Y}^2 = E((X-E(X))(Y-E(Y)))^2 \leq V(X)\cdot V(Y)\cov{X, Y}\]
+
+\fecha{04/03/2024}
+
+\fecha{05/03/2024}
+
+\textbf{Dato:} $\ds (a_n)_{n=0}^\infty$ $\ds x\longmapsto\sum_{n=0}^\infty a_nx^n$ \\
+Existe $R : \frac{1}{R}=\limsup_{n\to\infty}\abs{a_n}^{\sfrac{1}{n}} : \abs{x} < R \implies$ converge $\we \abs{x} > R \implies $ no converge.
+\begin{ejem}
+	\[ \sum_{n=0}^\infty \frac{x^n}{n!} = e^x \we \sum_{n=0}^\infty x^n = \frac{1}{1-x}, \abs{x}<1 \we \sum_{n=0}^m \binom{m}{n} x^n = (1+x)^m\]
+\end{ejem}
+
+\subsubsection{Funciones generatrices}
+\[(a_n)_{n=0}^\infty \longleftrightarrow f(x)=\sum_{n=0}^\infty a_n x^n \implies \begin{cases}
+	x\cdot f(x) \longleftrightarrow (0, a_0, \dots) \\
+	x\cdot f'(x) \longleftrightarrow (0a_0, 1a_1, 2a_2, \dots)
+\end{cases}\]
+\[f(x) \cdot g(x) = \sum_{n=0}^\infty a_n x^n \sum_{n=0}^\infty b_n x^n = \sum_{n=0}^\infty \left(\sum_{k=0}^n a_k b_{n-k}\right)x^n\]
+
+\subsubsection{Funciones generatrices de probabilidad}
+\begin{defn}
+	Sea $X$ una variable aleatoria discreta que toma valores en $\{0, 1, 2, \dots\}$ donde $\forall j \geq 0 : p_j=P(X=j)$, $G_X(s)$ es su función generatriz de probabilidad
+	\[\iff G_X(s)=\sum_{n=0}^\infty p_ns^n\]
+\end{defn}
+\begin{ejem}
+	\begin{enumerate}
+		\item[]
+		\item $\ds X \sim \ber{p} \implies G_X(s)=(1-p)+ps$
+		\item $\ds X \sim \bin{n, p} \implies G_X(s)= \sum_{j=1}^{n} \binom{n}{j} (1-p)^{n-j}(ps)^j = (1-p+ps)^n$
+		\item $\ds X \sim \geom{p} \implies G_X(s)=\sum_{j=1}^\infty (1-p)^{j-1}ps^j = \frac{ps}{1-(1-p)s}$
+		\item $\ds X \sim \poisson{\lambda} \implies G_X(s)=\sum_{j=0}^\infty e^{-\lambda}\frac{\lambda^j}{j!}s^j = e^{\lambda(s-1)}$
+	\end{enumerate}
+\end{ejem}
+
+\textbf{¿Para qué?}
+\begin{enumerate}
+	\item Cálculo de momentos con $(p_n)_{n=0}^\infty$
+	\[ G_X(s)=\sum_{n=0}^\infty p_ns^n \implies G_X'(s) = \sum_{n=1}^{\infty} np_n s^{n-1} \implies G_X'(1) = \sum_{n=1}^{\infty} n p_n = E(X)\]
+	Si seguimos derivando, obetenemos
+	\[\implies G_X''(s)= \sum_{n=2}^{\infty} n(n-1) p_n s^{n-2} = \sum_{n=2}^{\infty} n^2 p_n s^{n-2} - \sum_{n=2}^{\infty} n p_n s^{n-2}\]
+	\[\implies G_X''(1) = \sum_{n=2}^{\infty} n^2 p_n - \sum_{n=2}^{\infty} n p_n = E(X^2) - E(X)\]
+	\[\implies V(X)=E(X^2) - E(X)^2 = G_X''(1) + G_X'(1)\left(1-G_X'(1)\right)\]
+	\begin{ejem}
+		\begin{enumerate}
+			\item[]
+			\item $\ds X\sim\ber{p} \implies G_X(s)=(1-p)+ps$
+			\[\implies G_X'(s)=p=E(X) \we G_X''(s)=0 \implies V(X)=p(1-p)\]
+			\item $\ds X\sim\bin{n, p} \implies G_X(s)=(1-p+ps)^n$ \[\implies G_X'(s)=n(1-p+ps)^{n-1}p \implies G_X'(1)=np=E(X)\]
+			\[\implies G_X''(s)=n(n-1)(\cdots)^{n-2}p^2 \implies G_X''(1)=n(n-1)p^2\]
+			\[\implies V(X)=n(n-1)p^2+np(1-np)=np(1-p)\]
+
+		\end{enumerate}
+	\end{ejem}
+	\item Suma de independientes
+\end{enumerate}
+\begin{teo}
+	Sean $X, Y$ dos v.a.d. independientes con valores en $\{0, 1, 2, \dots\}$ y con funciones generatrices de probabilidad $G_X(s), G_Y(s)$ respectivamente
+	\[\implies G_{X+Y}(s)=G_X(s)\cdot G_Y(s)\]
+	\begin{dem}
+		\[G_{X+Y}(s)=\sum_{n=0}^\infty P(X+Y=n)s^n = \sum_{n=0}^\infty \left(\sum_{k=0}^n P(X=k \we Y=n-k)\right)s^n\]
+		Por otro lado,
+		\[\begin{aligned}G_X(s)\cdot G_Y(s) &= \left(\sum_{n=0}^\infty P(X=n)s^n\right)\left(\sum_{n=0}^\infty P(Y=n)s^n\right) \\
+		&= \sum_{n=0}^\infty \left(\sum_{k=0}^n P(X=k)P(Y=n-k)\right)s^n\end{aligned}\implies G_{X+Y}(s)=G_X(s)\cdot G_Y(s)\]
+		\hfill \qedsymbol\\
+		Otra manera:
+		\[G_X(s)=E(s^X) \we G_{X+Y}(s)=E\left(s^{X+Y}\right) = E\left(s^X\cdots^Y\right)=E(s^X)\cdot E(s^Y) = G_X(s)\cdot G_Y(s)\]
+	\end{dem}
+\end{teo}
+\begin{cor}
+	Sean $X_1, X_2, \dots, X_n$ v.a.d. independientes con valores en $\{0, 1, 2, \dots\}$ y con funciones generatrices de probabilidad $G_{X_1}(s), G_{X_2}(s), \dots, G_{X_n}(s)$ respectivamente
+	\[\implies G_{X_1+X_2+\dots+X_n}(s)=\prod_{i=1}^{n} G_{X_i}(s)\]
+	Si las $X_i$ son ``idénticas''
+	\[\implies G_{X_1+X_2+\dots+X_n}(s)=\left(G_{X_1}(s)\right)^n\]
+\end{cor}
+\fecha{06/03/2024}
+
+\begin{teo}[Unicidad]
+	Sean $X, Y$ dos v.a.d. con valores en $\{0, 1, 2, \dots\}$ y con funciones generatrices de probabilidad $G_X(s), G_Y(s)$ respectivamente
+	\[\implies G_X(s)=G_Y(s) \iff \forall n\geq 0 : P(X=n)=P(Y=n)\]
+\end{teo}
+
+\begin{ejem}
+	Sean $X\sim\poisson{\lambda} \we Y\sim\poisson{\mu}$ independientes con $\lambda, \mu > 0$. Definimos $Z=X+Y$.
+	\[\implies \forall x \geq 0 : P(Z=k) = P(X+Y=k)= \sum_{j=0}^{k} P(X=j \we Y=k-j) = \cdots\]
+	Pero, a través de funciones generatrices obetenemos:
+	\[G_X(s)=e^{\lambda(s-1)} \we G_Y(s)=e^{\mu(s-1)} \implies G_{Z}(s)=e^{(\lambda+\mu)(s-1)}\implies Z\sim\poisson{\lambda+\mu}\]
+\end{ejem}
+
+\begin{ejem}
+	\begin{enumerate}
+		\item []
+		\item Sean $I_1, I_2, \dots, I_n$ v.a.d. independientes con $\forall k \in \N_n : I_k\sim\ber{p}$ y definimos $Z=I_1+I_2+\cdots+I_n$.
+		\[\implies G_Z(s)={\left[(1-p)+ps\right]}^n \implies Z \sim \bin{n, p}\]
+		\item Sean $X \sim \bin{n, p} \we Y\sim \poisson{\lambda}$ independientes y definimos $Z=X+Y$.
+		\[\implies G_Z(s)={\left((1-p)+ps\right)}^n\cdot e^{\lambda(s-1)}\]
+	\end{enumerate}
+\end{ejem}
