@@ -601,7 +601,10 @@ Ya tenemos $X$ e $Y$ en $(\Omega, \F, P)$ con $P_{X,Y}$
 		      \[\cov{X, Y} = \sum_{i,j}(x_i-E(X))(y_j-E(Y))P(X=x_i \we Y=y_j)\]
 		      Entonces, si la covarianza es positiva, $X$ e $Y$ tienden a crecer juntas. Si es negativa, tienden a decrecer juntas. Si es 0, no hay relación lineal entre $X$ e $Y$.
 		      \begin{figure}[htbp]
-			      \includesvg[width=4cm]{img/Covariance_trends.svg}
+				\centering
+				\vspace{-0.3cm}
+			      \includegraphics[width=8cm]{img/covarianza.png}
+				  \vspace{-0.6cm}
 		      \end{figure}
 		\item Cálculo fundamental
 		      \begin{align*}
@@ -609,7 +612,7 @@ Ya tenemos $X$ e $Y$ en $(\Omega, \F, P)$ con $P_{X,Y}$
 			              & = E(X^2+2XY+Y^2)- (E(X)+E(Y))^2                       \\
 			              & = E(X^2)+2E(XY)+E(Y^2)- (E(X))^2-2E(Y)E(X) - (E(Y))^2
 		      \end{align*}
-		      \[\implies V(X+ Y) = V(X) + V(Y) + 2\cov{X, Y}\]
+		      \[\implies \boxed{V(X+ Y) = V(X) + V(Y) + 2\cov{X, Y}}\]
 		      Pero cuidado: $V(X-Y)=V(X) + V(Y) -2\cov{X, Y}$ \\
 		      De forma más general:
 		      \begin{align*}
@@ -622,27 +625,27 @@ Ya tenemos $X$ e $Y$ en $(\Omega, \F, P)$ con $P_{X,Y}$
 \end{obs}
 
 \begin{defn}[coeficiente de correlación]
-	\[\rho\defeq \frac{\cov{X, Y}}{\sqrt{V(X)\cdot V(Y)}}\]
+	Sean $X$ e $Y$ dos v.a.d., $\rho$ es su coeficiente de correlación $\ds \iff \boxed{\rho\defeq \frac{\cov{X, Y}}{\sqrt{V(X)\cdot V(Y)}}} \, \implies \rho\tex{ no tiene unidades y }\abs{\rho(X, Y)} \leq 1$.
 \end{defn}
-\[\implies \abs{\rho(X, Y)} \leq 1\]
 \begin{prop}[Desigualdad de Cauchy-Schwarz]
-	\[E(X\cdot Y)^2 \leq E(X^2)\cdot E(Y^2)\]
+	Sean $X$ e $Y$ dos v.a.d.
+	\[\implies E(X\cdot Y)^2 \leq E\left(X^2\right)\cdot E\left(Y^2\right)\]
 	La igualdad se da cuando una variable es transformación lineal de la otra, i.e. $Y=aX+b$.
 	\begin{dem}
-		Definimos $W=sX+Y, W^2\geq 0$ con probabilidad 1.
+		Definimos $W=sX+Y$, $W^2\geq 0$ con probabilidad 1.
 		\begin{align*}
-			0  \leq E\left(W^2\right) & =E\left((sX+Y)^2\right)=E\left(s^2X^2+Y^2+2sXY\right) \\
-			                          & = s^2E\left(X^2\right)+E\left(Y^2\right)+2sE(XY)      \\
-			                          & = E(X^2)\cdot s^2+2E(XY)\cdot s+E(Y^2)
+			\implies 0  \leq E\left(W^2\right) & =E\left((sX+Y)^2\right)=E\left(s^2X^2+Y^2+2sXY\right) \\
+			& = s^2E\left(X^2\right)+E\left(Y^2\right)+2sE(XY)      \\
+			& = E\left(X^2\right)\cdot s^2+2E(XY)\cdot s+E\left(Y^2\right)
 		\end{align*}
-		\[\implies 4E(XY)^2-4E\left(X^2\right)E\left(Y^2\right)\leq 0 \implies E(XY)^2\leq E\left(X^2\right)E\left(Y^2\right)\]
+		Vemos que el resultado es una parábola si se toma como función de $s$.\\
+		Como $\forall s \in \R : E(X)\geq 0$ y $E\left(X^2\right)\geq 0$, sabemos que la parábola o bien toca el eje $X$ una única vez, o no lo hace nunca. Esto es equivalente a pedir que el valor del discriminante sea menor o igual que $0$.
+		\[4E(XY)^2-4E\left(X^2\right)E\left(Y^2\right)\leq0 \implies E(XY)^2\leq E\left(X^2\right)E\left(Y^2\right)\]
 	\end{dem}
 \end{prop}
-Por tanto,
-\[\cov{X, Y}^2 = E((X-E(X))(Y-E(Y)))^2 \leq V(X)\cdot V(Y)\cov{X, Y}\]
-
+Por tanto, $\lbox{\cov{X, Y}^2} = E((X-E(X))(Y-E(Y)))^2 \leq \rbox{V(X)\cdot V(Y)\cdot\cov{X, Y}}$
 \fecha{04/03/2024}
-
+Además 
 \fecha{05/03/2024}
 
 \textbf{Dato:} $\ds (a_n)_{n=0}^\infty$ $\ds x\longmapsto\sum_{n=0}^\infty a_nx^n$ \\

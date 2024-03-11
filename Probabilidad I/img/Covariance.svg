@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.2.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 884 323" style="enable-background:new 0 0 884 323;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:url(#SVGID_1_);}
+	.st2{font-family:'ArialMT';}
+	.st3{font-size:46.7717px;}
+	.st4{fill:none;stroke:#000000;stroke-width:2.3386;stroke-miterlimit:9.3543;}
+	.st5{font-family:'Arial-ItalicMT';}
+	.st6{fill:url(#SVGID_2_);}
+	.st7{fill:url(#SVGID_3_);}
+</style>
+<desc>
+	Illustration of the sign of the covariance of two random variables &apos;&apos;X&apos;&apos; and &apos;&apos;Y&apos;&apos; by CMG Lee.
+	</desc>
+<circle class="st0" cx="440.6" cy="123.3" r="23383.5"/>
+<g transform="translate(0,-125)">
+	
+		<radialGradient id="SVGID_1_" cx="133.3152" cy="714.3361" r="0.5" gradientTransform="matrix(33.0726 -33.0726 -99.2177 -99.2177 66624.9844 75532.1328)" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.8" style="stop-color:#666666"/>
+		<stop  offset="0.99" style="stop-color:#FFFFFF"/>
+	</radialGradient>
+	<path class="st1" d="M109.7,198.7c9.1-9.1,38.7,5.7,66.1,33.1s42.2,57,33.1,66.1c-9.1,9.1-38.7-5.7-66.1-33.1
+		S100.5,207.8,109.7,198.7z"/>
+	<text transform="matrix(1 0 0 1 222.7988 404.9684)" class="st2 st3">&lt;</text>
+	<g>
+		<g id="common">
+			<g transform="translate(-35,40)">
+				<g>
+					<path id="axis" class="st4" d="M112.4,301.8h163.7 M252.7,290.1l23.4,11.7l-23.4,11.7"/>
+				</g>
+				<g transform="rotate(-90)">
+					<path id="axis_1_" class="st4" d="M112.4,138.1 M112.4,301.8 M100.7,161.5l11.7-23.4l11.7,23.4"/>
+				</g>
+				<text transform="matrix(1 0 0 1 279.2432 318.197)" class="st5 st3">X</text>
+				<text transform="matrix(1 0 0 1 61.7549 166.1891)" class="st5 st3">Y</text>
+			</g>
+			<text transform="matrix(1 0 0 1 34.7852 404.9684)" class="st2 st3">cov(</text>
+			<text transform="matrix(1 0 0 1 123.1445 404.9684)" class="st5 st3">X</text>
+			<text transform="matrix(1 0 0 1 154.3408 404.9684)" class="st2 st3">,</text>
+			<text transform="matrix(1 0 0 1 167.335 404.9684)" class="st5 st3">Y</text>
+			<text transform="matrix(1 0 0 1 203.209 404.9684)" class="st2 st3">)   0</text>
+		</g>
+	</g>
+</g>
+<radialGradient id="SVGID_2_" cx="146.614" cy="592.8888" r="0.5" gradientTransform="matrix(33.0726 33.0726 99.2177 -99.2177 -62953.3242 54097.7422)" gradientUnits="userSpaceOnUse">
+	<stop  offset="0.8" style="stop-color:#666666"/>
+	<stop  offset="0.99" style="stop-color:#FFFFFF"/>
+</radialGradient>
+<path class="st6" d="M770.2,72c9.1,9.1-5.7,38.7-33.1,66.1c-27.4,27.4-57,42.2-66.1,33.1c-9.1-9.1,5.7-38.7,33.1-66.1
+	C731.5,77.6,761.1,62.8,770.2,72z"/>
+<text transform="matrix(1 0 0 1 784.1533 278.2672)" class="st2 st3">&gt;</text>
+<g>
+	<g id="common_1_">
+		<g transform="translate(-35,40)">
+			<g>
+				<path id="axis_2_" class="st4" d="M673.8,175.1h163.7 M814.1,163.4l23.4,11.7l-23.4,11.7"/>
+			</g>
+			<g transform="rotate(-90)">
+				<path id="axis_3_" class="st4" d="M673.8,175.1V11.4 M662.1,34.8l11.7-23.4l11.7,23.4"/>
+			</g>
+			<text transform="matrix(1 0 0 1 840.5977 191.4957)" class="st5 st3">X</text>
+			<text transform="matrix(1 0 0 1 623.1094 39.4879)" class="st5 st3">Y</text>
+		</g>
+		<text transform="matrix(1 0 0 1 596.1396 278.2672)" class="st2 st3">cov(</text>
+		<text transform="matrix(1 0 0 1 684.499 278.2672)" class="st5 st3">X</text>
+		<text transform="matrix(1 0 0 1 715.6953 278.2672)" class="st2 st3">,</text>
+		<text transform="matrix(1 0 0 1 728.6895 278.2672)" class="st5 st3">Y</text>
+		<text transform="matrix(1 0 0 1 764.5635 278.2672)" class="st2 st3">)   0</text>
+	</g>
+</g>
+<g>
+	
+		<radialGradient id="SVGID_3_" cx="144.1414" cy="588.7896" r="0.5" gradientTransform="matrix(93.5433 0 0 -93.5433 -13042.8311 55200.625)" gradientUnits="userSpaceOnUse">
+		<stop  offset="0.8" style="stop-color:#666666"/>
+		<stop  offset="0.99" style="stop-color:#FFFFFF"/>
+	</radialGradient>
+	<circle class="st7" cx="440.6" cy="123.3" r="46.8"/>
+	<text transform="matrix(1 0 0 1 504.9756 279.9688)" class="st2 st3">≈</text>
+	<g>
+		<g id="common_2_">
+			<g transform="translate(-35,40)">
+				<g>
+					<path id="axis_4_" class="st4" d="M393.8,176.8h163.7 M534.1,165.1l23.4,11.7l-23.4,11.7"/>
+				</g>
+				<g transform="rotate(-90)">
+					<path id="axis_5_" class="st4" d="M393.8,13.1 M393.8,176.8"/>
+				</g>
+				<text transform="matrix(1 0 0 1 560.5977 193.1963)" class="st5 st3">X</text>
+				<text transform="matrix(1 0 0 1 343.1094 41.1885)" class="st5 st3">Y</text>
+			</g>
+			<text transform="matrix(1 0 0 1 316.1396 279.9688)" class="st2 st3">cov(</text>
+			<text transform="matrix(1 0 0 1 404.499 279.9688)" class="st5 st3">X</text>
+			<text transform="matrix(1 0 0 1 435.6953 279.9688)" class="st2 st3">,</text>
+			<text transform="matrix(1 0 0 1 448.6895 279.9688)" class="st5 st3">Y</text>
+			<text transform="matrix(1 0 0 1 484.5635 279.9688)" class="st2 st3">)   0</text>
+		</g>
+	</g>
+</g>
+<line class="st4" x1="77.4" y1="53.4" x2="77.4" y2="217.1"/>
+<path class="st4" d="M350.3,88.8"/>
+<path class="st4" d="M338.6,112.1"/>
+<line class="st4" x1="347.1" y1="76.5" x2="358.8" y2="53.1"/>
+<line class="st4" x1="358.8" y1="53.5" x2="358.8" y2="217.2"/>
+<line class="st4" x1="358.7" y1="53.8" x2="370.3" y2="77.2"/>
+</svg>
