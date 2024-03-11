@@ -1,0 +1,32 @@
+\section{Ejercicios}
+\subsection{Hoja 1}
+\subsection{Hoja 2}
+
+\textbf{7.}
+\textbf{b} $\ds X\sim\geom{p} \iff P(X>n+m|X>m) = P(X>n)$ \\
+\textbf{Solución:} Lo que nos está diciendo la caracterización es que una distribución geométrica no tiene memoria, la probabilidad de no tener éxito en los próximos $n$ intentos no depende de los intentos anteriores.
+\begin{dem}
+	$(\implies)$ Suponemos que $X\sim\geom{p}$
+	\[\implies P(X>n+m|X>m)=\frac{P(X>n+m \we X>m)}{P(X>m)}=\frac{P(X>n+m)}{P(X>m)}\]
+	Como $P(X>m)=(1-p)^m$ (por eso se llama geométrica), obtenemos
+	\[\lbox{P(X>n+m|X>m)}=\frac{(1-p)^{n+m}}{(1-p)^m}=(1-p)^n=\rbox{P(X>n)}\]
+	$(\impliedby)$ Suponemos que $P(X>n+m|X>m) = P(X>n)$
+	\[\implies \frac{P(X>n+m \we X>m)}{P(X>m)} = \frac{P(X>n)}{P(X>m)} \]
+	\[\implies P(X>n+m \we X>m) = P(X>n)\cdot P(X>m)\]
+\end{dem}
+
+\textbf{12.} Sea $X$ una v.a.d, $\ds X\sim\operatorname{BINNEG}(n,p) \iff P(X=k)=\binom{k-1}{n-1}p^n(1-p)^{k-n}$.\\
+Esto significa que $X$ es la suma de $n$ v.a.d. independientes, con distribución $\geom{p}$.\\
+Comprobemos que $\ds \sum_{k=n}^{\infty}\binom{k-1}{n-1}p^n(1-p)^{k-n} = 1$
+\[\sum_{k=n}^{\infty}\binom{k-1}{n-1}p^n(1-p)^{k-n} = \sum_{l=0}^{\infty} \binom{l+n-1}{n-1}p^n(1-p)^l = p^n\sum_{l=0}^{\infty} \binom{l+n-1}{n-1}(1-p)^l\]
+Como sabemos que $\ds \frac{1}{(1-x)^{m+1}} = \sum_{l=0}^{\infty} \binom{l+m}{m}x^l$, podemos tomar $x=1-p$ y $m=n-1$:
+\[\implies \sum_{k=n}^{\infty} P(X=k) = \frac{p^n}{(1-(1-p))^{n-1+1}} = \frac{p^n}{p^n} = \rbox{1}\]
+
+\textbf{20.} Cada día compramos $1$ cromo de $n$ totales que hay, con reposición. ¿Cuántos días esperamos hasta tener todos los cromos?\\
+\textbf{Solución:} Sea $T$ una v.a.d. igual a la cantidad de días hasta que terminamos la colección, queremos calcular $E(T)$. Se puede utilizar el modelo de distribución geométrica. \\
+Si definimos $T_i$ como la cantidad de días que esperamos hasta tener el cromo $i$-ésimo nuevo sabiendo que tienes los $i-1$ anteriores, entonces:
+\[\implies T_1 = 1 \we T_2 \sim\geom{\frac{n-1}{n}} \we T_3 \sim\geom{\frac{n-2}{n}}\we \cdots\]
+\[\implies \forall i \in \N_n : T_i\sim\geom{1-\frac{i-1}{n}} \implies E(T_i)=\frac{n}{n-i}\]
+Además, $\ds T = T_1 + T_2 + \ldots + T_n$. Por linealidad de la esperanza:
+\[E(T) = \sum_{i=1}^{n} E(T_i) = \sum_{i=0}^{n-1} \frac{n}{n-i} = n\sum_{i=0}^{n-1} \frac{1}{n-i} = n\sum_{k=1}^{n} \frac{1}{k} = nH_{n} \sim \ln{n}-\gamma + O\left(\frac{1}{n}\right)\]
+\[\implies E(T)=nH_n \approx n\ln{n}\]

@@ -14,6 +14,8 @@
 \usepackage{esvect}
 \usepackage{epstopdf}
 \usepackage{parskip}
+\usepackage{wrapfig}
+\usepackage{bbm}
 
 \pgfplotsset{compat=1.8}
 
@@ -64,15 +66,15 @@
 	\begin{adjustwidth}{\hangingindentvalue}{0cm} \begin{proof}[\textbf{Demostración\ifx\relax#1\relax\else{ (#1)}\fi}]
 }{\end{proof}\end{adjustwidth}}
 
-\AtBeginEnvironment{defn}{\hangindent=\hangingindentvalue}
-\AtBeginEnvironment{prop}{\hangindent=\hangingindentvalue}
-\AtBeginEnvironment{ejem}{\hangindent=\hangingindentvalue}
-\AtBeginEnvironment{ejer}{\hangindent=\hangingindentvalue}
-\AtBeginEnvironment{teo}{\hangindent=\hangingindentvalue}
-\AtBeginEnvironment{dem}{\hangindent=\hangingindentvalue}
-\AtBeginEnvironment{cor}{\hangindent=\hangingindentvalue}
-\AtBeginEnvironment{cor}{\hangindent=\hangingindentvalue}
-\AtBeginEnvironment{document}{\setlength{\topsep}{10pt}}
+% \AtBeginEnvironment{defn}{\hangindent=\hangingindentvalue}
+% \AtBeginEnvironment{prop}{\hangindent=\hangingindentvalue}
+% \AtBeginEnvironment{ejem}{\hangindent=\hangingindentvalue}
+% \AtBeginEnvironment{ejer}{\hangindent=\hangingindentvalue}
+% \AtBeginEnvironment{teo}{\hangindent=\hangingindentvalue}
+% \AtBeginEnvironment{dem}{\hangindent=\hangingindentvalue}
+% \AtBeginEnvironment{cor}{\hangindent=\hangingindentvalue}
+% \AtBeginEnvironment{cor}{\hangindent=\hangingindentvalue}
+% \AtBeginEnvironment{document}{\setlength{\topsep}{10pt}}
 
 \newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
 \newcommand{\R}{\mathbb{R}}
@@ -100,8 +102,55 @@
 	\par\hfill\textbf{#1}\hspace*{-1cm}\par\noindent
 }
 \newcommand\contr{\longrightarrow\longleftarrow}
-
-
+\newcommand{\lbox}[1]{{%
+  \let\@frameb@x\l@frameb@x\fbox{$#1$}%
+}}
+\newcommand{\rbox}[1]{{%
+  \let\@frameb@x\r@frameb@x\fbox{$#1$}%
+}}
+\def\l@frameb@x#1{%
+  \@tempdima\fboxrule
+  \advance\@tempdima\fboxsep
+  \advance\@tempdima\dp\@tempboxa
+  \hbox{%
+    \lower\@tempdima\hbox{%
+      \vbox{%
+        \hrule\@height\fboxrule
+        \hbox{%
+          \vrule\@width\fboxrule
+          #1%
+          \vbox{%
+            \vskip\fboxsep
+            \box\@tempboxa
+            \vskip\fboxsep}%
+          #1%
+          %\vrule\@width\fboxrule% Right \vrule removed
+                    }%
+        \hrule\@height\fboxrule}%
+                          }%
+        }%
+}
+\def\r@frameb@x#1{%
+  \@tempdima\fboxrule
+  \advance\@tempdima\fboxsep
+  \advance\@tempdima\dp\@tempboxa
+  \hbox{%
+    \lower\@tempdima\hbox{%
+      \vbox{%
+        \hrule\@height\fboxrule
+        \hbox{%
+          %\vrule\@width\fboxrule% Left \vrule removed
+          #1%
+          \vbox{%
+            \vskip\fboxsep
+            \box\@tempboxa
+            \vskip\fboxsep}%
+          #1%
+          \vrule\@width\fboxrule}%
+        \hrule\@height\fboxrule}%
+                          }%
+        }%
+}
 % \newcommand{\myquote}[1]{%
 % 	\par\addvspace{\baselineskip}%
 % 	\list{}{\leftmargin=1em\rightmargin=1em}\item[]%

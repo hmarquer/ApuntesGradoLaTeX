@@ -1,0 +1,45 @@
+\fecha{11/03/2024}
+
+\section{Tema 3: Teoremas fundamentales}
+
+\subsection{Introducción}
+
+Sean $I\subset \R$, $\Omega \subset \R$ dos intervalos abiertos y $\appl{f}{I\times \Omega}{\R^2}$ una función continua. Consideramos el PVI $\begin{cases}
+		x'=f(t, x(t)) , & t\in I            \\
+		x(t_0)=\hat{x}, & \hat{x}\in \Omega
+	\end{cases}$. Recordamos que si $f(t, x)=f(x)$, entonces el PVI tiene solución en un entorno de $\ds t_0$: $\ds x(t) = \hat{x} + \int_{t_0}^{t} f(s, x(s)) \odif{s}$.
+
+Definimos el operador $\ds \forall x \in \mathcal{C}(I, \Omega) : T[x]\defeq x_0 + \int_{t_0}^{t} f(s, x(s)) \odif{s} \implies x=T[x]$.
+\[x_0 = \hat{x} \we x_1 = T[x_0] = \hat{x} + \int_{t_0}^{t} f(s, \hat{x}) \odif{s} \we \cdots \we x_{k+1} = T[x_k]= \hat{x} + \int_{t_0}^{t} f(s, x_k(s)) \odif{s}\]
+\begin{ejem}
+	$\ds\{x'=x \we x(0)=1\} \iff x(t)=1+\int_{0}^{t} x(s) \odif{s}$
+	\[\implies x_0 = 1 \we x_1 = 1 + t \we \cdots x_k = \sum_{i=0}^{k} \frac{t^i}{i!} \implies x_k(t)\xrightarrow{k\to\infty} e^t\]
+\end{ejem}
+
+Pero necesitamos formalizar todo esto.
+\begin{enumerate}
+	\item Concepto de límite de series de funciones.
+	\item ¿Toda sucesión de Cauchy es convergente?
+	\item $\ds \lim_{k\to\infty} \int_{t_0}^t f(s, x_k(s)) \odif{s} \stackrel{?}{=} \int_{t_0}^t \lim_{k\to\infty} f(s, x_k(s)) \odif{s}$
+	\item $\ds \lim_{k\to\infty} f(s, x_k(s)) \stackrel{?}{=} f\left(s, \lim_{k\to\infty} x_k(s)\right)$
+\end{enumerate}
+
+\subsection{Conceptos de análisis}
+\subsubsection{Convergencia puntual y uniforme}
+\begin{defn}[Convergencia puntual]
+	Sea $\{f_k\}_{k\in\N}$ una sucesión de funciones $\appl{f_k}{I}{\R}$ con $I\subset \R$ abierto, $\{f_k\}$ converge puntualmente a $f$
+	\[\iff \forall t\in I : \lim_{k\to\infty} f_k(t) = f(t)\]
+	Es decir, $\forall \varepsilon > 0 : \forall t\in I : \exists \kappa \in \N : \forall k\geq \kappa : \abs{f_k(t) - f(t)} < \varepsilon$.
+\end{defn}
+
+\begin{ejem}
+	\[f_k(t) = \begin{cases}
+		0, & t < -\frac{1}{k} \\
+		k(t+\frac{1}{k}), & -\frac{1}{k} \leq t < 0 \\
+		k(\frac{1}{k}-t), & 0\leq t < \frac{1}{k} \\
+		0, & t\geq \frac{1}{k}
+	\end{cases} \implies f_k(t)\xrightarrow{k\to\infty}\begin{cases}
+		0, &t\ne 0 \\
+		1, & t=0
+	\end{cases}\]
+\end{ejem}

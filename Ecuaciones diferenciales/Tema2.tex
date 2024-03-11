@@ -171,4 +171,17 @@
 
 \fecha{06/05/2024}
 
+\begin{defn}[Bifurcación]
+	Sea $\appl{f_\mu}{\R}{\R}$ una función continua que depende de un parámetro $\mu \in \R$. El comportamiento cualitativo de la EDO $y'=f_\mu(y)$ puede cambiar dependiendo de la $\mu$. Los valores de $\mu$ que dan lugar a un cambio de este tipo son los puntos de bifurcación.
+\end{defn}
+
+\begin{ejem}[$y'=y(1-y)-\mu$]
+	\[f_\mu(y)=y(1-y)-\mu=0 \iff y^2-y+\mu=0 \iff y=\frac{1\pm \sqrt{1-4\mu}}{2}, \, \mu \leq \frac{1}{4}\]
+	Curvas de equilibrios: $\ds \gamma_1(\mu)\defeq\frac{1+\sqrt{1-4\mu}}{2} \we \gamma_2(\mu)\defeq\frac{1-\sqrt{1-4\mu}}{2}, \, \mu \leq \frac{1}{4}$
+	\[\implies \begin{cases}
+		\mu > \frac{1}{4} \tex{ no hay equilibrios} \\
+		\mu < \frac{1}{4} \tex{ hay dos equilibrios} \\
+		\mu = \frac{1}{4} \tex{ es un punto de equilibrio} \\
+	\end{cases}\]
+\end{ejem}
  
