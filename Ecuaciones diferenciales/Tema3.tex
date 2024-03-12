@@ -9,7 +9,7 @@ Sean $I\subset \R$, $\Omega \subset \R$ dos intervalos abiertos y $\appl{f}{I\ti
 		x(t_0)=\hat{x}, & \hat{x}\in \Omega
 	\end{cases}$. Recordamos que si $f(t, x)=f(x)$, entonces el PVI tiene solución en un entorno de $\ds t_0$: $\ds x(t) = \hat{x} + \int_{t_0}^{t} f(s, x(s)) \odif{s}$.
 
-Definimos el operador $\ds \forall x \in \mathcal{C}(I, \Omega) : T[x]\defeq x_0 + \int_{t_0}^{t} f(s, x(s)) \odif{s} \implies x=T[x]$.
+Definimos el operador $\ds \forall x \in \mathcal{C}(I, \Omega) : T[x]\defeq x + \int_{t_0}^{t} f(s, x(s)) \odif{s} \implies x=T[x]$.
 \[x_0 = \hat{x} \we x_1 = T[x_0] = \hat{x} + \int_{t_0}^{t} f(s, \hat{x}) \odif{s} \we \cdots \we x_{k+1} = T[x_k]= \hat{x} + \int_{t_0}^{t} f(s, x_k(s)) \odif{s}\]
 \begin{ejem}
 	$\ds\{x'=x \we x(0)=1\} \iff x(t)=1+\int_{0}^{t} x(s) \odif{s}$
@@ -27,19 +27,64 @@ Pero necesitamos formalizar todo esto.
 \subsection{Conceptos de análisis}
 \subsubsection{Convergencia puntual y uniforme}
 \begin{defn}[Convergencia puntual]
-	Sea $\{f_k\}_{k\in\N}$ una sucesión de funciones $\appl{f_k}{I}{\R}$ con $I\subset \R$ abierto, $\{f_k\}$ converge puntualmente a $f$
+	Sea $(f_k)_{k\in\N}$ una sucesión de funciones $\appl{f_k}{I}{\R}$ con $I\subset \R$ abierto, $(f_k)$ converge puntualmente a $f$
 	\[\iff \forall t\in I : \lim_{k\to\infty} f_k(t) = f(t)\]
 	Es decir, $\forall \varepsilon > 0 : \forall t\in I : \exists \kappa \in \N : \forall k\geq \kappa : \abs{f_k(t) - f(t)} < \varepsilon$.
 \end{defn}
 
 \begin{ejem}
-	\[f_k(t) = \begin{cases}
-		0, & t < -\frac{1}{k} \\
-		k(t+\frac{1}{k}), & -\frac{1}{k} \leq t < 0 \\
-		k(\frac{1}{k}-t), & 0\leq t < \frac{1}{k} \\
-		0, & t\geq \frac{1}{k}
-	\end{cases} \implies f_k(t)\xrightarrow{k\to\infty}\begin{cases}
-		0, &t\ne 0 \\
-		1, & t=0
-	\end{cases}\]
+	La sucesión $(f_k)$ definida a continuación converge puntualmente a $f$ pero su límite es una función no continua.
+	\[\forall t \in\R : f_k(t) \defeq \begin{cases}
+			0,                & t < -\frac{1}{k}        \\
+			k(t+\frac{1}{k}), & -\frac{1}{k} \leq t < 0 \\
+			k(\frac{1}{k}-t), & 0\leq t < \frac{1}{k}   \\
+			0,                & t\geq \frac{1}{k}
+		\end{cases} \implies f_k(t)\xrightarrow{k\to\infty}\begin{cases}
+			0, & t\ne 0 \\
+			1, & t=0
+		\end{cases}\]
 \end{ejem}
+\fecha{12/03/2024}
+\begin{ejem}
+	\[x_k(t) \defeq \begin{cases}
+			2k^2t,                          & t\in\left[0, \frac{1}{2k}\right)           \\
+			2k^2\left(\frac{1}{k}-t\right), & t\in\left[\frac{1}{2k}, \frac{1}{k}\right) \\
+			0,                              & t\in\left[\frac{1}{k}, 1\right)            \\
+		\end{cases}\implies \begin{aligned}
+			 & x_k(0)=0 \we x_k(1)=0                                  \\
+			 & t\in (0,1] \implies x_k(t)  \xrightarrow{k\to\infty} 0
+		\end{aligned}\]
+	$\ds \lim_{k\to\infty} \int_{0}^1 x_k(t) \odif{t} \stackrel{?}{=} \int_{0}^1 \lim_{k\to\infty} x_k(t) \odif{t}$:
+	\[ \int_{0}^1 \lim_{k\to\infty} x_k(t) \odif{t} = \int_{0}^{1} 0 \odif{t} = 0 \ne \frac{1}{2} = \lim_{k\to\infty}\int_{0}^{1} x_k(t) \odif{t}\]
+\end{ejem}
+\begin{defn}[Convergencia uniforme]
+	Sea $(f_k)_{k\in\N}$ una sucesión de funciones $\appl{f_k}{I}{\R}$ con $I\subset \R$ abierto, $(f_k)$ converge uniformemente a $f$
+	\[\iff \forall \varepsilon > 0 : \exists \kappa \in \N : \forall k\geq \kappa : \forall t\in I : \abs{f_k(t) - f(t)} < \varepsilon\]
+	Es decir, $\ds \forall \varepsilon > 0 : \exists \kappa \in \N : \forall k \geq \kappa : \sup_{t\in I} \abs{x_k(t)-x(t)} \leq \varepsilon$
+\end{defn}
+\begin{obs}\begin{itemize}
+		\item Los dos ejemplos anteriores no convergen uniformemente.
+		\item La convergencia uniforme implica convergencia puntual.
+	\end{itemize}\end{obs}
+\begin{prop}
+	Sea $(x_k)_{k\in\N}$ una sucesión de funciones uniformemente convergente a $x$.
+	\[\implies x \tex{ continua}\]
+	\begin{dem}
+		Sea $\varepsilon > 0$, $t_0 \in I$. Buscamos $\delta > 0$ tal que, dado $t\in I$
+		\[\abs{t-t_0} < \delta \implies \abs{x(t)-x(t)}< \varepsilon\]
+		Para cada $k\in\N$, $\abs{x(t)-x_k(t)+x_k(t)-x_k(t_0)+x_k(t_0)-x_k(t_0)} \leq$
+		\[\leq \abs{x(t)-x_k(t)} + \abs{x_k(t)-x_k(t_0)}  + \abs{x_k(t_0)-x(t_0)}\]
+		Como $(x_k)$ converge uniformemente a $x$, $\kappa = \kappa(\varepsilon) \in \N$ tal que
+		\[\forall \varepsilon > 0 : \exists \kappa \in \N : \forall k\geq \kappa : \forall t\in I : \abs{x_k(t) - x(t)} < \frac{\varepsilon}{3}\]
+		Entonces, para $k=\kappa$, se tiene
+		\[\begin{aligned}
+			\abs{x(t)-x(t_0)} &\leq \abs{x(t)-x(t_0)}+\abs{x(t)-x_\kappa(t_0)} + \abs{x_\kappa(t_0)-x(t_0)} \\
+			&\leq \frac{\varepsilon}{3} + \abs{x_\kappa(t)-x_\kappa(t_0)} + \frac{\varepsilon}{3} 
+		\end{aligned}\]
+		Como $x_\kappa$ es continua, $\exists \delta > 0 : \abs{t-t_0} < \delta \implies \abs{x_\kappa(t)-x_\kappa(t_0)} < \frac{\varepsilon}{3}$. Entonces, $\abs{x(t)-x(t_0)} < \varepsilon$.
+	\end{dem}
+\end{prop}
+\begin{prop}
+	Sea $(x_k)_{k\in\N}$ una sucesión de funciones continuas $\appl{x_i}{(a,b)}{\R}$ que converge uniformemente a $\appl{x}{(a,b)}{\R}$.
+	\[\implies \lim_{k\to\infty} \int_{a}^{b} x_k(t) \odif{t} = \int_{a}^{b} x(t) \odif{t}\]
+\end{prop}

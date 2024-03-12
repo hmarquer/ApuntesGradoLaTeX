@@ -1,0 +1,45 @@
+\fecha{12/03/2024}
+\section{Variables aleatorias continuas}
+Hasta ahora en $(\Omega, \F, P)$, una variable aleatoria $X$ discreta era una función $\appl{X}{\Omega}{\R}$ tal que $\exists N \subset \N : \abs{X(\Omega)}=\abs{N}$ y $P(X=k)=P(X^{-1}(k))$.
+\begin{defn}[Variable aleatoria]
+	Sea $(\Omega, \F, P)$ un espacio de probabilidad, la función $\appl{X}{\Omega}{\R}$ es una variable aleatoria
+	\[\iff \forall x \in \R : \{\omega\in\Omega : X(\omega) \leq x\} \in \F\]
+\end{defn}
+\begin{prop}
+	$X$ es v.a.d. $\implies X$ es variable aleatoria.
+	\begin{dem}
+		Puedo describir el suceso $\{X\leq x\}$ como unión numerable de sucesos
+		\[\{\omega \in\Omega : X(\omega) \leq x\} = \bigcup_{y\in X(\Omega)} \{\omega \in \Omega : X(\omega) = y\}\]
+		Como la unión numerable de sucesos es un suceso, $\{X\leq x\} \in \F$.
+	\end{dem}
+\end{prop}
+\begin{defn}[Función de distribución]
+	Sea $X$ una variable aleatoria, $\appl{F_X}{\R}{[0,1]}$ es su función de distribución $\iff \forall x \in X(\Omega) : \boxed{F_X(x) = P(X\leq x)}$
+\end{defn}
+Sea $X$ una v.a.d. que toma los valores $x_1, x_2, \cdots$ con probabilidades $p_1, p_2, \dots$ y con función de masa $p_X \ds \implies F_X(x) = \sum_{x_i \leq x} P(X=x_i)$. Es decir, es la función de masa acumulada.
+\begin{lem}
+	En $(\Omega, \F, P)$, sea $X$ una variable aleatoria con función de distribución $F_X$.
+	\[\implies \begin{aligned}
+		(1)& \lim_{x\to\infty} F_X(x) = 1 \we \lim_{x\to-\infty} F_X(x) = 0 \\
+		(2)& F_X \text{ es no decreciente} \\
+		(3)& F_X \text{ es continua por la derecha}
+	\end{aligned}\]
+	\begin{dem} %TODO: Hacer las demostraciones de (1) y (3) con detalle
+		%$(1)$ $A_n = \{\omega \in \Omega : X(\omega) \leq n\}$ que es creciente 
+		%\[\implies P\left(\bigcup_{n=1}^\infty A_n\right)=\lim_{n\to\infty} P\left(\bigcup_{j=1}^n A_j\right) = \]
+		$(2)$ $x<y \implies \{X\leq x\} \subseteq \{X\leq y\} \implies F_X(x) \leq F_X(y)$.
+	\end{dem}
+\end{lem}
+\begin{teo}
+	Sea $\appl{F}{\R}{[0, 1]}$ una función que cumpla (1), (2) y (3) del lema anterior.
+	\[\implies \exists! X \text{ variable aleatoria } : F_X = F\]
+	\begin{dem} TODO: POR REVISAR
+		Defino $X(\omega) = \inf\{x\in\R : F(x) \geq U(\omega)\}$ con $U(\omega) \sim \unif{[0,1]}$.
+		\begin{itemize}
+			\item $X(\omega) \leq x \iff \inf\{x\in\R : F(x) \geq U(\omega)\} \leq x \iff F(X(\omega)) \geq U(\omega) \iff X(\omega) \in \{x\in\R : F(x) \geq U(\omega)\}$
+			\item $X(\omega) \leq x \implies F(X(\omega)) \geq U(\omega) \implies F(x) \geq F(X(\omega)) \geq U(\omega) \implies \{x\in\R : F(x) \geq U(\omega)\} \subseteq \{x\in\R : F(x) \geq F(X(\omega))\}$
+		\end{itemize}
+		Entonces, $X(\omega) = \inf\{x\in\R : F(x) \geq U(\omega)\} \implies F_X(x) = P(X\leq x) = P(U\leq F(x)) = F(x)$.
+	\end{dem}
+\end{teo}
+\textbf{Moraleja:} Una variable aleatoria queda determinada por su función de distribución.

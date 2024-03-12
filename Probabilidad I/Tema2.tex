@@ -1,3 +1,5 @@
+\fecha{12/02/2024}
+\vspace{-1.5cm}
 \section{Tema 2: Variables aleatorias discretas}
 \begin{defn}
 	Sea $(\Omega, \F, P)$ un espacio de probabilidades, $\appl{X}{\Omega}{\R}$ es una variable aleatoria discreta* (v.a.d.)
@@ -14,10 +16,9 @@
 		\dots\}$ donde
 	\[\bigg(\forall j \geq 1 : p_j=P(x=x_j) \we p_j\geq 0 \bigg) \we \sum_{j\geq 1}p_j=1\]
 \end{defn}
-
-%13/02/2024
+\fecha{13/02/2024}
 \begin{teo}
-	Sea $S=\{x_1, x_2, \dots \}$ un conjunto y $(\Pi_1, \Pi_2, \dots, \Pi_j)$ una lista tal que \\
+	Sea $S=\{x_1, x_2, \dots, x_j\}$ un conjunto y $(\Pi_1, \Pi_2, \dots, \Pi_j)$ una lista tal que \\
 	$\forall i \leq j : \Pi_i \geq 0 \we \sum_{j\geq 1}\Pi_j=1$
 	\[\implies \exists (\Omega, \F, P) \we X\tex{ v.a.d }:\big(\forall  x\notin S :p_X(x)= 0 \big) \we p_X(x_i)=\Pi_i\]
 	\begin{dem}
@@ -43,15 +44,17 @@
 		      donde $1$ es éxito y $0$ fracaso. Se usa para modelizar el resultado de un
 		      experimento con dos posibles resultados, i.e. una moneda no necesariamente
 		      regular.
+		      \fecha{13/02/2024}
 		\item $X$ sigue una distribución \textbf{binomial} de parámetros $n\geq 1 \we p\in (0, 1)$ ($X\sim\bin{n, p}$)
-		      \[\iff S=\{0, 1, \dots, n\} \we \forall j\in \{0, 1, \dots, n\}:P(x=j)=\binom{n}{j}p^j(1-p)^{n-j}\]
+		      \[\iff S=\{0, 1, \dots, n\} \we \forall j\in \{0, 1, \dots, n\}:P(X=j)=\binom{n}{j}p^j(1-p)^{n-j}\]
 		      Sirve para modelizar el número de caras que salen al lanzar $n$ veces una
-		      moneda de probabilidad $p$.
+		      moneda de probabilidad $p$. \\
+		      Podemos estimar cual es la probabilidad de que salgan $\sfrac{n}{2}$ caras con $p=\sfrac{1}{2}$ mediante la fórmula de Stirling:
 		      \[n! \sim n^ne^{-n}\sqrt{2\pi n}\implies \binom{n}{\sfrac{n}{2}}\sim\frac{n^ne^{-n}\sqrt{2\pi n}}{(\sfrac{n}        {2})^{(\sfrac{n}{2})}e^{-(\sfrac{n}{2})}\sqrt{2\pi (\sfrac{n}{2})}(\sfrac{n}{2})^{(\sfrac{n}{2})}e^{-(\sfrac{n}     {2})}\sqrt{2\pi (\sfrac{n}{2})}}\]
-
 		      \[\implies \frac{n^n\sqrt{n}}{(\sfrac{n}{2})^{(\sfrac{n}{2})}\sqrt{2\pi (\sfrac{n}{2})}(\sfrac{n}{2})^{(\sfrac{n}       {2})}\sqrt{(\sfrac{n}{2})}} =
 			      \frac{n^n\sqrt{n}}
 			      {(\sfrac{n}{2})^{n}\sqrt{2\pi}(\sfrac{n}        {2})}=\frac{n^n\sqrt{2}}{(\sfrac{n}{2})^n\sqrt{\pi      n}}=2^n\sqrt{\frac{2}{\pi n}}\]
+		      \[\implies P\left(X=\frac{n}{2}\right) = \binom{n}{\sfrac{n}{2}}\frac{1}{2^n}\approx 2^n\sqrt{\frac{2}{\pi n}}\frac{1}{2^n}=\sqrt{\frac{2}{\pi n}}\]
 		\item La variable $X$ sigue una distribución \textbf{geométrica} de parámetro
 		      $p\in(0,1)$ ($X\sim\geom{p}$).
 		      \[\iff S=\{1, 2, \dots\} \we \forall j \geq 1 : P(x=j)=p(1-p)^{j-1}\]
@@ -83,12 +86,12 @@
 	\begin{itemize*}[itemjoin=\hspace{1cm}]
 		\item Binomial negativa
 		\item Hipergeométrica \\
-		\item Dada cualquier serie convergente $\ds \sum_{n=1}^\infty a_n = s$, se puede
-		      definir la variable aleatoria $X$ tal que $\ds S=\{1, 2, \dots\} \we
-			      P(x=k)=\frac{a_k}{s}$
+		\item Sea cualquier serie convergente $\ds \sum_{n=1}^\infty a_n = s$ \\
+		      \mbox{} \hspace{1cm} $\ds \implies \tex{se puede definir la variable aleatoria } X : S=\{1, 2, \dots\} \we P(x=k)=\frac{a_k}{s}$
 	\end{itemize*}
 \end{ejem}
-
+\fecha{14/02/2024}
+\vspace{-1.25cm}
 \subsection{Funciones transformadoras de variables aleatorias (discretas)}
 Sea $X$ una v.a.d. y $\appl{g}{\R}{\R}$ una función, definimos $Y\defeq g(X)$.
 \[\implies \{\omega \in\Omega:Y(\omega)=g(X(\omega))=y\} \in \F \implies Y\tex{ es una v.a.d}\]
@@ -112,7 +115,9 @@ Por otro lado,
 	\[\begin{cases} \tex{Si $x_1, \dots, x_N$ finito, la suma obviamente converge.} \\
 			\tex{Si los $x_j$ son positivos, la serie converge si y solo si es acotada. Si no lo es diverge a $\infty$.}\end{cases}\]
 \end{defn}
-
+\newpage
+\fecha{20/02/2024}
+\vspace{-1.25cm}
 \begin{ejem}[Cálculo de la esperanza]
 	\begin{itemize}[topsep=1pt, itemsep=1pt,parsep=3pt]
 		\item[]
@@ -161,7 +166,6 @@ Por otro lado,
 		\[E(g(X))=\sum_{j\geq 1}g(x_j)p_j\]
 	\end{dem}
 \end{teo}
-
 \begin{obs}
 	\begin{enumerate}
 		\item[]
@@ -176,7 +180,8 @@ Por otro lado,
 		      \end{ejem}
 	\end{enumerate}
 \end{obs}
-
+\fecha{21/02/2024}
+\vspace{-1.2cm}
 \begin{defn}[Varianza]
 	Sea $(\Omega, \F, P)$ un espacio de probabilidad y $X$ una v.a.d. con función de masa $p_X$, $V(X)$ es la varianza de $X$
 	\[\iff V(X)=E\left[(X-E(X))^2\right]\]
@@ -266,9 +271,9 @@ Por otro lado,
 		\[\implies \forall \lambda>0 : P\left(\abs{X-E(X)}\geq \lambda\cdot \sigma(X)\right) \leq \frac{1}{\lambda^2}\]
 	\end{dem}
 \end{teo}
-
+\fecha{26/02/2024}
+\vspace{-1.25cm}
 \subsubsection{Esperanza condicionada}
-
 \begin{defn}[Esperanza condicionada]
 	Sea $(\Omega, \F, P)$ un espacio de probabilidad $B\in \F$ un suceso tal que $P(B)>0$ y  $X$ una v.a.d. con esperanza $E(X)$, $E(X|B)$ es la \textbf{esperanza de $X$ condicionada a $B$}
 	\[\iff E(X|B) \defeq \sum_{x\in X(\Omega)} x \cdot P(X=x | B) = \sum_{x\in X(\Omega)} x \cdot \frac{P((X=x)\we B)}{P(B)}\]
@@ -298,7 +303,8 @@ Por otro lado,
 	\[E(X)=E(X|C)\cdot p + E(X|\times)\cdot (1-p) = \frac{p}{1-p}+\frac{1-p}{p}=\frac{p^2+(1-p)^2}{p(1-p)}\]
 	\[\implies E(X)=\frac{p^2+1-2p+p^2}{p(1-p)} = \frac{2p(p-1)+1}{p(1-p)}=\frac{1}{p(1-p)}-2\]
 \end{ejem}
-
+\fecha{27/02/2024}
+\vspace{-1.25cm}
 \subsection{Varias variables aleatorias}
 
 En $(\Omega, \F, P)$, sea $\X=X_1, X_2, \dots, X_n$ una colección de variables
@@ -336,7 +342,7 @@ Ya tenemos $X$ e $Y$ en $(\Omega, \F, P)$ con $P_{X,Y}$
 	En $(\Omega, \F, P)$, sean $X$ e $Y$ v.a.d., $p_{X}, p_{Y}$ son sus funciones de masa marginales
 	\[\iff p_X(x)=\sum_{y\in Y(\Omega)} p_{X, Y} (x, y) \quad\we\quad p_Y(y)=\sum_{x\in X(\Omega)} p_{X, Y} (x, y)\]
 \end{defn}
-
+\newpage
 \begin{teo}
 	En $(\Omega, \F, P)$, sean $X$ e $Y$ v.a.d. y sea $\appl{g}{\R^2}{\R}$ una función
 	\[\implies E(g(X, Y))=\sum_{x\in X(\Omega)} \sum_{y\in Y(\Omega)} g(x, y) \cdot p_{X,Y}(x,y)\]
@@ -358,7 +364,7 @@ Ya tenemos $X$ e $Y$ en $(\Omega, \F, P)$ con $P_{X,Y}$
 	\[E(aX+bY)=\sum_{x\in X(\Omega)} \sum_{y\in Y(\Omega)} (ax+by)\cdot p_{X,Y}(x,y)\]
 	\[\implies E(aX+bY)=a\sum_{x\in X(\Omega)} \sum_{y\in Y(\Omega)} x\cdot p_{X,Y}(x,y) + b\sum_{x\in X(\Omega)} \sum_{y\in Y(\Omega)} y\cdot p_{X,Y}(x,y)\]
 \end{ejem}
-
+\fecha{28/02/2024}
 \begin{defn}[Independencia de v.a.d.]
 	En $(\Omega, \F, P)$, sean $X$ e $Y$ v.a.d., $X$ e $Y$ son independientes
 	\[\iff \forall (x,y) \in X(\Omega)\times Y(\Omega) : {X=x} \tex{ y } {Y=y} \tex{ son sucesos independientes.}\]
@@ -505,16 +511,19 @@ Además $\rho(aX+b, cY+d) = \sgn{(ac)}\cdot\rho(X, Y)$. \fecha{04/03/2024}
 			\ds E(S_n) = \sum_{i=1}^n E(X_i) \\
 			\ds V(S_n) = \sum_{i=1}^n V(X_i) + 2\sum_{i<j} \cov{X_i, X_j}
 		\end{cases}\]
-	Si suponemos las $X_i$ independientes e idénticas $\implies \forall i \in \N_n : E(X_i)\eqdef \mu \we V(X_i)\eqdef \sigma^2$
+	Si suponemos las $X_i$ independientes e idénticas $\implies \forall i \in \N_n
+		: E(X_i)\eqdef \mu \we V(X_i)\eqdef \sigma^2$
 	\[\implies E(S_n) = n\mu \we V(S_n)=n^2\sigma^2\]
-	Si definimos $\ds Z_n \defeq \frac{1}{n}S_n=\frac{1}{n}(X_1 + \cdots + X_n) \implies E(Z_n)=\mu \we V(Z_n)=\frac{\sigma^2}{n} \xrightarrow{n\to\infty} 0$
+	Si definimos $\ds Z_n \defeq \frac{1}{n}S_n=\frac{1}{n}(X_1 + \cdots + X_n)
+		\implies E(Z_n)=\mu \we V(Z_n)=\frac{\sigma^2}{n} \xrightarrow{n\to\infty} 0$
 	\[\implies Z_n \tex{ no es aleatoria si } n\to\infty \tex{ (ley de los grandes números)}\]
 \end{ejem}
 \fecha{05/03/2024}
 \subsection{Funciones generatrices de probabilidad}
 \subsubsection{Series de potencias}
-Sea $\ds (a_n)_{n=0}^\infty$ una sucesión y $\ds f(x)\defeq\sum_{n=0}^\infty a_nx^n$ una función, ¿en qué valores de $x$ está definida?\\
-Sabemos que existe $\ds R \in [0, \infty)$ radio de convergencia tal que
+Sea $\ds (a_n)_{n=0}^\infty$ una sucesión y $\ds f(x)\defeq\sum_{n=0}^\infty
+	a_nx^n$ una función, ¿en qué valores de $x$ está definida?\\ Sabemos que existe
+$\ds R \in [0, \infty)$ radio de convergencia tal que
 \[\sum_{n=0}^\infty a_nx^n \rightarrow \begin{cases}
 		\textrm{converge} & \textrm{si } \abs{x} < R \\
 		\textrm{diverge}  & \textrm{si } \abs{x} > R

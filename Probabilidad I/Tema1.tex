@@ -1,3 +1,5 @@
+\fecha{01/02/2024}
+\vspace{-1.5cm}
 \section{Tema 1: Sucesos y probabilidades}
 \subsection{Formalizando}
 \begin{defn}[Espacio muestral]
@@ -71,7 +73,6 @@
 	      Comprobamos: $\ds\sum_{j=1}^{\infty} p(1-p)^{j-1} = p\sum_{k=0}^\infty(1-p)^k =
 		      p \frac{1}{1-(1-p)} = 1$
 \end{enumerate}
-
 \subsection{Probabilidad condicionada y total, independencia y Bayes}
 Tienes $(\Omega, \F, P)$ y un suceso $A\in \F \rightarrow P(A)$. Llega ``nueva
 información'': ha ocurrido el suceso $B\in F \longrightarrow$ ¿Debo reasignar
@@ -111,7 +112,7 @@ la probabilidad de $A$?
 	\[\iff P(A\cap B)=P(A)\cdot P(B) \textit{ (la adecuada)}\]
 	\begin{itemize}[topsep=1pt, itemsep=1pt,parsep=3pt]
 		\item $A, B$ disjuntos $\implies$ no independientes.
-		\item $A_1, \dots, A_N \in \F$ independientes $\ds \iff \forall J \subset \N_N: P\left(\bigcap_{j\in I} A_j\right)=\prod_{j\in J}P(A_j)$ \\
+		\item $A_1, \dots, A_N \in \F$ independientes $\ds \iff \forall J \subset \N_N: P\left(\bigcap_{j\in J} A_j\right)=\prod_{j\in J}P(A_j)$ \\
 		      $\ds \iff P\left(\overline{A_1}\cap\cdots\cap\overline{A_N}\right)=\prod_{i=1}^N P\left(\overline{A_i}\right)$ donde $\overline{A_i}=A_i, (A_i)^c$
 	\end{itemize}
 \end{defn}
@@ -119,7 +120,7 @@ la probabilidad de $A$?
 	Encontrar un espacio de probabilidad en el que haya un conjunto de sucesos independientes dos a dos pero no completamente independientes.
 	\[\textbf{SOL: }\Omega = \{1, 2, 3, 4\} \we A=\{1, 2\} \we B=\{2, 3\} \we C=\{1,3\}\]
 \end{ejer}
-
+\vfill{}
 \begin{prop}[Regla de Bayes]
 	Sean $(\Omega, \F, P)$ un espacio de probabilidad y $A, B \in \F$ sucesos con $P(A), P(B)>0$
 	\[\implies P(A|B)=P(B|A)\cdot \frac{P(A)}{P(B)}\]
@@ -128,7 +129,8 @@ la probabilidad de $A$?
 		\[\implies P(A|B)\cdot P(B) = P(A\cap B) = P(B|A)\cdot P(A) \implies P(A|B)=P(B|A)\cdot \frac{P(A)}{P(B)}\]
 	\end{dem}
 \end{prop}
-
+\fecha{07/02/2024}
+\vspace{-1.25cm}
 \subsubsection{Probabilidad total}
 \begin{prop}
 	Sean $(\Omega, \F, P)$ un espacio de probabilidad y $\{B_1, B_2, \dots\}$ una partición de $\ds \Omega : \left(\forall i, j :  i\ne j : B_i\cap B_j = \phi\right) \we \left(\bigcup_{j=1}^\infty B_j=\Omega\right)$
@@ -185,7 +187,8 @@ otra.
 Si definimos $f(p)\defeq P(E|+)$ \[\implies \{f(0.5)=98.95\% \we f(\sfrac{1}{100}) = 48.97\%\we f(\sfrac{1}{1000}) = 8.68\% \}\]
 Es decir, si la incidencia es muy baja, no tiene sentido hacer pruebas
 masivamente porque la mayoría de positivos serán falsos.
-
+\fecha{08/02/2024}
+\vspace{-1.25cm}
 \begin{ejem}[Sobre independencia]
 	$(\Omega, \F, P) \we A_1, \dots, A_n$ sucesos independientes tal que $\forall j \in \N_n : P(A_j)=\frac{1}{n}$. ¿Qué sabemos sobre $\ds P\left(\bigcup_{j=1}^n A_j\right)$?
 	\[\tex{En general, sabemos que } \frac{1}{n}\leq P\left(\bigcup_{j=1}^n A_j\right) \leq \sum_{j=1}^nP(A_j)\leq 1\]
