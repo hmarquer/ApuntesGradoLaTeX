@@ -55,17 +55,17 @@
 			      \frac{n^n\sqrt{n}}
 			      {(\sfrac{n}{2})^{n}\sqrt{2\pi}(\sfrac{n}        {2})}=\frac{n^n\sqrt{2}}{(\sfrac{n}{2})^n\sqrt{\pi      n}}=2^n\sqrt{\frac{2}{\pi n}}\]
 		      \[\implies P\left(X=\frac{n}{2}\right) = \binom{n}{\sfrac{n}{2}}\frac{1}{2^n}\approx 2^n\sqrt{\frac{2}{\pi n}}\frac{1}{2^n}=\sqrt{\frac{2}{\pi n}}\]
-		\item La variable $X$ sigue una distribución \textbf{geométrica} de parámetro
+		\item $X$ sigue una distribución \textbf{geométrica} de parámetro
 		      $p\in(0,1)$ ($X\sim\geom{p}$).
-		      \[\iff S=\{1, 2, \dots\} \we \forall j \geq 1 : P(x=j)=p(1-p)^{j-1}\]
+		      \[\iff S=\{1, 2, \dots\} \we \forall j \geq 1 : P(X=j)=p(1-p)^{j-1}\]
 		      Sirve para modelizar el número de lanzamientos hasta que sale un resultado $C$
 		      en cuestión con $P(X=C)=p$. \vspace{-0.3cm}
 		      \begin{obs}
 			      Cuidado porque existen variables aleatorias que también se dicen de distribución geométrica en las que $S=\{0, 1, 2, \dots\}$. Se habla de cuantas veces has obtenido el resultado complementario a $C$ antes de que halla salido $C$.
 		      \end{obs}
-		\item La variable $X$ sigue una distribución de \textbf{Poisson} con parámetro
+		\item $X$ sigue una distribución de \textbf{Poisson} con parámetro
 		      $\lambda>0$ ($X\sim \poisson{\lambda}$)
-		      \[\iff S=\{0, 1, \dots\} \we \forall j \geq 0 : P(x=j)=e^{-\lambda}\frac{\lambda^j}{j!}\]
+		      \[\iff S=\{0, 1, \dots\} \we \forall j \geq 0 : P(X=j)=e^{-\lambda}\frac{\lambda^j}{j!}\]
 		      Se usa para modelizar la frecuencia de eventos determinados durante un
 		      intervalo de tiempo fijado a partir de la frecuencia media de aparición de
 		      dichos eventos.
@@ -258,12 +258,12 @@ Por otro lado,
 
 \begin{teo}[Desigualdad de Chebyshev]
 	Sea $X$ una v.a.d. $: E(X), V(X)< \infty$.
-	\[\implies \forall \lambda>0 : P(|X-E(X)|\geq \lambda\cdot \sigma(X)) \leq \frac{1}{\lambda^2}\]
-	\[\iff \forall \alpha > 0 : \boxed{P\left(|X-E(X)|\geq \alpha\right) \leq \frac{V(X)}{\alpha^2}}\]
+	\[\implies \forall \lambda>0 : P\big(|X-E(X)|\geq \lambda\cdot \sigma(X)\big) \leq \frac{1}{\lambda^2}\]
+	\[\iff \forall \alpha > 0 : \boxed{P\big(|X-E(X)|\geq \alpha\big) \leq \frac{V(X)}{\alpha^2}}\]
 	\begin{dem}
 		Definimos $Y=|X-E(X)|^2$ y aplicamos la desigualdad de Markov.
 		\[\implies \forall t > 0 : P(Y\geq t) \leq \frac{E(Y)}{t} \implies \forall t>0: P(\abs{X-E(X)}^2\geq t)\leq \frac{E(Y)}{t}\]
-		\[\tex{Como } E(Y) = E(|X-E(X)|^2) = V(X) \tex{ por la def de varianza,}\]
+		\[\tex{Como } E(Y) = E\left(|X-E(X)|^2\right) = V(X) \tex{ por la def de varianza,}\]
 		\[\implies \forall t>0: P\left(|X-E(X)|\geq \sqrt{t}\right)\leq \frac{V(X)}{t}\]
 		Definimos $\ds \alpha\defeq \sqrt{t} \implies \forall \alpha>0:
 			P\left(|X-E(X)|\geq \alpha\right)\leq \frac{V(X)}{\alpha^2}$\\ y para la
@@ -379,7 +379,7 @@ Ya tenemos $X$ e $Y$ en $(\Omega, \F, P)$ con $P_{X,Y}$
 		\[\implies p_X(x) = \sum_{y\in Y(\Omega)} p_{X, Y}(x,y) = \sum_{y\in Y(\Omega)} g(x)\cdot h(y) = g(x) \sum_{y\in Y(\Omega)} h(y)\]
 		Análogamente $\ds p_Y(y)=h(y) \sum_{x\in X(\Omega)} g(x)$
 		\[\implies p_X(x)\cdot p_Y(y) = \left(g(x) \sum_{z\in Y(\Omega)} h(z)\right)\left(h(y) \sum_{w\in X(\Omega)} g(w)\right)\]
-		\[\implies p_X(x)\cdot p_Y(y) = g(x)\cdot h(y) \sum_{z\in Y(\Omega)} \sum_{w\in X(\Omega)} g(w)\cdot h(z) = p_{X, Y}(x, y)\]
+		\[\implies p_X(x)\cdot p_Y(y) = g(x)\cdot h(y) \sum_{z\in Y(\Omega)} \sum_{w\in X(\Omega)} g(w)\cdot h(z) = g(x)\cdot h(y) =p_{X, Y}(x, y)\]
 		\[\forall (x, y) \in X(\Omega) \times Y(\Omega) : P(X=x \we Y=y) = p_{X}(x) \cdot p_Y(y) = P(X=x) \cdot P(Y=y)\]
 	\end{dem}
 \end{teo}
@@ -589,7 +589,7 @@ $\ds R \in [0, \infty)$ radio de convergencia tal que
                                   & = \sum_{n=0}^\infty \left(\sum_{k=0}^n P(X=k)P(Y=n-k)\right)s^n\end{aligned}\implies G_{X+Y}(s)=G_X(s)\cdot G_Y(s)\]
 		\hfill \qedsymbol\\
 		Otra manera:
-		\[G_X(s)=E(s^X) \we G_{X+Y}(s)=E\left(s^{X+Y}\right) = E\left(s^X\cdots^Y\right)=E(s^X)\cdot E(s^Y) = G_X(s)\cdot G_Y(s)\]
+		\[G_X(s)=E(s^X) \we G_{X+Y}(s)=E\left(s^{X+Y}\right) = E\left(s^X\cdot s^Y\right)=E(s^X)\cdot E(s^Y) = G_X(s)\cdot G_Y(s)\]
 	\end{dem}
 \end{teo}
 \begin{cor}

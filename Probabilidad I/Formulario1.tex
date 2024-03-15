@@ -6,8 +6,24 @@
 \[A, B \tex{ indep.} \iff P(A\cap B)=P(A)\cdot P(B)\]
 \[A_1, \dots, A_N \in \F\tex{ indep.} \iff \forall J \subset \N_N: P\left(\bigcap_{j\in J} A_j\right)=\prod_{j\in J}P(A_j)\]
 \[P\left(\bigcup_{j=1}^\infty A_j\right)=\lim_{n\rightarrow\infty}P\left(\bigcup_{j=1}^n A_j\right)\]
+\[E(X)=\sum_{x\in X(\Omega)} x P(X=x) \we E(g(X))=\sum_{x\in X(\Omega)} g(x)P(X=x)\]
+\[E(aX+bY+c)=aE(X)+bE(Y)+c\]
+\[V(X) = E\left[\left(X-E(X)\right)^2\right] = E\left(X^2\right)-{E(X)}^2 \we V(aX+b)=a^2V(X)\]
+
+\[P(X<0)=0 \we E(X)<\infty \implies \forall t >0 : P(X\geq t) \leq \frac{E(X)}{t}\]
+\[P(|X-E(X)|\geq \lambda\cdot \sigma(X)) \leq \frac{1}{\lambda^2} \iff P\left(|X-E(X)|\geq \alpha\right) \leq \frac{V(X)}{\alpha^2}\]
 \subsection{Distribuciones de probabilidad}
 \begin{enumerate}
-	\item $X \sim \unif{n} \implies $
+	\item $\ds X \sim \unif{n} \implies E(X)=\frac{N+1}{2} \we V(X)=\frac{n^2-1}{12}$
+	\item $\ds X \sim \ber{p} \implies E(X)=p$
+	\item $\ds X \sim \bin{n, p} \iff X=\sum_{i=1}^n X_i : X_i \sim \ber{p}$
+	\[\implies P(X=j) = \binom{n}{j}p^j(1-p)^{n-j} \we E(X)=np \we V(X)=np(1-p)\]
+	\item $\ds X \sim \geom{p} \implies P(X=j)=p(1-p)^{j-1} \we E(X)=\frac{1}{p} \we V(X) = \frac{1-p}{p^2}$
+	\item $\ds X \sim \poisson{\lambda} \implies P(X=j)=e^{-\lambda}\frac{\lambda^j}{j!} \we V(X)=\lambda$
 \end{enumerate}
+\[\bin{n, p} \sim \poisson{np}\]
 \subsection{Sumatorios}
+\[(1+x)^n=\sum_{j=0}^n \binom{n}{j} x^j\]
+\[\frac{1}{1-x}=\sum_{n=0}^\infty x^n\]
+\[e^x=\sum_{n=0}^\infty \frac{x^n}{n!}\]
+\[\frac{\pi^2}{6} = \sum_{n=1}^\infty \frac{1}{n^2}\]

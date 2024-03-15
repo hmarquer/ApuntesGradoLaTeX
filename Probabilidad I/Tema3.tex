@@ -20,10 +20,10 @@ Sea $X$ una v.a.d. que toma los valores $x_1, x_2, \cdots$ con probabilidades $p
 \begin{lem}
 	En $(\Omega, \F, P)$, sea $X$ una variable aleatoria con función de distribución $F_X$.
 	\[\implies \begin{aligned}
-		(1)& \lim_{x\to\infty} F_X(x) = 1 \we \lim_{x\to-\infty} F_X(x) = 0 \\
-		(2)& F_X \text{ es no decreciente} \\
-		(3)& F_X \text{ es continua por la derecha}
-	\end{aligned}\]
+			(1) & \lim_{x\to\infty} F_X(x) = 1 \we \lim_{x\to-\infty} F_X(x) = 0 \\
+			(2) & F_X \text{ es no decreciente}                                  \\
+			(3) & F_X \text{ es continua por la derecha}
+		\end{aligned}\]
 	\begin{dem} %TODO: Hacer las demostraciones de (1) y (3) con detalle
 		%$(1)$ $A_n = \{\omega \in \Omega : X(\omega) \leq n\}$ que es creciente 
 		%\[\implies P\left(\bigcup_{n=1}^\infty A_n\right)=\lim_{n\to\infty} P\left(\bigcup_{j=1}^n A_j\right) = \]
@@ -43,3 +43,52 @@ Sea $X$ una v.a.d. que toma los valores $x_1, x_2, \cdots$ con probabilidades $p
 	\end{dem}
 \end{teo}
 \textbf{Moraleja:} Una variable aleatoria queda determinada por su función de distribución.
+\fecha{13/03/2024}
+Sea $X$ una variable aleatoria con función de distribución $F_X$ y $a,b\in \R$.
+\[\implies P(a<X\leq b)=P(\{x\leq b\}\setminus \{x\leq a\}) = P(x\leq b) - P(x\leq a) = F_X(b)-F_X(a)\]
+\begin{defn}[Variable aleatoria continua]
+	Sea $X$ una variable aleatoria con función de distribución $F_X$, es continua
+	\[\iff \exists f_X \geq 0 : \left(F_X(x) = P(X\leq x)=\int_{-\infty}^{x} f_X(y) \odif{y}\right) \we \left(\int_{-\infty}^{\infty} f_X(y) \odif{y}=1\right)\]
+	$f_X$ se denomina la \textbf{función de densidad} de $X$.
+\end{defn}
+
+\begin{obs}
+	\begin{enumerate}
+		\item[]
+		\item $\forall a \in \R : P(X=a) = 0$
+		      \begin{dem}
+			      Por continuidad de la probabilidad,
+			      \[\begin{aligned}
+					      \lbox{P(X=a)} & =\lim_{h \to 0^+} P(a-h<X\leq a+h) = \lim_{h\to0^+} F_X(a+h)-F_X(a-h)                                                                                                  \\
+					                    & = \lim_{h \to 0^+} \left(\int_{-\infty}^{a} f_X(y) \odif{y} - \int_{-\infty}^{a-h} f_X(y) \odif{y}\right) = \lim_{h\to0^+} \int_{a-h}^{a+h} f_X(y) \odif{y} = \rbox{0}
+				      \end{aligned}\]
+		      \end{dem}
+		\item Cálculo de probabilidades: $\ds\forall a \leq b : P(a\leq X\leq b) = \int_{a}^{b} f_X(y) \odif{y}$
+		\item $\ds f_X(x) = \begin{cases}
+				      \ds \odv{}{x} F_X(x), & \text{ si } F_X \text{ es derivable en } x \\
+				      \ds \quad 0,          & \text{ en otro caso}
+			      \end{cases}$
+	\end{enumerate}
+\end{obs}
+
+\begin{ejem}
+	\begin{enumerate}
+		\item[]
+		\item Para cualquier $f\geq 0$ tal que $\ds \int_{\-infty}^{\infty} f(x) \odif{x} = c \in \R$ tenemos una variable aleatoria continua.
+		\item $\ds X\sim\U{0,1} \iff f_X(u)=\begin{cases}
+				      1, & \text{ si } u\in[0,1] \\
+				      0, & \text{ en otro caso}
+			      \end{cases} \implies F_X(u) = \begin{cases}
+				      0, & \text{ si } u<0       \\
+				      u, & \text{ si } u\in[0,1] \\
+				      1, & \text{ si } u>1
+			      \end{cases}$
+		\item $\ds X\sim\EXP{\lambda} \iff f_X(x) = \begin{cases}
+				      \lambda e^{-\lambda x}, & \text{ si } x\geq 0  \\
+				      0,                      & \text{ en otro caso}
+			      \end{cases} = \lambda e^{-\lambda x} \cdot \mathbbm{1}_{\{x\geq 0\}}(x)$
+		      \[\implies \forall x > 0 : F_X(x) = \int_{-\infty}^{x} \lambda e^{-\lambda y} \odif{y} = \left[-e^{-\lambda y}\right]_{-\infty}^{x} = 1-e^{-\lambda x}\]
+		\item $\ds X\sim\N{\mu, \sigma^2} \iff f_X(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ \\
+		Pero la guay es $\ds X\sim\normal{0, 1} \iff \phi(x) \defeq f_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$
+	\end{enumerate}
+\end{ejem}

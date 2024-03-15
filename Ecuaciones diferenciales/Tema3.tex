@@ -32,7 +32,7 @@ Pero necesitamos formalizar todo esto.
 	Es decir, $\forall \varepsilon > 0 : \forall t\in I : \exists \kappa \in \N : \forall k\geq \kappa : \abs{f_k(t) - f(t)} < \varepsilon$.
 \end{defn}
 
-\begin{ejem}
+\begin{ejem} %TODO: gráfica
 	La sucesión $(f_k)$ definida a continuación converge puntualmente a $f$ pero su límite es una función no continua.
 	\[\forall t \in\R : f_k(t) \defeq \begin{cases}
 			0,                & t < -\frac{1}{k}        \\
@@ -45,7 +45,7 @@ Pero necesitamos formalizar todo esto.
 		\end{cases}\]
 \end{ejem}
 \fecha{12/03/2024}
-\begin{ejem}
+\begin{ejem} %TODO: gráfica
 	\[x_k(t) \defeq \begin{cases}
 			2k^2t,                          & t\in\left[0, \frac{1}{2k}\right)           \\
 			2k^2\left(\frac{1}{k}-t\right), & t\in\left[\frac{1}{2k}, \frac{1}{k}\right) \\
@@ -85,6 +85,53 @@ Pero necesitamos formalizar todo esto.
 	\end{dem}
 \end{prop}
 \begin{prop}
-	Sea $(x_k)_{k\in\N}$ una sucesión de funciones continuas $\appl{x_i}{(a,b)}{\R}$ que converge uniformemente a $\appl{x}{(a,b)}{\R}$.
+	Sea $(x_k)_{k\in\N}$ una sucesión de funciones continuas $\appl{x_i}{(a,b)}{\R}$ que converge uniformemente a $\appl{x}{(a,b)}{\R}$ donde $(a,b) \subset \R$ está acotado.
 	\[\implies \lim_{k\to\infty} \int_{a}^{b} x_k(t) \odif{t} = \int_{a}^{b} x(t) \odif{t}\]
 \end{prop}
+
+\fecha{13/03/2024}
+\begin{ejem} %TODO: gráfica
+	Consideramos la sucesión $x_k(t) = \begin{cases}
+		\frac{1}{k} & \tex{ si } t\leq k \\
+		0 & \tex{ si } t>k 
+	\end{cases}$
+	\[\implies \int_{0}^{\infty} x_k(t) \odif{t} = \int_{0}^{k} \frac{1}{k} \odif{t} = 1 \we \lim_{k\to\infty} x_k(t) = 0\]
+\end{ejem}
+
+Sea $\mathcal{C}([a,b], \R)=\mathcal{C}([a,b]) \defeq \left\{\appl{x}{[a,b]}{\R} : x\tex{ continua}\right\}$ el espacio vectorial de funciones continuas.
+\[\forall x \in \mathcal{C}([a,b]) : \norm{x}_{\infty} \defeq \max_{t\in [a,b]} \abs{x(t)}\]
+\[\implies \big(\mathcal{C}([a,b]), \norm{\cdot}_\infty\big) \tex{ es un espacio vectorial normado }\]
+\[\implies \tex{también es métrico con} \operatorname{d}(x,y)\defeq\norm{x-y}_\infty\]
+\[\operatorname{d}(x_k, x) = \norm{x_k-x}_\infty=\max_{t\in [a,b]} \abs{x_k(t)-x(t)} \rightarrow0 \iff x_k\to x \tex{ unif.}\]
+\begin{teo}
+	Sean $a, b \in \R : a<b \implies \ds \bigg(\mathcal{C}([a,b]), \norm{\cdot}_\infty\bigg)$ es un espacio completo.\\Es decir, toda sucesión de Cauchy es convergente.
+	\begin{dem}
+		Sea $(x_k)_{k\in \N}\subset \mathcal([a,b])$ una sucesión de Cauchy. Esto significa que
+		\[\forall \varepsilon > 0 : \exists \kappa \in \N : \big(k, l\geq \kappa \implies \norm{k_k-x_l}_\infty <\varepsilon\big) \]
+		Recordemos que $\norm{x_k-x_l}_\infty = \max_{t\in[a,b]}\abs{x_k(t)-x_l(t)}$\\
+		Fijamos $\varepsilon > 0$ y $t\in [a,b]$
+		\[\implies \forall k, l \geq \kappa : \abs{k_k(t) - x_l(t)} \leq \norm{x_k-x_l}_\infty < \varepsilon\]
+		Esto demuestra que la sucesión de números reales $(x_k(t))_{k\in\N}$ es de Cauchy. Como $\R$ es completo, $\exists x(t) \in \R : x_k(t) \xrightarrow{k\to\infty} x(t)$. \\
+		Veamos que el límite es uniforme: En efecto, sean $k\geq \kappa, l \geq 1, k, l \in \N$.
+		\[\implies \forall t \in [a,b] : \abs{x_k(t)-x_{k+l}(t)} \leq \norm{x_k-x_{k+l}} < \varepsilon \tex{ porque $(x_k)$ es de Cauchy}\]
+		Haciendo tender $l\to\infty$
+		\[\implies \forall t \in [a,b] : \forall k \geq \kappa : \abs{x_k(t)-x(t)}\leq \varepsilon\]
+		Recordemos que $x\in\mathcal{C}([a,b])$ por ser límite de funciones continuas.
+	\end{dem}
+\end{teo}
+\begin{defn}[Punto fijo]
+	Sea $\appl{T}{\mathcal{C}([a,b])}{\mathcal{C}([a,b])}$ un operador, $\appl{x}{[a,b]}{\R}$ es un punto fijo de $T \iff T[x]=x$.
+\end{defn}
+\begin{defn}[Contracción]
+	Sea $C \subset X \we C \ne \phi$ donde $(X, \norm{\cdot})$ es un espacio vectorial normado y $\appl{T}{C}{C}$ una aplicación, $T$ es una contracción en $C$ \[\iff \exists \alpha \in (0,1) : \forall x, y \in C : \norm{T[x]-T[y]}\leq \alpha \norm{x-y}\]
+\end{defn}
+\begin{teo}
+	Sea $C \subset X\we C\ne \phi$ cerrado donde $(X, \norm{\cdot})$ es un espacio normado completo y $\appl{T}{C}{C}$ una contracción $\implies \exists! x\in C : T[x]=x$
+	\begin{dem}
+
+	\end{dem}
+\end{teo}
+\begin{obs}
+	Claramente, toda contracción es continua (con respecto a la norma correspondiente). En efecto, si $(x_k)_{k\in\N} \subset C : x_k\xrightarrow{k\to\infty} x \in C$
+	\[\implies \norm{T[x_k]-T[x]}\leq \alpha \norm{x_k-x} \xrightarrow{k\to\infty} 0\]
+\end{obs}
