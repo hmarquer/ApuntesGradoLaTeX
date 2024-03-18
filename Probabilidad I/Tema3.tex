@@ -47,7 +47,7 @@ Sea $X$ una v.a.d. que toma los valores $x_1, x_2, \cdots$ con probabilidades $p
 Sea $X$ una variable aleatoria con función de distribución $F_X$ y $a,b\in \R$.
 \[\implies P(a<X\leq b)=P(\{x\leq b\}\setminus \{x\leq a\}) = P(x\leq b) - P(x\leq a) = F_X(b)-F_X(a)\]
 \begin{defn}[Variable aleatoria continua]
-	Sea $X$ una variable aleatoria con función de distribución $F_X$, es continua
+	Sea $X$ una variable aleatoria con función de distribución $F_X$, es continua (v.a.c.)
 	\[\iff \exists f_X \geq 0 : \left(F_X(x) = P(X\leq x)=\int_{-\infty}^{x} f_X(y) \odif{y}\right) \we \left(\int_{-\infty}^{\infty} f_X(y) \odif{y}=1\right)\]
 	$f_X$ se denomina la \textbf{función de densidad} de $X$.
 \end{defn}
@@ -87,8 +87,57 @@ Sea $X$ una variable aleatoria con función de distribución $F_X$ y $a,b\in \R$
 				      \lambda e^{-\lambda x}, & \text{ si } x\geq 0  \\
 				      0,                      & \text{ en otro caso}
 			      \end{cases} = \lambda e^{-\lambda x} \cdot \mathbbm{1}_{\{x\geq 0\}}(x)$
-		      \[\implies \forall x > 0 : F_X(x) = \int_{-\infty}^{x} \lambda e^{-\lambda y} \odif{y} = \left[-e^{-\lambda y}\right]_{-\infty}^{x} = 1-e^{-\lambda x}\]
+		      \[\implies \forall x > 0 : F_X(x) = \int_{0}^{x} \lambda e^{-\lambda y} \odif{y} = \left[-e^{-\lambda y}\right]_{0}^{x} = 1-e^{-\lambda x}\]
 		\item $\ds X\sim\N{\mu, \sigma^2} \iff f_X(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ \\
-		Pero la guay es $\ds X\sim\normal{0, 1} \iff \phi(x) \defeq f_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$
+		      Pero la guay es $\ds X\sim\normal{0, 1} \iff \phi(x) \defeq f_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$
+		      \[\tex{Veamos que } \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}\odif{y} = 1\]
+		      \begin{dem}
+			      \[I = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x}\implies I^2 = \left(\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}\odif{x}\right)\left(\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} \odif{y}\right)\]
+			      \[\implies \begin{aligned} I^2 & = \frac{1}{2\pi} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left(x^2+y^2\right)} \odif{x} \odif{y} = \int_{0}^{2\pi} \int_{0}^{\infty} e^{-\frac{r^2}{2}} r \odif{r} \odif{\theta} \\
+                    & =\end{aligned}\]
+		      \end{dem}
 	\end{enumerate}
 \end{ejem}
+
+\fecha{18/03/2024}
+\subsection{Funciones / Transformaciones de v.a.c.}
+Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{X(\Omega)}{\R}$ una función real. Consideramos $Y=g(X)$:
+\begin{itemize}
+	\item $Y$ es variable aleatoria $\iff \forall y \in \R : \{\omega \in \Omega : g(X(\omega)) \leq y\} \in \F$.\\
+	      Esto es cierto para las $g$ ``habituales'' (continuas, monótonas, etc.), para más detalle, hay que esperar a teoría de la medida.
+	\item ¡Cuidado! $Y$ puede no ser continua.
+	\item Si $Y$ es v.a. $\implies Y$ tiene función de distribución
+	      \[F_Y(y) = P(Y\leq y) = P(g(X)\leq y) = ???\]
+	      \begin{ejem}
+		      $g(x) = ax + b$ con $a\ne 0 \we b \in \R$.
+		      \[\implies F_Y(y)= P(aX+b\leq y) = \begin{cases}
+				      P\left(X \leq \frac{y-b}{a}\right) = F_X\left(\frac{y-b}{a}\right),       & \text{ si } a>0 \\
+				      P\left(X \geq \frac{y-b}{a}\right) = 1 - P\left(X < \frac{y-b}{a}\right), & \text{ si } a<0
+			      \end{cases}\]
+		      Para $X$ v.a. continua, $\ds F_Y(y) = \begin{cases}
+				      F_X\left(\frac{y-b}{a}\right),  & \text{ si } a>0 \\
+				      1-F_X\left(\frac{y-b}{a}\right) & \text{ si } a<0
+			      \end{cases}$.
+		      \[\implies f_Y(y) =\odv{}{y} F_Y(y) = \begin{cases}
+				      \frac{1}{a} f_X\left(\frac{y-b}{a}\right),  & \text{ si } a>0 \\
+				      -\frac{1}{a} f_X\left(\frac{y-b}{a}\right), & \text{ si } a<0
+			      \end{cases} = \frac{1}{\abs{a}} f_X\left(\frac{y-b}{a}\right)\]
+	      \end{ejem}
+\end{itemize}
+
+\begin{teo}
+	En $(\Omega, \F, P)$, sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{\R}{\R}$ una función diferenciable y estrictamente creciente.
+	\[\implies f_Y(y)=f_X\big(g^{-1}(y)\big) \frac{1}{g'\big(g^{-1}(y)\big)}\]
+	De manera similar, si $g$ es estrictamente decreciente$\ds\implies f_Y(y)= - f_X\big(g^{-1}(y)\big) \frac{1}{g'\big(g^{-1}(y)\big)}$
+	\begin{dem}
+		\[\begin{aligned}
+				F_Y(y) & = P(Y\leq y) = P(g(X)\leq y) = P(X\leq g^{-1}(y)) = F_X\big(g^{-1}(y)\big)                                                                                  \\
+				f_Y(y) & = \odv{}{y} F_Y(y) = \odv{}{y} F_X\big(g^{-1}(y)\big) = f_X\big(g^{-1}(y)\big) \odv{}{y} g^{-1}(y) = f_X\big(g^{-1}(y)\big) \frac{1}{g'\big(g^{-1}(y)\big)}
+			\end{aligned}\]
+		En el caso de $g$ decreciente tenemos:
+		\[\begin{aligned}
+				F_Y(y) & = P(g(X)\leq y) = P(X\geq g^{-1}(y)) = 1 - P(X\leq g^{-1}(y)) = 1 - F_X\big(g^{-1}(y)\big) \\
+				f_Y(y) & = -\odv{}{y} F_X\big(g^{-1}(y)\big) = -f_X\big(g^{-1}(y)\big) \odv{}{y} g^{-1}(y) = -f_X\big(g^{-1}(y)\big) \frac{1}{g'\big(g^{-1}(y)\big)}
+			\end{aligned}\]
+	\end{dem}
+\end{teo}

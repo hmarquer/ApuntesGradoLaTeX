@@ -135,3 +135,52 @@ Sea $\mathcal{C}([a,b], \R)=\mathcal{C}([a,b]) \defeq \left\{\appl{x}{[a,b]}{\R}
 	Claramente, toda contracción es continua (con respecto a la norma correspondiente). En efecto, si $(x_k)_{k\in\N} \subset C : x_k\xrightarrow{k\to\infty} x \in C$
 	\[\implies \norm{T[x_k]-T[x]}\leq \alpha \norm{x_k-x} \xrightarrow{k\to\infty} 0\]
 \end{obs}
+
+\fecha{14/03/2024}
+\fecha{18/03/2024}
+\subsubsection{Funciones Lipschitz}
+\begin{defn}[Función Lipschitz]
+	Sea $\appl{f}{\Omega}{\R}$ una función con $\Omega\subset \R$ abierto, es Lipschitz en $\Omega$ 
+	\[\iff\exists L \in \R : \forall x, \hat{x} \in \Omega : \abs{f(x)-f(\hat{x})}\leq L\abs{x-\hat{x}}\]
+\end{defn}
+Si $f$ es Lipschitz en $\Omega$, suponiendo que $x > \hat{x}$:
+\[\abs{f(\hat{x})-f(x)}\leq L(x-\hat{x}) \implies - L(x-\hat{x}) \leq f(\hat{x})-f(x) \leq L(x-\hat{x}) \]
+\[\implies f(\hat{x})-L(x-\hat{x}) \leq f(x) \leq f(\hat{x})+L(x-\hat{x})\] %TODO: gráfica / dibujo
+
+\begin{obs}
+\begin{enumerate}
+	\item[]
+	\item Si $f$ es Lipschitz en $\Omega$, entonces $f$ es uniformemente continua en $\Omega$. (Sale al tomar $\ds \delta = \frac{\varepsilon}{L}$ en la definición de continuidad uniforme).
+	\item A la constante $L$ se le llama constante Lipschitz de $f$ en $\Omega$.
+\end{enumerate}
+\end{obs}
+\begin{ejem}
+	\begin{enumerate}
+		\item[]
+		\item Sea $\appl{f}{\R}{\R}$ dada por $f(x)=\sin{x}$ y $x, \hat{x} \in \R$, $x<\hat{x}$. Por el TVM
+		\[\exists y \in (x, \hat{x}) : \abs{f(x) - f(\hat{x})} = f'(y) \abs{x-\hat{x}} \implies \abs{f(x) - f(\hat{x})} = \cos{(y)} \abs{x-\hat{x}} \leq \abs{x-\hat{x}}\]
+		Por tanto $f(x)=\sin{x}$ es Lipschitz en $\R$ con constante $L=1$.
+		\item En realidad, si $\appl{f}{I\subset\R}{\R}$ es derivable con $\forall x \in I : \abs{f'(x)} \leq L \implies f$ es Lipschitz en $I$ con constante $L$.   
+	\end{enumerate}
+\end{ejem}
+
+\begin{prop}
+\begin{enumerate}
+	\item[]
+	\item Sean $\appl{f, g}{\R^m}{\R^d}$ dos funciones Lipschitz con constantes de Lipschitz $L_f, L_g$ y sean $\alpha, \beta \in \R \implies \alpha f + \beta g \tex{ es Lipschitz.}$
+	\item Sean $\appl{f}{\R^m}{\R^l}$ y $\appl{f}{\R^l}{\R^d}$ dos funciones Lipschitz con constantes de Lipschitz $L_f, L_g \implies g\circ f \tex{ es Lipschitz con constante } L_fL_g$.
+\end{enumerate}
+\begin{dem}
+\begin{enumerate}
+	\item[]
+	\item Sean $x, \hat{x} \in \Omega$ y $\alpha, \beta \in \R$:
+	\[\begin{aligned}
+		\abs{\alpha f(x) + \beta g(x) - \left(\alpha f(\hat{x}) - \beta g(\hat{x})\right)} &= \abs{\alpha\left(f(x) - f(\hat{x})\right) + \beta\left(g(x) - g(\hat{x})\right)} \\
+		&\leq \abs{\alpha}\abs{f(x) - f(\hat{x})} + \abs{\beta}\abs{g(x) - g(\hat{x})} \\
+		&\leq \left(\abs{\alpha}L_f + \abs{\beta}L_g \right)\abs{x-\hat{x}} 
+	\end{aligned}\]
+	\item Sean $x, \hat{x} \in \Omega$:
+	\[\abs{(g \circ f)(x) - (g \circ f)(\hat{x}) } = \abs{g(f(x)) - g(f(\hat{x}))} \leq L_g\abs{f(x)-f(\hat{x})} \leq L_gL_f\abs{x-\hat{x}}\]
+\end{enumerate}
+\end{dem}
+\end{prop}
