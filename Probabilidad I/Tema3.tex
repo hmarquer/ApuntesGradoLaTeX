@@ -136,8 +136,71 @@ Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{X(\Omega)}{\R}$ un
 			\end{aligned}\]
 		En el caso de $g$ decreciente tenemos:
 		\[\begin{aligned}
-				F_Y(y) & = P(g(X)\leq y) = P(X\geq g^{-1}(y)) = 1 - P(X\leq g^{-1}(y)) = 1 - F_X\big(g^{-1}(y)\big) \\
+				F_Y(y) & = P(g(X)\leq y) = P(X\geq g^{-1}(y)) = 1 - P(X\leq g^{-1}(y)) = 1 - F_X\big(g^{-1}(y)\big)                                                  \\
 				f_Y(y) & = -\odv{}{y} F_X\big(g^{-1}(y)\big) = -f_X\big(g^{-1}(y)\big) \odv{}{y} g^{-1}(y) = -f_X\big(g^{-1}(y)\big) \frac{1}{g'\big(g^{-1}(y)\big)}
 			\end{aligned}\]
 	\end{dem}
 \end{teo}
+
+\fecha{20/03/2024}
+\begin{ejer}
+	Sea $X$ una variable aleatoria con función de densidad $f_X(x)$ y $Y=g(X)$ con $g(x)=x^2$. ¿Cuál es la función de densidad de $Y$?
+	\[F_Y(y) = P(X^2\leq y)=\begin{cases}
+			y<0 \implies 0 \\
+			y\geq 0 \implies P\left(-\sqrt{y}\leq X\leq \sqrt{y}\right) = F_X\left(\sqrt{y}\right)-F_X\left(-\sqrt{y}\right)
+		\end{cases}\]
+	\[\implies f_Y(y)=\begin{cases}
+			y \leq 0 \implies 0 \\
+			y > 0 \implies \ds \odv{}{y} F_X\left(\sqrt{y}\right)-\odv{}{y} F_X\left(-\sqrt{y}\right) = \frac{1}{2\sqrt{y}} f_X\left(\sqrt{y}\right) + \frac{1}{2\sqrt{y}} f_X\left(-\sqrt{y}\right)
+		\end{cases}\]
+\end{ejer}
+
+\begin{ejem}
+	Sea $\ds X\sim\normal{\mu, \sigma^2} \implies \forall x \in \R: f_X(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ e $Y=e^X$ (se denomina lognormal). Calculamos la derivada y la inversa de $g(x)=e^x$.
+	\[\implies g'(x)=e^x \quad \we \quad  \odv{}{y} g^{-1} (y) = \ln{y} \quad \we \quad  \odv{}{y} g^{-1} (y) = \frac{1}{y}\]
+	Como $g$ es estrictamente creciente, aplicamos el teorema anterior:
+	\[f_Y(y) = \begin{cases}
+			0,                                                                                 & \text{ si } y\leq 0 \\
+			\ds \frac{1}{\sqrt{2\pi}\sigma} \frac{1}{y} e^{-\frac{(\ln{y}-\mu)^2}{2\sigma^2}}, & \text{ si } y>0     %TODO: gráfica
+		\end{cases}\]
+\end{ejem}
+
+\begin{ejem}
+	Sea $X\sim\EXP{\lambda}, \lambda > 0$ y $Y=3X+2$. Calculamos la función de densidad de $Y$.
+	\[g'(x) = 3 \quad \we \quad \odv{}{y} g^{-1}(y) = \odv{}{y}\left(\frac{y-2}{3}\right) = \frac{1}{3}\]
+	Como $g$ es estrictamente creciente, aplicamos el teorema anterior:
+	\[f_Y(y) = f_X\left(\frac{y-2}{3}\right) \cdot \frac{1}{3}= \begin{cases}
+			0,                                                 & \text{ si } y<2     \\
+			\ds \frac{1}{3}\lambda e^{-\lambda \frac{y-2}{3}}, & \text{ si } y\geq 2
+		\end{cases}\]
+\end{ejem}
+
+\subsection{Esperanzas de v.a.c.}
+\begin{defn}[Esperanza]
+	Sea $X$ una v.a.c. con función de densidad $f_X$. $E(X)$ es la esperanza de $X$
+	\[\iff E(X) = \int_{-\infty}^{\infty} x \cdot f_X(x) \odif{x}\]
+	Siempre que haya convergencia absoluta $\ds \iff \int_{-\infty}^{\infty} \abs{x} \cdot f_X(x) \odif{x} < \infty$.
+\end{defn}
+
+\begin{teo}
+	Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{\R}{\R}$ una función diferenciable y estrictamente creciente.
+	\[\implies E(g(X)) = \int_{-\infty}^{\infty} g(x) \cdot f_X(x) \odif{x}\]
+	\begin{dem}
+		\[\begin{aligned} %TODO: Por terminar
+				E(g(X)) & = \int_{-\infty}^{\infty} y \cdot f_Y(y) \odif{y} = \int_{-\infty}^{\infty} y \cdot f_X\big(g^{-1}(y)\big) \frac{1}{g'\big(g^{-1}(y)\big)} \odif{y} = ??? \\
+				        & = \int_{-\infty}^{\infty} g(x) \cdot f_X(x) \odif{x}
+			\end{aligned}\]
+	\end{dem}
+\end{teo}
+
+\begin{ejem}
+\begin{enumerate}
+\item[]
+\item Sea $X\sim\unif{a,b}$, entonces $f_X(x)=\frac{1}{b-a}\cdot \mathbbm{1}_{[a,b]}(x)$.
+\[\implies E(X) = \int_{a}^{b} x \cdot \frac{1}{b-a} \odif{x} = \frac{1}{b-a} \left[\frac{x^2}{2}\right]_{a}^{b} = \frac{b^2-a^2}{2(b-a)} = \frac{a+b}{2}\]
+\[V(X) = E(X^2) - E(X)^2 = \int_{a}^{b} x^2 \cdot \frac{1}{b-a} \odif{x} - \left(\frac{a+b}{2}\right)^2 = \frac{1}{b-a} \left[\frac{x^3}{3}\right]_{a}^{b} - \left(\frac{a+b}{2}\right)^2 = \frac{b^3-a^3}{3(b-a)} - \left(\frac{a+b}{2}\right)^2 = \frac{(b-a)^2}{12}\]
+\item Sea $X\sim\EXP{\lambda}, \lambda > 0$, entonces $f_X(x)=\lambda e^{-\lambda x} \cdot \mathbbm{1}_{[0,\infty)}(x)$.
+\[\implies E(X)= \int_{0}^{\infty} x \cdot \lambda e^{-\lambda x} \odif{x} = \left[-x e^{-\lambda x}\right]_{0}^{\infty} + \int_{0}^{\infty} e^{-\lambda x} \odif{x} = 0 + \left[-\frac{1}{\lambda} e^{-\lambda x}\right]_{0}^{\infty} = \frac{1}{\lambda}\]
+\[V(X) = E(X^2) - E(X)^2 = \int_{0}^{\infty} x^2 \cdot \lambda e^{-\lambda x} \odif{x} - \left(\frac{1}{\lambda}\right)^2 = \frac{1}{\lambda^2}\]
+\end{enumerate}
+\end{ejem}

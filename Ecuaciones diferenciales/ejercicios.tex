@@ -9,30 +9,30 @@
 \subsubsection{Algunos métodos de resolución de EDOs}
 \textbf{2.18} \begin{enumerate}
 	\item $yy'' + {(y')}^2=0$ \\
-	Resulta razonable buscar soluciones en forma de polinomios $y(x)=x^\alpha$ porque:
-	\[\implies y'=\alpha x ^{(\alpha-1)} \we y''=\alpha(\alpha-1)x^{(\alpha-2)}\]
-	\[\implies x^{\alpha}\alpha(\alpha-1)x^{(\alpha-2)} + \alpha^2 x ^{2(\alpha-1)} = 0\implies (2\alpha^2-\alpha)x^\alpha=0\]
-	\[\implies 2\alpha^2-\alpha=0 \implies \alpha(2\alpha-1)=0 \implies \alpha=0 \ve \alpha=\frac{1}{2}\]
-	Opción 1: Integramos la EDO:%\@
-	\[\int_{0}^{t} y(s) y''(s)\odif{s} + \int_{0}^{t} {(y'(s))}^2 \odif{s} = 0\]
-	\[-\int_{0}^t {(y'(s))}^2 \odif{s} + {[y(s)y'(s)]}^t_{s=0} + \int_{0}^{t} {(y'(s))}^2 \odif{s}\]
-	\[\implies y(t)y'(t)-y(0)y'(0)=0 \implies y(t)y'(t)=y(0)y'(0)\eqdef C\]
-	\[\implies \int_{0}^{t} y(s)y'(s)\odif{s}=Ct \implies \frac{{(y(t))}^2}{2}  -\frac{{(y(0))}^2}{2}=Ct\]
-	\[\implies y(t)=\sqrt{2Ct+{(y(0))}^2}\]
+	      Resulta razonable buscar soluciones en forma de polinomios $y(x)=x^\alpha$ porque:
+	      \[\implies y'=\alpha x ^{(\alpha-1)} \we y''=\alpha(\alpha-1)x^{(\alpha-2)}\]
+	      \[\implies x^{\alpha}\alpha(\alpha-1)x^{(\alpha-2)} + \alpha^2 x ^{2(\alpha-1)} = 0\implies (2\alpha^2-\alpha)x^\alpha=0\]
+	      \[\implies 2\alpha^2-\alpha=0 \implies \alpha(2\alpha-1)=0 \implies \alpha=0 \ve \alpha=\frac{1}{2}\]
+	      Opción 1: Integramos la EDO:%\@
+	      \[\int_{0}^{t} y(s) y''(s)\odif{s} + \int_{0}^{t} {(y'(s))}^2 \odif{s} = 0\]
+	      \[-\int_{0}^t {(y'(s))}^2 \odif{s} + {[y(s)y'(s)]}^t_{s=0} + \int_{0}^{t} {(y'(s))}^2 \odif{s}\]
+	      \[\implies y(t)y'(t)-y(0)y'(0)=0 \implies y(t)y'(t)=y(0)y'(0)\eqdef C\]
+	      \[\implies \int_{0}^{t} y(s)y'(s)\odif{s}=Ct \implies \frac{{(y(t))}^2}{2}  -\frac{{(y(0))}^2}{2}=Ct\]
+	      \[\implies y(t)=\sqrt{2Ct+{(y(0))}^2}\]
 	\item $xy''=y'+{(y')}^2$ \\
-	No depende de $y \implies$ Hacemos un cambio de variable $x=y'$:
-	\[\implies xz'=z+z^3 \tex{ que es de variables separadas.}\]
+	      No depende de $y \implies$ Hacemos un cambio de variable $x=y'$:
+	      \[\implies xz'=z+z^3 \tex{ que es de variables separadas.}\]
 	\item $x^2y''=2xy'+{(y')}^2$ \\
-	Nuevamente hacemos un cambio de variable $z=y' \implies x^2z'=2xz+z^2$
-	\[\forall x \ne 0 : z'=2\frac{z}{x} + {\left(\frac{z}{x}\right)}^2 \implies \tex{ mediante el cambio de variables } \omega = \frac{z}{x}\]
-	Obtenemos una EDO de variables separadas en $\omega$.
+	      Nuevamente hacemos un cambio de variable $z=y' \implies x^2z'=2xz+z^2$
+	      \[\forall x \ne 0 : z'=2\frac{z}{x} + {\left(\frac{z}{x}\right)}^2 \implies \tex{ mediante el cambio de variables } \omega = \frac{z}{x}\]
+	      Obtenemos una EDO de variables separadas en $\omega$.
 	\item $2yy''-{(y')}^2=1$ \\
-	Otra vez resulta razonable buscar soluciones de la forma $y(x)=Ax^2 + Bx +C$
+	      Otra vez resulta razonable buscar soluciones de la forma $y(x)=Ax^2 + Bx +C$
 \end{enumerate}
 
 \subsubsection{Modelización}
 
-\textbf{3.4} $C(t)=\tex{``Cantidad de sal''}$ en el tanque en el tiempo $t$. 
+\textbf{3.4} $C(t)=\tex{``Cantidad de sal''}$ en el tanque en el tiempo $t$.
 \[C'(t)=10-\frac{1}{10}C(t) \implies \int_{C(0)}^{C(t)} \frac{1}{100-y}\odif{y} = \int_{0}^{t}\frac{1}{10}\odif{t}\]
 \[\implies \log{(100-C(t))} - \log{(100-C(0))}=-\frac{1}{10}\implies \log{\frac{100-C(t)}{100}}=-\frac{t}{10}\]
 \[\implies \frac{100-C(t)}{100}=e^{-\frac{t}{10}}\implies C(t)=100(1-e^{-\frac{t}{10}})\]
@@ -66,96 +66,96 @@ Inicialmente $x(t)>-\sqrt{t}$ ``durante un rato''.
 \end{enumerate}
 
 \textbf{4.7} $\ds \begin{cases}
-	x' = x^2 + t^2, t >0 \\
-	x(0)>0
-\end{cases}$ Sea $\appl{x}{[0, T)}{\R}$ derivable.
+		x' = x^2 + t^2, t >0 \\
+		x(0)>0
+	\end{cases}$ Sea $\appl{x}{[0, T)}{\R}$ derivable.
 \begin{enumerate}
 	\item Queremos ver si $\ds \forall t \in [0, T) : x(t)> \frac{t^3}{3}$ \\
-	Como $\ds x'\geq t^2 \implies \int_{0}^{t} x'(s) \odif{s} \geq \int_{0}^{t} s^2 \odif{s} \implies x(t)-x(0)\geq \frac{t^3}{3}$
-	\[\implies \boxed{\forall t \in [0, T) : x(t)>\frac{t^3}{3}}\]
+	      Como $\ds x'\geq t^2 \implies \int_{0}^{t} x'(s) \odif{s} \geq \int_{0}^{t} s^2 \odif{s} \implies x(t)-x(0)\geq \frac{t^3}{3}$
+	      \[\implies \boxed{\forall t \in [0, T) : x(t)>\frac{t^3}{3}}\]
 	\item Queremos ver si $\ds \forall t \in \left(\sqrt{3}, T\right), T>\sqrt{3} : x(t)> \frac{1}{\frac{4}{\sqrt{3}}-t}$ \\
-	Como $\ds x'\geq x^2 \implies x^{-2}x'\geq 1 \implies \int_{\sqrt{3}}^{t} \frac{x'(s)}{{x(s)}^2} \odif{s} \geq t-\sqrt{3}$
-	\[\implies -\frac{1}{x(t)}+ \frac{1}{x(\sqrt{3})} \geq t-\sqrt{3} \implies t \leq \sqrt{3} +\frac{1}{x(\sqrt{3})}- \frac{1}{x(t)}\]
-	\[\implies t< \sqrt{3} + \frac{3}{{\left(\sqrt{3}\right)}^3} - \frac{1}{x(t)}= \sqrt{3} + \frac{1}{\sqrt{3}}- \frac{1}{x(t)}=\frac{4}{\sqrt{3}}- \frac{1}{x(t)}\]
-	\[\implies t < \frac{4}{\sqrt{3}}-\frac{1}{x(t)} \implies \frac{1}{x(t)} < \frac{4}{\sqrt{3}}-t \implies \boxed{\forall t > \sqrt{3} : x(t) > \frac{1}{\frac{4}{\sqrt{3}}-t}}\]
+	      Como $\ds x'\geq x^2 \implies x^{-2}x'\geq 1 \implies \int_{\sqrt{3}}^{t} \frac{x'(s)}{{x(s)}^2} \odif{s} \geq t-\sqrt{3}$
+	      \[\implies -\frac{1}{x(t)}+ \frac{1}{x(\sqrt{3})} \geq t-\sqrt{3} \implies t \leq \sqrt{3} +\frac{1}{x(\sqrt{3})}- \frac{1}{x(t)}\]
+	      \[\implies t< \sqrt{3} + \frac{3}{{\left(\sqrt{3}\right)}^3} - \frac{1}{x(t)}= \sqrt{3} + \frac{1}{\sqrt{3}}- \frac{1}{x(t)}=\frac{4}{\sqrt{3}}- \frac{1}{x(t)}\]
+	      \[\implies t < \frac{4}{\sqrt{3}}-\frac{1}{x(t)} \implies \frac{1}{x(t)} < \frac{4}{\sqrt{3}}-t \implies \boxed{\forall t > \sqrt{3} : x(t) > \frac{1}{\frac{4}{\sqrt{3}}-t}}\]
 \end{enumerate}
 
 \subsection{Hoja 2}
 
 \textbf{1.1} $\ds \begin{cases}
-	x' = f(x) \\
-	x(t_0) = x_0
-\end{cases}$ tiene sol única.
+		x' = f(x) \\
+		x(t_0) = x_0
+	\end{cases}$ tiene sol única.
 \begin{enumerate}
 	\item Toda solución que no sea constante es estrictamente monótona.
-	\begin{dem}
-		Por contrarecíproco, veamos que
-		\[\ds \exists t^* : x'(t)=0 \implies x(t)\equiv C\defeq x(t^*)\]
-		Definimos $\forall t \in \R:y(t)=x(t^*)$. Por hipótesis, $f(C)=f(x(t^*))=x'(t)=0$
-		\[\implies y'(t)=\odv{}{t}(C)=0=f(C)=f(y(t))\implies y \tex{ es solución}\]
-		\[\begin{cases}
-			y'(t)=f(y(t)) \\
-			y(t^*)=C
-		\end{cases} \implies \tex{Por unicidad, } x(t)=y(t)\equiv C\]
-	\end{dem}
+	      \begin{dem}
+		      Por contrarecíproco, veamos que
+		      \[\ds \exists t^* : x'(t)=0 \implies x(t)\equiv C\defeq x(t^*)\]
+		      Definimos $\forall t \in \R:y(t)=x(t^*)$. Por hipótesis, $f(C)=f(x(t^*))=x'(t)=0$
+		      \[\implies y'(t)=\odv{}{t}(C)=0=f(C)=f(y(t))\implies y \tex{ es solución}\]
+		      \[\begin{cases}
+				      y'(t)=f(y(t)) \\
+				      y(t^*)=C
+			      \end{cases} \implies \tex{Por unicidad, } x(t)=y(t)\equiv C\]
+	      \end{dem}
 	\item $\ds \lim_{t\to \infty} x(t) = C_0 \implies u(t) \equiv C$ es solución.
-	\begin{dem}
-		\begin{enumerate}
-			\item $\ds \lim_{t\to \infty} x'(t)=\lim_{t\to \infty}f(x(t)) = f\left(\lim_{t\to \infty} x(t)\right) = f(C_0)$
-			\item Veamos que $f(C_0)=0$. Por contradicción, supongamos que $f(C_0)=A>0$
-			\[\implies \lim_{t\to \infty} x'(t)=A \implies \exists \, \til{t} : \forall t \geq \til{t} : x'(t)>\frac{A}{2}\]
-			\[\implies \int_{\til{t}}^{t} x'(\tau) \odif{\tau} > \int_{\til{t}}^{t} \frac{A}{2} \odif{\tau} \implies x(t)-x\left(\til{t}\right)> \frac{A}{2}(t-\til{t})\]
-			\[\implies \lim_{t\to\infty} x(t) = \lim_{t\to\infty}\left(x\left(\til{t}+\frac{A}{2}\left(t-\til{t}\right)\right)\right)=\infty \contr\]
-			\item $\ds u'(t) = \odv{}{t}(C_0)=0=f(C_0)=f(u(t)) \implies u \tex{ es solución}$.
-		\end{enumerate}
-	\end{dem}
+	      \begin{dem}
+		      \begin{enumerate}
+			      \item $\ds \lim_{t\to \infty} x'(t)=\lim_{t\to \infty}f(x(t)) = f\left(\lim_{t\to \infty} x(t)\right) = f(C_0)$
+			      \item Veamos que $f(C_0)=0$. Por contradicción, supongamos que $f(C_0)=A>0$
+			            \[\implies \lim_{t\to \infty} x'(t)=A \implies \exists \, \til{t} : \forall t \geq \til{t} : x'(t)>\frac{A}{2}\]
+			            \[\implies \int_{\til{t}}^{t} x'(\tau) \odif{\tau} > \int_{\til{t}}^{t} \frac{A}{2} \odif{\tau} \implies x(t)-x\left(\til{t}\right)> \frac{A}{2}(t-\til{t})\]
+			            \[\implies \lim_{t\to\infty} x(t) = \lim_{t\to\infty}\left(x\left(\til{t}+\frac{A}{2}\left(t-\til{t}\right)\right)\right)=\infty \contr\]
+			      \item $\ds u'(t) = \odv{}{t}(C_0)=0=f(C_0)=f(u(t)) \implies u \tex{ es solución}$.
+		      \end{enumerate}
+	      \end{dem}
 \end{enumerate}
 
 \textbf{1.2} $x'=f(x)$ La unicidad solo se puede perder cuando $f(x)=0$
 \begin{enumerate}
 	\item $\ds f(x)\defeq x'=\begin{cases}
-		\sqrt{-x} & x<0 \\
-		x^2 & x\geq 0
-	\end{cases}$
-	\begin{obs}\begin{enumerate}
-		\item[]
-		\item $x\equiv 0$ es solución $\left(f(0)=0\right)$ y solo puede haber problemas de unicidad en $x=0$.
-		\item $x(t)$ es estrictamente creciente si $x(t)\ne 0$
-	\end{enumerate}\end{obs}
-	No habría unicidad en $\ds x=0 \iff \lim_{x\to 0} \int_{0}^{x_0} \frac{1}{f(\tau)} \odif{\tau} \in \R$ con $x_0>x$ \\
-	En nuestro caso, $\ds \int_{x}^{x_0} \frac{1}{\tau^2} \odif{\tau} = \frac{1}{x} - \frac{1}{x_0} \xrightarrow{x\to 0^+} \infty \implies \tex{ hay unicidad por arriba.}$ \\
-	Para la unicidad por abajo, $\ds \int_{x_0}^{x} \frac{1}{\sqrt{-\tau}} \odif{\tau} = -2\left(\sqrt{-x} - \sqrt{-x_0}\right) \xrightarrow{x\to 0^-} 2 \sqrt{x_0} \in \R$
-	\[\implies \tex{No hay unicidad por abajo.}\]
-	Por tanto, podemos encontrar una solución de la siguiente forma:
-	\[y(t)\defeq \begin{cases}
-		-\frac{t^2}{4} & t<0 \\
-		0 & t\geq 0
-	\end{cases} \implies y'(t)=\begin{cases}
-		-\frac{t}{2} & t<0 \\
-		0 & t\geq 0
-	\end{cases}\]
-	Es solución porque:
-	\[f(y(t))=\begin{cases}
-		f(-\frac{t^2}{4}) & t<0 \\
-		f(0) & t\geq 0
-	\end{cases} = \begin{cases}
-		\sqrt{-\left(-\frac{t^2}{4}\right)} & t<0 \\
-		0 & t\geq 0
-	\end{cases} = \begin{cases}
-		-\frac{t}{2} & t<0 \\
-		0 & t\geq 0
-	\end{cases} = y'(t)\]
-	Por un lado, $\ds x(t_0)=0 \implies \lim_{t\to \infty}x(t)=0 \tex{ por la unicidad por arriba.}$ \\
-	Por otro lado, si $x(t_0)<0$ sabemos que
-	\begin{itemize}
-		\item $x(t)$ no decrece.
-		\item $x(t)$ está acotada por arriba por 0.
-	\end{itemize}
-	\[\implies \exists \lim_{t\to \infty} x(t) \leq 0\]
-	Supongamos que $\ds \exists A > 0 : \lim_{x(t)} = -A$. \\
-	Como $x(t)$ no decrece,
-	\[\ds \implies x(t) \leq -A \implies x'(t) = \sqrt{-x(t)}\geq \sqrt{A} \implies x(t)\geq x(c) + \sqrt{A}t \xrightarrow{t\to \infty} \infty \contr\]
-	\[\implies \lim_{t\to \infty} x(t) =0 \]
+			      \sqrt{-x} & x<0     \\
+			      x^2       & x\geq 0
+		      \end{cases}$
+	      \begin{obs}\begin{enumerate}
+			      \item[]
+			      \item $x\equiv 0$ es solución $\left(f(0)=0\right)$ y solo puede haber problemas de unicidad en $x=0$.
+			      \item $x(t)$ es estrictamente creciente si $x(t)\ne 0$
+		      \end{enumerate}\end{obs}
+	      No habría unicidad en $\ds x=0 \iff \lim_{x\to 0} \int_{0}^{x_0} \frac{1}{f(\tau)} \odif{\tau} \in \R$ con $x_0>x$ \\
+	      En nuestro caso, $\ds \int_{x}^{x_0} \frac{1}{\tau^2} \odif{\tau} = \frac{1}{x} - \frac{1}{x_0} \xrightarrow{x\to 0^+} \infty \implies \tex{ hay unicidad por arriba.}$ \\
+	      Para la unicidad por abajo, $\ds \int_{x_0}^{x} \frac{1}{\sqrt{-\tau}} \odif{\tau} = -2\left(\sqrt{-x} - \sqrt{-x_0}\right) \xrightarrow{x\to 0^-} 2 \sqrt{x_0} \in \R$
+	      \[\implies \tex{No hay unicidad por abajo.}\]
+	      Por tanto, podemos encontrar una solución de la siguiente forma:
+	      \[y(t)\defeq \begin{cases}
+			      -\frac{t^2}{4} & t<0     \\
+			      0              & t\geq 0
+		      \end{cases} \implies y'(t)=\begin{cases}
+			      -\frac{t}{2} & t<0     \\
+			      0            & t\geq 0
+		      \end{cases}\]
+	      Es solución porque:
+	      \[f(y(t))=\begin{cases}
+			      f(-\frac{t^2}{4}) & t<0     \\
+			      f(0)              & t\geq 0
+		      \end{cases} = \begin{cases}
+			      \sqrt{-\left(-\frac{t^2}{4}\right)} & t<0     \\
+			      0                                   & t\geq 0
+		      \end{cases} = \begin{cases}
+			      -\frac{t}{2} & t<0     \\
+			      0            & t\geq 0
+		      \end{cases} = y'(t)\]
+	      Por un lado, $\ds x(t_0)=0 \implies \lim_{t\to \infty}x(t)=0 \tex{ por la unicidad por arriba.}$ \\
+	      Por otro lado, si $x(t_0)<0$ sabemos que
+	      \begin{itemize}
+		      \item $x(t)$ no decrece.
+		      \item $x(t)$ está acotada por arriba por 0.
+	      \end{itemize}
+	      \[\implies \exists \lim_{t\to \infty} x(t) \leq 0\]
+	      Supongamos que $\ds \exists A > 0 : \lim_{x(t)} = -A$. \\
+	      Como $x(t)$ no decrece,
+	      \[\ds \implies x(t) \leq -A \implies x'(t) = \sqrt{-x(t)}\geq \sqrt{A} \implies x(t)\geq x(c) + \sqrt{A}t \xrightarrow{t\to \infty} \infty \contr\]
+	      \[\implies \lim_{t\to \infty} x(t) =0 \]
 	\item
 \end{enumerate}
 
@@ -172,3 +172,55 @@ Inicialmente $x(t)>-\sqrt{t}$ ``durante un rato''.
 	En particular, $x(0)=x_0 \in \R \implies \forall b \in \R : \forall x_0 \in \R : f(-b,x_0)=f(0,x_0)$
 	\[\implies f\tex{ no depende de su primera variable}\]
 \end{dem}
+
+\subsection{Hoja 3}
+\textbf{1.3} \[ \begin{cases} x' = t+x \\ x(0)=1\end{cases} \iff x(t) = 1 +\frac{t^2}{2} + \int_{0}^{t} x(s) \odif{s} \eqdef T[x](t)\]
+Definimos la sucesión de funciones $x_{n+1}(t) = T[x_n](t) \we x_1(t) = x(0) = 1$ y tenemos:
+\[\begin{aligned}
+		x_2(t) & = T[x_1](t) = 1 + \frac{t^2}{2} + \int_{0}^{t} 1 \odif{s} = 1 + \frac{t^2}{2} + t                                                                                   \\
+		x_3(t) & = T[x_2](t) = 1 + \frac{t^2}{2} + \int_{0}^{t} \left(1 + \frac{s^2}{2} + s \right) \odif{s} = 1 + \frac{t^2}{2} + t + \frac{t^3}{6} + \frac{t^2}{2}                 \\
+		\vdots                                                                                                                                                                       \\
+		x_n(t) & = 1 + t + 2 \sum_{j=2}^{n-1} \frac{t^j}{j!} + \frac{t^n}{n!} = -1 - t + 2 \sum_{j=0}^{n} \frac{t^j}{j!} - \frac{t^{n}}{n!} \xrightarrow{n \to \infty} -1 -t +2e^t+0
+	\end{aligned}\]
+\[\implies \boxed{x(t) = -1-t+2e^t}\]
+
+\textbf{2.1}
+\begin{enumerate}
+	\item $f_n(x) = x^{\sfrac{1}{n}}$ en $x\in [0,1]$
+	      \[f_n(0)=0 \implies \lim_{n\to \infty} f_n(0) = 0 \quad \we \quad x_0 \in (0, 1] \implies \lim_{n\to \infty} x_0^{\sfrac{1}{n}} = 1\]
+	      \[\implies f_n \xrightarrow{n\to\infty} f \tex{ puntualmente en } [0, 1] \tex{ con } f(x)= \begin{cases} 0 & x=0 \\ 1 & x\in (0, 1] \end{cases}\]
+	      ¿Converge uniformemente? Sabemos $\forall n : f_n \tex{ cont.} \we f_n\rightarrow f \text{ unif.} \implies f \tex{ cont}$. \\
+	      Como $f$ no es continua $\implies f_n$ no converge uniformemente.
+	\item $f_n(x) = \frac{nx}{1+nx}$ en $x\in [0,\infty)$
+	      \[f_n(0)=0 \implies \lim_{n\to \infty} f_n(0) = 0 \quad \we \quad \forall x_0 > 0 : \lim_{n\to \infty} \frac{nx_0}{1+nx_0} = 0\]
+
+\end{enumerate}
+\begin{obs}
+	\begin{enumerate}
+		\item[]
+		\item $\ds f_n \xrightarrow{n\to \infty} f \tex{ puntualmente en } \Omega \iff \forall x \in \Omega : \lim_{n\to \infty} f_n(x) = f(x)$
+		      \[\iff \forall x \in \Omega : \forall \varepsilon > 0 : \exists n_0(x) \in \N : \forall n > n_0(x) : \abs{f_n(x)-f(x)}<\varepsilon\]
+		\item $\ds f_n \xrightarrow{n\to \infty} f \tex{ uniformemente en }\Omega\iff \sup_{x\in \Omega} \abs{f_n(x)-f(x)} \xrightarrow{n\to \infty} 0$
+		      \[\iff \forall \varepsilon > 0 : \exists n_0 \in \N : \forall n > n_0 : \forall x \in \Omega : \abs{f_n(x)-f(x)}<\varepsilon\]
+	\end{enumerate}
+\end{obs}
+
+\textbf{2.2} Estudiamos la sucesión de funciones en $f_n(x)=n^2xe^{-nx^2} $ en $x\in [0,1]$
+\begin{enumerate}
+	\item Convergencia puntual: $\ds \forall n \in \N : f_n(0) \implies \lim_{n\to\infty} f_n(0) = 0$
+	      \[x_0 \in (0, 1] \implies \lim_{n\to \infty} n^2x_0e^{-nx_0^2} = 0 \implies f_n\xrightarrow{n\to \infty} 0 = f \tex{ puntualmente en } [0,1]\]
+	\item Convergencia uniforme: $\ds \sup_{x\in [0,1]} \abs{f_n(x)-f(x)} = \sup_{x\in [0,1]} \abs{f_n(x)-0} = \sup_{x\in [0,1]} n^2xe^{-nx^2}$
+	      \[f_n'(x) = n^2e^{-nx^2} - 2n^3x^2e^{-nx^2} = n^2e^{-nx^2}(1-2nx^2) \implies f_n'(x)=0 \iff x=\frac{1}{\sqrt{2n}}\]
+	      \[\frac{1}{\sqrt{2n}} \in [0, 1] \implies \sup_{x\in[0, 1]} \abs{f_n(x)} = f_n\left(\frac{1}{\sqrt{2}n}\right) = \frac{n^{\sfrac{5}{2}}}{\sqrt{2}}e^{-\frac{1}{2}} \xrightarrow{n\to\infty} \infty\]
+	      Por tanto, $f$ no converge uniformemente.
+	\item \textbf{Nota:} Cuando falla la convergencia uniforme, el límite de la integral no es necesariamente igual a la integral del límite.
+	      \[\ds \lim_{n\to\infty} \int_{0}^{1} f_n(x) \odif{x} = \infty \ne 0 = \lim_{n\to\infty} 0 = \int_{0}^{1} 0 \odif{x} = \int_{0}^{1} f(x) \odif{x}\]
+\end{enumerate}
+
+\begin{obs}
+	\begin{enumerate}
+		\item[]
+		\item $\ds f \tex{ es Lipschitz en } \Omega \iff \exists L \geq 0 : \forall x, y \in \Omega : \abs{f(x)-f(y)}\leq L\abs{x-y}$
+		\item $\ds f \tex{ es localmente Lipschitz en } \Omega \iff \forall K \subset \Omega \tex{ compacto} : f \tex{ es Lipschitz en } K$ 
+	\end{enumerate}
+\end{obs}
