@@ -194,13 +194,74 @@ Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{X(\Omega)}{\R}$ un
 \end{teo}
 
 \begin{ejem}
-\begin{enumerate}
-\item[]
-\item Sea $X\sim\unif{a,b}$, entonces $f_X(x)=\frac{1}{b-a}\cdot \mathbbm{1}_{[a,b]}(x)$.
-\[\implies E(X) = \int_{a}^{b} x \cdot \frac{1}{b-a} \odif{x} = \frac{1}{b-a} \left[\frac{x^2}{2}\right]_{a}^{b} = \frac{b^2-a^2}{2(b-a)} = \frac{a+b}{2}\]
-\[V(X) = E(X^2) - E(X)^2 = \int_{a}^{b} x^2 \cdot \frac{1}{b-a} \odif{x} - \left(\frac{a+b}{2}\right)^2 = \frac{1}{b-a} \left[\frac{x^3}{3}\right]_{a}^{b} - \left(\frac{a+b}{2}\right)^2 = \frac{b^3-a^3}{3(b-a)} - \left(\frac{a+b}{2}\right)^2 = \frac{(b-a)^2}{12}\]
-\item Sea $X\sim\EXP{\lambda}, \lambda > 0$, entonces $f_X(x)=\lambda e^{-\lambda x} \cdot \mathbbm{1}_{[0,\infty)}(x)$.
-\[\implies E(X)= \int_{0}^{\infty} x \cdot \lambda e^{-\lambda x} \odif{x} = \left[-x e^{-\lambda x}\right]_{0}^{\infty} + \int_{0}^{\infty} e^{-\lambda x} \odif{x} = 0 + \left[-\frac{1}{\lambda} e^{-\lambda x}\right]_{0}^{\infty} = \frac{1}{\lambda}\]
-\[V(X) = E(X^2) - E(X)^2 = \int_{0}^{\infty} x^2 \cdot \lambda e^{-\lambda x} \odif{x} - \left(\frac{1}{\lambda}\right)^2 = \frac{1}{\lambda^2}\]
-\end{enumerate}
+	\begin{enumerate}
+		\item[]
+		\item Sea $X\sim\unif{a,b}$, entonces $f_X(x)=\frac{1}{b-a}\cdot \mathbbm{1}_{[a,b]}(x)$.
+		      \[\implies E(X) = \int_{a}^{b} x \cdot \frac{1}{b-a} \odif{x} = \frac{1}{b-a} \left[\frac{x^2}{2}\right]_{a}^{b} = \frac{b^2-a^2}{2(b-a)} = \frac{a+b}{2}\]
+		      \[V(X) = E(X^2) - E(X)^2 = \int_{a}^{b} x^2 \cdot \frac{1}{b-a} \odif{x} - \left(\frac{a+b}{2}\right)^2 = \frac{1}{b-a} \left[\frac{x^3}{3}\right]_{a}^{b} - \left(\frac{a+b}{2}\right)^2 = \frac{b^3-a^3}{3(b-a)} - \left(\frac{a+b}{2}\right)^2 = \frac{(b-a)^2}{12}\]
+		\item Sea $X\sim\EXP{\lambda}, \lambda > 0$, entonces $f_X(x)=\lambda e^{-\lambda x} \cdot \mathbbm{1}_{[0,\infty)}(x)$.
+		      \[\implies E(X)= \int_{0}^{\infty} x \cdot \lambda e^{-\lambda x} \odif{x} = \left[-x e^{-\lambda x}\right]_{0}^{\infty} + \int_{0}^{\infty} e^{-\lambda x} \odif{x} = 0 + \left[-\frac{1}{\lambda} e^{-\lambda x}\right]_{0}^{\infty} = \frac{1}{\lambda}\]
+		      \[V(X) = E(X^2) - E(X)^2 = \int_{0}^{\infty} x^2 \cdot \lambda e^{-\lambda x} \odif{x} - \left(\frac{1}{\lambda}\right)^2 = \frac{1}{\lambda^2}\]
+		\item Sea $X\sim\normal{0, 1}$, entonces $\ds f_X(x)=\frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$.
+		      \[E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x} = 0 \tex{ por ser integrando impar.}\]
+		      \[V(X) = E(X^2) - E(X)^2 = \int_{-\infty}^{\infty} x^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x} - 0 = 1\] %TODO: hacer desarrollo por partes
+		\item Sea $X\sim\normal{\mu, \sigma^2}$, entonces $\ds f_X(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$.
+		      \[E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \odif{x} = \mu\]
+		      \[V(X) = E(X^2) - E(X)^2 = \int_{-\infty}^{\infty} x^2 \cdot \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \odif{x} - \mu^2 = \sigma^2\] %TODO: hacer desarrollo usando la función Gamma
+	\end{enumerate}
 \end{ejem}
+\fecha{21/03/2024}
+\subsubsection{Calculando con la normal $\left(\normal{\mu, \sigma^2}\right)$}
+Sea $X\sim\normal{\mu, \sigma^2}$ con parámetros$\mu\in\R$, $\sigma^2>0$\
+\[\implies f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \quad \we \quad F(x) = \int_{-\infty}^{x} f(y) \odif{y}\]
+El caso particular de $\normal{0, 1}$ se denota por $\phi(x) \defeq f(x)$ y $\Phi(x)\defeq F(x)$.
+\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[
+				width=10cm, % Set the desired width
+				height=4cm, % Set the desired height
+				xlabel=$x$,
+				ylabel=$f(x)$,
+				xmin=-5, xmax=5,
+				ymin=0, ymax=0.5,
+				axis lines=middle,
+				xtick={-5,-4,-3,-2,-1,0,1,2,3,4,5},
+				ytick={0,0.1,0.2,0.3,0.4,0.5},
+				ticklabel style={font=\tiny},
+			]
+			\addplot[domain=-5:5, samples=100, color=blue]{1/(sqrt(2*pi))*exp(-(x^2)/(2*1))};
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+
+\textbf{¡Basta con $\normal{0,1}$!}
+\[X\sim\normal{0, 1} \implies Y\defeq\sigma X + \mu \sim \normal{\mu, \sigma^2}\]
+\[Y\sim\normal{\mu, \sigma^2} \implies X\defeq \frac{Y-\mu}{\sigma} \sim \normal{0, 1}\]
+Podemos tipificar cualquier variable aleatoria continua $X$ con esperanza $E(X)$ y varianza $V(X)$.
+\[Y\defeq \frac{X-E(X)}{V(X)} \implies E(Y) = 0 \we V(Y) = 1\]
+
+\textbf{¿Qué cálculos queremos hacer con $Y\sim\normal{\mu, \sigma^2}$?}
+\[E(Y) = E(\mu + \sigma X) = \mu + \sigma E(X) = \mu\]
+\[V(Y) = V(\mu + \sigma X) = \sigma^2 V(X) = \sigma^2\]
+\[E(Y^7) = E\left(\left(\mu + \sigma X\right)^7\right) = \sum_{k=0}^7 \binom{7}{k} \mu^7 \sigma^{7-k} E(X^{7-k})\]
+Caso particular de $X\sim \normal{0,1}$ %TODO: Hacer desarrollo
+\[E(X^k) = \begin{cases}
+		0, & \text{ si } k \text{ es impar} \\
+		\ds \frac{1}{2^{\sfrac{m}{2}}} \frac{m!}{\left(\sfrac{m}{2}\right)!} = \frac{(k-1)!!}{k!!}, & \text{ si } k \text{ es par}
+	\end{cases}\]
+
+\textbf{Cómo calculamos las probabilidades de $X\sim\normal{0,1}$?}
+\[\forall a, b \in \R : P(a\leq X \leq b) = \Phi(b) - \Phi(a) \tex{ (se calcula numéricamente)}\]
+\[\forall a \in \R : P\left(\abs{X} \leq a\right) = P(-a \leq X\leq a) = \Phi(a) - \Phi(-a) = 2\Phi(a) - 1\]
+
+\textbf{¿Qué hago si me dan $P(X \leq a)$ y me piden $a$?}
+\[\Phi(a) = P(X\leq a) \implies a = \Phi^{-1}(P(X\leq a)) \tex{ que también se hace numericamente.}\]
+
+\begin{obs}
+	$ \ds \operatorname{erf} (x) = \frac{2}{\sqrt{2}} \int_{0}^{x} e^{-y^2} \odif{y} \implies \operatorname{erf} (x) = 2 \Phi(\sqrt{2}x) - 1$
+\end{obs}
+
+Para $X\sim\normal{\mu, \sigma^2}$, se tiene $\ds P(Y\leq a) = P\left(\mu + \sigma X \leq a\right) = P\left(X\leq \frac{a-\mu}{\sigma}\right) = \Phi\left(\frac{a-\mu}{\sigma}\right)$.
+
+\textbf{Un famoso resultado: El percentil $95$}
+\[P(\abs{X} \leq a) = \frac{95}{100} \implies 2\Phi(a) - 1 = \frac{95}{100} \implies a = \Phi\left(\frac{1+ 0.95}{2}\right) \approx 1.96\]

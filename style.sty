@@ -16,6 +16,7 @@
 \usepackage{parskip}
 \usepackage{wrapfig}
 \usepackage{bbm}
+\usepackage{hyperref}
 
 \pgfplotsset{compat=1.8}
 
@@ -99,7 +100,7 @@
 \newcommand\til[1]{\tilde{#1}}
 \newcommand\fecha[1]{
 	%\vspace*{0.5cm}
-	\par\hfill\textbf{#1}\hspace*{-1cm}\vspace{-0.25cm}\par\noindent
+	\par\hfill\textnormal{\textbf{#1}}\hspace*{-1cm}\vspace{-0.25cm}\par\noindent
 }
 \newcommand\contr{\longrightarrow\longleftarrow}
 \newcommand{\lbox}[1]{{%
@@ -151,6 +152,8 @@
                           }%
         }%
 }
+
+\renewcommand{\contentsname}{Índice}
 
 \DeclareMathOperator{\sgn}{sgn}
 

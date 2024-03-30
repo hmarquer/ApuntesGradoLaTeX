@@ -1,122 +1,156 @@
-\section{EDOs autónomas}
+\section{Ecuaciones diferenciales ordinarias autónomas}
 
-\begin{defn}
-	Una ecuación diferencial ordinaria (EDO) de primer orden se dice autónoma si no depende explícitamente de la variable independiente. Es decir, 
+\subsection{Propiedades básicas}
+
+\begin{defn}[EDO autónoma]
+	Una ecuación diferencial ordinaria (EDO) de primer orden se dice autónoma si no depende explícitamente de la variable independiente. Es decir,
 	\[\iff \tex{es de la forma } y'=f(y)\]
 \end{defn}
 
 \begin{prop}[Propiedades de EDOs autónomas]
 	\begin{enumerate}
 		\item[]
-		\item (Isoclinas) Todos los puntos de cada recta horizontal $y=c$ pertenecen a la misma isoclina. ¡Cuidado! A veces una isoclina puede contener más de una recta horizontal.
-		\begin{ejem}[$y'=y^2$]
-			\[\{(x,y)\in \R:y^2=c\}=\{(x,\sqrt{c}):x\in\R\}\cup\{(x,-\sqrt{c}):x\in\R\}\]
-		\end{ejem}
-		\item (Traslaciones) Si y es solución $\implies \forall c \in \R : w(x)\defeq y(x+c)$ es solución.
-		\item (Soluciones triviales) Si $\exists a \in \operatorname{Dom}(f) : f(a)=0 \implies y(x)=a$ es solución.
-		\begin{dem}
-			$y'(x)=0=f(a)=f(y(x))$
-		\end{dem}
+		\item \textbf{Isoclinas:} Todos los puntos de cada recta horizontal $y=c$ pertenecen a la misma isoclina. ¡Cuidado! A veces una isoclina puede contener más de una recta horizontal.
+		      \begin{ejem}[$y'=y^2$]
+			      \[\{(x,y)\in \R:y^2=c\}=\{(x,\sqrt{c}):x\in\R\}\cup\{(x,-\sqrt{c}):x\in\R\}\]
+		      \end{ejem}
+		\item \textbf{Traslaciones:} Si y es solución $\implies \forall c \in \R : w(x)\defeq y(x+c)$ es solución.
+		      \begin{dem}
+			      $w'(x)=y'(x+c)=f(y(x+c))=f(w(x))$
+		      \end{dem}
+		\item \textbf{Soluciones triviales:} Si $\exists \, a \in \operatorname{Dom}(f) : f(a)=0 \implies y(x)=a$ es solución.
+		      \begin{dem}
+			      $y'(x)=0=f(a)=f(y(x))$
+		      \end{dem}
 	\end{enumerate}
 \end{prop}
-% \begin{teo}
-%     Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua $ \we y_0 \in (a,b) : f(y_0) \ne 0$
-%     \[\implies \exists \varepsilon : (y_0-\varepsilon, y_0+\varepsilon) \subset (a,b) \we \forall z \in (y_0-\varepsilon, y_0+\varepsilon) : f(z)\ne 0\]
-%     Sea $\appl{y}{I}{(a,b)}$ una función derivable con $I\subset \R$ intervalo abierto tal que
-%     $$\forall x \in I : y'(x)=f(y(x)) \we y(x_0)=y_0 \tex{ para algún }x_0 \in I$$.
-%     Como $y$ es continua, $\exists \delta > 0 : \forall x \in (x_0-\delta, x_0+\delta) :y(x)\in(y_0-\varepsilon, y_0+\varepsilon)$
-%     \[\implies \forall x \in (x_0-\delta, x_0+\delta) : f(y(x))\ne 0\]
-%     Así, $\ds \forall x \in (x_0-\delta, x_0+\delta) : \frac{y'(x)}{f(y(x))}=1 \implies \forall x \in (x_0-\delta, x_0+\delta) : \int_{x_0}^{x} \frac{y'(z)}{f(y(z))}\odif{z} = x-x_0$
-%     \[\implies \boxed{\forall x \in (x_0-\delta, x_0+\delta) : \int_{y_0}^{y(x)} \frac{1}{f(z)} \odif{z} + x_0 = x}\]
-% \end{teo}
+\subsection{Teorema de existencia de soluciones}
+Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua $ \we y_0 \in (a,b) : f(y_0) \ne 0$
+\[\implies \exists \, \varepsilon : (y_0-\varepsilon, y_0+\varepsilon) \subset (a,b) \quad \we \quad \forall z \in (y_0-\varepsilon, y_0+\varepsilon) : f(z)\ne 0\]
 
+Sea $\appl{y}{I}{(a,b)}$ una función derivable con $I\subset \R$ intervalo abierto tal que
+\[\forall x \in I : y'(x)=f(y(x)) \quad \we \quad y(x_0)=y_0 \tex{ para algún }x_0 \in I\]
+
+Como $y$ es continua, $\exists \, \delta > 0 : \forall x \in (x_0-\delta, x_0+\delta) :y(x)\in(y_0-\varepsilon, y_0+\varepsilon)$
+\[\implies \forall x \in (x_0-\delta, x_0+\delta) : f(y(x))\ne 0\]
+
+Así, $\ds \forall x \in (x_0-\delta, x_0+\delta) : \frac{y'(x)}{f(y(x))}=1 \implies \forall x \in (x_0-\delta, x_0+\delta) : \int_{x_0}^{x} \frac{y'(z)}{f(y(z))}\odif{z} = x-x_0$
+\[\implies \boxed{\forall x \in (x_0-\delta, x_0+\delta) : \int_{y_0}^{y(x)} \frac{1}{f(z)} \odif{z} + x_0 = x}\]
+\pagebreak
 \fecha{22/02/2024}
 
-\begin{teo}[Existencia de soluciones]
+% \begin{teo}[Existencia de soluciones]
+% 	Sea $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua
+% 	\[\implies \exists \, \appl{x}{\left(\lim_{x\to a^+}\int_{x_0}^{x} \frac{1}{f(s)} \odif{s}, \lim_{x\to b^-}\int_{x_0}^{x} \frac{1}{f(s)} \odif{s}\right)}{(a,b)} \tex{ derivable}: \begin{cases}
+% 		x'(t)=f(x(t)) \\
+% 		x(0)=x_0
+% 	\end{cases}\]
+% \end{teo}
+
+\begin{teo}[Existencia de soluciones] \mbox{} \\
 	Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua \\
 	Supongamos que $\forall x \in (a,b) : f(x) \ne 0$ y que $\begin{cases}
-		a>-\infty \implies f(a)=0 \\
-		b<\infty \implies f(b)=0
-	\end{cases}$ \\
+			a>-\infty \implies f(a)=0 \\
+			b<\infty \implies f(b)=0
+		\end{cases}$ \\
 	Sea $x_0 \in (a,b)$ definimos $\ds \forall x \in (a,b) : F(x)\defeq\int_{x_0}^{x} \frac{1}{f(s)} \odif{s}$ \\
-	Si $f(x)>0$ en $(a,b)$, definimos 
-	$$\ds T_-\defeq \lim_{x\to a^+}F(x)\in [-\infty, 0) \we T_+\defeq \lim_{x\to b^-}F(x) \in (0, \infty]$$
-	Si $f(x) < 0$ en $(a,b)$, intercambiamos $T_-$ por $T_+$.
-	\[\implies \exists \appl{x}{(T_-, T_+)}{(a,b)} \tex{ derivable}: \begin{cases}
-		x'(t)=f(x(t)) \\
-		x(0)=x_0
-	\end{cases}\]
+	\begin{itemize}
+		\item Si $f(x)>0$ en $(a,b)$, $\ds T_-\defeq \lim_{x\to a^+}F(x)\in [-\infty, 0) \we T_+\defeq \lim_{x\to b^-}F(x) \in (0, \infty]$.
+		\item Si $f(x) < 0$ en $(a,b)$, $\ds T_+\defeq \lim_{x\to a^+}F(x)\in [-\infty, 0) \we T_-\defeq \lim_{x\to b^-}F(x) \in (0, \infty]$.
+	\end{itemize}
+	\[\implies \exists \, \appl{x}{(T_-, T_+)}{(a,b)} \tex{ derivable}: \begin{cases}
+			x'(t)=f(x(t)) \\
+			x(0)=x_0
+		\end{cases}\]
 	\begin{dem}
 		Supongamos sin pérdida de generalidad que $\forall x \in (a,b) : f(x)>0$
-		\[\implies \forall x \in (a,b) : F'(x)=\frac{1}{f(x)}>0 \implies F \tex{ es creciente en }(a,b)\]
-		\[\implies F \tex{ tiene inversa en } (a, b) \implies \exists x\defeq \appl{F^{-1}}{(T_-,T_+)}{(a,b)}\]
-		\[\tex{Por un lado, }\quad x'(t) = (F^{-1})'(t)=\frac{1}{F'(F^{-1}(t))}=\frac{1}{F'(x(t))}\]
-		\[\tex{Por otro lado, }\quad F(x_0)=0 \implies x_0= F^{-1}(F(x_0))=F^{-1}(0)=x(0)\]
+		\[\implies \forall x \in (a,b) : F'(x)=\frac{1}{f(x)}>0 \implies F \tex{ es estrictamente creciente en }(a,b)\]
+		\[\implies F \tex{ tiene inversa en } (a, b) \implies \exists\, x\defeq \appl{F^{-1}}{(T_-,T_+)}{(a,b)}\]
+		\[\implies \begin{aligned}\tex{Por un lado, }   & \quad x'(t) = \left(F^{-1}\right)'(t)=\frac{1}{F'(F^{-1}(t))}=\frac{1}{F'(x(t))} = f(x(t)) \\
+               \tex{Por otro lado, } & \quad F(x_0)=0 \implies x_0= F^{-1}(F(x_0))=F^{-1}(0)=x(0)\end{aligned}\]
 	\end{dem}
 \end{teo}
 
-\begin{teo}[Unicidad local]
-	Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua. Supongamos que $f(x)\ne 0$ en $(a,b)$. Sea $x_0 \in (a,b)$, sea $I\subset \R$ un intervalo abierto tal que $0\in I$ y sean $\appl{x}{I}{(a,b)} \we \appl{y}{I}{(a,b)}$ cumpliendo
+\subsection{Teorema de unicidad local de soluciones}
+\begin{teo}[Unicidad local] \mbox{} \\
+	Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua con $\forall x \in (a,b) : f(x)\ne 0$. \\
+	Sea $x_0 \in (a,b)$ y sean $\appl{x}{I}{(a,b)} \we \appl{y}{I}{(a,b)}$ dos funciones ($I\subset \R$ abierto $ : 0 \in I$) tales que
 	\[\begin{cases}
-		x'(t)=f(x(t)) \\
-		y'(t)=f(y(t)) \\
-		x(0)=x_0=y(0)
-	\end{cases} \implies \forall t \in I : x(t)=y(t)\]
+			x'(t)=f(x(t)) \we y'(t)=f(y(t)) \\
+			x(0)=x_0=y(0)
+		\end{cases} \implies \forall t \in I : x(t)=y(t)\]
 	\begin{dem}
-		\[\forall s \in (a,b) : F(s)=\int_{x_0}^{s} \frac{1}{f(r)}\odif{r} \implies \forall t \in I : F(x(t))=t=F(y(t))\]
-		\[\implies \forall t \in I : F^{-1}(F(x(t)))=F^{-1}(F(y(t))) \implies \implies \forall t \in I : x(t)=y(t)\]
+		\[\forall s \in (a,b) : F(s)\defeq\int_{x_0}^{s} \frac{1}{f(r)}\odif{r} \implies \forall t \in I : F(x(t))=t=F(y(t))\]
+		\[\implies \forall t \in I : F^{-1}(F(x(t)))=F^{-1}(F(y(t))) \implies \forall t \in I : x(t)=y(t)\]
 	\end{dem}
 \end{teo}
 
 \begin{cor}
-	En las condiciones del teorema de unicidad local, sea $\ds a\in \R : f(a)\defeq \lim_{x\to a^-} f(x)=0$. Supongamos que
+	Con las condiciones del teorema de existencia, supongamos $\ds a\in \R$ y\\
+	$\ds f(a)\defeq \lim_{x\to a^-} f(x)=0$. Supongamos que
 	\[\forall k \in (a,b) : \lim_{x\to a^+}\int_{k}^{x} \frac{1}{f(s)} \odif{s} = \begin{cases}
-		-\infty \iff f>0 \tex{ en } (a,b) \\
-		\infty \iff f<0 \tex{ en } (a,b)
-	\end{cases}\]
-	\[\implies \tex{Para cada intervalo} \begin{cases}
-		I=[0, t_0) \iff f>0 \tex{ en } (a,b) \\
-		I=(-t_0, 0] \iff f<0 \tex{ en } (a,b)
-	\end{cases} x=a\tex{ es la única solución.}\]
+			-\infty \iff f>0 \tex{ en } (a,b) \\
+			\infty \iff f<0 \tex{ en } (a,b)
+		\end{cases}\]
+	\[\implies \forall I \subset \R : \begin{cases}
+			I=[0, t_0) \iff f>0 \tex{ en } (a,b) \\
+			I=(-t_0, 0] \iff f<0 \tex{ en } (a,b)
+		\end{cases} : x\equiv a\tex{ es la única solución.}\]
+	\fecha{26/02/2024}
+	\begin{dem}
+		Sin pérdida de generalidad, suponemos que $\forall z \in (a,b) : f(z) > 0$. \\
+		Entonces suponemos que $\ds \lim_{x\to a^+}\int_{k}^{x} \frac{1}{f(s)} \odif{s} = -\infty$. Procedemos por contradicción asumiendo que $\exists \appl{x}{[0, \varepsilon)}{(a,b)} \tex{ solución del PVI con } x_0 = a \tex{ que no es constante.}$
+		\[\implies \forall t \in [0, \varepsilon) : x'(t)=f(x(t)) \geq 0 \implies x \tex{ es creciente en } [0, \varepsilon)\]
+		Sin pérdida de generalidad, podemos suponer que $\forall t \in (0, \varepsilon) : x(t) > a$ porque, si no fuese así, entonces $\exists \, t_0 \in (0, \varepsilon) : \forall t \in [0, t_0) : x(t)=a \implies \forall t \in (t_0, \varepsilon) : x(t) > a$. Entonces consideramos $\hat{x}(t) = x(t + t_0)$ que es solución del PVI en $[0, \varepsilon - t_0)$ que además cumple $\forall t \in (0, \varepsilon - t_0) : \hat{x}(t) > a$.
+
+		Por tanto, $\ds \forall t \in (0, \varepsilon) : f(x(t)) > 0 \implies \forall t \in (0, \varepsilon) : \frac{x'(t)}{f(x(t))} = 1$
+		\[\implies \forall t \in (0, \varepsilon) : \int_{\varepsilon/2}^{t} \frac{x'(s)}{f(x(s))} \odif{s} = t -\frac{\varepsilon}{2} \implies \int_{x(\varepsilon/2)}^{x(t)} \frac{1}{f(s)} \odif{s} = t -\frac{\varepsilon}{2}\]
+		Entonces, pasando al límite tenemos
+		\[-\infty = \lim_{t\to 0} \int_{x(\varepsilon/2)}^{x(t)} \frac{1}{f(s)} \odif{s} = \lim_{t\to 0} \left(t - \frac{\varepsilon}{2}\right) = - \frac{\varepsilon}{2} \quad \contr\]
+	\end{dem}
 \end{cor}
 
-\fecha{26/02/2024}
+\begin{cor}
+	Con las hipótesis del corolario anterior, si $\ds \lim_{x\to a^+} \int_{k}^{x} \frac{1}{f(s)} \odif{s} \in \R$ \[\implies \exists \, \appl{x}{[0, \infty)}{(a,b)} \tex{ solución no trivial del PVI con } x(0) = a\]
+	\begin{dem}
+	\end{dem}
+\end{cor}
 
 \fecha{27/02/2024}
 
 \begin{ejem}[$y'=\sqrt{1-y^2}$]
 	\[\appl{f}{[-1, 1]}{\R} \we f(y)\defeq\sqrt{1-y^2} \we \begin{cases}
-		f(y)>0 \iff y\in (-1, 1) \\
-		f(-1)=f(1)=0
-	\end{cases}\]
-	Si $y(0)\eqdef y_0 \in (-1, 1)$, entonces existe una única solución del PVI. Esa solución está definida en $(T_-, T_+)$, donde 
+			f(y)>0 \iff y\in (-1, 1) \\
+			f(-1)=f(1)=0
+		\end{cases}\]
+	Si $y(0)\eqdef y_0 \in (-1, 1)$, entonces existe una única solución del PVI. Esa solución está definida en $(T_-, T_+)$, donde
 	\[T_-=\lim_{y\to -1^+}\int_{y_0}^{y} \frac{1}{\sqrt{1-s^2}}\odif{s}=\lim_{y\to -1^+}\arcsin(y)-\arcsin(y_0)=-\frac{\pi}{2}-\arcsin(y_0)\]
 	\[T_+=\lim_{y\to 1^-}\int_{y_0}^{y} \frac{1}{\sqrt{1-s^2}}\odif{s}=\frac{\pi}{2}-\arcsin(y_0)\]
-	\[\tex{Si $y_0=1$, }\lim_{y\to 1^-} \int_{k}^{y} \frac{1}{\sqrt{1-s^2}} \odif{s} = \frac{\pi}{2} -\arcsin(k) \in \R \implies \exists \tex{ un solución \underline{no trivial} del PVI}\]	
+	\[\tex{Si $y_0=1$, }\lim_{y\to 1^-} \int_{k}^{y} \frac{1}{\sqrt{1-s^2}} \odif{s} = \frac{\pi}{2} -\arcsin(k) \in \R \implies \exists \tex{ un solución \underline{no trivial} del PVI}\]
 	\[\tex{Si $y_0=-1$, }\lim_{y\to -1^+} \int_{k}^{y} \frac{1}{\sqrt{1-s^2}} \odif{s}  \in \R \implies \exists \tex{ un solución \underline{no trivial} del PVI}\]
 	Por tanto, la solución general del PVI es
 	\[y_k(x)=\begin{cases}
-		-1 &\iff x\leq -\frac{\pi}{2}-k \\
-		\sin(x+k) &\iff x \in \left(-\frac{\pi}{2}-k, \frac{\pi}{2}-k\right) \\
-		1 &\iff x\geq \frac{\pi}{2}-k \\
-	\end{cases}\]
+			-1        & \iff x\leq -\frac{\pi}{2}-k                               \\
+			\sin(x+k) & \iff x \in \left(-\frac{\pi}{2}-k, \frac{\pi}{2}-k\right) \\
+			1         & \iff x\geq \frac{\pi}{2}-k                                \\
+		\end{cases}\]
 	\begin{enumerate}
 		\item La única $y_k$ que satisface $y_k(0)=0 \in (-1, 1)$ es $y_k(x)=y_0$
 		\item Las funciones $y_k$ con $\ds k > \frac{\pi}{2}$ cumplen $y_k(0)=1$
-		\item Las funciones $y_k$ con $\ds k < -\frac{\pi}{2}$ cumplen $y_k(0)=-1$ 
+		\item Las funciones $y_k$ con $\ds k < -\frac{\pi}{2}$ cumplen $y_k(0)=-1$
 	\end{enumerate}
 \end{ejem}
 
 \begin{obs}
 	Sea $a\in \R$, $b \in (-\infty, \infty] : b>a$ y $\appl{f}{[a,b)}{\R}$ continua tal que $\forall x \in (a,b) : f(x)\ne 0$ y $f(a)=0$. \\
-	Supongamos que $\exists\, c >0, \delta \in (0, b-a) : \forall s \in [a, a+\delta) : |f(s)|\leq C(s -a)$ \\
+	Supongamos que $\exists\, C >0, \delta \in (0, b-a) : \forall s \in [a, a+\delta) : |f(s)|\leq C(s -a)$ \\
 	Vamos a comprobar que se cumplen las condiciones de unicidad para el PVI con $x(0)=x_0=a$ tanto en el caso $f>0$ como en el caso $f<0$.
 	\begin{itemize}
-		\item $\boxed{f>0}$ Queremos ver que $\ds \lim_{z\to a^+}\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} = -\infty$
-		\[\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} = \int_{a+\delta}^{z} \frac{1}{\abs{f(s)}}\odif{s}=-\int_{z}^{a+\delta} \frac{1}{\abs{f(s)}}\odif{s} \leq -\frac{1}{C} \int_{z}^{a+\delta} \frac{1}{s-a}\odif{s}\]
-		\[\implies \int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} \leq -\frac{1}{C}\left(\log(\delta)-\log(z-a)\right)\]
-		\[\implies \lim_{z\to a^+}\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} \leq -\infty \implies \tex{ Hay unicidad de PVI con }x(0)=a \tex{ en } [0, \tilde{t})\]
-		\item $\boxed{f<0}$ De forma análoga $\ds \lim_{z\to a^+}\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} = \cdots = \infty$
+		\item $\boxed{f>0}$ Queremos ver si $\ds \lim_{z\to a^+}\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} = -\infty$
+		      \[\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} = \int_{a+\delta}^{z} \frac{1}{\abs{f(s)}}\odif{s}=-\int_{z}^{a+\delta} \frac{1}{\abs{f(s)}}\odif{s} \leq -\frac{1}{C} \int_{z}^{a+\delta} \frac{1}{s-a}\odif{s}\]
+		      \[\implies \int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} \leq -\frac{1}{C}\left(\log(\delta)-\log(z-a)\right)\]
+		      \[\implies \lim_{z\to a^+}\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} \leq -\infty \implies \tex{ Hay unicidad de PVI con }x(0)=a \tex{ en } [0, \tilde{t})\]
+		\item $\boxed{f<0}$ De forma análoga $\ds \lim_{z\to a^+}\int_{a+\delta}^{z} \frac{1}{f(s)}\odif{s} = \cdots \leq \infty$
 	\end{itemize}
 	Si $f$ derivable con $f'$ acotada
 	\[\implies \forall s \in [a, a+\delta) : \abs{f(s)}=\abs{f(s)-f(a)}=\abs{f'(r)}\abs{s-a}\leq C(s-a)\]
@@ -124,38 +158,83 @@
 
 \fecha{04/03/2024}
 
+\subsection{Teorema de existencia global/asíntotas de soluciones}
+
+\begin{teo}
+	Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we a < b \we y_0 \in (a, b) \we \appl{f}{(a,b)}{\R}$ continua tal que $\forall x \in (a, b) : f(x) > 0$. Si $b \in \R$, $f(b)=0$, si no, $\ds \lim_{x\to\infty} f(x) = \infty$.
+
+	Así tenemos $\ds T_-=\lim_{x\to a^+} F(x) \we T_+=\lim_{x\to b^-} F(x)$ con $\ds F(x)\defeq\int_{y_0}^{x} \frac{1}{f(s)}\odif{s}$.
+	\begin{enumerate}
+		\item $\left(T_+ = \infty\right) \ve \left(T_+ \in \R \we b \in \R\right) \implies$ la única sol del PVI se puede definir en $(T_-, \infty)$.
+		\item $T_+ \in \R \we b = \infty \implies$ la única sol del PVI tiene una asíntota en $T_+$ con $\ds \lim_{x\to T_+^-} y(x) = \infty$
+	\end{enumerate}
+	\begin{dem}
+		\begin{enumerate}
+			\item[]
+			\item Si $T_+ = \infty$ el resultado es inmediato.
+
+			      Si $T_+ \in \R \we b \in \R$, es decir, $\ds \lim_{x\to b^-} \int_{y_0}^{x} \frac{1}{f(s)} \odif{s} \in \R$, entonces $\appl{y}{(T_-, T_+)}{\R}$ se puede extender de forma diferenciable tomando $\forall x \geq T_+ : y(x)=b$.
+
+			      Ahora tenemos que comprobar que cumple las dos condiciones necesarias.
+			      \[\begin{aligned}
+					      y \tex{ es continua: }      & \lim_{x\to T_+^-} y(x) = b = y(T_+)                            \\
+					      y \tex{ es diferenciable: } & \lim_{x\to T_+^-} y'(x) = \lim_{x\to T_+^-} f(y(x)) = f(b) = 0
+				      \end{aligned}\]
+			\item Si $T_+ \in \R \we b = \infty$, es decir, $\ds \lim_{x\to\infty} F(x) \in \R$, como sabemos que $\appl{y}{(T_-, T_+)}{\R}$ se define como $y\defeq F^{-1}$, entonces $\ds \lim_{x\to T_+^-} y(x) = \infty$ dado que $F$ es creciente.
+		\end{enumerate}
+	\end{dem}
+\end{teo}
+
+\begin{obs}
+	Se cumple para los casos análogos con $\begin{cases}
+			f(y) > 0 \tex{ con asíntota en } T_- \\
+			f(y) < 0 \tex{ con asíntota en } T_+ \\
+			f(y) < 0 \tex{ con asíntota en } T_- \\
+		\end{cases}$
+\end{obs}
+\pagebreak
 \fecha{05/03/2024}
+\subsection{Estabilidad de soluciones}
+
+Sea $\appl{f}{(\alpha,\beta)}{\R}$ continua, con el PVI $\{y'=f(y) \, \we \, y(x_0) = y_0\}$.
+\begin{defn}[Equilibrio]
+	Sea $y$ una solución del PVI, $y$ es de equilibrio
+	\[\iff \tex{es de la forma } \forall x \in \R : y(x)=a \in (\alpha, \beta) : f(a) = 0\]
+\end{defn}
 
 \begin{defn}[Estabilidad]
-	Sea $y$ una solución de un PVI, $y$ es estable
-	\[\iff \forall \varepsilon >0 : \exists \delta > 0 : \appl{y}{[x_0, \infty)}{\R} : y_0^*\in (\alpha, \beta) : \abs{y_0^*-y_0} < \delta \implies \forall x \geq x_0 :\abs{y(x)-y^*(x)}<\varepsilon\]
+	Si $\forall y_0 \in (\alpha, \beta)$ el PVI tiene solución única, la solución $\appl{y}{[x_0, \infty)}{\R}$ es estable a futuro
+	\[\iff \forall \varepsilon >0 : \exists \delta > 0 : \bigg(y_0^*\in (\alpha, \beta) : \abs{y_0^*-y_0} < \delta \implies \forall x \geq x_0 :\abs{y(x)-y^*(x)}<\varepsilon\bigg)\]
 	donde $\appl{y^*}{[x_0, \infty)}{\R}$ es cualquier solución del PVI con $y^*(x_0)=y_0^*$.
 \end{defn}
 
-\begin{ejem}
-	\[\begin{cases}
-		y'=0 \\
-		y(x_0)=y_0
-	\end{cases}\]
+\begin{ejem}[$\{y'=0 \we y(x_0)=1\}$]
+	Vemos a ojo que la función $y(x)=1$ es solución de equilibrio. Además, vamos a ver que es estable.
+
+	Sea $\varepsilon > 0$, tomamos $\delta = \varepsilon$ y la única solución de $\{y'=0 \we y(x_0) = y_0^*\}$ con $\abs{y_0^* -1} < \delta$ que claramente es $y^*(x) = y_0^*$ y cumple las condiciones pedidas de que \[\forall x \geq x_0 : \abs{y(x) - y^*(x)} = \abs{y_0^* - 1} = \delta < \varepsilon\]
 \end{ejem}
 
 \begin{defn}[Estabilidad asintótica]
-	Sea $y$ una solución de un PVI, $y$ es asintóticamente estable
-	\[\iff y \tex{ es estable } \we \lim_{x\to \infty}\abs{y(x)-y^*(x)}=0\]
+	Sea $\appl{y}{[x_0, \infty)}{\R}$ una solución del PVI, $y$ es asintóticamente estable (a futuro) $\ds \iff y \tex{ es estable } \we \lim_{x\to \infty}\abs{y(x)-y^*(x)}=0$ \\
 	donde $\appl{y^*}{[x_0, \infty)}{\R}$ es cualquier solución del PVI con $y^*(x_0)=y_0^*$.
 \end{defn}
 
 \begin{ejem}
 	\[\begin{cases}
-		y'=y(1-y) \\
-		y(x_0)=y_0
-	\end{cases} \implies \begin{cases} 
-		f(y)\defeq y(1-y) \\
-		f(y) = 0 \iff y \in \{0, 1\} 
-	\end{cases} \tex{ soluciones de equilibrio}\]
-	\[\implies \forall y < 0 :f(y) < 0 \we \forall y \in (0, 1) : f(y) > 0 \we \forall y > 1 : f(y) < 0\]
-	$\boxed{y_0 < 0}$
-	\[\implies \forall y < 0 : F(y)=\int_{y_0}^{y}\frac{1}{s(1-s)}\odif{s} \implies \forall y<0 : F'(y)<0\]
+			y'=y(1-y) \\
+			y(x_0)=y_0
+		\end{cases} \implies \begin{cases}
+			f(y)\defeq y(1-y) \\
+			f(y) = 0 \iff y \in \{0, 1\}
+		\end{cases} \implies \begin{cases}
+			y \equiv 0 \\
+			y \equiv 1 \\
+		\end{cases}\tex{ son de equilibrio}\]
+	\[\xRightarrow{\tex{H2: ej. 1}} \big(\forall y < 0 :f(y) < 0\big) \we \big(\forall y \in (0, 1) : f(y) > 0\big) \we \big(\forall y > 1 : f(y) < 0\big)\]
+	Por tanto, cualquier solución estable es asintóticamente estable. Además, si una solución tiene límite, entonces ese límite es sol estable.
+
+	$\boxed{y_0 < 0}$ \hspace{1cm}$\ds \forall y < 0 : F(y)=\int_{y_0}^{y}\frac{1}{s(1-s)}\odif{s} \implies \forall y<0 : F'(y)<0$
+
 	Tomamos $y\in (y_0, 0) \implies F(y)<F(y_0)=0$
 	\[\implies s \geq y_0 \implies 0<1-s \leq 1-y_0 \implies \frac{1}{1-s}\geq\frac{1}{1-y_0} \implies \frac{1}{(1-s)s}\leq \frac{1}{(1-y_0)s}\]
 	\[\implies F(y) \leq \frac{1}{1-y_0}\int_{y_0}^{y} \frac{1}{s} \odif{s} = \frac{\log{(-y)} - \log{(-y_0)}}{1-y_0} \implies \boxed{\lim_{y\to0^-} F(y) = -\infty}\]
@@ -167,21 +246,70 @@
 	\[y<y_0<0 \implies 0 \leq F(y)=-\int_{y}^{y_0} \frac{1}{s(1-s)} \odif{s} = \int_{y}^{y_0} \frac{1}{s^2-s} \odif{s} \leq \int_{y}^{y_0} \frac{1}{s^2} \odif{s} = \frac{1}{y} -\frac{1}{y_0}\]
 	\[\implies 0\leq F(y) < -\frac{1}{y} \implies \boxed{\lim_{y\to -\infty} F(y) \in \R} \implies \tex{Hay una asíntota}\]
 	$\boxed{y_0>1}$ Si $y$ es solución con $y(x_0)=y_0>1$, entonces $z(x)=-y(-x)+1$ también es solución con $z(x_0)=1-y_0<0$.
+	% \begin{center}
+	% 	\input{graphs/slopefield3}
+	% \end{center}
 \end{ejem}
 
 \fecha{06/03/2024}
+\subsection{Bifurcación}
+\begin{defn}[Puntos de bifurcación]
+	Sea $\appl{f_\mu}{\R}{\R}$ una función continua que depende de un parámetro $\mu \in \R$. El comportamiento cualitativo de la EDO $y'=f_\mu(y)$ puede cambiar dependiendo de la $\mu$. Los valores de $\mu$ que dan lugar a un cambio de este tipo* son los puntos de bifurcación.
 
-\begin{defn}[Bifurcación]
-	Sea $\appl{f_\mu}{\R}{\R}$ una función continua que depende de un parámetro $\mu \in \R$. El comportamiento cualitativo de la EDO $y'=f_\mu(y)$ puede cambiar dependiendo de la $\mu$. Los valores de $\mu$ que dan lugar a un cambio de este tipo son los puntos de bifurcación.
+	\hfill *Este tipo: de cortar dos veces al equilibrio a cortarlo una o ninguna vez.
 \end{defn}
 
-\begin{ejem}[$y'=y(1-y)-\mu$]
-	\[f_\mu(y)=y(1-y)-\mu=0 \iff y^2-y+\mu=0 \iff y=\frac{1\pm \sqrt{1-4\mu}}{2}, \, \mu \leq \frac{1}{4}\]
-	Curvas de equilibrios: $\ds \gamma_1(\mu)\defeq\frac{1+\sqrt{1-4\mu}}{2} \we \gamma_2(\mu)\defeq\frac{1-\sqrt{1-4\mu}}{2}, \, \mu \leq \frac{1}{4}$
+\begin{ejem}[$\{y'=y(1-y)-\mu \we y(x_0) = y_0\}$]
+	\[f_\mu(y)=y(1-y)-\mu=0 \iff y^2-y+\mu=0 \iff y=\frac{1\pm \sqrt{1-4\mu}}{2} \we \mu \leq \frac{1}{4}\]
+	Curvas de equilibrios: $\ds \gamma_1(\mu)\defeq\frac{1+\sqrt{1-4\mu}}{2} \we \gamma_2(\mu)\defeq\frac{1-\sqrt{1-4\mu}}{2}$
 	\[\implies \begin{cases}
-		\mu > \frac{1}{4} \tex{ no hay equilibrios} \\
-		\mu < \frac{1}{4} \tex{ hay dos equilibrios} \\
-		\mu = \frac{1}{4} \tex{ es un punto de equilibrio} \\
-	\end{cases}\]
+			\mu > \frac{1}{4} \tex{ no hay equilibrios}  \\
+			\mu < \frac{1}{4} \tex{ hay dos equilibrios} \\
+			\mu = \frac{1}{4} \tex{ hay un equilibrio}   \\
+		\end{cases} \implies \mu =\frac{1}{4} \tex{ es un punto de bifurcación.}\]
+	\begin{itemize}
+		\item $\mu > \frac{1}{4} \implies $la solución $y$ es decreciente porque la derivada nunca toca el eje $X$.
+		\item $\mu = \frac{1}{4} \implies $las soluciones son siempre decrecientes con un punto de silla $(y'=0)$.
+		\item $\mu < \frac{1}{4} \implies y$ es estrictamente creciente para $y_0 \in \left(\frac{1-\sqrt{1-4\mu}}{2}, \frac{1+\sqrt{1-4\mu}}{2}\right)$, constante para $y_0 = \frac{1\pm\sqrt{1-4\mu}}{2}$, y estrictamente decreciente en otro caso.
+	\end{itemize}
 \end{ejem}
- \fecha{07/03/2024}
+\fecha{07/03/2024}
+\begin{ejem}[$\{y'=y(\mu - y^2) \we y(x_0)=y_0\}$]
+	% \[\implies \begin{cases}
+	% 		\mu < 0 & \tex{$y$ pasa por el 0 con derivada negativa} \\
+	% 		\mu = 0 & \tex{$y$ pasa por el 0 con derivada nula}     \\
+	% 		\mu > 0 & \tex{$y$ pasa por el 0 con derivada positiva}
+	% 	\end{cases}\]
+	\[f_\mu (y) \defeq y(\mu - y^2) = 0 \iff y=0 \ve y=\pm\sqrt{\mu} \implies \forall \mu \leq 0 : \begin{cases}
+			\gamma_1 (\mu) \defeq \sqrt{\mu} \\
+			\gamma_2 (\mu) \defeq -\sqrt{\mu}
+		\end{cases}\]
+	\[\implies \begin{cases}
+			\mu \leq 0 & \tex{hay un equilibrio } (y = 0)                          \\
+			\mu > 0    & \tex{hay tres equilibrios } (y = 0 \ve y = \pm\sqrt{\mu})
+		\end{cases}\]
+	Definimos $\ds F(y) \defeq \int_{y_0}^{y} \frac{1}{s(\mu - s^2)}\odif{s}$ y establecemos $\mu < 0$.
+	\begin{itemize}
+		\item $\ds y_0< 0 \implies \forall y < 0 : F'(y)=\frac{1}{y(\mu - y^2)} >0 \implies y$ es estrictamente creciente.
+
+		      Como $\ds \lim_{y\to-\infty} F(y) \in \R$, entonces hay una asíntota hacia atrás y para abajo.
+		\item $\ds y_0 > 0 \implies \forall y > 0 : F'(y) = \frac{1}{y(\mu - y^2)} < 0 \implies y$ es estrictamente decreciente.
+		      Como $\ds \lim_{y\to \infty} F(y) \in \R$, entonces hay una asíntota hacia atrás y para arriba.
+	\end{itemize}
+	Si establecemos $\mu > 0$, entonces
+	\begin{itemize}
+		\item $\ds y_0 \in (-\sqrt{\mu}, 0) \implies \forall y \in (-\sqrt{\mu}, 0) : F'(y) < 0 \implies y$ es estrictamente decreciente.
+		\item $\ds y_0 \in (0, \sqrt{\mu}) \implies \forall y \in (0, \sqrt{\mu}) : F'(y) > 0 \implies y$ es estrictamente creciente.
+	\end{itemize}
+\end{ejem}
+\begin{prop}
+	Sea $y'=f_\mu(y)$ una EDO autónoma con $\mu^* \in \R$ punto de bifurcación
+	\[\varepsilon^*\defeq\{y\in \R : f_{\mu^*} (y) = 0\} \ne \phi \implies \exists \, y^*\in \varepsilon^* : f_{\mu^*}(y^*)=0 \we f_{\mu^*}'(y^*) = 0\]
+\end{prop}
+\begin{ejem}[$y'=e^{-y} - \mu = f_\mu(y)$]
+	\[f_\mu(y) = 0 \iff y = -\ln{\mu} \implies \begin{cases}
+			\mu \leq 0 & \tex{no hay equilibrios} \\
+			\mu > 0    & \tex{hay un equilibrio}
+		\end{cases} \implies \mu^*=0 \tex{ es de bifurcación}\]
+	\[\implies \varepsilon^* = \{y\in \R : e^{-y}-0 = 0\} = \phi \implies \tex{no se puede aplicar la proposición (vaya ejemplo)}\]
+\end{ejem}

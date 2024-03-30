@@ -1,0 +1,49 @@
+\newcommand{\numXSamples}{201}
+\newcommand{\minimumX}{-2}
+\newcommand{\maximumX}{2}
+\newcommand{\minimumY}{-1}
+\newcommand{\maximumY}{1}
+\newcommand{\arrowSamples}{15}
+\newcommand{\initialy}{-0.85}
+\pgfmathsetmacro{\arrowScaler}{0.7*(\maximumX-\minimumX)/\arrowSamples}
+\newcommand{\MU}{0.25}
+\newcommand{\yprime}[2]{(#2*(1-#2) - \MU)}%(abs(#1^2)+abs(#2^2)-1)}
+
+\pgfplotstableset{
+	create on use/x/.style={
+		create col/expr={
+			\pgfplotstablerow/\numXSamples*(\maximumX-\minimumX)+\minimumX
+		}
+	},
+	create on use/y/.style={
+		create col/expr accum={
+			\pgfmathaccuma+((\maximumX-\minimumX)/\numXSamples)*
+			(\yprime{\thisrow{x}}{\pgfmathaccuma})
+			%(abs(\pgfmathaccuma^2)+abs(\thisrow{x}^2)-1)
+		}{\initialy}
+	}
+}
+
+\pgfplotstablenew{\numXSamples}\loadedtable
+
+\begin{center}
+\begin{tikzpicture}[scale=1] % Adjust the scale factor as needed
+\begin{axis}[
+	width=10cm, % Adjust the width of the graph
+	height=5cm, % Adjust the height of the graph
+	view={0}{90},
+	domain=\minimumX:\maximumX,
+	y domain=\minimumY:\maximumY,
+	xmax=\maximumX, ymax=\maximumY,
+	samples=\arrowSamples,
+	% x={(3cm,0cm)}, y={(0cm,3cm)}, 
+]
+\draw[black, thick] (axis cs: \minimumX,0,0) -- (axis cs: \maximumX,0,0);
+\draw[black, thick] (axis cs: 0,\minimumY,0) -- (axis cs: 0,\maximumY,0);
+\addplot3 [gray, quiver={u={1}, v={\yprime{x}{y}},
+	scale arrows=\arrowScaler,
+	every arrow/.append style={-latex}}] (x,y,0);
+\addplot [line width=1.75pt, red] table [x=x, y=y] {\loadedtable};
+\end{axis}
+\end{tikzpicture}
+\end{center}
