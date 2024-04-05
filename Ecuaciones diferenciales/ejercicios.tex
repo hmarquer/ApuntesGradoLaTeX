@@ -90,7 +90,7 @@ Inicialmente $x(t)>-\sqrt{t}$ ``durante un rato''.
 	\item Toda solución que no sea constante es estrictamente monótona.
 	      \begin{dem}
 		      Por contrarecíproco, veamos que
-		      \[\ds \exists t^* : x'(t)=0 \implies x(t)\equiv C\defeq x(t^*)\]
+		      \[\ds \exists t^* : x'(t^*)=0 \implies \forall t : x(t)\equiv C\defeq x(t^*)\]
 		      Definimos $\forall t \in \R:y(t)=x(t^*)$. Por hipótesis, $f(C)=f(x(t^*))=x'(t)=0$
 		      \[\implies y'(t)=\odv{}{t}(C)=0=f(C)=f(y(t))\implies y \tex{ es solución}\]
 		      \[\begin{cases}
@@ -98,14 +98,14 @@ Inicialmente $x(t)>-\sqrt{t}$ ``durante un rato''.
 				      y(t^*)=C
 			      \end{cases} \implies \tex{Por unicidad, } x(t)=y(t)\equiv C\]
 	      \end{dem}
-	\item $\ds \lim_{t\to \infty} x(t) = C_0 \implies u(t) \equiv C$ es solución.
+	\item $\ds \lim_{t\to \infty} x(t) = C_0 \implies u(t) \equiv C_0$ es solución.
 	      \begin{dem}
 		      \begin{enumerate}
 			      \item $\ds \lim_{t\to \infty} x'(t)=\lim_{t\to \infty}f(x(t)) = f\left(\lim_{t\to \infty} x(t)\right) = f(C_0)$
 			      \item Veamos que $f(C_0)=0$. Por contradicción, supongamos que $f(C_0)=A>0$
 			            \[\implies \lim_{t\to \infty} x'(t)=A \implies \exists \, \til{t} : \forall t \geq \til{t} : x'(t)>\frac{A}{2}\]
 			            \[\implies \int_{\til{t}}^{t} x'(\tau) \odif{\tau} > \int_{\til{t}}^{t} \frac{A}{2} \odif{\tau} \implies x(t)-x\left(\til{t}\right)> \frac{A}{2}(t-\til{t})\]
-			            \[\implies \lim_{t\to\infty} x(t) = \lim_{t\to\infty}\left(x\left(\til{t}+\frac{A}{2}\left(t-\til{t}\right)\right)\right)=\infty \contr\]
+			            \[\implies \lim_{t\to\infty} x(t) = \lim_{t\to\infty}\left(x\left(\til{t}\right)+\frac{A}{2}\left(t-\til{t}\right)\right)=\infty \contr\]
 			      \item $\ds u'(t) = \odv{}{t}(C_0)=0=f(C_0)=f(u(t)) \implies u \tex{ es solución}$.
 		      \end{enumerate}
 	      \end{dem}
@@ -122,8 +122,8 @@ Inicialmente $x(t)>-\sqrt{t}$ ``durante un rato''.
 			      \item $x\equiv 0$ es solución $\left(f(0)=0\right)$ y solo puede haber problemas de unicidad en $x=0$.
 			      \item $x(t)$ es estrictamente creciente si $x(t)\ne 0$
 		      \end{enumerate}\end{obs}
-	      No habría unicidad en $\ds x=0 \iff \lim_{x\to 0} \int_{0}^{x_0} \frac{1}{f(\tau)} \odif{\tau} \in \R$ con $x_0>x$ \\
-	      En nuestro caso, $\ds \int_{x}^{x_0} \frac{1}{\tau^2} \odif{\tau} = \frac{1}{x} - \frac{1}{x_0} \xrightarrow{x\to 0^+} \infty \implies \tex{ hay unicidad por arriba.}$ \\
+	      No habría unicidad en $\ds x=0 \iff \lim_{x\to 0} \int_{x}^{x_0} \frac{1}{f(\tau)} \odif{\tau} \in \R$ con $x_0>x$ \\
+	      En nuestro caso, $\ds \int_{x}^{x_0} \frac{1}{\tau^2} \odif{\tau} = \frac{1}{x_0} - \frac{1}{x} \xrightarrow{x\to 0^+} -\infty \implies \tex{ hay unicidad por arriba.}$ \\
 	      Para la unicidad por abajo, $\ds \int_{x_0}^{x} \frac{1}{\sqrt{-\tau}} \odif{\tau} = -2\left(\sqrt{-x} - \sqrt{-x_0}\right) \xrightarrow{x\to 0^-} 2 \sqrt{x_0} \in \R$
 	      \[\implies \tex{No hay unicidad por abajo.}\]
 	      Por tanto, podemos encontrar una solución de la siguiente forma:

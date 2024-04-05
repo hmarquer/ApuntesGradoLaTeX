@@ -328,10 +328,76 @@ Es como si en cada punto $(x, f(x))$ de la gráfica se abriese un ``cono'' (dos 
 			\item Veamos que $T$ es una contracción en $\mathcal{X}_{\rho, \delta}$:
 			      \[\begin{aligned}
 					      \abs{T[x](t) - T[\hat{x}](t)} & = \abs{\int_{t_0}^{t} f(s, x(s)) - f(s, \hat{x}(s)) \odif{s}} \leq L_{\rho, \delta} \abs{t - t_0} \leq \varepsilon L_{\rho, \delta} \abs{x - \hat{x}} \\
-						  & \leq \abs{x - \hat{x}} \iff \varepsilon < \frac{1}{L_{\rho, \delta}}
+					                                    & \leq \abs{x - \hat{x}} \iff \varepsilon < \frac{1}{L_{\rho, \delta}}
 				      \end{aligned}\]
 		\end{enumerate}
-		Por tanto, $T$ es contractiva en $\mathcal{X}_{\rho, \delta}$ y por el teorema de punto fijo de Banach, 
+		Por tanto, $T$ es contractiva en $\mathcal{X}_{\rho, \delta}$ y por el teorema de punto fijo de Banach,
 		\[\exists! \, x \in \mathcal{X}_{\rho, \delta} : x \tex{ es solución del PVI.}\]
 	\end{dem}
 \end{teo}
+
+\fecha{02/04/2024}
+
+\begin{cor}
+	Bajo las condiciones del teorema Picard-Lindelöf, dos soluciones distintas de la EDO $x'=f(t,x)$ no pueden cruzarse.
+\end{cor}
+
+\begin{teo}[Cauchy-Peano]
+	Sea $(t_0, x) \in \R\times\R^d$ y sea $\appl{f}{\R}{\R}$ una función continua en un entorno $\Omega \subset \R\times\R^d$ de $(t_0, x)$
+	\[\implies \exists \appl{x}{\R}{\R} : \forall t \in [t_0 - \varepsilon, t_0 - \varepsilon] : \begin{cases}
+			x' = f(t, x) \\
+			x(t_0) = x
+		\end{cases}\]
+\end{teo}
+
+\subsection{Prolongabilidad}
+
+Bajo las condiciones del teorema Picard-Lindelöf, $\forall (t_0, x) \in \Omega : \exists \varepsilon > 0 : \exists $ una única solución $x \in \mathcal{C}^1([t_0-\varepsilon, t_0+\varepsilon])$ del PVI. Entonces, podemos definir
+\[T_+(t_0, x) = \sup\{T > t_0 : \tex{ el PVI tiene sol única definida en } [t_0, T)\}\]
+\[T_-(t_0, x) = \inf\{T < t_0 : \tex{ el PVI tiene sol única definida en } (T, t_0]\}\]
+
+\begin{teo}
+	Bajo las condiciones del teorema Picard-Lindelöf, existe una única solución maximal del PVI definida en el intervalo maximal $I = (T_-(t_0, x), T_+(t_0, x))$.
+\end{teo}
+
+\fecha{04/04/2024}
+Sea $\appl{f}{\Omega}{\R^d}$ una función continua localmente Lipstchiz en $x$ uniformemente en $t$ con $\Omega\subset \R\times\R^d$ abierto. Definimos
+\[a \leq T_-(t_0, x_0) \defeq \inf\{T < t_0: \tex{existe solución definida en }(T, t_0]\}\]
+\[b \geq T_+(t_0, x_0) \defeq \sup\{T > t_0: \tex{existe solución definida en }[t_0, T]\}\]
+\[I\defeq (T_-(t_0, x_0), T_+(t_0, x_0)) \we \Omega = (a, b)\times U \we U\subset \R^d \tex{ abierto}\]
+
+\begin{teo}[Escape de compactos]
+	Sea $(a, b) \times U \eqdef \Omega$, con $U \subset \R^d$ abierto, sea $\appl{f}{\Omega}{\R^d}$ con las hipótesis del teorema de Picard-Lindelöf, sea $(t_0, x) \in \Omega$
+	\[\implies \begin{cases}
+			T_+< b \implies \forall K \subset U \tex{ compacto} : \exists t_+ \in (t_0, T_+) : \forall t \in (t_+, T_+) : x(t) \notin K  \\
+			T_->a b \implies \forall K \subset U \tex{ compacto} : \exists t_- \in (T_-, t_0) : \forall t \in (T_-, t_-) : x(t) \notin K \\
+		\end{cases}\]
+	\begin{dem}
+		Suponemos por contradicción que existe un $K \subset U$ compacto y que existe $(t_k)_{k\in \N} \subset (t_0, T_+)$ tal que $t_k\xrightarrow{k\to\infty} T_+$ y $\forall k \in \N : x(t_k) \in K$.
+		Entonces, existe una subsucesión (que denoto igual) tal que $x(t_k) \xrightarrow{k\to\infty} \bar{x} \in K$.
+
+		Veamos que $\ds \lim_{t\to T_+} x(t) = \bar{x}$. Fijamos $\delta > 0 : V = [T_+-\delta, T_+] \times \overline{B_{\delta}(\bar{x})} \subset \Omega = (a, b) \times U$. Claramente, existe $\ds M\defeq\max_{(t, x) \in V} \abs{f(t, x)}$.
+
+		Si no es cierto que $\ds \lim_{t\to T_+} x(t) = \bar{x}$, entonces existen $\gamma \in (0, \delta)$ y $(\tau_k)_{k\in\N}\subset (t_0, T_+)$ tales que $\tau_k \xrightarrow{k\to\infty} T_+$ y $\abs{x(\tau_k) - \bar{x}} \geq \gamma$.
+
+		Se puede elegir $\tau_k$ de forma que $\abs{x(\tau_k) - \bar{x}} = \gamma \we \forall t \in [\min\{t_k, \tau_k\}, \max{t_k, \tau_k}] : \abs{x(\tau_k) - \bar{x}} \leq \gamma < \delta$
+		\[\begin{aligned}
+			0 < \gamma &\leq \abs{x(\tau_k) - \bar{x}} \leq \abs{x(\tau_k) - x(t_k)} + \abs{x(t_k) - \bar{x}} \\
+			\xi_k \in (\min\{\tau_k, t_k\}, \max\{t_k, \tau_k\}) \implies &= \abs{x'(\xi_k)}\abs{\tau_k - t_k} + \abs{x(t_k) - \bar{x}} 
+		\end{aligned}\]
+		\[= \abs{f(\xi_k, x(\xi_k))}\abs{\tau_k - t_k} + \abs{x(t_k) - \bar{x}} \leq M\abs{\tau_k - t_k} + \abs{x(t_k) - \bar{x}} \xrightarrow{k\to\infty} 0\]
+		Por tanto, concluimos que efectivamente $\ds \lim_{t\to T_+} x(t) = \bar{x} \in K$.
+
+		Paso 3: Hemos probado que $x$ se extiende de manera continua a $(T_-, T_+]$. Ahora consideramos el problema $\{x'=f(t, x) \we x(T_+) = \bar{x}\}$. Por el teorema de Picard-Lindelöf, existe una solución $\appl{y}{(T_+ - \varepsilon, T_+ + \varepsilon)}{U}$. Por unicidad local, $\forall t \in (T_+-\varepsilon, T_+ + \varepsilon) : y(t) = x(t)$.
+
+		Como $x$ e $y$ se ``pegan'' bien, hemos construido una solución de $\{x'=f(t, x) \we x(t_0) = x_0\}$ definida en $(T_-, T_+ + \varepsilon)$. Esto contradice la maximalidad de $(T_-, T_+)$. 
+	\end{dem}
+\end{teo}
+
+\begin{cor}
+	Bajo las condiciones del teorema de escape de compactos, si $\Omega = (a, b) \times \R^d$
+	\[\implies \begin{cases}
+		T_+ < b \implies \abs{x(t)} \xrightarrow{t\to T_+} \infty \\
+		T_- > a \implies \abs{x(t)} \xrightarrow{t\to T_+} \infty \\
+	\end{cases}\]
+\end{cor}
