@@ -1,0 +1,54 @@
+\section{Sistemas lineales de primer orden}
+
+Sea $\forall t \in (a, b) : X'(t) = A(t)X(t) + g(t)$, con $a_j^i, g_j^i \in C((a,b))$ y $d\in \N \we d > 1$.
+\[A(t) = \begin{pmatrix}
+		a_{11}(t) & \cdots & a_{1d}(t) \\
+		\vdots    & \ddots & \vdots    \\
+		a_{d1}(t) & \cdots & a_{dd}(t)
+	\end{pmatrix}, \quad X(t) = \begin{pmatrix}
+		X^1(t) \\
+		\vdots \\
+		X^d(t)
+	\end{pmatrix}, \quad g(t) = \begin{pmatrix}
+		g^1(t) \\
+		\vdots \\
+		g^d(t)
+	\end{pmatrix}\]
+Recordamos que $\ds \begin{cases}
+		x' = a(t)x + g(t) \\
+		x(t_0) = x_0
+	\end{cases} \implies x(t) = x_0 e^{\int_{t_0}^{t} a(s) \odif{s}} + \int_{t_0}^{t} g(s) e^{\int_{s}^{t} a(u) \odif{u}} \odif{s}$.
+
+\begin{teo}
+	Sean $t_0 \in (a, b)$ y $X_0 \in \R^d$.
+	\[\implies \tex{El PVI }\{X' = A(t)X + g(t) \we X(t_0) = X_0\}\tex{ tiene solución única en }(a, b)\]
+	\begin{dem}
+		Sean $\alpha, \beta \in \R : a < \alpha < \beta < b$ i.e. $[\alpha, \beta] \subset (a, b)$. Vamos a demostrar existencia y unicidad global en $[\alpha, \beta]$. En efecto, denotamos
+		\[\forall t \in (a,b) : \forall X \in \R^d : f(t, X) \defeq A(t)X + g(t)= \begin{pmatrix}
+				f^1(t, X) \\
+				\vdots    \\
+				f^d(t, X)
+			\end{pmatrix}\]
+		Por otra parte, sea $\ds M  \defeq \max_{\substack{1\leq i \we j \leq d \\ t\in [\alpha, \beta]}} \abs{a_j^i(t)}$.
+		\[\begin{aligned}
+				\implies \abs{f^i(t, X) - f^i(t, Y)} & = \abs{A(t) (X - Y)} = \abs{\sum_{j=1}^{d} a_j^i(t) (X^j - Y^j)}                            \\
+				                                     & \leq \sum_{j=1}^{d} \abs{a^i_j(t)} \abs{X^j - Y^j} \leq M \sum_{j=1}^{d} \abs{X^j - Y^j}    \\
+				                                     & \leq M \sqrt{d} \sqrt{\textstyle \sum_{j=1}^{d} \abs{X^j - Y^j}^2} = M \sqrt{d} \abs{X - Y}
+			\end{aligned}\]
+		\[\abs{f(t, X) - f(t, Y)} \leq \left( \sum_{i=1}^{d} \abs{f^i(t, X) - f^i(t, Y)}^2 \right)^{\frac{1}{2}} \leq \left( \sum_{i=1}^{d} M^2 d \abs{X - Y}^2 \right)^{\frac{1}{2}} = M d \abs{X - Y}\]
+		\[\implies \forall X, Y \in \R^d : \forall t \in [\alpha, \beta] : \abs{f(t, X) - f(t, Y)} \leq M d \abs{X - Y}\]
+		Por el teorema de existencia y unicidad global, $\exists$ una única solución definida en $[\alpha, \beta]$. Como $\alpha, \beta$ son arbitrarios, la solución es única en $\ds (a, b) = \bigcup_{\varepsilon \in (0, \varepsilon_0)} [a+ \varepsilon, b - \varepsilon]$.
+
+		Definimos $\appl{X}{(a, b)}{\R^d}$ como: si $t \in (a, b)$, tomamos $\varepsilon > 0$ tal que $t \in [a + \varepsilon, b - \varepsilon]$, $X(t)$ es la única solución en $[a + \varepsilon, b - \varepsilon]$.
+	\end{dem}
+\end{teo}
+\subsection{El problema homogéneo}
+Sea $X'=A(t)X$ un sistema lineal homogéneo (SLH). Sean $X(t)$ y $Y(t)$ soluciones del SLH y $\alpha, \beta \in \R$. Vemos que las soluciones forman un espacio vectorial (de funciones).
+\[(\alpha X + \beta Y)' = \alpha X' + \beta Y' = \alpha A(t)X + \beta A(t)Y = A(t)(\alpha X + \beta Y)\]
+
+\begin{defn}[Independencia lineal de funciones]
+	Sean $\appl{X_1, X_2, \ldots, X_k}{(a, b)}{\R^d}$ funciones, son linealmente independientes
+	\[\iff \left(\forall t \in (a, b) : \sum_{j=1}^{k} \alpha_i X_i (t) = 0 \implies \alpha_1 = \cdots = \alpha_k = 0 \right)\]
+\end{defn}
+
+% Si $X_1, X_2, \ldots, rñlASNfvñnñzsd FALTA ALGO  FALTA ALGO  FALTA ALGO  FALTA ALGO$

@@ -221,6 +221,152 @@ Definimos la sucesión de funciones $x_{n+1}(t) = T[x_n](t) \we x_1(t) = x(0) = 
 	\begin{enumerate}
 		\item[]
 		\item $\ds f \tex{ es Lipschitz en } \Omega \iff \exists L \geq 0 : \forall x, y \in \Omega : \abs{f(x)-f(y)}\leq L\abs{x-y}$
-		\item $\ds f \tex{ es localmente Lipschitz en } \Omega \iff \forall K \subset \Omega \tex{ compacto} : f \tex{ es Lipschitz en } K$ 
+		\item $\ds f \tex{ es localmente Lipschitz en } \Omega \iff \forall K \subset \Omega \tex{ compacto} : f \tex{ es Lipschitz en } K$
 	\end{enumerate}
 \end{obs}
+
+\fecha{05/04/2024}
+
+\textbf{Prolongabilidad de soluciones:}
+Si hay existencia y unicidad local para $(x_0, y_0)\in D$, entonces la solución solo puede dejar de existir si ``explota'' en $D$. Por ejemplo:
+\[\begin{cases}
+		y' = y^2 \\
+		y(x_0) = y_0
+	\end{cases} \xRightarrow{\tex{P-L}} \forall (x_0, y_0) \in \R\times\R : \exists ! \tex{ solución en un entorno de } (x_0, y_0)\]
+
+\textbf{4.1} a) $\ds y' = \frac{xy + y^2}{x^2 + y^2 + 2} \eqdef f(x, y)$
+\[f\in \mathcal{C}^1(\R^2) \implies \forall (x_0, y_0) \in \R^2 : \exists ! \tex{ solución local }\]
+\[y(x)=0 \tex{ es solución de la EDO }\implies \begin{cases}
+		y_0>0 \implies \forall x \in \R : y(x)>0 \\
+		y_0=0 \implies \forall x \in \R : y(x)=0 \\
+		y_0<0 \implies \forall x \in \R : y(x)<0 \\
+	\end{cases}\]
+
+Queremos una función $\appl{g}{\R}{\R} : y(x) \leq g(x)$.
+\begin{itemize}
+	\item Supongamos por un momento que $\abs{f(x, y)}\leq K$.
+	      \[\ds \begin{aligned}
+			      y(x)=y(x_0) + \int_{x_0}^x f(s, y(s)) \odif{s}\implies
+			      \abs{y(x)} & \leq \abs{y(x_0)} + \int \abs{f(s,y(s))} \odif{s} \\
+			                 & \leq \abs{y(x_0)} + K\abs{x-x_0}
+		      \end{aligned}\]
+	      \[\implies \forall x \in \R : 0 < y(x) \leq \abs{y(x_0)} + K\abs{x-x_0} \eqdef g(x)\]
+	      \[\exists K \in \R : \abs{f(x, y)} \leq K \implies y(x) \tex{ existe para (y desde) siempre}\]
+
+	\item Por tanto, basta ver que $f(x, y) \leq 2$
+	      \[\abs{f(x, y)} \leq \frac{\abs{x} \abs{y} + y^2}{x^2+y^2 +2}\leq \frac{x^2+y^2 + y^2}{x^2+y^2 +2} \leq \frac{x^2 + y^2}{x^2+y^2+2}\leq 2\]
+\end{itemize}
+
+b) $\ds \left\{x'=\frac{x^2+t^4}{\sqrt{1+x^2+t^2}} \we x(t_0) = x_0\right\}$ $f\in \mathcal{C}^1(\R^2) \implies \forall (x_0, t_0) \in \R^2 : \exists ! \tex{ solución local}$
+\[\forall (t, x) \in \R^2 : f(t, x) \geq 0 \implies x'(t) \geq 0 \implies \begin{cases}
+		\forall t \geq t_0 : x(t) \geq x_0 \\
+		\forall t \leq t_0 : x(t) \leq x_0
+	\end{cases}\]
+
+\[\abs{f(t, x)} = f(t, x) = \frac{x^2}{\sqrt{1+x^2+t^2}} + \frac{t^4}{\sqrt{1+x^2+t^2}} \leq \frac{x^2}{\abs{x}} + \frac{t^4}{\abs{t}} \leq \abs{x} + \abs{t^3}\]
+
+Tomamos $T>0$ arbitrario y demuestro que la solución existe para todo $t\in [t_0-T, t_0+T]$. Usamos la forma integral para acotar:
+\[\begin{aligned}
+		\abs{x(t)} & \leq \abs{x(t_0)} + \int_{t_0}^{t} \abs{f(s, x(s))} \odif{s} \leq \abs{x(t_0)} + \int_{m\defeq \min\{t, t_0\}}^{M\defeq \max\{t, t_0\}} \abs{f(s, x(s))} \odif{s} \\
+		           & \leq \abs{x(t_0)} + \int_{m}^{M} \abs{x(s)} + \abs{s^3} \odif{s}                                                                                                  \\
+		           & = \abs{x(t_0)} + \left(\max\{\abs{t_0-T}, \abs{t_0+T}\}\right)^3\abs{t-t_0} + \int_{m}^{M} \abs{x(s)} \odif{s}                                                    \\
+		           & \leq C(x_0, t_0, T) + \int_{m}^{M} \abs{x(s)} \odif{s} \xRightarrow{\tex{Gronwall}} \abs{x(t)} \leq Ce^{t-t_0}
+	\end{aligned}\]
+
+\begin{lem}[Gronwall]
+	Sea $\appl{g}{[a, b]}{\R}$ continua y $C\geq 0$ tal que \\
+	$\ds \forall t \in [a, b] : g(t) \leq C + \int_{a}^{b} g(s) \odif{s}\implies \forall t \in (a, b) : g(t) \leq Ce^{b-a}$
+	\begin{dem}
+		Definimos $\ds G(t) \defeq C + \int_a^b g(s) \odif{s}\implies G(t_0) = C \we G'(t) = g(t) $
+		\[\implies \begin{cases}
+				G'(t) \leq G(t) \\
+				G(t_0) = C
+			\end{cases}\implies G(t) \leq C e^{t-t_0} \implies g(t) \leq C e^{t-t_0}\]
+	\end{dem}
+\end{lem}
+
+\textbf{4.3} $\ds x'=x^5 + \frac{tx^2}{1+x^2} \eqdef f(t,x)$
+\[\tex{a) } \quad f\in \mathcal{C}^1(\R^2) \implies \forall (t_0, x_0) \in \R^2 : \exists ! \tex{ solución local}\]
+\[\tex{b) } \quad x(0) = x_0 > 0 \implies \forall t \leq 0 : \tex{La solución se puede definir}\]
+\[\forall t \in \R : \underline{x}(t) \defeq 0 \tex{ es solución} \implies \forall t \in \R : x(t) > 0 \tex{ (mientras exista)}\]
+
+Quiero acotar $\abs{f(t, x)}$ por debajo de $x$.
+\[x' = x^5 + \frac{tx^2}{1+x^2} \geq t\frac{x^2}{1+x^2} \geq t\implies \int_t^0 x'(s) \odif{s} \geq \int_t^0 s \odif{s} \implies x(t) \leq x(0)+ \frac{t^2}{2}\]
+\[\tex{c) } \quad x(0) = x_0 > 0 \implies \tex{La solución no existe despues de un }T_+\]
+\[x'= x^5 + \frac{tx^2}{1+x^2} \geq x^5 \implies \cdots \implies 4(x(t))^4 \geq \frac{1}{\frac{1}{4x_0^4} - t} \implies \boxed{T_+ = \frac{1}{4x_0^4}}\]
+
+\textbf{4.4} $\lambda > 0 \we \begin{cases}
+		y' = y^4 + \lambda \\
+		y(0) = y_0
+	\end{cases}$
+
+\[\tex{a) } \quad \begin{cases}
+		y'\geq y^4 \\
+		y(c) = c
+	\end{cases} \implies \xcancel{T_+=\frac{1}{3x_0}}\]
+
+\textbf{5.3} (Variado) $\ds \left\{x'=\frac{2}{1+t^2} \cos{\left(x+ \frac{\pi}{2}\right)} \we x_1(0)=a  \we x_2(0)=b\right\}$ con $0 < a < b$.
+
+\begin{enumerate}
+	\item $x \equiv 0$ es solución de la EDO.
+	\item $f$ es Lipschitz en $x$, uniformemente en $t \implies \forall (t_0, x_0) \in \R^2 : \exists ! \tex{ solución global}$
+	\item $x_1(0) = a \we x_2(0) = b \implies \forall t \in \R : x_1(t) , x_2(t) > 0$.
+	\item $0<a<b<\pi \implies \bar{x}(t)=\pi$ es solución $\implies 0<x_1(t), x_2(t)<\pi$.
+	\item Como no se pueden cortar porque se perdería unicidad, $\forall t \in \R : x_1(t) < x_2(t)$.
+\end{enumerate}
+\[i = 1,2 : x_i(t) = x_i(0) + \int_{0}^{t} \frac{2}{1+s^2} \cos{\left(x_i(s)+\frac{\pi}{2}\right)} \odif{s}\]
+\[\implies x_2(t) - x_1(t) =x_2(0) - x_1(0) + \int_{0}^{t} \frac{2}{1+s^2} \left(\cos{\left(x_2(s)+\frac{\pi}{2}\right)} - \cos{\left(x_1(s)+\frac{\pi}{2}\right)}\right) \odif{s}\]
+\[\implies \abs{x_1(t) - x_2(t)} \leq \abs{a-b} + \int_{0}^{t} \underbrace{\frac{2}{1+s^2}}_{\leq 2} \underbrace{\abs{\cos{\left(x_2(s)+\frac{\pi}{2}\right)} - \cos{\left(x_1(s)+\frac{\pi}{2}\right)}}}_{\leq \abs{x_1(s) - x_2(s)}} \odif{s}\]
+\[z(t) \defeq \abs{x_1(t) - x_2(t)} \implies z(t) \leq (b-a) + 2\int_{0}^{t} z(s)\odif{s} \eqdef G(t)\]
+\[\implies G'(t) = 2 z(t) \leq 2 G(t) \implies \begin{cases}
+		G'(t) \leq 2 G(t) \\
+		G(0) = b-a
+	\end{cases} \implies G'(t) - 2G(t) \leq 0\]
+\[\left(G'(t) - 2G(t)\right) e^{-2t} = \left(G(t)e^{-2t}\right)' \leq 0 \implies G(t)e^{-2t} - G(0) e^{-2\cdot 0} \leq 0\]
+\[\implies G(t) \leq (b-a)e^{2t} \implies z(t) \leq (b-a)e^{2t} \implies \forall t > 0 : \abs{x_1(t) - x_2(t)} \leq (b-a) e^{2t}\]
+Sea $\left(a_k\right): a_k \xrightarrow{k\to \infty} b$ y definimos $x_k$ la solución del PVI cuando $x_k(0)=a_k$.\\
+Entonces, la sucesión de funciones $\left(x_k\right)$ converge uniformemente a $x_2$.
+
+\textbf{5.2} $\ds x' = x + \sin(tx) \we y' = \sin(ty) \we x(0) = y(0) = 1$ (Cae siempre en el examen).
+\begin{enumerate}
+	\item $\exists ! \tex{ solución global para ambas}$
+	\item $x(t), y(t) > 0$ (0 es solución de ambas EDOs).
+	\item $\forall t > 0 : x(t) > y(t)$
+	      \begin{dem}
+		      Vemos que $x(0)=y(0) = 1 \we x'(0) = 1 \we y(0) = 0$.
+
+		      Suponemos que $\exists t^* : x(t^*) = y(t^*)$, sabemos que $x(t) > y(t)$ para $t\in(0, t^*)$
+		      \[\implies y'(t^*) \geq x'(t^*)\]
+		      Por otro lado, $x'(t^*) = x(t^*) + \sin(t^*x(t^*)) > \sin(t^*y(t^*)) = y'(t^*) \contr$
+	      \end{dem}
+\end{enumerate}
+Escribimos las soluciones integrales, las restamos y aplicamos la desigualdad triangular.
+\[\implies x(t) - y(t) = \cancelto{0}{x(0) - y(0)} + \int_{0}^{t} \left(\sin(sx(s)) - \sin(sy(s))\right) \odif{s} + \int_{0}^{t} x(s)\odif{s}\]
+\[\implies \abs{x(t) - y(t)} \leq \int_{0}^{t} s \abs{x(s) - y(s)} \odif{s} + \int_{0}^{t} \abs{x(s)} \odif{s}\]
+Queremos encontrar una barrera para $x$, i.e. una función $f$ tal que $x(t) \leq f(t)$.
+\[\forall a \in \R : \sin{a} \leq a \implies x'(t) = x(t) + \sin{(tx)} \leq x(t) + tx = (1+t)x(t)\]
+\[\implies x'-(1+t)x \leq 0 \implies e^{-t-\frac{t^2}{2}}\left(x'-(1+t)x\right) = \left(x(t)e^{-t-\frac{t^2}{2}}\right)'\leq 0\]
+\[\implies x(t)e^{-t-\frac{t^2}{2}} -1 \leq 0 \implies 0 \leq x(t) \leq e^{t+\frac{t^2}{2}} \eqdef f(t)\]
+\[z(t) \defeq \abs{x(t) - y(t)} \implies z(t) \leq \int_{0}^{t} s z(s) \odif{s} + \int_{0}^{t} f(s) \odif{s} \eqdef G(t)\]
+\[\implies G'(t) = tz(t) +f(t) \leq tG(t) + f(t) \implies \begin{cases}
+		G'(t) \leq tG(t) + f(t) \\
+		G(0) = 0
+	\end{cases}\]
+\[\implies e^{-\frac{t^2}{2}}\left(G'(t) - tG(t)\right) \leq f(t) e^{-\frac{t^2}{2}} \implies \left(G(t) e^{-\frac{t^2}{2}}\right)' \leq e^{t}\]
+\[\implies \cdots \implies \forall t > 0 : z(t)\leq G(t) \leq e^{\frac{t^2}{2}}\left(e^t -1 \right)\]
+¿Y para tiempos negativos $(t < 0)$? Definimos $\bar{x}(t) \defeq x(-t) \we \bar{y}(t) \defeq y(-t)$.
+
+\textbf{6.4} $\ds x' = {\left(\sin\left(\frac{\sqrt{x-t^2}}{t}\right)\right)}^2 = f(t, x)$
+
+a) Existencia y unicidad. Sea $\mathcal{A} = \{(t, x) \in \R^2 : x \geq t^2 \we t\ne 0\}$. ¿Es Lipschitz?
+\[t > 0 \implies \abs{f(t, x) - f(t, y)} = \abs{ \pdv{f}{x} (t, \xi)}\abs{x-y}\]
+\[\pdv{f}{x}(t,x) = 2\sin\left(\frac{\sqrt{x-t^2}}{t}\right)\cos\left(\frac{\sqrt{x-t^2}}{t}\right)\frac{1}{2t\sqrt{x-t^2}}\]
+\[\implies \abs{\pdv{f}{x}(t,x )} \leq 2 \frac{\cancel{\sqrt{x-t^2}}}{t} \cdot 1 \cdot \frac{1}{2t\cancel{\sqrt{x-t^2}}} = \frac{1}{t^2}\]
+Por tanto, hay existencia y unicidad local en $\mathcal{A}$.
+
+b) Definimos el problema de valores iniciales con $x(1) = 3$.
+\begin{enumerate}
+	\item $x(t) \geq 3$ porque $x'(t) \geq 0 \implies x(t) \geq x(1) = 3$.
+	\item $\ds x(t) \leq 2 + t$ porque $\abs{x(t)} \leq \abs{x(1)} + \int_{1}^{t} \underbrace{\abs{f(s, x(s))}}_{\leq 1} \odif{s} \leq 3 + (t-1) = t+2$.
+	\item
+\end{enumerate}

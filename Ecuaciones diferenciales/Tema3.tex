@@ -400,4 +400,98 @@ Sea $\appl{f}{\Omega}{\R^d}$ una función continua localmente Lipstchiz en $x$ u
 		T_+ < b \implies \abs{x(t)} \xrightarrow{t\to T_+} \infty \\
 		T_- > a \implies \abs{x(t)} \xrightarrow{t\to T_+} \infty \\
 	\end{cases}\]
+	\fecha{08/04/2024}
+	\begin{dem}
+		Para cada $M>0$, definimos $K_M\defeq \{x \in \R^d : |x|\leq M \} = \overline{B_M(0)}$.\\
+		Si $T_+<b$, el teorema de escape de compactos dice que 
+		\[\exists \, t_+ \in (t_0,T_+) : \forall t \in (t_+,T_+) : x(t)\notin K_M\]
+		Esto es lo mismo que decir que $\forall t \in (t_+,T_+) : |x(t)|>M$.\\
+		Como M es arbitraria, se concluye el primer apartado (el segundo es análogo).
+	\end{dem}
 \end{cor}
+
+\begin{ejem}
+	Sea $\Omega = (0, \infty ) \times \R$ y sea $\appl{f}{\Omega}{\R}$ definida por $\ds \forall (t,x) \in \Omega : f(t,x)\defeq\frac{x^2}{t}$.
+	
+	Comprobamos que $f$ satisface las condiciones del Teorema de Picard-Lindelöf. En efecto, sea $K \subset \Omega$ compacto; entonces:
+	\[\begin{aligned}
+		\abs{f(t,x)-f(t,\Tilde{x})} &= \left | \frac{x^2-\Tilde{x}^2}{t}\right | = \left | \frac{|x+\Tilde{x}|\cdot|x-\Tilde{x}|}{t}\right | \\
+		&\leq \frac{|x|+|\Tilde{x}| + |x-\Tilde{x}|}{t} \leq \ds \max_{(s,y)\in K}\left [ \frac{|y|-|\Tilde{y}|}{s}\right ] |x-\Tilde{x}|
+	\end{aligned}\]
+	Por el Teorema de Picard-Lindelöf
+	\[\forall (t_0,x_0)\in \Omega : \exists ! \tex{ solución local del PVI }\ds \begin{cases} x'=\frac{x^2}{t} \\ x(t_0)=x_0 \end{cases} \tex{para } t \in (T_-,T_+)\]
+	En realidad, la única solución es explícita:
+	$\ds x(t)=\frac{1}{\frac{1}{x_0}-\log \left(\frac{t}{t_0} \right)}, \, (t_0,x_0)\in \Omega, t>0$.
+	
+	\begin{itemize}
+    	\item $T_-=0=a$ por lo que el corolario no nos dice nada. En nuestro caso, $\ds \lim_{t\to T_-^+} |x(t)| = 0$.
+    	\item $T_+=t_0 e^{1/x_0} < + \infty = b$, dice que $\ds \lim_{t\to T_-^-}|x(t)| = + \infty$ también en la expresión explícita. 
+	\end{itemize}
+\end{ejem}
+
+\begin{ejem}
+	Sea $\Omega = \R \times (-1,1)$ y $\appl{f}{\Omega}{\R}$ definida por $\forall (t,x) \in \Omega : f(t,x)\defeq \sqrt{1-x^2} $.
+
+	Veamos de nuevo que se cumplen las condiciones del Teorema de Picard-Lindelöf: \[\forall (t,x) \in \Omega : \pdv{f}{x}(t,x)=\frac{x}{\sqrt{1-x^2}}\]
+	Sea $K \subset \Omega$. Obviamente, $\ds \left |\frac{\partial f }{\partial x}(t,x) \right | \leq \displaystyle \max_{(x,y)\in K} \left |\frac{\partial f }{\partial x}(t,x) \right |$.
+	Teniendo esto, en cuenta
+	\[\implies \forall (t,x) , (t,\Tilde{x}) \in K : |f(t,x)-f(t,\Tilde{x})| = \left |\frac{\partial f }{\partial x}(t,x) \right | |x-\Tilde{x}| \leq L_K |x-\Tilde{x}| \]
+	\[\implies \forall (t_0,x_0)\in \Omega : \exists ! \tex{ solución local del PVI } \begin{cases}x'=\sqrt{1-x^2} \\ x(t_0)=x_0 \end{cases}\tex{ ara } t \in (T_-,T_+)\]
+	De hecho, en este caso, la única solución es explícita: $x(t)=\sin t, t \in (T_-,T_+)=\left ( - \frac{\pi}{2}, \frac{\pi}{2} \right )$.
+% 
+	Aquí, en lugar de explosión cuando $t \to T_-$ ó $t \to T_+$, lo que sucede es que $(t,x(t)) \to \partial \Omega$, y por tanto puede perderse (y de hecho se pierde) la unicidad local.
+\end{ejem}
+
+\begin{ejem}
+	Sea $\Omega = \R \times (0, + \infty)$ y sea $\ds f(t,x) \defeq - \frac{1}{2x}$.
+	
+	Claramente se cumplen las condiciones de Picard-Lindelöf. Entonces, hay existencia y unicidad local de solución del PVI $\{ x'=f(t,x(t)) \we x(t_0)=x_0 \}, t \in (T_-,t_+)$.
+	
+	De hecho, para $(t_0,x_0)\in \Omega$, se tiene que $\ds \forall t \in (-\infty , x_0^2 + t_0) : x(t)=\sqrt{(x_0^2+t_0)-t}$.
+
+	Cuando la $t \to T_+$ no hay ni explosión ni pérdida de unicidad, sino que no puedo extender la solución porque no existe.
+\end{ejem}
+
+\fecha{09/04/2024}
+\begin{cor}
+	En las condiciones del teorema de escape de compactos, sea $\Omega = (a, b) \times \R^d$ y sean $\alpha, \beta \in \R$ tales que $a \leq \alpha < \beta \leq b$. Sea $\appl{v}{(\alpha, \beta)}{[0, \infty)}$ continua, y sea $(t_0, x_0) \in (\alpha, \beta) \times \R^d$ de forma que $\abs{x_0} \leq v(t_0)$.
+	
+	Supongamos que la solución de $\{x'=f(t, x) \we x(t_0) < x_0\}$ cumple que
+	\[\forall t \in (\alpha, \beta) \cap (T_-(t_0, x_0), T_+(t_0, x_0)) : \abs{x(t)} \leq v(t) \implies (\alpha, \beta) \subset (T_-, T_+)\]
+	\begin{dem}
+		Si $\beta \geq T_+$, entonces $(\alpha, \beta)\cap (T_-, T_+) = (\max\{\alpha, T_-\}, T_+)$. \\
+		Sea $c\in (\max\{\alpha, T_-\}, T_+)$. Claramente, $[c, T_+]\subset(\alpha, \beta)$.
+
+		Entonces, $v$ es acotada en $[c, T_+]$  y, en particular, en $(x, T_+)$.\\
+		En consecuencia, $x$ está acotada en $(c, T_+)$. Sin embargo, $\ds \lim_{t\to T_+} |x(t)| = \infty \contr$
+	\end{dem}
+\end{cor}
+
+\subsection{Dependencia continua}
+
+Sea $x'=f(t, x)$ una EDO. Supongamos que $\appl{f}{\Omega}{\R^d}$ con $\Omega \subset \R\times\R^d$ abierto y $f$ Lipschitz con constante $L$ en $x$ uniformemente en $t$.
+
+Consideramos los PVI $\{x'=f(t, x) \we x(t_0) = x_0\}$ y $\{x'=f(t, x) \we x(t_0) = \hat{x}_0\}$ con $(t_0, x_0), (t_0, \hat{x}_0) \in \Omega$. Supongamos que las soluciones son $x$ y $\hat{x}$ respectivamente.
+\[\begin{aligned}
+	\abs{x(t) - \hat{x}(t)} &= \abs{x_0 + \int_{t_0}^{t} f(s, x(s)) \odif{s} - \hat{x}_0 - \int_{t_0}^{t} f(s, \hat{x}(s)) \odif{s}} \\
+	&\stackrel{t\geq t_0}{\leq} \abs{x_0 - \hat{x}_0} + \int_{t_0}^{t} \abs{f(s, x(s)) - f(s, \hat{x}(s))} \odif{s} \\
+	&\leq \abs{x_0 - \hat{x}_0} + L\int_{t_0}^{t} \abs{x(s) - \hat{x}(s)} \odif{s} \eqdef y(t)
+\end{aligned}\]
+\begin{itemize}
+	\item $\forall (s, y), (s, \hat{y}) \in K\subset \Omega : \abs{f(s, y) - f(s, \hat{y})} \leq L \abs{y-\hat{y}}$
+	\item $\forall t \in [t_0, t_0 + T] : (s, x(s)), (s, \hat{x}(s)) \in K$
+\end{itemize}
+\[\abs{x(t) - \hat{x}(t)} \leq g(t) \implies g'(t) = L\abs{x(t) - \hat{x}(t)} \implies g(t) \implies e^{-Lt}g'(t) \leq e^{-Lt}Lg(t) \]
+\[\iff \odv{}{t} \left(e^{-Lt} g(t)\right) \leq 0 \implies e^{-Lt}g(t) - e^{-Lt_0}g(t_0) \leq 0\]
+\[\implies \abs{x(t) - \hat{x}(t)} \leq g(t) \leq e^{L(t-t_0)} \abs{x_0-\hat{x}_0}\]
+\[t\in [t_0 - T, t_0] \implies \abs{x(t) - \hat{x}(t)} \leq e^{L(t_0-t)} \abs{x_0-\hat{x}_0}\]
+\[\implies \forall t \in [t_0 - T, t_0+T] : \boxed{\abs{x(t) - \hat{x}(t)} \leq e^{L\abs{t-t_0}} \abs{x_0-\hat{x}_0}}\]
+En efecto, en el intervalo $[t_0-T, t_0+T]$
+\[\abs{x(t) - \hat{x}(t)} \leq e^{LT}\abs{x_0-\hat{x}_0} < e^{LT}\delta = \varepsilon\]
+
+\begin{ejem}
+	$\ds \forall (t, x) \in \R^2 : f(t, x) = \frac{2}{1+t^2} \arctan{(x)}$, $h(x) = \arctan{x}$.
+	\[\implies 0 \leq h'(x) = \frac{1}{1+x^2} \leq 1 \implies \abs{f(t, x) - f(t, \hat{x})} = \abs{\frac{2}{1+t^2} \left(\arctan{x} - \arctan{\hat{x}}\right)} \leq 2\abs{x-\hat{x}}\]
+	\[\implies \forall t \in \R : \abs{x(t) - \hat{x}(t)} \leq e^{2\abs{t-t_0}}\abs{x_0 - \hat{x}_0}\]
+	Si $t\in [t_0 - T, t_0 + T] \implies \abs{x(t) - \hat{x}(t)} \leq e^{2T}\abs{x_0 - \hat{x}_0}$
+\end{ejem}

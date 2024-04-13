@@ -15,7 +15,14 @@
 \contentsline {section}{\numberline {3}Variables aleatorias continuas}{24}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Funciones / Transformaciones de v.a.c.}{26}{subsection.3.1}%
 \contentsline {subsection}{\numberline {3.2}Esperanzas de v.a.c.}{28}{subsection.3.2}%
-\contentsline {subsubsection}{\numberline {3.2.1}Calculando con la normal $\left (\operatorname {N}\left (\mu , \sigma ^2\right )\right )$}{29}{subsubsection.3.2.1}%
-\contentsline {section}{\numberline {4}Ejercicios}{31}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Hoja 1}{31}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Hoja 2}{31}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Calculando con la normal $\left (\operatorname {N}\left (\mu , \sigma ^2\right )\right )$}{30}{subsubsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.3}Modelos multidimensionales (vectores aleatorios)}{31}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Normal multidimensional}{32}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Marginales e independencia}{32}{subsubsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.4}Condicionando}{33}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Transformaciones / cambio de variables}{34}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Convolución}{35}{subsection.3.6}%
+\contentsline {section}{\numberline {4}Ejercicios}{38}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Hoja 1}{38}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Hoja 2}{38}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Hoja 3}{39}{subsection.4.3}%
