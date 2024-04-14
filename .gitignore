@@ -10,3 +10,5 @@
 *.json
 .vscode/settings.json
 *.synctex(busy)
+*.out
+*.toc

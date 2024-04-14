@@ -34,40 +34,38 @@ Sea $X$ una v.a.d. que toma los valores $x_1, x_2, \cdots$ con probabilidades $p
 	\end{dem}
 \end{lem}
 \begin{teo}
-	Sea $\appl{F}{\R}{[0, 1]}$ una función que cumpla los puntos del lema anterior.
+	Sea $\appl{F}{U \subset \R}{[0, 1]}$ una función que cumpla los puntos del lema anterior.
 	\[\implies \exists! X \text{ variable aleatoria } : F_X = F\]
-	\begin{dem} TODO: POR REVISAR
-		Defino $X(\omega) = \inf\{x\in\R : F(x) \geq U(\omega)\}$ con $U(\omega) \sim \unif{[0,1]}$.
-		\begin{itemize}
-			\item $X(\omega) \leq x \iff \inf\{x\in\R : F(x) \geq U(\omega)\} \leq x \iff F(X(\omega)) \geq U(\omega) \iff X(\omega) \in \{x\in\R : F(x) \geq U(\omega)\}$
-			\item $X(\omega) \leq x \implies F(X(\omega)) \geq U(\omega) \implies F(x) \geq F(X(\omega)) \geq U(\omega) \implies \{x\in\R : F(x) \geq U(\omega)\} \subseteq \{x\in\R : F(x) \geq F(X(\omega))\}$
-		\end{itemize}
-		Entonces, $X(\omega) = \inf\{x\in\R : F(x) \geq U(\omega)\} \implies F_X(x) = P(X\leq x) = P(U\leq F(x)) = F(x)$.
+	\begin{dem}
+		Suponemos que $\exists \appl{X, Y}{\Omega}{\R}$ v.a. tales que $F_X = F = F_Y$.
+		\[\implies \forall x \in X(\Omega) = U = Y(\Omega) : P(X \leq x) = F_X(x) = F(x) = F_Y(x) = P(Y \leq x)\]
+		Por tanto, $\forall x \in U : P(X\leq x) = P(Y\leq x) \implies X = Y$.
 	\end{dem}
 \end{teo}
 \textbf{Moraleja:} Una variable aleatoria queda determinada por su función de distribución.
 \fecha{13/03/2024}
 Sea $X$ una variable aleatoria con función de distribución $F_X$ y $a,b\in \R$.
 \[\implies P(a<X\leq b)=P(\{x\leq b\}\setminus \{x\leq a\}) = P(x\leq b) - P(x\leq a) = F_X(b)-F_X(a)\]
+\vspace{-0.8cm}
 \begin{defn}[Variable aleatoria continua]
-	Sea $X$ una variable aleatoria con función de distribución $F_X$, es continua (v.a.c.)
-	\[\iff \exists f_X \geq 0 : \left(F_X(x) = P(X\leq x)=\int_{-\infty}^{x} f_X(y) \odif{y}\right) \we \left(\int_{-\infty}^{\infty} f_X(y) \odif{y}=1\right)\]
+	Sea $X$ una variable aleatoria con función de distribución $F_X$, $X$ es continua (v.a.c.)
+	\[\iff \exists \appl{f_X}{\R}{\R} \geq 0 : \left(F_X(x) = P(X\leq x)=\int_{-\infty}^{x} f_X(y) \odif{y}\right) \we \left(\int_{-\infty}^{\infty} f_X(y) \odif{y}=1\right)\]
 	$f_X$ se denomina la \textbf{función de densidad} de $X$.
 \end{defn}
 
 \begin{obs}
-	\begin{enumerate}
+	\begin{enumerate}[topsep=1pt, itemsep=1pt,parsep=3pt]
 		\item[]
 		\item $\forall a \in \R : P(X=a) = 0$
 		      \begin{dem}
-			      Por continuidad de la probabilidad,
+			      Por continuidad de la probabilidad:
 			      \[\begin{aligned}
 					      \lbox{P(X=a)} & =\lim_{h \to 0^+} P(a-h<X\leq a+h) = \lim_{h\to0^+} F_X(a+h)-F_X(a-h)                                                                                                  \\
 					                    & = \lim_{h \to 0^+} \left(\int_{-\infty}^{a} f_X(y) \odif{y} - \int_{-\infty}^{a-h} f_X(y) \odif{y}\right) = \lim_{h\to0^+} \int_{a-h}^{a+h} f_X(y) \odif{y} = \rbox{0}
 				      \end{aligned}\]
 		      \end{dem}
 		\item Cálculo de probabilidades: $\ds\forall a \leq b : P(a\leq X\leq b) = \int_{a}^{b} f_X(y) \odif{y}$
-		\item $\ds f_X(x) = \begin{cases}
+		\item $\ds \forall x \in \R : f_X(x) = \begin{cases}
 				      \ds \odv{}{x} F_X(x), & \text{ si } F_X \text{ es derivable en } x \\
 				      \ds \quad 0,          & \text{ en otro caso}
 			      \end{cases}$
@@ -77,7 +75,7 @@ Sea $X$ una variable aleatoria con función de distribución $F_X$ y $a,b\in \R$
 \begin{ejem}
 	\begin{enumerate}
 		\item[]
-		\item Para cualquier $f\geq 0$ tal que $\ds \int_{\-infty}^{\infty} f(x) \odif{x} = c \in \R$ tenemos una variable aleatoria continua.
+		\item Para cualquier $f\geq 0$ tal que $\ds \int_{-\infty}^{\infty} f(x) \odif{x} = c \in \R$ tenemos una v.a.c.
 		\item $\ds X\sim\U{0,1} \iff f_X(u)=\begin{cases}
 				      1, & \text{ si } u\in[0,1] \\
 				      0, & \text{ en otro caso}
@@ -90,31 +88,30 @@ Sea $X$ una variable aleatoria con función de distribución $F_X$ y $a,b\in \R$
 				      \lambda e^{-\lambda x}, & \text{ si } x\geq 0  \\
 				      0,                      & \text{ en otro caso}
 			      \end{cases} = \lambda e^{-\lambda x} \cdot \mathbbm{1}_{\{x\geq 0\}}(x)$
-		      \[\implies \forall x > 0 : F_X(x) = \int_{0}^{x} \lambda e^{-\lambda y} \odif{y} = \left[-e^{-\lambda y}\right]_{0}^{x} = 1-e^{-\lambda x}\]
-		\item $\ds X\sim\N{\mu, \sigma^2} \iff f_X(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ \\
-		      Pero la guay es $\ds X\sim\normal{0, 1} \iff \phi(x) \defeq f_X(x) = \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$
-		      \[\tex{Veamos que } \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}\odif{y} = 1\]
+		      \[\implies \forall x > 0 : F_X(x) = \int_{0}^{x} \lambda e^{-\lambda y} \odif{y} = \left[-e^{-\lambda y}\right]_{0}^{x} = 1-e^{-\lambda x} \implies \lim_{x\to\infty} F_X(x) = 1\]
+		\item $\ds X\sim\normal{\mu, \sigma^2} \iff f_X(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ \\
+		      La guay es $\ds X\sim\normal{0, 1} \iff \phi(x) \defeq \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$. Veamos que $\ds \int_{-\infty}^{\infty} \phi(x) \odif{x} = 1$.
 		      \begin{dem}
-			      \[I = \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x}\implies I^2 = \left(\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}\odif{x}\right)\left(\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} \odif{y}\right)\]
-			      \[\implies \begin{aligned} I^2 & = \frac{1}{2\pi} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left(x^2+y^2\right)} \odif{x} \odif{y} = \int_{0}^{2\pi} \int_{0}^{\infty} e^{-\frac{r^2}{2}} r \odif{r} \odif{\theta} \\
-                    & =\end{aligned}\]
+			      \[I \defeq \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x}\implies I^2 = \left(\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}\odif{x}\right)\left(\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{y^2}{2}} \odif{y}\right)\]
+			      \[\begin{aligned} \implies I^2 & = \frac{1}{2\pi} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left(x^2+y^2\right)} \odif{x} \odif{y} = \frac{1}{2\pi} \int_{0}^{2\pi} \int_{0}^{\infty} e^{-\frac{r^2}{2}} r \odif{r} \odif{\theta} \\
+                             & = \frac{1}{2\pi} \int_{0}^{2\pi} \left[-e^{-\frac{r^2}{2}}\right]_{0}^{\infty} \odif{\theta} = \frac{1}{2\pi} \int_{0}^{2\pi} 1 \odif{\theta} = 1
+				      \end{aligned}\]
 		      \end{dem}
 	\end{enumerate}
 \end{ejem}
 
 \fecha{18/03/2024}
 \subsection{Funciones / Transformaciones de v.a.c.}
-Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{X(\Omega)}{\R}$ una función real. Consideramos $Y=g(X)$:
+Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{X(\Omega)}{\R}$ una función real y $Y\defeq g(X)$:
 \begin{itemize}
 	\item $Y$ es variable aleatoria $\iff \forall y \in \R : \{\omega \in \Omega : g(X(\omega)) \leq y\} \in \F$.\\
 	      Esto es cierto para las $g$ ``habituales'' (continuas, monótonas, etc.), para más detalle, hay que esperar a teoría de la medida.
 	\item ¡Cuidado! $Y$ puede no ser continua.
-	\item Si $Y$ es v.a. $\implies Y$ tiene función de distribución
-	      \[F_Y(y) = P(Y\leq y) = P(g(X)\leq y) = ???\]
+	\item $Y$ v.a. $\implies Y$ tiene función de distribución $F_Y(y) = P(Y\leq y) = P(g(X)\leq y) = \, ???$
 	      \begin{ejem}
 		      $g(x) = ax + b$ con $a\ne 0 \we b \in \R$.
 		      \[\implies F_Y(y)= P(aX+b\leq y) = \begin{cases}
-				      P\left(X \leq \frac{y-b}{a}\right) = F_X\left(\frac{y-b}{a}\right),       & \text{ si } a>0 \\
+				      P\left(X \leq \frac{y-b}{a}\right),                                       & \text{ si } a>0 \\
 				      P\left(X \geq \frac{y-b}{a}\right) = 1 - P\left(X < \frac{y-b}{a}\right), & \text{ si } a<0
 			      \end{cases}\]
 		      Para $X$ v.a. continua, $\ds F_Y(y) = \begin{cases}
@@ -129,7 +126,7 @@ Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{X(\Omega)}{\R}$ un
 \end{itemize}
 
 \begin{teo}
-	En $(\Omega, \F, P)$, sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{\R}{\R}$ una función diferenciable y estrictamente creciente.
+	En $(\Omega, \F, P)$, sea $X$ una v.a.c. con función de densidad $f_X \we \appl{g}{\R}{\R}$ una función diferenciable y estrictamente creciente.
 	\[\implies f_Y(y)=f_X\big(g^{-1}(y)\big) \frac{1}{g'\big(g^{-1}(y)\big)}\]
 	De manera similar, si $g$ es estrictamente decreciente$\ds\implies f_Y(y)= - f_X\big(g^{-1}(y)\big) \frac{1}{g'\big(g^{-1}(y)\big)}$
 	\begin{dem}
@@ -160,7 +157,7 @@ Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{X(\Omega)}{\R}$ un
 
 \begin{ejem}
 	Sea $\ds X\sim\normal{\mu, \sigma^2} \implies \forall x \in \R: f_X(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ e $Y=e^X$ (se denomina lognormal). Calculamos la derivada y la inversa de $g(x)=e^x$.
-	\[\implies g'(x)=e^x \quad \we \quad  \odv{}{y} g^{-1} (y) = \ln{y} \quad \we \quad  \odv{}{y} g^{-1} (y) = \frac{1}{y}\]
+	\[\implies g'(x)=e^x \quad \we \quad  g^{-1} (y) = \ln{y} \quad \we \quad  \odv{}{y} g^{-1} (y) = \frac{1}{y}\]
 	Como $g$ es estrictamente creciente, aplicamos el teorema anterior:
 	\[f_Y(y) = \begin{cases}
 			0,                                                                                 & \text{ si } y\leq 0 \\
@@ -180,42 +177,60 @@ Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{X(\Omega)}{\R}$ un
 
 \subsection{Esperanzas de v.a.c.}
 \begin{defn}[Esperanza]
-	Sea $X$ una v.a.c. con función de densidad $f_X$. $E(X)$ es la esperanza de $X$
-	\[\iff E(X) = \int_{-\infty}^{\infty} x \cdot f_X(x) \odif{x}\]
-	Siempre que haya convergencia absoluta $\ds \iff \int_{-\infty}^{\infty} \abs{x} \cdot f_X(x) \odif{x} < \infty$.
+	Sea $X$ una v.a.c. con función de densidad $f_X$. $E(X)$ es la esperanza de $X \ds \iff \boxed{E(X) = \int_{-\infty}^{\infty} x \cdot f_X(x) \odif{x}}$
+
+	Siempre que haya convergencia absoluta $\ds \left(\iff \int_{-\infty}^{\infty} \abs{x} \cdot f_X(x) \odif{x} < \infty\right)$.
 \end{defn}
 
 \begin{teo}
-	Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{\R}{\R}$ una función diferenciable y estrictamente creciente.
-	\[\implies E(g(X)) = \int_{-\infty}^{\infty} g(x) \cdot f_X(x) \odif{x}\]
+	Sea $X$ una v.a.c. con función de densidad $f_X$ y $\appl{g}{\R}{\R}$ una función diferenciable y estrictamente creciente $\ds \implies E(g(X)) = \int_{-\infty}^{\infty} g(x) \cdot f_X(x) \odif{x}$
 	\begin{dem}
-		\[\begin{aligned} %TODO: Por terminar
-				E(g(X)) & = \int_{-\infty}^{\infty} y \cdot f_Y(y) \odif{y} = \int_{-\infty}^{\infty} y \cdot f_X\big(g^{-1}(y)\big) \frac{1}{g'\big(g^{-1}(y)\big)} \odif{y} = ??? \\
-				        & = \int_{-\infty}^{\infty} g(x) \cdot f_X(x) \odif{x}
-			\end{aligned}\]
+		\[E(g(X)) = \int_{-\infty}^{\infty} y \cdot f_Y(y) \odif{y} = \int_{-\infty}^{\infty} y \cdot f_X\big(g^{-1}(y)\big) \frac{1}{g'\big(g^{-1}(y)\big)} \odif{y}\]
+		Por el cambio de variable $y=g(x)\implies g^{-1}(y) = x \we \odif{y} = g'(x) \odif{x}$.
+		\[\implies E(g(X)) = \int_{-\infty}^{\infty} g(x) \cdot f_X(x) \frac{1}{g'(x)} \cdot g'(x) \odif{x} = \int_{-\infty}^{\infty} g(x) \cdot f_X(x) \odif{x}\]
 	\end{dem}
 \end{teo}
 
 \begin{ejem}
 	\begin{enumerate}
 		\item[]
-		\item Sea $X\sim\unif{a,b}$, entonces $f_X(x)=\frac{1}{b-a}\cdot \mathbbm{1}_{[a,b]}(x)$.
-		      \[\implies E(X) = \int_{a}^{b} x \cdot \frac{1}{b-a} \odif{x} = \frac{1}{b-a} \left[\frac{x^2}{2}\right]_{a}^{b} = \frac{b^2-a^2}{2(b-a)} = \frac{a+b}{2}\]
-		      \[V(X) = E(X^2) - E(X)^2 = \int_{a}^{b} x^2 \cdot \frac{1}{b-a} \odif{x} - \left(\frac{a+b}{2}\right)^2 = \frac{1}{b-a} \left[\frac{x^3}{3}\right]_{a}^{b} - \left(\frac{a+b}{2}\right)^2 = \frac{b^3-a^3}{3(b-a)} - \left(\frac{a+b}{2}\right)^2 = \frac{(b-a)^2}{12}\]
-		\item Sea $X\sim\EXP{\lambda}, \lambda > 0$, entonces $f_X(x)=\lambda e^{-\lambda x} \cdot \mathbbm{1}_{[0,\infty)}(x)$.
-		      \[\implies E(X)= \int_{0}^{\infty} x \cdot \lambda e^{-\lambda x} \odif{x} = \left[-x e^{-\lambda x}\right]_{0}^{\infty} + \int_{0}^{\infty} e^{-\lambda x} \odif{x} = 0 + \left[-\frac{1}{\lambda} e^{-\lambda x}\right]_{0}^{\infty} = \frac{1}{\lambda}\]
-		      \[V(X) = E(X^2) - E(X)^2 = \int_{0}^{\infty} x^2 \cdot \lambda e^{-\lambda x} \odif{x} - \left(\frac{1}{\lambda}\right)^2 = \frac{1}{\lambda^2}\]
+		\item Sea $\ds X\sim\unif{a,b}$, entonces $\ds f_X(x)=\frac{1}{b-a}\cdot \mathbbm{1}_{[a,b]}(x)$.
+		      \[\implies \lbox{E(X)} = \int_{a}^{b} x \cdot \frac{1}{b-a} \odif{x} = \frac{1}{b-a} \left[\frac{x^2}{2}\right]_{a}^{b} = \frac{b^2-a^2}{2(b-a)} = \rbox{\ds \frac{a+b}{2}}\]
+		      \[\begin{aligned}
+				      \implies \lbox{V(X)} & = E\left(X^2\right) - E(X)^2 = \int_{a}^{b} x^2 \cdot \frac{1}{b-a} \odif{x} - \left(\frac{a+b}{2}\right)^2 = \frac{1}{b-a} \left[\frac{x^3}{3}\right]_{a}^{b} - \left(\frac{a+b}{2}\right)^2 \\
+				                           & = \frac{b^3-a^3}{3(b-a)} - \left(\frac{a+b}{2}\right)^2 = \frac{b^2+ab+a^2}{3} - \frac{a^2+2ab+b^2}{4}                                                                                        \\
+				                           & = \frac{4b^2-4ab+4a^2-3a^2-6ab-3b^2}{12} = \frac{b^2-2ab+a^2}{12} = \rbox{\ds \frac{(b-a)^2}{12}}
+			      \end{aligned}\]
+		\item Sea $X\sim\EXP{\lambda}, \lambda > 0$, entonces $\ds f_X(x)=\lambda e^{-\lambda x} \cdot \mathbbm{1}_{[0,\infty)}(x)$.
+		      \[\implies \lbox{E(X)}= \int_{0}^{\infty} x \cdot \lambda e^{-\lambda x} \odif{x} = \left[-x e^{-\lambda x}\right]_{0}^{\infty} + \int_{0}^{\infty} e^{-\lambda x} \odif{x} = 0 + \left[-\frac{1}{\lambda} e^{-\lambda x}\right]_{0}^{\infty} = \rbox{\ds \frac{1}{\lambda}}\]
+		      \[\implies \lbox{V(X)} = E\left(X^2\right) - E(X)^2 = \int_{0}^{\infty} x^2 \cdot \lambda e^{-\lambda x} \odif{x} - \left(\frac{1}{\lambda}\right)^2 = \rbox{\ds \frac{1}{\lambda^2}} \tex{ porque }\]
+		      \[\int_{0}^{\infty} x^2 \cdot \lambda e^{-\lambda x} \odif{x} = \left[-x^2 e^{-\lambda x}\right]_{0}^{\infty} + 2\int_{0}^{\infty} x e^{-\lambda x} \odif{x} = 0 + 2 \cdot\frac{1}{\lambda^2} = \frac{2}{\lambda^2}\]
 		\item Sea $X\sim\normal{0, 1}$, entonces $\ds f_X(x)=\frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$.
-		      \[E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x} = 0 \tex{ por ser integrando impar.}\]
-		      \[V(X) = E(X^2) - E(X)^2 = \int_{-\infty}^{\infty} x^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x} - 0 = 1\] %TODO: hacer desarrollo por partes
+		      \[\lbox{E(X)} = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x} = \rbox{0} \tex{  (integrando impar en región centrada en el origen).}\]
+		      \[\begin{aligned}
+				      \lbox{V(X)} & = E(X^2) - E(X)^2 = \int_{-\infty}^{\infty} x^2 \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x} = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} x^2 \cdot e^{-\frac{x^2}{2}} \odif{x}                   \\
+				                  & = \frac{1}{\sqrt{2\pi}} \left(\left[-xe^{-\frac{x^2}{2}}\right]_{-\infty}^{\infty} + \int_{-\infty}^{\infty} e^{-\frac{x^2}{2}} \odif{x}\right) = \frac{1}{\sqrt{2\pi}} \left(0 + \sqrt{2\pi}\right) = \rbox{1}
+			      \end{aligned}\]
 		\item Sea $X\sim\normal{\mu, \sigma^2}$, entonces $\ds f_X(x)=\frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}}$.
-		      \[E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \odif{x} = \mu\]
-		      \[V(X) = E(X^2) - E(X)^2 = \int_{-\infty}^{\infty} x^2 \cdot \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \odif{x} - \mu^2 = \sigma^2\] %TODO: hacer desarrollo usando la función Gamma
+		      \[E(X) = \int_{-\infty}^{\infty} x \cdot \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \odif{x} = \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\infty} x \cdot e^{-\frac{(x-\mu)^2}{2\sigma^2}} \odif{x}\]
+		      Con el cambio de variable $t=\frac{x-\mu}{\sigma} \implies x=\sigma t + \mu \we \odif{x} = \sigma \odif{t}$.
+		      \[\begin{aligned}
+				      \implies\lbox{E(X)} & = \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\infty} (\sigma t + \mu) e^{-\frac{t^2}{2}} \sigma \odif{t} = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} (\sigma t + \mu) e^{-\frac{t^2}{2}} \odif{t}                            \\
+				                          & = \frac{1}{\sqrt{2\pi}} \left(\sigma \int_{-\infty}^{\infty} t e^{-\frac{t^2}{2}} \odif{t} + \mu \int_{-\infty}^{\infty} e^{-\frac{t^2}{2}} \odif{t}\right) = \frac{1}{\sqrt{2\pi}} \left(0 + \mu \sqrt{2\pi}\right) = \rbox{\mu}
+			      \end{aligned}\]
+		      \[\implies V(X) = E\left[\left(X-E(X)\right)^2\right]= \frac{1}{\sqrt{2\pi}\sigma} \int_{-\infty}^{\infty} (x-\mu)^2 e^{-\frac{(x-\mu)^2}{2\sigma^2}} \odif{x}\]
+		      Con el cambio de variable $t=\frac{x-\mu}{\sqrt{2}\sigma} \implies x=\sqrt{2}\sigma t + \mu \we \odif{x} = \sqrt{2}\sigma \odif{t}$.
+		      \[V(X) & = \frac{1}{\sqrt{\cancel{2}\pi}\cancel{\sigma}} \int_{-\infty}^{\infty} \left(\sqrt{2}\sigma t\right)^2 e^{-t^2} \cancel{\sqrt{2}\sigma} \odif{t} = \frac{2\sigma^2}{\sqrt{\pi}} \int_{-\infty}^{\infty} t^2 e^{-t^2} \odif{t} = \frac{4\sigma^2}{\sqrt{\pi}} \int_{0}^{\infty} t^2 e^{-t^2} \odif{t}\]
+		      Consideramos $\ds \Gamma(x) \defeq \int_{0}^{\infty} t^{x-1} e^{-t} \odif{t}$ y el cambio de variable $t^2 = u \implies 2t \odif{t} = \odif{u}$.
+		      \[\begin{aligned}
+				      \implies \lbox{V(X)} & = \frac{4\sigma^2}{\sqrt{\pi}} \int_{0}^{\infty} u e^{-u} \frac{1}{2\sqrt{u}} \odif{u} = \frac{2\sigma^2}{\sqrt{\pi}} \int_{0}^{\infty} u^{\frac{3}{2} - 1}e^{-u} \odif{u} = \frac{2\sigma^2}{\sqrt{\pi}} \Gamma\left(\frac{3}{2}\right) \\
+				                           & = \frac{\cancel{2}\sigma^2}{\sqrt{\pi}} \cdot \frac{1}{\cancel{2}} \cdot \Gamma\left(\frac{1}{2}\right) = \frac{\sigma^2}{\cancel{\sqrt{\pi}}} \cdot \cancel{\sqrt{\pi}} = \rbox{\sigma^2}
+			      \end{aligned}\]
 	\end{enumerate}
 \end{ejem}
 \fecha{21/03/2024}
-\subsubsection{Calculando con la normal $\left(\normal{\mu, \sigma^2}\right)$}
-Sea $X\sim\normal{\mu, \sigma^2}$ con parámetros$\mu\in\R$, $\sigma^2>0$\
+\subsubsection{Calculando con la normal \allbold{$\left(\normal{\mu, \sigma^2}\right)$}}
+Sea $X\sim\normal{\mu, \sigma^2}$ con parámetros $\mu\in\R$, $\sigma^2>0$\
 \[\implies f(x) = \frac{1}{\sqrt{2\pi}\sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \quad \we \quad F(x) = \int_{-\infty}^{x} f(y) \odif{y}\]
 El caso particular de $\normal{0, 1}$ se denota por $\phi(x) \defeq f(x)$ y $\Phi(x)\defeq F(x)$.
 \begin{center}
@@ -237,7 +252,7 @@ El caso particular de $\normal{0, 1}$ se denota por $\phi(x) \defeq f(x)$ y $\Ph
 	\end{tikzpicture}
 \end{center}
 
-\textbf{¡Basta con $\normal{0,1}$!}
+\allbold{¡Basta con $\normal{0,1}$!}
 \[X\sim\normal{0, 1} \implies Y\defeq\sigma X + \mu \sim \normal{\mu, \sigma^2}\]
 \[Y\sim\normal{\mu, \sigma^2} \implies X\defeq \frac{Y-\mu}{\sigma} \sim \normal{0, 1}\]
 Podemos tipificar cualquier variable aleatoria continua $X$ con esperanza $E(X)$ y varianza $V(X)$.

@@ -30,10 +30,10 @@
 \begin{ejem}[Diferentes modelos de distribución de probabilidad]
 	\begin{enumerate}
 		\item []
-		\item $X$ sigue una distribución \textbf{uniforme} en $\{1, \cdots, N\}, N\geq2$ $(X\sim\unif{N})$.
+		\item $X$ sigue una distribución \allbold{uniforme} en $\{1, \cdots, N\}, N\geq2$ $(X\sim\unif{N})$.
 		      \[\iff S=\{1, \cdots, N\} \we {\Pi_j}={\sfrac{1}{N}, \dots, \sfrac{1}{N}}\]
 		      Se usa para modelizar un lanzamiento de un dado regular de $N$ caras.
-		\item $X$ sigue una distribución de \textbf{Bernoulli} con parámetro $p$ ($X\sim\ber{p}$)
+		\item $X$ sigue una distribución de \allbold{Bernoulli} con parámetro $p$ ($X\sim\ber{p}$)
 		      \[\iff \begin{cases}
 				      p_X(x)=0 \iff x\ne 0, 1 \\
 				      p_X(1)=p \we p_X(0)=1-p
@@ -45,7 +45,7 @@
 		      experimento con dos posibles resultados, i.e. una moneda no necesariamente
 		      regular.
 		      \fecha{13/02/2024}
-		\item $X$ sigue una distribución \textbf{binomial} de parámetros $n\geq 1 \we p\in (0, 1)$ ($X\sim\bin{n, p}$)
+		\item $X$ sigue una distribución \allbold{binomial} de parámetros $n\geq 1 \we p\in (0, 1)$ ($X\sim\bin{n, p}$)
 		      \[\iff S=\{0, 1, \dots, n\} \we \forall j\in \{0, 1, \dots, n\}:P(X=j)=\binom{n}{j}p^j(1-p)^{n-j}\]
 		      Sirve para modelizar el número de caras que salen al lanzar $n$ veces una
 		      moneda de probabilidad $p$. \\
@@ -55,7 +55,7 @@
 			      \frac{n^n\sqrt{n}}
 			      {(\sfrac{n}{2})^{n}\sqrt{2\pi}(\sfrac{n}        {2})}=\frac{n^n\sqrt{2}}{(\sfrac{n}{2})^n\sqrt{\pi      n}}=2^n\sqrt{\frac{2}{\pi n}}\]
 		      \[\implies P\left(X=\frac{n}{2}\right) = \binom{n}{\sfrac{n}{2}}\frac{1}{2^n}\approx 2^n\sqrt{\frac{2}{\pi n}}\frac{1}{2^n}=\sqrt{\frac{2}{\pi n}}\]
-		\item $X$ sigue una distribución \textbf{geométrica} de parámetro
+		\item $X$ sigue una distribución \allbold{geométrica} de parámetro
 		      $p\in(0,1)$ ($X\sim\geom{p}$).
 		      \[\iff S=\{1, 2, \dots\} \we \forall j \geq 1 : P(X=j)=p(1-p)^{j-1}\]
 		      Sirve para modelizar el número de lanzamientos hasta que sale un resultado $C$
@@ -63,7 +63,7 @@
 		      \begin{obs}
 			      Cuidado porque existen variables aleatorias que también se dicen de distribución geométrica en las que $S=\{0, 1, 2, \dots\}$. Se habla de cuantas veces has obtenido el resultado complementario a $C$ antes de que halla salido $C$.
 		      \end{obs}
-		\item $X$ sigue una distribución de \textbf{Poisson} con parámetro
+		\item $X$ sigue una distribución de \allbold{Poisson} con parámetro
 		      $\lambda>0$ ($X\sim \poisson{\lambda}$)
 		      \[\iff S=\{0, 1, \dots\} \we \forall j \geq 0 : P(X=j)=e^{-\lambda}\frac{\lambda^j}{j!}\]
 		      Se usa para modelizar la frecuencia de eventos determinados durante un
@@ -173,7 +173,7 @@ Por otro lado,
 		\item $X \sim \unif{\{-1, 0, 1\}} \we Y=X^2 \implies E(X)=0 \we E(Y)=\sfrac{2}{3}$
 		\item $E(aX+b)=aE(X)+b$ porque
 		      \[\sum_{j\geq 1}(ax_j+b)p_j=a\sum_{j\geq 1}x_jp_j+b\sum_{j\geq 1}p_j=aE(X)+b\]
-		\item En general $E(g(X)) \ne g(E(X))$ \hfill \textbf{(Motivo de excomunión)}
+		\item En general $E(g(X)) \ne g(E(X))$ \hfill \allbold{(Motivo de excomunión)}
 		      \begin{ejem}[$X\sim\poisson{\lambda} \implies E(X)=\lambda$]
 			      Si $Y=g(X)=e^X$
 			      \[\implies E(Y)=E(e^Y)=\sum_{j=0}^\infty e^j\frac{\lambda^j}{j!}e^{-\lambda}=e^{-\lambda}\sum_{j=0}^\infty \frac{(e\lambda)^{j}}{j!}=e^{-\lambda}e^{e\lambda}=e^{\lambda(e-1)}\ne e^\lambda\]
@@ -227,15 +227,15 @@ Por otro lado,
 \end{ejem}
 
 \begin{defn}[Momentos de $X$]
-	Sea $X$ una v.a.d. con función de masa $p_X$, $\mu_k$ es el \textbf{$k$-ésimo momento} de $X \iff \mu_k= E\left[(X-E(X))^k\right]$
+	Sea $X$ una v.a.d. con función de masa $p_X$, $\mu_k$ es el \allbold{$k$-ésimo momento} de $X \iff \mu_k= E\left[(X-E(X))^k\right]$
 \end{defn}
 
 \begin{obs} Algunos momentos tienen nombre propio: \\
 	\begin{enumerate*}[itemjoin=\hspace{1cm}]
 		\item $\mu_1=0$
 		\item $\mu_2=V(X)$
-		\item $\mu_3$ es la \textbf{asimetría} de $X$
-		\item $\mu_4$ es la \textbf{curtosis} de $X$
+		\item $\mu_3$ es la \allbold{asimetría} de $X$
+		\item $\mu_4$ es la \allbold{curtosis} de $X$
 	\end{enumerate*}
 \end{obs}
 
@@ -243,7 +243,7 @@ Por otro lado,
 	Sea $X$ una v.a.d. $: P(X<0)=0 \we E(X)<\infty$
 	\[\implies \forall t >0 : P(X\geq t) \leq \frac{E(X)}{t}\]
 	\begin{dem}
-		\textbf{Notación:} En $(\Omega, \F, P)$, $A\subset \F$ y $\ds \mathbbm{1}_A(\omega) = \begin{cases}
+		\allbold{Notación:} En $(\Omega, \F, P)$, $A\subset \F$ y $\ds \mathbbm{1}_A(\omega) = \begin{cases}
 				1 \tex{ si } \omega \in A \\
 				0 \tex{ si } \omega \notin A
 			\end{cases}$ \\
@@ -275,7 +275,7 @@ Por otro lado,
 \vspace{-1.25cm}
 \subsubsection{Esperanza condicionada}
 \begin{defn}[Esperanza condicionada]
-	Sea $(\Omega, \F, P)$ un espacio de probabilidad $B\in \F$ un suceso tal que $P(B)>0$ y  $X$ una v.a.d. con esperanza $E(X)$, $E(X|B)$ es la \textbf{esperanza de $X$ condicionada a $B$}
+	Sea $(\Omega, \F, P)$ un espacio de probabilidad $B\in \F$ un suceso tal que $P(B)>0$ y  $X$ una v.a.d. con esperanza $E(X)$, $E(X|B)$ es la \allbold{esperanza de $X$ condicionada a $B$}
 	\[\iff E(X|B) \defeq \sum_{x\in X(\Omega)} x \cdot P(X=x | B) = \sum_{x\in X(\Omega)} x \cdot \frac{P((X=x)\we B)}{P(B)}\]
 	(Siempre que la serie sea absolutamente convergente).
 \end{defn}
@@ -391,7 +391,7 @@ Ya tenemos $X$ e $Y$ en $(\Omega, \F, P)$ con $P_{X,Y}$
 
 \begin{obs}
 	Si $X$ e $Y$ son independientes $\implies E(X\cdot Y)=E(X)\cdot E(Y)$. \\
-	Sin embargo, la implicación recíproca no es cierta. \hfill \textbf{(Motivo de excomunión)}
+	Sin embargo, la implicación recíproca no es cierta. \hfill \allbold{(Motivo de excomunión)}
 \end{obs}
 
 \begin{defn}[Covarianza]
@@ -480,7 +480,7 @@ Además $\rho(aX+b, cY+d) = \sgn{(ac)}\cdot\rho(X, Y)$. \fecha{04/03/2024}
 	\end{dem}
 \end{teo}
 
-\textbf{¿Qué pasaría con $(X_1, \dots, X_n)$ para $n=2$?}
+\allbold{¿Qué pasaría con $(X_1, \dots, X_n)$ para $n=2$?}
 \begin{enumerate}
 	\item Modelo $\longrightarrow$ función de masa conjunta $p_{X_1, \dots, X_n} (x_1,
 		      \dots, x_n)$
@@ -493,7 +493,7 @@ Además $\rho(aX+b, cY+d) = \sgn{(ac)}\cdot\rho(X, Y)$. \fecha{04/03/2024}
 	\item Independencia (la función de masa conjunta se factoriza)
 	      \[p_{X_1, \dots, X_n} (x_1, \dots, x_n) = p_{X_1}(x_1) \cdot \cdots \cdot p_{X_n}(x_n) \iff \tex{ independencia completa}\]
 	      Pero puede haber otras nociones de independencia (ej: $2$ a $2$).
-	\item \textbf{Matriz varianzas-covarianzas} y \textbf{matriz correlaciones} respectivamente
+	\item \allbold{Matriz varianzas-covarianzas} y \allbold{matriz correlaciones} respectivamente
 	      \[V = \begin{pmatrix}
 			      V(X_1)         & \cdots & \cov{X_1, X_n} \\
 			      \vdots         & \ddots & \vdots         \\
@@ -558,7 +558,7 @@ $\ds R \in [0, \infty)$ radio de convergencia tal que
 	\end{enumerate}
 \end{ejem}
 
-\textbf{¿Para qué?}
+\allbold{¿Para qué?}
 \begin{enumerate}
 	\item Cálculo de momentos con $(p_n)_{n=0}^\infty$
 	      \[ G_X(s)=\sum_{n=0}^\infty p_ns^n \implies G_X'(s) = \sum_{n=1}^{\infty} np_n s^{n-1} \implies G_X'(1) = \sum_{n=1}^{\infty} n p_n = E(X)\]
