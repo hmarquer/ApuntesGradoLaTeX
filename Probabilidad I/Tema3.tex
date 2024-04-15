@@ -495,6 +495,45 @@ Definimos $D\defeq \{(x, y) \in \R : f_{X, Y}(x, y) > 0\}$ y sea $B \subset T(D)
 
 \fecha{10/04/2024}
 
+Sean $X, Y$ dos variables con función de densidad conjunta $f_{X, Y}$, consideramos una función $\appl{g}{\R^2}{\R}$ ``razonable''$^{(*)}$ y definimos $Z \defeq g(X, Y)$. Queremos calcular $E(Z), V(Z)$.
+
+\hfill $(*)$ $g$ cumple que $\ds \forall z \in \R : \{\omega \in \Omega : g(X(\omega), Y(\omega)) \leq z\} \in \F$
+\begin{teo}
+	Sean $X, Y$ dos variables aleatorias con $f_{X, Y}$ y $Z \defeq g(X, Y)$ con $\appl{g}{\R^2}{\R}$
+	\[\implies E(Z)= \int_{-\infty}^{\infty} z \cdot f_Z(z) \odif{z} = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} g(x, y) \cdot f_{X, Y} (x, y) \odif{x} \odif{y}\]
+\end{teo}
+\begin{obs}
+	\begin{enumerate}
+		\item $\ds \forall \alpha, \beta \in \R : E(\alpha X + \beta Y) = \alpha E(X) + \beta E(Y)$
+		\item $\ds E(X\cdot Y) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x\cdot y \cdot f_{X, Y}(x, y) \odif{x} \odif{y}$
+		      \[\cov{X, Y} = E(X\cdot Y) - E(X)E(Y) \quad\we\quad \rho(X, Y) = \frac{\cov{X, Y}}{\sqrt{V(X)V(Y)}}\]
+		      \[\implies X, Y \tex{ indep} \stackrel{\nimpliedby}{\implies} \rho(X, Y) = 0\]
+		\item $X, Y$ indep. $\iff f_{X, Y}$ se factoriza
+		      \[\implies X, Y \tex{ indep.}\iff \forall \appl{g, h}{\R}{\R} : E(g(X)h(Y)) = E(g(X))E(h(Y))\]
+		\item Esperanza condicionada y total
+		      \[\begin{aligned}
+				      E(Y \vert X=x) & = \int_{-\infty}^{\infty} y\cdot f_{Y\vert X=x} (y) \odif{y} = \int_{-\infty}^{\infty} y\cdot \frac{f_{X, Y}(x, y)}{f_X(x)} \odif{y} \\
+				      \implies E(Y)  & = \int_{-\infty}^{\infty} E(Y \vert X=x) \cdot f_X(x) \odif{x}
+			      \end{aligned}\]
+	\end{enumerate}
+\end{obs}
+\allbold{¿Y qué hay de $f_Z(z)$?}
+Definimos $A_{g}(z) \defeq \{(x, y) \in \R^2 : g(x, y) \leq z\}$
+\[\forall z \in \R : F_Z(z)= P(Z \leq z) = P(g(X, Y) \leq z) = P((X, Y) \in A_g(z)) = \iint_{A_{g}(z)} f_{X, Y}(x, y) \odif{x} \odif{y}\]
+\[\implies \forall z \in \R : f_Z(z) = \begin{cases}
+		\pdv{}{z} F_Z(z) & \text{si la derivada existe} \\
+		0                & \text{en otro caso}
+	\end{cases}\]
+\begin{ejem}[El caso de la suma]
+	Sean $X, Y$ dos v.a. con $f_{X, Y}$ y $Z \defeq X + Y$. Entonces $A_+(z) \defeq \{(x, y) \in \R^2 : x+y \leq z\}$.
+	\[\implies \forall z \in \R : F_Z(z) = \iint_{A_+(z)} f_{X, Y}(x, y) \odif{x} \odif{y} = \int_{-\infty}^{\infty} \int_{-\infty}^{z-x} f_{X, Y}(x, y) \odif{y} \odif{x}\]
+	Mediante el cambio de variables $u = x \we v = x+y$ se tiene
+	\[T(x, y) = (x, x+y) \implies T^{-1}(u, v) = (u, v-u) \implies \operatorname{J}(u, v) = \begin{vmatrix} 1 & 0 \\ -1 & 1\end{vmatrix} = 1\]
+	\[\implies F_Z(z) = \int_{-\infty}^{z} \int_{-\infty}^{\infty} f_{X, Y}(u, v-u) \odif{u} \odif{v} \implies \lbox{f_Z(z)} = \odv{}{z} F_Z(z) = \rbox{\ds \int_{-\infty}^{\infty} f_{X, Y}(u, z-u) \odif{u}}\]
+	\allbold{Caso particular:} Si $X, Y$ independientes$\implies f_{X, Y}(x, y) = f_X(x) \cdot f_Y(y)$
+	\[\implies \forall z \in \R : \lbox{\ds f_{X+Y}(z)} = \int_{-\infty}^{\infty} f_X(u) \cdot f_Y(z-u) \odif{u} \eqdef \rbox{\ds (f_X * f_Y)(z)}\]
+\end{ejem}
+
 \fecha{11/04/2024}
 
 \subsection{Convolución}
@@ -513,26 +552,26 @@ Ahora, sean $X$ e $Y$ dos v.a.c. indep. con funciones de densidad $f_X$ y $f_Y$ 
 	$(*)$ porque $-\frac{1}{2}(z^2 + 2u^2 - 2uz) = -\frac{1}{2}\left(2u^2 - 2uz +\frac{z^2}{2} + \frac{z^2}{2}\right) = -\frac{1}{2}\left[\left(\sqrt{2}u - \frac{z}{\sqrt{2}}\right)^2 + \frac{z^2}{2}\right]$.
 
 	Por el cambio de variables $w = \sqrt{2} u - \frac{z}{\sqrt{2}} \implies \odif{w} = \sqrt{2} \odif{u} $, se tiene
-	\[\forall z \in \R : f_Z(z) = \frac{1}{\sqrt{2}} \frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{4}} \cancelto{1}{\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{w^2}{2}} \odif{w}} = \frac{1}{2\sqrt{\pi}} e^{-\frac{z^2}{4}} \implies Z \sim \normal{0, \sqrt{2}}\]
+	\[\forall z \in \R : f_Z(z) = \frac{1}{\sqrt{2}} \frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{4}} \cancelto{1}{\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{w^2}{2}} \odif{w}} = \frac{1}{2\sqrt{\pi}} e^{-\frac{z^2}{4}} \implies Z \sim \normal{0, \left(\sqrt{2}\right)^2}\]
 	\textbf{Moraleja:} la suma de normales independientes es una normal.
-	% \begin{ejer} Sean $\forall i \in \N_n : X_i \sim \normal{0, 1}$ indep.$\implies \ds Z_n \defeq \sum_{i=1}^{n} X_i \sim \normal{0, \sqrt{n}}$.
-	% 	\begin{dem}
-	% 		Por inducción suponemos que $\ds Z_{n-1} \sim \normal{0, \sqrt{n-1}}$.
-	% 		\[\begin{aligned}
-	% 				\forall z \in \R : f_{Z_n}(z) & = \left(f_{Z_{n-1}} * f_{X_1}\right)(z) = \int_{-\infty}^{\infty} f_{Z_{n-1}}(u) \cdot f_{X_1}(z-u) \odif{u}                                                  \\
-	% 				                              & \stackrel{\tex{HI}}{=} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}(n-1)} e^{-\frac{u^2}{2(n-1)}} \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{(z-u)^2}{2}} \odif{u} \\
-	% 				                              & = \frac{1}{\sqrt{2\pi}(n-1)} \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left[\frac{u^2}{n-1} + \left(z-u\right)^2\right]} \odif{u}         \\
-	% 			\end{aligned}\]
-	% 		Completamos cuadrados: $\ds -\frac{1}{2}\left[\frac{u^2}{n-1} + \left(z-u\right)^2\right] = -\frac{1}{2}\left[\frac{u^2}{n-1} + z^2 - 2uz + u^2\right]$
-	% 		\[= -\frac{1}{2}\left[u^2\left(\frac{1}{n-1} + 1\right) - 2uz + \frac{z^2}{n} + \frac{n-1}{n}z^2\right] = -\frac{1}{2} \left(u^2\frac{n}{n-1} -2uz + \frac{n-1}{n}z^2\right) - \frac{z^2}{2n}\]
-	% 		\[\implies -\frac{1}{2}\left[\frac{u^2}{n-1} + \left(z-u\right)^2\right] = -\frac{1}{2} {\left(u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}}\right)}^2 - \frac{z^2}{2n}\]
-	% 		\[\implies \forall z \in \R : f_{Z_n}(z) = \frac{1}{\sqrt{2\pi} (n-1)} e^{-\frac{z^2}{2n}} \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2} {\left(u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}}\right)}^2} \odif{u}\]
-	% 		Por el cambio de variables $\ds w = u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}} \implies \odif{w} = \sqrt{\frac{n}{n-1}} \odif{u}$, se tiene
-	% 		\[\begin{aligned}
-	% 				f_{Z_n}(z) & = \frac{1}{\sqrt{2\pi} (n-1)} e^{-\frac{z^2}{2n}} \frac{1}{\sqrt{2\pi}} \sqrt{\frac{n-1}{n}} \int_{-\infty}^{\infty} e^{-\frac{1}{2} w^2} \odif{w} =
-	% 			\end{aligned}\]
-	% 	\end{dem}
-	% \end{ejer}
+	\begin{ejer} Sean $\forall i \in \N_n : X_i \sim \normal{0, 1}$ indep.$\implies \ds Z_n \defeq \sum_{i=1}^{n} X_i \sim \normal{0, n}$.
+		\begin{dem}
+			Por inducción suponemos que $\ds Z_{n-1} \sim \normal{0, n-1}$.
+			\[\begin{aligned}
+					\forall z \in \R : f_{Z_n}(z) & = \left(f_{Z_{n-1}} * f_{X_1}\right)(z) = \int_{-\infty}^{\infty} f_{Z_{n-1}}(u) \cdot f_{X_1}(z-u) \odif{u}                                                    \\
+					                              & \stackrel{\tex{HI}}{=} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}(n-1)} e^{-\frac{u^2}{2(n-1)^2}} \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{(z-u)^2}{2}} \odif{u} \\
+					                              & = \frac{1}{\sqrt{2\pi}(n-1)} \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left[\frac{u^2}{(n-1)^2} + \left(z-u\right)^2\right]} \odif{u}       \\
+				\end{aligned}\]
+			Completamos cuadrados: $\ds -\frac{1}{2}\left[\frac{u^2}{(n-1)^2} + \left(z-u\right)^2\right] = -\frac{1}{2}\left[\frac{u^2}{(n-1)^2} + z^2 - 2uz + u^2\right]$
+			\[= -\frac{1}{2}\left[u^2\left(\frac{1 + n^2 -2n +1}{(n-1)^2}\right) - 2uz + \frac{z^2}{n} + \frac{n-1}{n}z^2\right] = -\frac{1}{2} \left(u^2\frac{n}{n-1} -2uz + \frac{n-1}{n}z^2\right) - \frac{z^2}{2n}\]
+			\[\implies -\frac{1}{2}\left[\frac{u^2}{n-1} + \left(z-u\right)^2\right] = -\frac{1}{2} {\left(u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}}\right)}^2 - \frac{z^2}{2n}\]
+			\[\implies \forall z \in \R : f_{Z_n}(z) = \frac{1}{\sqrt{2\pi} (n-1)} e^{-\frac{z^2}{2n}} \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2} {\left(u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}}\right)}^2} \odif{u}\]
+			Por el cambio de variables $\ds w = u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}} \implies \odif{w} = \sqrt{\frac{n}{n-1}} \odif{u}$, se tiene
+			\[\begin{aligned}
+					f_{Z_n}(z) & = \frac{1}{\sqrt{2\pi} (n-1)} e^{-\frac{z^2}{2n}} \frac{1}{\sqrt{2\pi}} \sqrt{\frac{n-1}{n}} \int_{-\infty}^{\infty} e^{-\frac{1}{2} w^2} \odif{w} =
+				\end{aligned}\]
+		\end{dem}
+	\end{ejer}
 \end{ejem}
 
 \begin{ejem}[Normal bidimensional]
@@ -549,7 +588,4 @@ Ahora, sean $X$ e $Y$ dos v.a.c. indep. con funciones de densidad $f_X$ y $f_Y$ 
 	Es decir, $Y \vert X = x \sim \normal{\rho x, 1-\rho^2}$.
 	\[\implies E(Y \vert X = x) = \int_{-\infty}^{\infty} y \cdot \frac{1}{\sqrt{2\pi(1-\rho^2)}} e^{-\frac{1}{2(1-\rho^2)}\left(y-\rho x\right)^2} \odif{y} = \rho x\]
 	\[\implies \lbox{E(X\cdot Y)} = \int_{-\infty}^{\infty} x \cdot \rho x \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x} = \rho \underbrace{\int_{-\infty}^{\infty} x^2 f_X(x) \odif{x}}_{E\left(X^2\right)} = \rbox{\rho}\]
-
-
-
 \end{ejem}

@@ -74,3 +74,28 @@ Si $X\sim\normal{\mu, \sigma^2}$ en su lugar:
 		\frac{\ln{50}-\mu}{\sigma} = \Phi^{-1}(0.45) \implies \mu = \ln{50} - \Phi^{-1}(0.45)\sigma
 	\end{cases}\]
 \[\implies \sigma = \frac{\ln{50}-\ln{40}}{\Phi^{-1}(0.45)-\Phi^{-1}(0.40)}\]
+
+\subsection{Hoja 4}
+
+\allbold{6.} Sean $X, Y \sim \exp{\lambda}$ independientes $\ds \implies P(\max{X, Y} \leq aX) = \begin{cases}
+		0             & \tex{ si } a \leq 1 \\
+		\frac{a}{1+a} & \tex{ si } a > 1
+	\end{cases}$
+\begin{dem}
+	\[\implies \forall x, y > 0 : f_{X, Y} (x, y) = \lambda^2 e^{-\lambda x} e^{-\lambda y}\]
+\end{dem}
+
+\allbold{7.} Sean $X, Y$ con función de densidad conjunta $f_{X, Y}$ y $\ds Z\defeq \frac{Y}{X}$
+\[\implies f_{Z}(z) = \int_{-\infty}^{\infty} \abs{x} f_{X, Y} (x, z-x) \odif{x}\]
+\begin{dem}
+	\[P(Z\leq z) = P\left(\frac{Y}{X} \leq z\right) = \begin{cases}
+			P(Y \leq zX) & \tex{ si } X > 0 \\
+			P(Y \geq zX) & \tex{ si } X < 0
+		\end{cases}\]
+
+\end{dem}
+
+\allbold{8.} Sean $X$ e $Y$ dos v.a. indep. con $\ds f_X = xe^{-\frac{x^2}{2}} \cdot \mathbbm{1}_{\{x>0\}}(x)$ e $Y\sim\unif{[-\varepsilon,\varepsilon]} \implies f_Y(y) =\frac{1}{2\varepsilon} \cdot \mathbbm{1}_{-\varepsilon<y<\varepsilon}(y)$. Definimos $Z\defeq X+Y$. \\
+\hfill \allbold{Nota:} En un escenario de la vida real, $Y$ representa un error.
+\[\forall z \geq -\varepsilon : f_Z(z) = \int_{-\infty}^{\infty} f_X(u) f_Y(z-u)\odif{u} = \int_{-\infty}^{\infty} ue^{-\frac{u^2}{2}} \cdot \mathbbm{1}_{\{u>0\}}(u)\cdot \frac{1}{2\varepsilon} \cdot \mathbbm{1}_{\{-\varepsilon<z-u<\varepsilon\}} (u) \odif{u}\]
+\[\implies f_Z(z) = \]

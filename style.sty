@@ -109,7 +109,12 @@
 }
 \newcommand\contr{\longrightarrow\longleftarrow}
 \newcommand\allbold[1]{\textbf{\boldmath#1}}
-
+\newcommand{\nimplies}{
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\implies$}}}}
+  \newcommand{\nimpliedby}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\impliedby$}}}}
+\newcommand{\niff}{%
+  \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\iff$}}}}
 \newcommand{\lbox}[1]{{%
   \let\@frameb@x\l@frameb@x\fbox{$#1$}%
 }}
