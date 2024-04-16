@@ -77,6 +77,21 @@ Si $X\sim\normal{\mu, \sigma^2}$ en su lugar:
 
 \subsection{Hoja 4}
 
+\allbold{4.} Sean $X, Y$ dos variables aleatorias independientes idénticas $\left(f\defeq f_X \equiv f_Y\right)$.\\
+Definimos $M \defeq \max{X, Y}\we m \defeq \min{X, Y}$.
+\[\begin{aligned}
+		F_m (z) & = P(\min{X, Y} \leq z) = 1- P(\min{X, Y} > z) = 1- P(X > z \we Y > z) \\
+		        & = 1- P(X>z)\cdot P(Y>z) = 1- P(X>z)^2 = 1 - \left(1- F(z)\right)^2
+	\end{aligned}\]
+\[\implies f_M (z) = \odv{}{z} F_M(z) = 2\left(1-F(z)\right)f(z)\]
+Análogamente $F_m(z) = F(z)^2 \implies f_m(z) = 2F(z)f(z)$
+
+Si ahora tenemos $X_1, \dots, X_n$ independientes con $F_i, f_i$, $\begin{aligned}
+		M\defeq \max{\{X_1, \cdots, X_n\}} \\
+		m\defeq \min{\{X_1, \cdots, X_n\}}
+	\end{aligned}$:
+\[\implies F_m(z) = 1-\prod_{i=1}^n \left(1- F_i(z)\right) \we F_M(z) = \prod_{i=1}^n F_i(z)\]
+
 \allbold{6.} Sean $X, Y \sim \exp{\lambda}$ independientes $\ds \implies P(\max{X, Y} \leq aX) = \begin{cases}
 		0             & \tex{ si } a \leq 1 \\
 		\frac{a}{1+a} & \tex{ si } a > 1
@@ -99,3 +114,6 @@ Si $X\sim\normal{\mu, \sigma^2}$ en su lugar:
 \hfill \allbold{Nota:} En un escenario de la vida real, $Y$ representa un error.
 \[\forall z \geq -\varepsilon : f_Z(z) = \int_{-\infty}^{\infty} f_X(u) f_Y(z-u)\odif{u} = \int_{-\infty}^{\infty} ue^{-\frac{u^2}{2}} \cdot \mathbbm{1}_{\{u>0\}}(u)\cdot \frac{1}{2\varepsilon} \cdot \mathbbm{1}_{\{-\varepsilon<z-u<\varepsilon\}} (u) \odif{u}\]
 \[\implies f_Z(z) = \]
+
+\allbold{Experimento:} Sean $X, Y \sim \normal{0, 1}$ independientes. Definimos $Z\defeq \sqrt{X^2 + Y^2}$.
+\[E(Z) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \sqrt{x^2 + y^2} \frac{1}{2\pi} e^{-\frac{x^2+y^2}{2}} \odif{x}\odif{y}\]

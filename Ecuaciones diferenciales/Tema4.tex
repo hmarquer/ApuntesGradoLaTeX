@@ -51,4 +51,67 @@ Sea $X'=A(t)X$ un sistema lineal homogéneo (SLH). Sean $X(t)$ y $Y(t)$ solucion
 	\[\iff \left(\forall t \in (a, b) : \sum_{j=1}^{k} \alpha_i X_i (t) = 0 \implies \alpha_1 = \cdots = \alpha_k = 0 \right)\]
 \end{defn}
 
-% Si $X_1, X_2, \ldots, rñlASNfvñnñzsd FALTA ALGO  FALTA ALGO  FALTA ALGO  FALTA ALGO$
+Si $X_1(\Bar{t}) , \dots , X_k(\Bar{t})$ para algún $\Bar{t} \in (a,b)$, tenemos que las funciones son linealmente independientes:
+\[\forall t \in (a,b) : \sum_{i=1}^k \alpha_i X_i(t) = 0 \implies \sum_{i=1}^k \alpha_i X_i(\Bar{t}) = 0 \implies \forall i \implies X_i : \forall i : \alpha_i = 0  \text{ linealmente independiente }\]
+
+\fecha{15/04/2024}
+
+\begin{prop}
+	Sean $A(t) = \left(a^i_j(t)\right) \we a^i_j \in \mathcal{C}((a,b)) \we i,j=1,\ldots,d$
+	\[\implies \dim{\{\appl{X}{(a,b)}{\R^d} : X'=A(t)X\}} = d\]
+	\begin{dem}
+		Para cada $j=1, \dots, d$, sea $\Pi_j(t;t_0)$ la solución (única) de
+		\[\forall t \in (a,b) : X'=A(t)X \we X(t_0) = e_j\]
+		donde $e_j$ es el vector $j$-ésimo de la base canónica de $\R^d$. Sabemos que $\ds \left\{\Pi_j(t_0; t_0)\right\}_{j=1}^d \,(*)$ es linealmente independiente. Por tanto, $\ds \left\{\Pi_j\right\}_{j=1}^d$ es linealmente independiente. \\
+		\hspace*{\fill} $(*)$ Se denominan soluciones principales del SLH.
+
+		Veamos ahora que $\ds \left\{\Pi_j\right\}_{j=1}^d$ es un sistema generador de las soluciones del SLH. Sea $X(t)$ una solución del SLH. Denotamos $X_0=X(t_0) \in \R^d$. Escribimos $X_0$ como combinación lineal de la base canónica de $\R^d$: $\ds X_0 = \sum_{j=1}^{d} X_0^j e_j$.
+
+		Definimos la función $\ds \forall t \in (a, b) : Y(t)\defeq \sum_{j=1}^{d} X_0^j \cdot \Pi_j(t;t_0)$. Observamos que
+		\begin{itemize}
+			\item $Y$ es combinación lineal de soluciones del SLH, luego también es solución del SLH.
+			\item $Y(t_0) = \sum_{j=1}^{d} X_0^j e_j = X_0$
+		\end{itemize}
+		Por unicidad, $\ds X = Y = \sum_{j=1}^{d} X_0^j \Pi_j(t;t_0)$.
+	\end{dem}
+\end{prop}
+
+Supongamos que tenemos un conjunto $\left\{\phi_1, \dots, \phi_d\right\}$ de soluciones del SLH. ¿Cómo sabemos si son linealmente independientes?
+\[\exists \Bar(t) \in (a,b) : \det{\left(\phi_1, \dots, \phi_d\right)} \neq 0 \iff \{\phi_j(\Bar(t))\}_{j=1}^d\tex{ son vectores l.i.}\]
+
+\begin{defn}[Wronskiano]
+	Sean $\appl{X_j}{(a,b)}{\R^d}, j=1, \dots, d$ funciones $W\left[X_1, \dots, X_d\right]$ es su wronskiano
+	\[\iff \forall t \in (a,b) : W\left[X_1, \dots, X_d\right](t) = \det{\left(X_1(t), \dots, X_d(t)\right)}\]
+\end{defn}
+
+Ya sabemos que si $W\left[X_1, \dots, X_d\right](\Bar{t}) \neq 0$ para algún $\Bar{t}\in(a,b)$ entonces $\{X_1, \dots, X_d\}$ son l.i. Sin embargo, si $W\left[X_1, \dots, X_d\right](t)$ se anula en algún punto (o en todos), no podemos afirmar que sean linealmente dependientes.
+
+\begin{ejem}
+	Sea $X_1 = \begin{pmatrix}
+			t^3 \\
+			3t^2
+		\end{pmatrix} \we X_2 = \begin{cases}
+			\begin{pmatrix}
+				-t^3 \\
+				-3t^2
+			\end{pmatrix} & t \in (-1, 0] \\
+			\begin{pmatrix}
+					t^3 \\
+					3t^2
+				\end{pmatrix} & t \in [0, 1)
+		\end{cases} \implies X_1, X_2 \in \mathcal{C}((-1, 1), \R^2)$.
+	\[\forall t \in (-1, 0] : W\left[X_1, X_2\right](t) = \det{\begin{pmatrix}
+					t^3  & -t^3  \\
+					3t^2 & -3t^2
+				\end{pmatrix}} = 0\]
+		\[\forall t \in [0, 1) : W\left[X_1, X_2\right](t) = \det{\begin{pmatrix}
+				t^3  & t^3  \\
+				3t^2 & 3t^2
+			\end{pmatrix}} = 0\]
+	Sin embargo, veamos que $X_1, X_2$ son l.i. como funciones. Sean $\alpha, \beta \in \R$ tales que $\forall t \in (-1, 1) :\alpha X_1(t) + \beta X_2(t) = 0$. Si $t \in (-1, 0)$, entonces $\alpha X_1(t) + \beta X_2(t) = 0 \implies (\alpha - \beta)X_1(t) = 0 \implies \alpha = \beta$. Si $t \in [0, 1)$, entonces $\alpha X_1(t) + \beta X_2(t) = 0 \implies (\alpha + \beta)X_1(t) = 0 \implies \alpha = -\beta$. Por tanto, $\alpha = \beta = 0$.
+\end{ejem}
+
+\begin{prop}
+	Sean $X_1, \dots, X_d$ soluciones del SLH.
+	\[\implies \forall t \in (a, b) : W\left[X_1, \dots, X_d\right](t) = 0 \niff  \forall t_0 \in (a, b) : W\left[X_1, \dots, X_d\right](t_0) \neq 0\]
+\end{prop}
