@@ -554,25 +554,26 @@ Ahora, sean $X$ e $Y$ dos v.a.c. indep. con funciones de densidad $f_X$ y $f_Y$ 
 	Por el cambio de variables $w = \sqrt{2} u - \frac{z}{\sqrt{2}} \implies \odif{w} = \sqrt{2} \odif{u} $, se tiene
 	\[\forall z \in \R : f_Z(z) = \frac{1}{\sqrt{2}} \frac{1}{\sqrt{2\pi}} e^{-\frac{z^2}{4}} \cancelto{1}{\frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{w^2}{2}} \odif{w}} = \frac{1}{2\sqrt{\pi}} e^{-\frac{z^2}{4}} \implies Z \sim \normal{0, \left(\sqrt{2}\right)^2}\]
 	\textbf{Moraleja:} la suma de normales independientes es una normal.
-	\begin{ejer} Sean $\forall i \in \N_n : X_i \sim \normal{0, 1}$ indep.$\implies \ds Z_n \defeq \sum_{i=1}^{n} X_i \sim \normal{0, n}$.
-		\begin{dem}
-			Por inducción suponemos que $\ds Z_{n-1} \sim \normal{0, n-1}$.
-			\[\begin{aligned}
-					\forall z \in \R : f_{Z_n}(z) & = \left(f_{Z_{n-1}} * f_{X_1}\right)(z) = \int_{-\infty}^{\infty} f_{Z_{n-1}}(u) \cdot f_{X_1}(z-u) \odif{u}                                                    \\
-					                              & \stackrel{\tex{HI}}{=} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}(n-1)} e^{-\frac{u^2}{2(n-1)^2}} \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{(z-u)^2}{2}} \odif{u} \\
-					                              & = \frac{1}{\sqrt{2\pi}(n-1)} \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left[\frac{u^2}{(n-1)^2} + \left(z-u\right)^2\right]} \odif{u}       \\
-				\end{aligned}\]
-			Completamos cuadrados: $\ds -\frac{1}{2}\left[\frac{u^2}{(n-1)^2} + \left(z-u\right)^2\right] = -\frac{1}{2}\left[\frac{u^2}{(n-1)^2} + z^2 - 2uz + u^2\right]$
-			\[= -\frac{1}{2}\left[u^2\left(\frac{1 + n^2 -2n +1}{(n-1)^2}\right) - 2uz + \frac{z^2}{n} + \frac{n-1}{n}z^2\right] = -\frac{1}{2} \left(u^2\frac{n}{n-1} -2uz + \frac{n-1}{n}z^2\right) - \frac{z^2}{2n}\]
-			\[\implies -\frac{1}{2}\left[\frac{u^2}{n-1} + \left(z-u\right)^2\right] = -\frac{1}{2} {\left(u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}}\right)}^2 - \frac{z^2}{2n}\]
-			\[\implies \forall z \in \R : f_{Z_n}(z) = \frac{1}{\sqrt{2\pi} (n-1)} e^{-\frac{z^2}{2n}} \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2} {\left(u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}}\right)}^2} \odif{u}\]
-			Por el cambio de variables $\ds w = u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}} \implies \odif{w} = \sqrt{\frac{n}{n-1}} \odif{u}$, se tiene
-			\[\begin{aligned}
-					f_{Z_n}(z) & = \frac{1}{\sqrt{2\pi} (n-1)} e^{-\frac{z^2}{2n}} \frac{1}{\sqrt{2\pi}} \sqrt{\frac{n-1}{n}} \int_{-\infty}^{\infty} e^{-\frac{1}{2} w^2} \odif{w} =
-				\end{aligned}\]
-		\end{dem}
-	\end{ejer}
 \end{ejem}
+
+% 	\begin{ejer} Sean $\forall i \in \N_n : X_i \sim \normal{0, 1}$ indep.$\implies \ds Z_n \defeq \sum_{i=1}^{n} X_i \sim \normal{0, n}$.
+% 		\begin{dem}
+% 			Por inducción suponemos que $\ds Z_{n-1} \sim \normal{0, n-1}$.
+% 			\[\begin{aligned}
+% 					\forall z \in \R : f_{Z_n}(z) & = \left(f_{Z_{n-1}} * f_{X_1}\right)(z) = \int_{-\infty}^{\infty} f_{Z_{n-1}}(u) \cdot f_{X_1}(z-u) \odif{u}                                                    \\
+% 					                              & \stackrel{\tex{HI}}{=} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}(n-1)} e^{-\frac{u^2}{2(n-1)^2}} \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{(z-u)^2}{2}} \odif{u} \\
+% 					                              & = \frac{1}{\sqrt{2\pi}(n-1)} \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left[\frac{u^2}{(n-1)^2} + \left(z-u\right)^2\right]} \odif{u}       \\
+% 				\end{aligned}\]
+% 			Completamos cuadrados: $\ds -\frac{1}{2}\left[\frac{u^2}{(n-1)^2} + \left(z-u\right)^2\right] = -\frac{1}{2}\left[\frac{u^2}{(n-1)^2} + z^2 - 2uz + u^2\right]$
+% 			\[= -\frac{1}{2}\left[u^2\left(\frac{1 + n^2 -2n +1}{(n-1)^2}\right) - 2uz + \frac{z^2}{n} + \frac{n-1}{n}z^2\right] = -\frac{1}{2} \left(u^2\frac{n}{n-1} -2uz + \frac{n-1}{n}z^2\right) - \frac{z^2}{2n}\]
+% 			\[\implies -\frac{1}{2}\left[\frac{u^2}{n-1} + \left(z-u\right)^2\right] = -\frac{1}{2} {\left(u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}}\right)}^2 - \frac{z^2}{2n}\]
+% 			\[\implies \forall z \in \R : f_{Z_n}(z) = \frac{1}{\sqrt{2\pi} (n-1)} e^{-\frac{z^2}{2n}} \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2} {\left(u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}}\right)}^2} \odif{u}\]
+% 			Por el cambio de variables $\ds w = u\sqrt{\frac{n}{n-1}} - z \sqrt{\frac{n-1}{n}} \implies \odif{w} = \sqrt{\frac{n}{n-1}} \odif{u}$, se tiene
+% 			\[\begin{aligned}
+% 					f_{Z_n}(z) & = \frac{1}{\sqrt{2\pi} (n-1)} e^{-\frac{z^2}{2n}} \frac{1}{\sqrt{2\pi}} \sqrt{\frac{n-1}{n}} \int_{-\infty}^{\infty} e^{-\frac{1}{2} w^2} \odif{w} =
+% 				\end{aligned}\]
+% 		\end{dem}
+% 	\end{ejer}
 
 \begin{ejem}[Normal bidimensional]
 	Sean $X, Y$ dos variables aleatorias con función de densidad conjunta $\ds \forall x, y \in \R : f_{X, Y}(x, y) = \frac{1}{2\pi \sqrt{1-\rho^2}} e^{-\frac{1}{2(1-\rho^2)}\left(x^2 - 2\rho x y + y^2\right)}$.
@@ -589,3 +590,4 @@ Ahora, sean $X$ e $Y$ dos v.a.c. indep. con funciones de densidad $f_X$ y $f_Y$ 
 	\[\implies E(Y \vert X = x) = \int_{-\infty}^{\infty} y \cdot \frac{1}{\sqrt{2\pi(1-\rho^2)}} e^{-\frac{1}{2(1-\rho^2)}\left(y-\rho x\right)^2} \odif{y} = \rho x\]
 	\[\implies \lbox{E(X\cdot Y)} = \int_{-\infty}^{\infty} x \cdot \rho x \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \odif{x} = \rho \underbrace{\int_{-\infty}^{\infty} x^2 f_X(x) \odif{x}}_{E\left(X^2\right)} = \rbox{\rho}\]
 \end{ejem}
+
