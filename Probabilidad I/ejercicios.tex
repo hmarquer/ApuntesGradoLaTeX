@@ -92,7 +92,7 @@ Si ahora tenemos $X_1, \dots, X_n$ independientes con $F_i, f_i$, $\begin{aligne
 	\end{aligned}$:
 \[\implies F_m(z) = 1-\prod_{i=1}^n \left(1- F_i(z)\right) \we F_M(z) = \prod_{i=1}^n F_i(z)\]
 
-\allbold{6.} Sean $X, Y \sim \exp{\lambda}$ independientes $\ds \implies P(\max{X, Y} \leq aX) = \begin{cases}
+\allbold{6.} Sean $X, Y \sim \EXP{\lambda}$ independientes $\ds \implies P(\max{\{X, Y\}} \leq aX) = \begin{cases}
 		0             & \tex{ si } a \leq 1 \\
 		\frac{a}{1+a} & \tex{ si } a > 1
 	\end{cases}$
@@ -103,17 +103,95 @@ Si ahora tenemos $X_1, \dots, X_n$ independientes con $F_i, f_i$, $\begin{aligne
 \allbold{7.} Sean $X, Y$ con función de densidad conjunta $f_{X, Y}$ y $\ds Z\defeq \frac{Y}{X}$
 \[\implies f_{Z}(z) = \int_{-\infty}^{\infty} \abs{x} f_{X, Y} (x, z-x) \odif{x}\]
 \begin{dem}
-	\[P(Z\leq z) = P\left(\frac{Y}{X} \leq z\right) = \begin{cases}
+	\[F_Z(z)=P(Z\leq z) = P\left(\frac{Y}{X} \leq z\right) = \begin{cases}
 			P(Y \leq zX) & \tex{ si } X > 0 \\
 			P(Y \geq zX) & \tex{ si } X < 0
 		\end{cases}\]
-
 \end{dem}
 
-\allbold{8.} Sean $X$ e $Y$ dos v.a. indep. con $\ds f_X = xe^{-\frac{x^2}{2}} \cdot \mathbbm{1}_{\{x>0\}}(x)$ e $Y\sim\unif{[-\varepsilon,\varepsilon]} \implies f_Y(y) =\frac{1}{2\varepsilon} \cdot \mathbbm{1}_{-\varepsilon<y<\varepsilon}(y)$. Definimos $Z\defeq X+Y$. \\
-\hfill \allbold{Nota:} En un escenario de la vida real, $Y$ representa un error.
-\[\forall z \geq -\varepsilon : f_Z(z) = \int_{-\infty}^{\infty} f_X(u) f_Y(z-u)\odif{u} = \int_{-\infty}^{\infty} ue^{-\frac{u^2}{2}} \cdot \mathbbm{1}_{\{u>0\}}(u)\cdot \frac{1}{2\varepsilon} \cdot \mathbbm{1}_{\{-\varepsilon<z-u<\varepsilon\}} (u) \odif{u}\]
-\[\implies f_Z(z) = \]
+\allbold{8.} Sean $X$ e $Y$ dos v.a. indep. con $\ds f_X = xe^{-\frac{x^2}{2}} \cdot \mathbbm{1}_{\{x>0\}}(x)$ e $Y\sim\unif{[-\varepsilon,\varepsilon]}$\\ $\implies f_Y(y) =\frac{1}{2\varepsilon} \cdot \mathbbm{1}_{\{-\varepsilon<y<\varepsilon\}}(y)$. Definimos $Z\defeq X+Y$. \\
+\hspace*{\fill} \allbold{Nota:} En un escenario de la vida real, $Y$ representa un error.
+
+\[\begin{aligned}
+		\forall z \geq -\varepsilon : f_Z(z) & = \int_{-\infty}^{\infty} f_X(u) f_Y(z-u)\odif{u} = \int_{-\infty}^{\infty} ue^{-\frac{u^2}{2}} \cdot \mathbbm{1}_{\{u>0\}}(u)\cdot \frac{1}{2\varepsilon} \cdot \mathbbm{1}_{\{-\varepsilon<z-u<\varepsilon\}} (u) \odif{u} \\
+		                                     & = \begin{cases}
+			                                         \ds \frac{1}{2\varepsilon} \int_{-\infty}^{\infty} ue^{-\frac{u^2}{2}} \cdot \mathbbm{1}_{\{0 < u < z+\varepsilon\}}(u)\odif{u}              & z < \varepsilon    \\
+			                                         \ds \frac{1}{2\varepsilon} \int_{-\infty}^{\infty} ue^{-\frac{u^2}{2}} \cdot \mathbbm{1}_{\{z-\varepsilon < u < z+\varepsilon\}}(u) \odif{u} & z \geq \varepsilon
+		                                         \end{cases} = \begin{cases}
+			                                                       \ds \frac{1}{2\varepsilon} \int_{0}^{z+\varepsilon} ue^{-\frac{u^2}{2}}\odif{u}              & z < \varepsilon    \\
+			                                                       \ds \frac{1}{2\varepsilon} \int_{z-\varepsilon}^{z+\varepsilon} ue^{-\frac{u^2}{2}} \odif{u} & z \geq \varepsilon
+		                                                       \end{cases}
+	\end{aligned}\]
+\[\implies \forall z \geq -\varepsilon : f_Z(z) = \begin{cases}
+		\ds \frac{1}{2\varepsilon} \left[-e^{-\frac{u^2}{2}}\right]_{0}^{z+\varepsilon}             & z < \varepsilon    \\
+		\ds \frac{1}{2\varepsilon} \left[-e^{-\frac{u^2}{2}}\right]_{z-\varepsilon}^{z+\varepsilon} & z \geq \varepsilon
+	\end{cases} = \begin{cases}
+		\ds \frac{1}{2\varepsilon} \left(1-e^{-\frac{(z+\varepsilon)^2}{2}}\right)                                & z < \varepsilon    \\
+		\ds \frac{1}{2\varepsilon} \left(e^{-\frac{(z-\varepsilon)^2}{2}}-e^{-\frac{(z+\varepsilon)^2}{2}}\right) & z \geq \varepsilon
+	\end{cases}\]
+\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[
+				xlabel=$z$,
+				ylabel=$f_Z(z)$,
+				xmin=-2,
+				xmax=5,
+				ymin=0,
+				ymax=0.7,
+				samples=200,
+				domain=-10:10,
+				smooth,
+				no markers
+			]
+			\foreach \eps in {0.01, 0.6, 0.9, 1.4, 1.8} {
+					\addplot [blue, thick] {
+						ifthenelse(x < -\eps, 0, ifthenelse(x < \eps, 1/(2*\eps)*(1-exp(-(x+\eps)^2/2)), 1/(2*\eps)*(exp(-(x-\eps)^2/2)-exp(-(x+\eps)^2/2))))
+					};
+				}
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
+
+\allbold{13.} Sean $(X_1, X_2) \sim$ normal bidimensional con $\mu_1, \mu_2, \sigma_1, \sigma_2, \rho$. Hacemos el cambio de variable $Z_1 \defeq \frac{X_1-\mu_1}{\sigma_1} \we Z_2 \defeq \frac{X_2-\mu_2}{\sigma_2}$: %TODO: ver que sale (Z_1, Z_2) ~ normal bidimensional (0, 1, \rho)
+
+\allbold{14.} Sean $X, Y \sim \normal{0, 1}$ independientes. Definimos $W\defeq 2X-Y$ y queremos ver que $W\sim\normal{0, 5}$.
+\[f_{X, Y} (x,y) = \frac{1}{2\pi} e^{-\frac{x^2+y^2}{2}}\]
+Hacemos el cambio de variable $U = X \we W=2X-Y$ y sale %TODO: terminar
+
+Otro camino, por convolución $W=2X+(-Y)$:
+\[\begin{aligned}
+		f_{W} (w) & = \int_{-\infty}^{\infty} f_{X, Y} (x, w-2x) \odif{x} = \int_{-\infty}^{\infty} \frac{1}{2\pi} e^{-\frac{x^2+(w-2x)^2}{2}} \odif{x}                                       \\
+		          & = \int_{-\infty}^{\infty} \frac{1}{2\pi} e^{-\frac{5x^2-2wx+w^2}{2}} \odif{x} = \frac{1}{2\pi} e^{-\frac{w^2}{2}} \int_{-\infty}^{\infty} e^{-\frac{5x^2}{2}+wx} \odif{x}
+	\end{aligned}\]
+\[\begin{aligned}
+		\int_{-\infty}^{\infty} e^{-\frac{5x^2}{2}+wx} \odif{x} & = \int_{-\infty}^{\infty} e^{-\frac{5}{2}\left(x-\frac{w}{5}\right)^2+\frac{w^2}{10}} \odif{x} = e^{\frac{w^2}{10}} \int_{-\infty}^{\infty} e^{-\frac{5}{2}\left(x-\frac{w}{5}\right)^2} \odif{x} \\
+		                                                        & = e^{\frac{w^2}{10}} \sqrt{\frac{2\pi}{5}} = e^{\frac{w^2}{10}} \sqrt{\frac{2\pi}{5}} \implies f_W(w) = \frac{1}{\sqrt{10\pi}} e^{-\frac{w^2}{10}}
+	\end{aligned}\]
+
 
 \allbold{Experimento:} Sean $X, Y \sim \normal{0, 1}$ independientes. Definimos $Z\defeq \sqrt{X^2 + Y^2}$.
 \[E(Z) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \sqrt{x^2 + y^2} \frac{1}{2\pi} e^{-\frac{x^2+y^2}{2}} \odif{x}\odif{y}\]
+Mediante el cambio a polares:
+\[\begin{aligned}
+		\begin{cases}
+			x = r\cos{\theta} \\
+			y = r\sin{\theta}
+		\end{cases} \implies \begin{cases}
+			                     \odif{x} = \cos{\theta}\odif{r} - r\sin{\theta}\odif{\theta} \\
+			                     \odif{y} = \sin{\theta}\odif{r} + r\cos{\theta}\odif{\theta}
+		                     \end{cases} \implies \odif{x}\odif{y} = r\odif{r}\odif{\theta}
+	\end{aligned}\]
+\[E(Z) = \frac{1}{2\pi}\int_{0}^{2\pi} \int_{0}^{\infty} r^2e^{-\frac{r^2}{2}} \odif{r}\odif{\theta} \]
+Desarrollando por partes:
+\[\begin{aligned}
+		\int_{0}^{\infty} r^2e^{-\frac{r^2}{2}} \odif{r} & = \left[-r e^{-\frac{r^2}{2}}\right]_{0}^{\infty} + \int_{0}^{\infty} e^{-\frac{r^2}{2}} \odif{r} = \int_{0}^{\infty} e^{-\frac{r^2}{2}} \odif{r} = \sqrt{2\pi}
+	\end{aligned} \implies E(Z) = \frac{1}{\sqrt{2\pi}}\]
+
+\allbold{Contenido adicional:}
+
+Crear un modelo de normal bidimensional con $\rho$ dado a partir de un modelo de normal bidimensional $(X_1, X_2)$ con $\rho = 0$:
+\[\begin{cases}
+		Y_1 = X_1 \\
+		Y_2 = \rho X_1 + \sqrt{1-\rho^2}X_2
+	\end{cases} \implies E(Y_1)=E(Y_2) = 0 \we V(Y_1)=V(Y_2) = 1\]
+\[\rho(Y_1, Y_2) = \frac{E(Y_1Y_2) - E(Y_1)E(Y_2)}{\sqrt{V(Y_1)V(Y_2)}} = \frac{E(X_1(\rho X_1 + \sqrt{1-\rho^2}X_2))}{\sqrt{1\cdot 1}} = \rho\]

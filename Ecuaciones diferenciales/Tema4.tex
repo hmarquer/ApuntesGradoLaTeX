@@ -108,10 +108,70 @@ Ya sabemos que si $W\left[X_1, \dots, X_d\right](\Bar{t}) \neq 0$ para algún $\
 				t^3  & t^3  \\
 				3t^2 & 3t^2
 			\end{pmatrix}} = 0\]
-	Sin embargo, veamos que $X_1, X_2$ son l.i. como funciones. Sean $\alpha, \beta \in \R$ tales que $\forall t \in (-1, 1) :\alpha X_1(t) + \beta X_2(t) = 0$. Si $t \in (-1, 0)$, entonces $\alpha X_1(t) + \beta X_2(t) = 0 \implies (\alpha - \beta)X_1(t) = 0 \implies \alpha = \beta$. Si $t \in [0, 1)$, entonces $\alpha X_1(t) + \beta X_2(t) = 0 \implies (\alpha + \beta)X_1(t) = 0 \implies \alpha = -\beta$. Por tanto, $\alpha = \beta = 0$.
+	Sin embargo, veamos que $X_1, X_2$ son l.i. como funciones.
+
+	Sean $\alpha, \beta \in \R$ tales que $\forall t \in (-1, 1) :\alpha X_1(t) + \beta X_2(t) = 0$. Si $t \in (-1, 0)$, entonces $\alpha X_1(t) + \beta X_2(t) = 0 \implies (\alpha - \beta)X_1(t) = 0 \implies \alpha = \beta$. Si $t \in [0, 1)$, entonces $\alpha X_1(t) + \beta X_2(t) = 0 \implies (\alpha + \beta)X_1(t) = 0 \implies \alpha = -\beta$. Por tanto, $\alpha = \beta = 0$.
 \end{ejem}
+
+\begin{lem}
+	Sean $X_j, j = 1, \dots, k$ soluciones del SLH.
+	\[\exists \, \Bar{t} \in (a, b) : \{X_j(\Bar{t}) : j \in \N_k\} \tex{ l.i.} \implies \{X_j : j \in \N_k\} \tex{ l.i.}\]
+	\begin{dem}
+		Sabemos que $\exists \alpha_1, \dots, \alpha_k \in \R$ no todos nulos $ : \ds \sum_{j=1}^{k} \alpha_j X_j(\Bar{t}) =0$. \\
+		Definimos $\ds \forall t \in (a,b) : Y(t) \defeq \sum_{j=1}^{k} \alpha_j X_j(t)$. Esta función es solución del SLH y $Y(\Bar{t}) = 0$. Por tanto, $Y$ es solución del PVI $\{X' = A(t)X \we X(\Bar{t}) = 0\}$.
+
+		Como la solución es única $\ds \forall t\in (a, b) : Y(t) = 0 \implies \forall t\in (a, b) : \sum_{j=1}^{k} \alpha_j X_j(t) = 0$.\\
+		Por definición, $\{X_j : j \in \N_k\}$ son l.d.
+	\end{dem}
+\end{lem}
 
 \begin{prop}
 	Sean $X_1, \dots, X_d$ soluciones del SLH.
-	\[\implies \forall t \in (a, b) : W\left[X_1, \dots, X_d\right](t) = 0 \niff  \forall t_0 \in (a, b) : W\left[X_1, \dots, X_d\right](t_0) \neq 0\]
+	\[\implies \bigg(\forall t \in (a, b) : W\left[X_1, \dots, X_d\right](t) = 0 \niff  \forall t \in (a, b) : W\left[X_1, \dots, X_d\right](t) \neq 0\bigg)\]
 \end{prop}
+
+\fecha{16/04/2024}
+
+\begin{defn}[Sistema fundamental]
+	Sean $X'=A(t)X$ un SLH, $\{\phi_1, \dots, \phi_d\}$ es un sistema fundamental de soluciones $\iff \phi_1, \dots, \phi_d\tex{ son soluciones del SLH l.i.}$
+\end{defn}
+
+Un sistema fundamental define una \underline{matriz solución fundamental}: $\ds \Phi(t) \defeq \begin{pmatrix}
+		\phi_1(t) & \cdots & \phi_d(t)
+	\end{pmatrix}$.
+
+A partir de $\Phi$ podemos encontrar cualquier solución de $\{X'=A(t)X \we X(t_0) = X_0\}$:
+\[X=\Phi c = \begin{pmatrix}
+		\phi_1 & \cdots & \phi_d
+	\end{pmatrix} \begin{pmatrix}
+		c_1    \\
+		\vdots \\
+		c_d
+	\end{pmatrix} = \sum_{j=1}^{d} c_j \phi_j \tex{ con }c \in \R^d \we X(t_0) = \Phi(t_0) = c=X_0 \]
+\[\implies c = \left(\Phi(t_0)\right)^{-1} X_0 \implies \boxed{X(t) = \Phi(t) \left(\Phi(t_0)\right)^{-1} X_0}\]
+
+\subsection{Sistema no homogéneo}
+
+\begin{prop}
+	Sea $\forall t \in (a,b) \subset \R : X'=A(t)X + g(t)$ un sistema lineal (SL).\\
+	Sea $X_p$ una sol. particular del SL y sea $\{X_1, \dots, X_d\}$ una base del espacio de sol. del SLH.
+	\[\implies X \tex{ sol. del SL} \iff \exists \{\alpha_i\}_{i=1}^d \subset \R :\forall t \in (a, b) : X(t) = X_p(t) + \sum_{i=1}^{d} \alpha_i X_i(t)\]
+	\begin{dem} % TODO: completar detalles
+		El cambio de variable $Y = X - X_p$ transforma el SL en un SLH. Es decir, el conjunto de soluciones del SL se caracteriza mediante el del SLH.
+	\end{dem}
+\end{prop}
+
+\allbold{¿Cómo encontrar una solución particular $X_p$ del SL?}
+
+Si $\Phi$ es una matriz solución fundamental del SLH, buscamos $X_p$ de la forma $X_p = \Phi(t) \alpha(t)$, donde $\alpha(t) = \left(\alpha^1(t), \dots, \alpha^d(t)\right)$
+\[\begin{aligned}
+		\implies X_p' & = \Phi'(t) \alpha(t) + \Phi(t) \alpha'(t) = A(t) \Phi(t) \alpha(t) + \Phi(t) \alpha'(t) = A(t) X_p + g(t)              \\
+		              & = A(t) \Phi(t) \alpha(t) + g(t) \implies \Phi(t)\alpha'(t) = g(t) \implies \alpha'(t) = \left(\Phi(t)\right)^{-1} g(t)
+	\end{aligned}\]
+Por tanto, $\ds \alpha(t) = \int_{t_0}^{t} \left(\Phi(s)\right)^{-1} g(s) \odif{s}$. En definitiva, $\ds X_p(t) = \Phi(t) \int_{t_0}^{t} \left(\Phi(s)\right)^{-1} g(s) \odif{s}$
+
+Como toda solución del SL es de la forma $\ds X(t) = X_p(t) + \sum_{i=1}^{d} \alpha_i X_i(t)$, podemos escribir
+\[X(t) = \Phi(t) \left(c + \int_{t_0}^{t} \left(\Phi(s)\right)^{-1} g(s) \odif{s}\right) \tex{ con } c \in \R^d\]
+Para resolver el PVI, basta con calcular $c$ tal que $X(t_0) = X_0$.
+\[X_0 = X(t_0) = \Phi(t_0) \left(c + \int_{t_0}^{t_0} \left(\Phi(s)\right)^{-1} g(s) \odif{s}\right) = \Phi(t_0) c \implies c = \left(\Phi(t_0)\right)^{-1} X_0\]
+\[\implies \forall t \in (a, b) : \boxed{X(t) = \Phi(t) \left(\left(\Phi(t_0)\right)^{-1} X_0 + \int_{t_0}^{t} \left(\Phi(s)\right)^{-1} g(s) \odif{s}\right)}\]
