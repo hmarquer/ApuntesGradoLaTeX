@@ -1,3 +1,3 @@
 git add *
-git commit -m "push"
+git commit -m Get-Date
 git push
