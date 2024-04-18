@@ -185,6 +185,8 @@ Sea $\forall t \in \R : X'=AX + g(t)$, con $A =\left(a_i^j\right)_{i,j=1}^d$ con
 Nos reducimos al caso $g\equiv 0$.
 \subsubsection{El caso diagonalizable}
 
+\allbold{Diagonalizable con autovalores reales}
+
 Si $d=1$, entonces $A = a \in \R$ y $X' = aX \implies X(t) = c e^{at}, c\in \R$.
 
 Si $d>1$, entonces ¿$X(t)=\xi e^{\lambda t}$ con $t \in \R$ y $\xi \ne 0 \in \R^d$?
@@ -319,3 +321,130 @@ Por tanto, la solución general del SLH es $\ds \boxed{X(t) = \sum_{i=1}^d c_i X
 		\end{pmatrix}\]
 \end{ejem}
 
+\fecha{18/04/2024}
+
+\allbold{Diagonalizable con autovalores complejos}
+
+Partimos de una base de autovectores en $C^d$. A partir de ella, construimos una en $\R^d$.
+
+Sea $\lambda = \alpha + \beta i$ autovalor de $A$ y $\xi = u + i v$, con $u, v \in \R^d$, autovector asociado. Observamos que $A\xi = \lambda \xi \implies A \bar{\xi} = \bar{\lambda} \bar{\xi}$.
+
+Podemos definir dos soluciones complejas del SLH linealmente independientes:
+\[X_1(t) = e^{\lambda t} \xi \quad \we \quad X_2(t) = e^{\overline{\lambda} t} \overline{\xi} = \overline{X_1(t)}\]
+Ahora, tomamos las combinaciones lineales $\ds X_R(t) =\frac{X_1(t) + X_2(t)}{2}$ y $\ds X_I(t) = \frac{X_1(t) - X_2(t)}{2i}$, que son soluciones (por ser combinaciones lineales de soluciones) reales del SLH.
+
+Veamos que son independientes: Sean $c_1, c_2 \in \R$ tales que $\forall t \in \R: c_1 X_R(t) + c_2 X_I(t) = 0$.
+\[\frac{c_1}{2} \left(X_1 + X_2\right) + \frac{c_2}{2i} \left(X_1 - X_2\right) = 0 \implies \left(\frac{c_1}{2} + \frac{c_2}{2i}\right)X_1 + \left(\frac{c_1}{2} - \frac{c_2}{2i}\right)X_2 = 0\]
+Como $X_1$ y $X_2$ son l.i., $\ds \frac{c_1}{2} + \frac{c_2}{2i} = 0 = \frac{c_1}{2} - \frac{c_2}{2i} \implies c_1 = c_2 = 0$.
+
+\begin{ejem}
+	Sea el SLH $X' = \begin{pmatrix}
+			1 & 0  & -1 \\
+			1 & 0  & 0  \\
+			1 & -1 & 0
+		\end{pmatrix} X = AX$.
+	\[\det(A -\lambda I) = \begin{vmatrix}
+			1-\lambda & 0        & -1       \\
+			1         & -\lambda & 0        \\
+			1         & -1       & -\lambda
+		\end{vmatrix} = 0 \implies \Lambda = \{1, i, -i\}\]
+	\begin{itemize}
+		\item $\lambda_1 = 1$ : $\begin{pmatrix}
+				      0 & 0  & -1 \\
+				      1 & -1 & 0  \\
+				      1 & -1 & -1
+			      \end{pmatrix} \begin{pmatrix}
+				      \xi_1^1 \\
+				      \xi_1^2 \\
+				      \xi_1^3
+			      \end{pmatrix} = \begin{pmatrix}
+				      0 \\
+				      0 \\
+				      0
+			      \end{pmatrix} \implies \xi_1 = \begin{pmatrix}
+				      1 \\
+				      1 \\
+				      0
+			      \end{pmatrix} \implies X_1(t) = \begin{pmatrix}
+				      1 \\
+				      1 \\
+				      0
+			      \end{pmatrix} e^t$.
+		\item $\lambda_2 = i$ : $\begin{pmatrix}
+				      1-i & 0  & -1 \\
+				      1   & -i & 0  \\
+				      1   & -1 & -i
+			      \end{pmatrix} \begin{pmatrix}
+				      \xi_2^1 \\
+				      \xi_2^2 \\
+				      \xi_2^3
+			      \end{pmatrix} = \begin{pmatrix}
+				      0 \\
+				      0 \\
+				      0
+			      \end{pmatrix} \implies \begin{cases}
+				      \xi_2 = (i, 1, 1+i)             \\
+				      \overline{\xi_1} = (-i, 1, 1-i) \\
+			      \end{cases}$.
+		      \[\implies \begin{cases}
+				      X_2(t) = \xi_2 e^{it} = (i, 1, 1+i) e^{it} \\
+				      X_3(t) = \overline{\xi_2} e^{-it} = (-i, 1, 1-i) e^{-it}
+			      \end{cases}\]
+		      \[X_2(t) = \begin{pmatrix}
+				      -\sin t \\
+				      \cos t  \\
+				      \cos t - \sin t
+			      \end{pmatrix} + i \begin{pmatrix}
+				      \cos{t} \\
+				      \sin{t} \\
+				      \cos{t} + \sin{t}
+			      \end{pmatrix} \we X_3(t) = \begin{pmatrix}
+				      -\sin{t} \\
+				      \cos{t}  \\
+				      \cos{t} - \sin{t}
+			      \end{pmatrix} - i \begin{pmatrix}
+				      \cos{t} \\
+				      \sin{t} \\
+				      \cos{t} + \sin{t}
+			      \end{pmatrix}\]
+		      Definimos $X_R(t) = \frac{X_2(t) + X_3(t)}{2}$ y $X_I(t) = \frac{X_2(t) - X_3(t)}{2i}$.
+		      \[\implies X_R(t) = \begin{pmatrix}
+				      -\sin{t} \\
+				      \cos{t}  \\
+				      \cos{t} - \sin{t}
+			      \end{pmatrix} \we X_I(t) = \begin{pmatrix}
+				      \cos{t} \\
+				      \sin{t} \\
+				      \cos{t} + \sin{t}
+			      \end{pmatrix}\]
+		      Por tanto, la solución general del SLH es
+		      \[X(t) = c_1 \begin{pmatrix}
+				      1 \\
+				      1 \\
+				      0
+			      \end{pmatrix} e^t + c_2 \begin{pmatrix}
+				      -\sin{t} \\
+				      \cos{t}  \\
+				      \cos{t} - \sin{t}
+			      \end{pmatrix} + c_3 \begin{pmatrix}
+				      \cos{t} \\
+				      \sin{t} \\
+				      \cos{t} + \sin{t}
+			      \end{pmatrix}\]
+	\end{itemize}
+\end{ejem}
+
+\subsubsection{El caso no diagonalizable}
+
+Sea el PVI $\left\{X' = AX \we X(0) = 0\right\}$ con $A \in \mathcal{M}_d(\R)$ y $A$ no diagonalizable. Definimos las iteraciones de Picard:
+\[\begin{aligned}
+		X_0(t)  & = X_0                                                                                                                                                         \\
+		X_1 (t) & = X_0 +\int_0^t A X_0 \odif{s} = X_0 + AX_0t = (I + At)X_0                                                                                                    \\
+		X_2 (t) & = X_0 + \int_0^{t} AX_1(s) \odif{s} = X_0 + \int_0^{t} AX_0 + A^2 X_0 s \odif{s} = X_0 + AX_0 t + \frac{1}{2} A^2 X_0 t^2 = (I + At + \frac{1}{2} A^2 t^2)X_0
+	\end{aligned}\]
+Como vemos $\ds X_k(t) = \left(\sum_{j=0}^k A^j \frac{t^j}{j!}\right)X_0 \xrightarrow{k\to \infty} \left(\sum_{j=0}^{\infty} A^j \frac{t^j}{j!}\right)X_0$.
+
+\begin{defn}[Exponencial de una matriz]
+	Sea $A \in \mathcal{M}_d(\R)$, $e^A$ es su exponencial
+	\[\iff e^A \defeq \sum_{j=0}^{\infty} A^j \frac{t^j}{j!}\]
+\end{defn}
