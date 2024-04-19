@@ -367,6 +367,78 @@ Por tanto, hay existencia y unicidad local en $\mathcal{A}$.
 b) Definimos el problema de valores iniciales con $x(1) = 3$.
 \begin{enumerate}
 	\item $x(t) \geq 3$ porque $x'(t) \geq 0 \implies x(t) \geq x(1) = 3$.
-	\item $\ds x(t) \leq 2 + t$ porque $\abs{x(t)} \leq \abs{x(1)} + \int_{1}^{t} \underbrace{\abs{f(s, x(s))}}_{\leq 1} \odif{s} \leq 3 + (t-1) = t+2$.
-	\item
+	\item $\ds x(t) \leq 2 + t$ porque $\ds \abs{x(t)} \leq \abs{x(1)} + \int_{1}^{t} \underbrace{\abs{f(s, x(s))}}_{\leq 1} \odif{s} \leq 3 + (t-1) = t+2$.
 \end{enumerate}
+
+\subsection{Hoja 4}
+
+\subsubsection{Sistemas lineales de primer orden}
+
+\textbf{1.1} $\ds \vec{X}'(t) = \begin{pmatrix} 1 & 3 \\ 3 & 1 \end{pmatrix} \vec{X}(t) \we \vec{X}(0) = \begin{pmatrix} 5 \\ 1 \end{pmatrix}$
+
+Supongamos que tenemos $\vec{v} \in \R^2 : A\vec{v} = \lambda \vec{v}$, definimos $\vec{u} \defeq e^{\lambda t} \vec{v}$.
+\[\implies \vec{u}'(t) = \lambda e^{\lambda t} \vec{v} = e^{\lambda t} (\lambda \vec{v}) = e^{\lambda t} (A \vec{v}) = A e^{\lambda t} \vec{v} = A \vec{u}(t) \implies \vec{u} \tex{ es una solución del SLH}\]
+\begin{enumerate}
+	\item Por tanto, encontrar autovalores y autovectores de $A\implies $encontrar soluciones.
+	\item El espacio vectorial de soluciones es de dimensión 2.
+	\item Dos soluciones linealmente independientes generan todas las soluciones.
+\end{enumerate}
+\[\det(A-\lambda I ) = 0 \implies \begin{vmatrix} 1-\lambda & 3 \\ 3 & 1-\lambda \end{vmatrix} = 0 \implies \lambda^2 - 2\lambda - 8 = 0 \implies \lambda_1 = 4 \we \lambda_2 = -2\]
+\begin{itemize}
+	\item $\lambda_1 = 4 \implies \begin{pmatrix} -3 & 3 \\ 3 & -3 \end{pmatrix} \begin{pmatrix} v_1^1 \\ v_1^2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies v_1^1 = v_1^2 \implies \vec{v_1} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}$
+	\item $\lambda_2 = -2 \implies \begin{pmatrix} 3 & 3 \\ 3 & 3 \end{pmatrix} \begin{pmatrix} v_2^1 \\ v_2^2 \end{pmatrix} = \begin{pmatrix} 0 \\ 0 \end{pmatrix} \implies v_2^1 = -v_2^2 \implies \vec{v_2} = \begin{pmatrix} 1 \\ -1 \end{pmatrix}$
+\end{itemize}
+\[\implies \tex{la solución general del SLH es }\vec{X}(t) = c_1 e^{4t} \begin{pmatrix} 1 \\ 1 \end{pmatrix} + c_2 e^{-2t} \begin{pmatrix} 1 \\ -1 \end{pmatrix}\]
+\[\begin{pmatrix} 5 \\ 1 \end{pmatrix} = \vec{X}(0) = c_1 \begin{pmatrix} 1 \\ 1 \end{pmatrix} + c_2 \begin{pmatrix} 1 \\ -1 \end{pmatrix} \implies \begin{cases}
+		c_1 + c_2 = 5 \\
+		c_1 - c_2 = 1
+	\end{cases} \implies c_1 = 3 \we c_2 = 2\]
+\[\implies \tex{la solución del PVI es }\vec{X}(t) = 3 e^{4t} \begin{pmatrix} 1 \\ 1 \end{pmatrix} + 2 e^{-2t} \begin{pmatrix} 1 \\ -1 \end{pmatrix}\]
+
+\textbf{1.5} b) Vemos que $W(f_1(t), f_2(t)) = 0$. Viendo las implicaciones anteriores, concluimos que $f_1(t)$ y $f_2(t)$ no son soluciones de una EDO con unicidad.
+
+\subsubsection{EDO lineales de orden superior}
+
+\textbf{2.11} Sea $y'' +y = 0$ una EDO de segundo orden. Definimos $z\defeq y' \implies z' = y''= -y$.\\
+Por tanto, tenemos el sistema de EDOs de primer orden:
+\[\begin{pmatrix}
+		y' \\
+		z'
+	\end{pmatrix} = \begin{pmatrix}
+		0  & 1 \\
+		-1 & 0
+	\end{pmatrix} \begin{pmatrix}
+		y \\
+		z
+	\end{pmatrix} \implies \tex{autovalores } \lambda = \pm i\]
+Veamos que $\mathcal{B} = \left\{ b_1(x) = \cos(x) - \sin(x), b_2(x) = 2\sin(x) \right\}$ es una base de soluciones.
+
+Como $\cos{x}, \sin{x}$ son soluciones de la ecuación y $b_1, b_2$ son combinaciones lineales de $\cos{x}, \sin{x}$, entonces son soluciones.
+Una manera: \[\forall x \in \R : a_1(\cos(x) - \sin(x)) + a_2 2 \sin(x) = 0 \implies \begin{cases}
+		x= 0 \implies a_1 = 0 \\
+		x= \frac{\pi}{2} \implies a_2 = 0
+	\end{cases}\implies \tex{l.i.}\]
+Otra manera:
+\[\forall x \in \R : \begin{cases}
+		a_1b_1(x) + a_2b_2(x) = 0 \\
+		a_1b_1'(x) + a_2b_2'(x) = 0
+	\end{cases} \iff \begin{pmatrix}
+		b_1  & b_2  \\
+		b_1' & b_2'
+	\end{pmatrix} \begin{pmatrix}
+		a_1 \\
+		a_2
+	\end{pmatrix} = 0\]
+Si $\exists x \in \R : \det \neq 0 \implies a_1 = a_2 = 0$ es la única solución.
+\[\begin{vmatrix}
+		\cos(x) - \sin(x)  & 2\sin(x) \\
+		-\sin(x) - \cos(x) & 2\cos(x)
+	\end{vmatrix} = \cdots = 2\cos^2(x) + 2\sin^2(x) = 2 \neq 0 \implies \tex{l.i.}\]
+\textbf{Obs:} no sólo $\exists x\in \R : \det \neq 0$ sino que $\forall x \in \R : \det \neq 0$. ¿Coincidencia? NO.
+
+\textbf{Importante:} Sean $b_1, b_2$ soluciones de la EDO con unicidad.
+\[\exists x \in \R : W(b_1(x), b_2(x)) \neq 0 \iff \forall x \in \R : W(b_1(x), b_2(x)) \neq 0 \iff b_1, b_2 \tex{ l.i.}\]
+
+Sea $x^2y'' - 4xy'+(x^2+6)y = 0$ una EDO de segundo orden. Si además $y(0) = y'(0) = 0$ tenemos que $y_1(x)=x^2\sin{x} \we y_2(x)= 0$ son soluciones de la EDO. Definimos $z\defeq y' \implies z' = y'' = \frac{4z}{x} - \frac{6y}{x^2}$.\\
+
+Como la función no es continua en $x=0$, no podemos aplicar el teorema de Picard-Lindelöf.
