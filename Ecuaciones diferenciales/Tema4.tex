@@ -448,3 +448,57 @@ Como vemos $\ds X_k(t) = \left(\sum_{j=0}^k A^j \frac{t^j}{j!}\right)X_0 \xright
 	Sea $A \in \mathcal{M}_d(\R)$, $e^A$ es su exponencial
 	\[\iff e^A \defeq \sum_{j=0}^{\infty} A^j \frac{t^j}{j!}\]
 \end{defn}
+
+\fecha{22/04/2024}
+
+\begin{obs}
+	Usando las iteradas de Picard, se comprueba que $X(t) = e^{At}X_0$ es la única solución de $X' = AX \we X(0) = X_0$.
+\end{obs}
+
+\allbold{Propiedades del exponencial de una matriz:} Sean $A, B \in \mathcal{M}_d(\R)$ matrices cuadradas.
+\begin{enumerate}
+	\item Si $AB = BA$, entonces $e^{A+B} = e^A e^B$.
+	\item Si $\alpha, \beta \in \R$, entonces $e^{(\alpha + \beta)A} = e^{\alpha A} e^{\beta A}$.
+	\item $\lambda \in \R$ autovalor de $A \iff e^{\lambda} \in \R$ autovalor de $e^A$.
+	\item $\det{(e^A)} = e^{\trz{A}}$ (Junto con $\det(A) = \lambda_1 \cdots \lambda_d$ y $\trz{A} = \lambda_1 + \cdots + \lambda_d$).
+	\item $e^{A}$ es invertible con $e^{-A} = \left(e^A\right)^{-1}$.
+	\item Si $C$ es una matriz invertible tal que $A=CJC^{-1}$, entonces $e^A = Ce^JC^{-1}$.
+	\item Si en 6., $J$ es una matriz por bloques, entonces $e^J$ es también una matriz por bloques.
+	      \[J=\begin{pmatrix}
+			      J_1    & \dots  & 0      \\
+			      \vdots & \ddots & \vdots \\
+			      0      & \dots  & J_k
+		      \end{pmatrix} \implies e^J = \begin{pmatrix}
+			      e^{J_1} & \dots  & 0       \\
+			      \vdots  & \ddots & \vdots  \\
+			      0       & \dots  & e^{J_k}
+		      \end{pmatrix}\]
+\end{enumerate}
+
+\begin{defn}[Volumen]
+	Sea $E\subset\R^d$ un conjunto ``medible'', $\ds \vol{E} \defeq \int_{E} 1 \odif{x}$.
+\end{defn}
+
+\begin{cor}[Liouville]
+	Sea $E \subset \R^d$ un conjunto medible y $A \in \mathcal{M}_d(\R)$.
+	\[\implies \forall t \in \R : \vol{e^{tA}(E)} = e^{t\trz{A}} \vol{E}\]
+	En particular, si $\trz{A} =0$ y, por tanto, $\trz{tA} = 0$, entonces $\forall t \in \R : \vol{e^{tA}(E)} = \vol{E}$. En palabras, la evolución mantiene el volumen.
+	\begin{dem}
+		Definimos $\appl{\Phi}{\R^d}{\R^d}$ como $\Phi(\xi) = e^{tA}\xi$.
+		\[\begin{aligned}
+				\implies \vol{\left(e^{tA} (E)\right)} & = \int_{e^{tA}(E)} 1 \odif{x} = \int_{\Phi(E)} 1 \odif{x} = \int_{E} \left|\det{\operatorname{J}_\Phi(y)}\right| \odif{y}                    \\
+				                                       & = \int_{E} \left|\det{e^{tA}}\right| \odif{y} = \abs{\det{e^{tA}}} \int_{E} 1 \odif{y} = \abs{e^{t\trz{A}}} \vol{E} = e^{t\trz{A}} \vol{(E)}
+			\end{aligned}\]
+	\end{dem}
+\end{cor}
+
+\begin{teo}[Forma canónica de Jordan]
+	Sea $A \in \mathcal{M}_d(\C)$, entonces $\exists$ un cambio lineal de coordenadas $C$ tal que $A$ se transforma en una matriz por bloques:
+	\[C^{-1} A C = \begin{pmatrix}
+			J_1    & \dots  & 0      \\
+			\vdots & \ddots & \vdots \\
+			0      & \dots  & J_k
+		\end{pmatrix} \tex{ con } J_i = \alpha_i I + N_i\]
+	donde $\alpha_i$ son los autovalores de $A$ y $N_i$ es una matriz cuadrada con unos en la diagonal por encima de la principal, y lo demás son ceros.
+\end{teo}
+

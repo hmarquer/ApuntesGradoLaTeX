@@ -1,0 +1,57 @@
+\fecha{22/04/2024}
+
+\section{Convergencia de variables aleatorias}
+
+Partimos de una sucesión de variables aleatorias en un espacio de probabilidad $(\Omega, \F, P)$, $\ds \left(X_n\right)_{n \in \N}$, y queremos estudiar las series
+\[\big(S_n\big)_{n\in \N} = \left(\sum_{i=1}^{n} X_i\right)_{n \in \N} \quad \we \quad \big(Z_n\big)_{n\in \N} = \left(\frac{1}{n}\sum_{i=1}^{n} X_i\right)_{n \in \N}\]
+Interesan, específicamente, los límites cuando $n\to \infty$ de estas series.
+\begin{enumerate}
+	\item Sabemos que significa $\ds \lim_{n\to\infty} E(S_n)$ y $\ds \lim_{n\to\infty} V(S_n)$.
+
+	      Pero, ¿qué significa $\ds \lim_{n\to\infty} S_n = S$? Requerimos de técnicas más avanzadas que se denominan \textbf{modos de convergencia}.
+	\item Casi siempre asumiremos que $\{X_n\}_{n\in \N}$ son \textbf{independientes e idénticamente distribuidas (i.i.d.)}.
+	      \begin{itemize}
+		      \item Todas las $X_i$ tienen la misma distribución. Por tanto, es habitual definir una \allbold{$X$ de referencia} que tenga la misma distribución que todas las $X_i$.
+		      \item Las $X_i$ son completamente independientes, es decir, para todo subconjunto finito $I \subset \N$, $\{X_i\}_{i\in I}$ son independientes.
+	      \end{itemize}
+	\item Descubriremos que, para $n$ grande y $X$ de referencia, $Z_n$ se comporta como $E(X)$. Además, veremos el teorema central del límite, que nos dice que $\ds \frac{Z_n-E(X)}{\sfrac{\sigma(Z_n)}{\sqrt{n}}} \approx \normal{0,1}$.
+\end{enumerate}
+\subsection{Medias y varianzas de las sumas y las medias}
+\[E(S_n) = E\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} E(X_i) = nE(X) \iff \forall i \in \N : E(X_i) = E(X)\]
+\[E(Z_n) = E\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) = \frac{1}{n}\sum_{i=1}^{n} E(X_i) = E(X)\]
+\[V(S_n) = V\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} V(X_i) + 2 \sum_{1\leq i < j \leq n} \cov{X_i,X_j} \stackrel{*_1}{=} \sum_{i=1}^{n} V(X_i) \stackrel{*_2}{=} n(\sigma(X))^2\] %TODO: comprobar que es correcto
+\[V(Z_n) = V\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) \stackrel{*_1}{=} \frac{1}{n^2}\sum_{i=1}^{n} V(X_i) \stackrel{*_2}{=} \frac{(\sigma(X))^2}{n} \xrightarrow{n\to\infty} 0\]
+\hspace*{\fill} $*_1$ Si $X_i$ incorreladas, $*_2$ Si $X_i$ tienen la misma varianza.
+
+\subsection{Convergencia cuadrática}
+
+\begin{defn}[Convergencia cuadrática]
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ y $X$ v.a. en $(\Omega, \F, P)$, $\left(X_n\right)_{n\in \N}$ \textbf{converge cuadráticamente} a $X$ $\left(X_n \xrightarrow{\tex{cuad.}} X\right)$
+	\[\iff E\left(\abs{X_n - X}^2\right) \xrightarrow{n\to\infty} 0\]
+\end{defn}
+
+\begin{teo}
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ v.a. de referencia
+	\[\implies Z_n\xrightarrow{\tex{cuad.}} E(X)\]
+	\begin{dem}
+		Si denominamos $\mu = E(X) \we V(X) = \sigma^2$, entonces
+		\[V(Z_n)=\frac{\sigma^2}{n} \implies E\left(\abs{Z_n - \mu}^2\right) = V(Z_n) \xrightarrow{n\to\infty} 0\]
+	\end{dem}
+	Quitando hipótesis: basta con que sean incorreladas y tengan la misma media y varianza.
+\end{teo}
+
+\begin{teo}
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ con medias y varianzas $E(X_i) = \mu_i$ y $V(X_i) = \sigma_i^2$. Suponmeos que $\ds \mu_n = \frac{1}{n}\sum_{i=1}^{\infty} \mu_i \to \mu \in \R$ y $\ds V(Z_n) = \frac{1}{n^2}\sum_{i=1}^{\infty} \sigma_i^2 \to 0$.
+	\[\implies Z_n \xrightarrow{\tex{cuad.}} \mu\]
+	\begin{dem} %TODO: terminar demostración
+		\[\begin{aligned}
+				E\left(\abs{Z_n - \mu}^2\right) & = E\left(\abs{Z_n - \mu_n + \mu_n - \mu}^2\right)                                       \\
+				                                & = E\left(\abs{Z_n - \mu_n}^2 + \abs{\mu_n - \mu}^2 + 2(Z_n - \mu_n)(\mu_n - \mu)\right) \\
+				                                & = E((Z_n - \mu_n)^2) + (\mu_n - \mu)^2 + 2(\mu_n - \mu)E(Z_n - \mu_n)
+			\end{aligned}\]
+	\end{dem}
+\end{teo}
+
+\subsection{Convergencia en probabilidad / Ley débil de los grandes números}
+
+J.Bernoulli (1713) Ars Conjectandi: Si tienes un dado regular, cuantas más veces lo lances, más se aproximará la frecuencia relativa de un número a su probabilidad.
