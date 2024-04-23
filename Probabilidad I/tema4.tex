@@ -17,11 +17,20 @@ Interesan, específicamente, los límites cuando $n\to \infty$ de estas series.
 	\item Descubriremos que, para $n$ grande y $X$ de referencia, $Z_n$ se comporta como $E(X)$. Además, veremos el teorema central del límite, que nos dice que $\ds \frac{Z_n-E(X)}{\sfrac{\sigma(Z_n)}{\sqrt{n}}} \approx \normal{0,1}$.
 \end{enumerate}
 \subsection{Medias y varianzas de las sumas y las medias}
-\[E(S_n) = E\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} E(X_i) = nE(X) \iff \forall i \in \N : E(X_i) = E(X)\]
-\[E(Z_n) = E\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) = \frac{1}{n}\sum_{i=1}^{n} E(X_i) = E(X)\]
-\[V(S_n) = V\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} V(X_i) + 2 \sum_{1\leq i < j \leq n} \cov{X_i,X_j} \stackrel{*_1}{=} \sum_{i=1}^{n} V(X_i) \stackrel{*_2}{=} n(\sigma(X))^2\] %TODO: comprobar que es correcto
-\[V(Z_n) = V\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) \stackrel{*_1}{=} \frac{1}{n^2}\sum_{i=1}^{n} V(X_i) \stackrel{*_2}{=} \frac{(\sigma(X))^2}{n} \xrightarrow{n\to\infty} 0\]
-\hspace*{\fill} $*_1$ Si $X_i$ incorreladas, $*_2$ Si $X_i$ tienen la misma varianza.
+\[\begin{aligned}
+		E(S_n) & = E\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} E(X_i) \stackrel{(\star)}{=} nE(X)                      \\
+		E(Z_n) & = E\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) = \frac{1}{n}\sum_{i=1}^{n} E(X_i) \stackrel{(\star)}{=} E(X)
+	\end{aligned}\]
+\hspace*{\fill} $(\star)$ Si $X_i$ tienen la misma media.
+
+\[\begin{aligned}
+		V(S_n) & = V\left(\sum_{i=1}^{n} X_i\right) = V(X_1) + V\left(\sum_{i=2}^{n} X_i\right) + 2 \cov{X_1, \sum_{i=2}^{n} X_i}                                                            \\
+		       & = V(X_1) + 2 \sum_{i=2}^{n} \cov{X_1, X_i} + V\left(\sum_{i=2}^{n} X_i\right)                                                                                               \\
+		       & = V(X_1) + 2 \sum_{i=2}^{n} \cov{X_1, X_i} + V(X_2) + 2 \sum_{i=3}^{n} \cov{X_2, X_i} + V\left(\sum_{i=3}^{n} X_i\right)                                                    \\
+		       & = \sum_{i=1}^{n} V(X_i) + 2 \sum_{1\leq i < j \leq n} \cov{X_i,X_j} \stackrel{(*)_1}{=} \sum_{i=1}^{n} V(X_i) \stackrel{(*)_2}{=} n(\sigma(X))^2                            \\
+		V(Z_n) & = V\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) \stackrel{(*)_1}{=} \frac{1}{n^2}\sum_{i=1}^{n} V(X_i) \stackrel{(*)_2}{=} \frac{(\sigma(X))^2}{n} \xrightarrow{n\to\infty} 0
+	\end{aligned}\]
+\hspace*{\fill} $(*)_1$ Si $X_i$ incorreladas, $(*)_2$ Si $X_i$ tienen la misma varianza.
 
 \subsection{Convergencia cuadrática}
 
@@ -41,17 +50,64 @@ Interesan, específicamente, los límites cuando $n\to \infty$ de estas series.
 \end{teo}
 
 \begin{teo}
-	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ con medias y varianzas $E(X_i) = \mu_i$ y $V(X_i) = \sigma_i^2$. Suponmeos que $\ds \mu_n = \frac{1}{n}\sum_{i=1}^{\infty} \mu_i \to \mu \in \R$ y $\ds V(Z_n) = \frac{1}{n^2}\sum_{i=1}^{\infty} \sigma_i^2 \to 0$.
-	\[\implies Z_n \xrightarrow{\tex{cuad.}} \mu\]
-	\begin{dem} %TODO: terminar demostración
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ con $E(X_i) = \mu_i$ y $V(X_i) = \sigma_i^2$. Suponemos que $\ds \mu_n \defeq \frac{1}{n}\sum_{i=1}^{\infty} \mu_i \to \mu \in \R$ y $\ds V(Z_n) = \frac{1}{n^2}\sum_{i=1}^{\infty} \sigma_i^2 \to 0 \implies Z_n \xrightarrow{\tex{cuad.}} \mu$
+	\begin{dem} (Buen ejercicio de examen)%TODO: terminar demostración
 		\[\begin{aligned}
-				E\left(\abs{Z_n - \mu}^2\right) & = E\left(\abs{Z_n - \mu_n + \mu_n - \mu}^2\right)                                       \\
-				                                & = E\left(\abs{Z_n - \mu_n}^2 + \abs{\mu_n - \mu}^2 + 2(Z_n - \mu_n)(\mu_n - \mu)\right) \\
-				                                & = E((Z_n - \mu_n)^2) + (\mu_n - \mu)^2 + 2(\mu_n - \mu)E(Z_n - \mu_n)
+				E\left(\abs{Z_n - \mu}^2\right) & = E\left(\abs{Z_n - \mu_n + \mu_n - \mu}^2\right)                                                \\
+				                                & = E\left(\abs{Z_n - \mu_n}^2 + \abs{\mu_n - \mu}^2 + 2(Z_n - \mu_n)(\mu_n - \mu)\right)          \\
+				                                & = E\left((Z_n - \mu_n)^2\right) + {(\mu_n - \mu)^2} + 2(\mu_n - \mu)\cancelto{0}{E(Z_n - \mu_n)} \\
+				                                & = E\left((Z_n - \mu_n)^2\right) + (\mu_n - \mu)^2 \xrightarrow{n\to\infty} 0
 			\end{aligned}\]
 	\end{dem}
 \end{teo}
 
-\subsection{Convergencia en probabilidad / Ley débil de los grandes números}
+\subsection{Convergencia en probabilidad (ley débil)}
 
 J.Bernoulli (1713) Ars Conjectandi: Si tienes un dado regular, cuantas más veces lo lances, más se aproximará la frecuencia relativa de un número a su probabilidad.
+
+\fecha{23/04/2024}
+\begin{defn}[Convergencia en probabilidad]
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ y $X$ v.a. en $(\Omega, \F, P)$, $\left(X_n\right)_{n\in \N}$ \textbf{converge en probabilidad} a $X$ $\left(X_n \xlongrightarrow{P} X\right)$
+	\[\iff \forall \varepsilon > 0 : \lim_{n\to\infty} P\left(\abs{X_n - X} > \varepsilon\right) = 0\]
+\end{defn} %TODO: Añadir dibujo
+
+\begin{teo}[Ley débil de los grandes números]
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ v.a. de referencia tal que $\mu \defeq E(X) < \infty \we \sigma^2 \defeq V(X) < \infty$.
+	\[\implies Z_n \defeq \frac{1}{n} \sum_{j=1}^{n} X_j \xlongrightarrow{P} \mu\]
+	\begin{dem}
+		Dado $\varepsilon > 0$, por la desigualdad de Chebyshev
+		\[P\left(\abs{Z_n - \mu} > \varepsilon \right) \leq \frac{V(Z_n)}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2} \xrightarrow{n\to\infty} 0\]
+	\end{dem}
+\end{teo}
+
+\begin{obs}
+	\begin{enumerate}
+		\item Hay una ley fuerte de los grandes números.
+		\item Hipótesis: No hace falta que sean independientes, basta con que sean incorreladas. Tampoco hace falta que sean idénticas, basta con que tengan la misma media y varianza.
+		\item Se podría incluso hacer una variante del teorema para variables aleatorias que no tengan la misma media y varianza.
+		\item Existe la posibilidad de adaptar el teorema para que no haga falta que sean incorreladas, solo que tengan una correlación ``pequeña''.
+	\end{enumerate}
+\end{obs}
+
+\begin{teo}
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ con $E(X_i) = \mu_i$ y $V(X_i) = \sigma_i^2$. Suponemos $\ds V(Z_n) = \frac{1}{n^2}\sum_{i=1}^{\infty} \sigma_i^2 \to 0 \implies Z_n \xlongrightarrow{P} \frac{1}{n} \sum_{i=1}^{n} \mu_i$
+	\begin{dem} Por la desigualdad de Chebyshev
+		\[P\left(\abs{Z_n - \frac{1}{n} \sum_{i=1}^{n} \mu_i} > \varepsilon \right) \leq \frac{V\left(Z_n\right)}{\varepsilon^2} = \frac{1}{n^2\varepsilon^2}\sum_{i=1}^{\infty} \sigma_i^2 \xrightarrow{n\to\infty} 0\]
+	\end{dem}
+\end{teo}
+
+\allbold{Usos en estadística:} Sean $X_1, \ldots, X_n$ v.a. i.i.d. con $X\sim \ber{p}$ de referencia. Queremos estimar $p$ (desconocido), ¿cuánto de grande tiene que ser $n$ para estar razonablemente seguros que el estimador $\ds \Bar{X}_n \defeq \frac{1}{n}\sum_{i=1}^{n} X_i$ está cerca de $p$?
+\[P\left(\abs{\Bar{N}_n - p} > \varepsilon\right) \leq \frac{p(1-p)}{n\varepsilon^2} \leq \frac{1}{4n\varepsilon^2} \leq \delta \implies n \geq \frac{1}{4\varepsilon^2\delta}\]
+
+\subsection{Cálculo de la distribución de la suma y el promedio}
+
+Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ v.a. de referencia.
+\begin{enumerate}
+	\item \allbold{$X\sim \ber{p}$} $\implies S_n \sim \bin{n,p}$ y $Z_n \in \left\{0, \frac{1}{n}, \frac{2}{n}, \dots, 1\right\}$ con las mismas probabilidades que una $\bin{n,p}$.
+	\item \allbold{$X\sim \poisson{\lambda}$} $\implies S_n \sim \poisson{n\lambda}$
+	\item \allbold{$X\sim \geom{p}$} $\implies S_n \sim \operatorname{binomial negativa}(n,p)$.
+	\item \allbold{$X\sim \normal{\mu, \sigma^2}$} $\implies S_n \sim \normal{n\mu, n\sigma^2}$.
+	\item \allbold{$X\sim \EXP{\lambda}$} $\implies S_n \sim \operatorname{Gamma}(n,\lambda)$.
+\end{enumerate}
+
+\allbold{Técnicas generales}

@@ -493,7 +493,7 @@ Como vemos $\ds X_k(t) = \left(\sum_{j=0}^k A^j \frac{t^j}{j!}\right)X_0 \xright
 \end{cor}
 
 \begin{teo}[Forma canónica de Jordan]
-	Sea $A \in \mathcal{M}_d(\C)$, entonces $\exists$ un cambio lineal de coordenadas $C$ tal que $A$ se transforma en una matriz por bloques:
+	Sea $A \in \mathcal{M}_d(\mathbb{C})$, entonces $\exists$ un cambio lineal de coordenadas $C$ tal que $A$ se transforma en una matriz por bloques:
 	\[C^{-1} A C = \begin{pmatrix}
 			J_1    & \dots  & 0      \\
 			\vdots & \ddots & \vdots \\
@@ -501,4 +501,89 @@ Como vemos $\ds X_k(t) = \left(\sum_{j=0}^k A^j \frac{t^j}{j!}\right)X_0 \xright
 		\end{pmatrix} \tex{ con } J_i = \alpha_i I + N_i\]
 	donde $\alpha_i$ son los autovalores de $A$ y $N_i$ es una matriz cuadrada con unos en la diagonal por encima de la principal, y lo demás son ceros.
 \end{teo}
+
+\fecha{23/04/2024}
+\[e^{J_i} = e^{\alpha_i I + N_i} = e^{\alpha_i} e^{N_i} \tex{ porque } e^{\lambda I} = \sum_{j=0}^{\infty} \frac{\lambda^j}{j!} I = \left(\sum_{j=0}^{\infty} \frac{\lambda^j}{j!}\right) I = e^{\lambda} I\]
+Además $N_i^k = 0$ para algún $k \in \N$. Por tanto, $\ds e^{N_i} = \sum_{j=0}^{\infty} \frac{N_i^j}{j!} = \sum_{j=0}^{k-1} \frac{N_i^j}{j!}$
+\[\implies e^{J_i} = e^{\alpha_i} e^{N_i} = e^{\alpha_i} \sum_{j=0}^{k-1} \frac{N_i^j}{j!} = e^{\alpha_i} \begin{pmatrix}
+		1      & 1      & \frac{1}{2!} & \cdots & \frac{1}{(k-1)!} \\
+		0      & 1      & 1            & \cdots & \frac{1}{(k-2)!} \\
+		0      & 0      & 1            & \cdots & \frac{1}{(k-3)!} \\
+		\vdots & \vdots & \vdots       & \ddots & \vdots           \\
+		0      & 0      & 0            & \cdots & 1
+	\end{pmatrix}\]
+Sin embargo, lo que nos interesa es $e^{tA} = Ce^{J}C^{-1}$.
+\[\implies e^{tA} = C \begin{pmatrix}
+		e^{t J_1} & \dots  & 0         \\
+		\vdots    & \ddots & \vdots    \\
+		0         & \dots  & e^{t J_k}
+	\end{pmatrix} C^{-1} = \begin{pmatrix}
+		e^{t J_1} & \dots  & 0         \\
+		\vdots    & \ddots & \vdots    \\
+		0         & \dots  & e^{t J_k}
+	\end{pmatrix}\]
+\[\implies e^{t J_i} = e^{t\alpha_i}e^{tN_i} = e^{t\alpha_i} \sum_{j=0}^{k-1} \frac{t^j}{j!} N_i^j = e^{t\alpha_i} \begin{pmatrix}
+		1      & t      & \frac{t^2}{2!} & \cdots & \frac{t^{k-1}}{(k-1)!} \\
+		0      & 1      & t              & \cdots & \frac{t^{k-2}}{(k-2)!} \\
+		0      & 0      & 1              & \cdots & \frac{t^{k-3}}{(k-3)!} \\
+		\vdots & \vdots & \vdots         & \ddots & \vdots                 \\
+		0      & 0      & 0              & \cdots & 1
+	\end{pmatrix}\]
+En definitiva, la solución general del SLH $X' = AX$ es
+\[X(t) = (Ce^{tJ}C^{-1})X_0 \tex{ con } X_0 \in \R^d \tex{ y } e^{tJ} \tex{ matriz por bloques } e^{tJ_i} \tex{ como arriba}\]
+
+\begin{ejem}
+	Sea el SLH $X' = A X$ con $A = \begin{pmatrix}
+			3 & -4 \\
+			1 & -1
+		\end{pmatrix}$. El único autovalor de $A$, que no es diagonalizable, es $\lambda = 1$. Se propone la forma de Jordan dada por:
+	\[A = CJC^{-1} = \begin{pmatrix}
+			2 & 1 \\
+			1 & 0
+		\end{pmatrix} \begin{pmatrix}
+			1 & 1 \\
+			0 & 1
+		\end{pmatrix} \begin{pmatrix}
+			0 & 1  \\
+			1 & -2
+		\end{pmatrix} \implies e^{t J} = e^{t}\begin{pmatrix}
+			1 & t \\
+			0 & 1
+		\end{pmatrix}\]
+	\[\implies X(t) = \begin{pmatrix}
+			2 & 1 \\
+			1 & 0
+		\end{pmatrix} e^t \begin{pmatrix}
+			1 & t \\
+			0 & 1
+		\end{pmatrix} \begin{pmatrix}
+			0 & 1  \\
+			1 & -2
+		\end{pmatrix} X_0, \tex{ con } X_0 \in \R^d\]
+	\[\implies X(t) = e^t \begin{pmatrix}
+			2t +1 & -4t  \\
+			t     & 1-2t
+		\end{pmatrix} X_0 \implies \begin{cases}
+			X^1(t) = (2t+1)e^t X_0^1 - 4te^t X_0^2 \\
+			X^2(t) = te^t X_0^1 + (1-2t)e^t X_0^2
+		\end{cases}\]
+\end{ejem}
+
+\subsection{Apéndice: EDOs escalares lineales de orden superior}
+
+Sea $x^{(d)} = a_1(t) x + a_2(t) x' + \dots + a_d(t) x^{(d-1)}$, con $\appl{a_1, \dots, a_{n-1}}{(a,b)}{\R}$ continuas, una ecuación diferencial ordinaria (EDO) de orden $d \in \R$.
+
+Mediante el cambio de variables $y^1 = x, y^2 = x', \dots, y^d = x^{(d-1)}$, podemos reescribir la EDO como un sistema de EDOs de primer orden:
+\[\begin{cases}
+		(y^)1' = y^2 \\
+		(y^2)' = y^3 \\
+		\vdots       \\
+		(y^d)' = a_1(t) y^1 + \dots + a_d(t) y^d
+	\end{cases} \iff Y'(t) = AY \tex{ donde } A= \begin{pmatrix}
+		0      & 1      & 0      & \dots  & 0      \\
+		0      & 0      & 1      & \dots  & 0      \\
+		\vdots & \vdots & \vdots & \ddots & \vdots \\
+		0      & 0      & 0      & \dots  & 1      \\
+		a_1(t) & a_2(t) & a_3(t) & \dots  & a_d(t)
+	\end{pmatrix}\]
 
