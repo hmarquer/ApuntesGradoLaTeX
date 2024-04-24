@@ -110,4 +110,58 @@ Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ v.a. 
 	\item \allbold{$X\sim \EXP{\lambda}$} $\implies S_n \sim \operatorname{Gamma}(n,\lambda)$.
 \end{enumerate}
 
-\allbold{Técnicas generales}
+\allbold{Técnicas generales} (Funciones generatrices)
+
+\fecha{24/04/2024}
+
+\subsection{Convergencia en distribución}
+
+\begin{defn}[Convergencia en distribución]
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ y $X$ v.a. en $(\Omega, \F, P)$, $\left(X_n\right)_{n\in \N}$ {converge en distribución} a $X$ $\left(X_n \xlongrightarrow{d} X\right)$
+	\[\iff \forall t \in \R^{(*)} : P\left(X_n \leq t\right) \xrightarrow{n\to\infty} F_X(t) \defeq P(X \leq t)\]
+	\hspace*{\fill} $(*)$ $F_X$ debe ser continua en $t$.
+\end{defn}
+
+Vamos a tipificar $\ds S_n\defeq \sum_{i=1}^{n} X_i$ y $\ds Z_n \defeq \frac{1}{n}\sum_{i=1}^{n} X_i$ con $\left(X_n\right)_{n\in \N}$ i.i.d. con $X$ de referencia.
+\[W_n \defeq \frac{S_n - n\mu}{\sigma \sqrt{n}} \quad \we \quad V \defeq \frac{Z_n - \mu}{\sigma/\sqrt{n}}\]
+
+\begin{teo}[del límite central]
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ de referencia.
+	\[\implies \forall t \in \R : P\left(\frac{S_n - n\mu}{\sigma \sqrt{n}} \leq t\right) \xrightarrow{n\to\infty} \Phi(t) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{t} e^{-\frac{x^2}{2}}dx\]
+	Es decir, este teorema nos dice que $\ds \frac{S_n - n\mu}{\sigma \sqrt{n}} \xlongrightarrow{d} U$ donde $U\sim\normal{0,1}$
+	\begin{dem}
+
+	\end{dem}
+\end{teo}
+
+\begin{ejem}
+	Sea $X\sim \ber{p}$ la v.a. de referencia de $\left(X_n\right)_{n\in \N}$ i.i.d., entonces $S_n \sim \bin{n,p}$ y $Z_n \in \left\{0, \frac{1}{n}, \frac{2}{n}, \dots, 1\right\}$ con las mismas probabilidades que una $\bin{n,p}$.
+
+	Si $p=\sfrac{1}{2}$ y $n=1000$ (lanzamos una moneda regular 1000 veces) y nos piden:
+	\[P(480 \leq S_1000 \leq 530) = \sum_{j=480}^{530} \binom{1000}{j} \left(\frac{1}{2}\right)^{1000} \approx 87.578\%\]
+	Pero podemos aproximar la respuesta usando la normal por el teorema del límite central:
+	\[\begin{aligned}
+			P(480 \leq S_1000 \leq 530) & = P\left(\frac{480-500}{\sqrt{250}} \leq \frac{S_{1000}-500}{\sqrt{250}} \leq \frac{530-500}{\sqrt{250}}\right) \\
+			                            & \approx \Phi\left(\frac{30}{\sqrt{250}}\right) - \Phi\left(\frac{-20}{\sqrt{250}}\right) \approx 86.816\%
+		\end{aligned}\]
+\end{ejem}
+
+\begin{ejem}
+	Lanzamos un dado 10000 veces y nos piden $P(3400 \leq S \leq 3500)$.
+
+	Tenemos $X\sim \unif{1,6} \implies E(X) = \frac{7}{2} \we V(X) = \frac{35}{12}$ y $S = \sum_{i=1}^{1000} X_i \implies E(S) = 3500 \we V(S) = 1000\frac{35}{12}$.
+	\[\begin{aligned}
+			P(3400 \leq S \leq 3500) & = P\left(\frac{-100}{\sqrt{1000 \cdot \sfrac{35}{12}}} \leq \frac{S-3500}{\sqrt{1000\cdot \sfrac{35}{12}}} \leq 0\right) \\
+			                         & \approx \Phi(0) - \Phi\left(\frac{-100}{\sqrt{1000\cdot \sfrac{35}{12}}}\right) \approx 46.79\%
+		\end{aligned}\]
+\end{ejem}
+
+\begin{ejem}
+	Sea $X\sim \ber{p}$ de referencia con $p$ desconocido de $\left(X_n\right)_{n\in\N}$ i.i.d. y $\Bar{X}_n$ el promedio de las $X_i$. Fijamos $\alpha \in \R$ ``pequeño'' y definimos $\ds z_{\alpha/2} \defeq \Phi^{-1}\left(1-\frac{\alpha}{2}\right)$.
+	\[\begin{aligned}
+			\implies P\left(-z_{\alpha/2} \leq \frac{\Bar{X}_n - p}{\sqrt{\sfrac{p(1-p)}{n}}} \leq z_{\alpha/2}\right) & \approx 1-\alpha                                                                                                                          \\
+			                                                                                                           & = P\left(-\frac{-z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}} \leq \Bar{X}_n - p \leq \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}\right)           \\
+			                                                                                                           & = P\left(\Bar{X}_n - \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}} \leq p \leq \Bar{X}_n + \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}\right)
+		\end{aligned}\]
+	Tenemos confianza $1-\alpha$ de que $p$ está en el intervalo $\left(\Bar{x}_n - \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}, \Bar{x}_n + \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}\right)$ donde $\Bar{x}_n$ es el valor observado de $\Bar{X}_n$. Sin embargo, este intervalo depende de $p$, pero podemos acotarlo por $\ds \left(\Bar{x}_n - \frac{z_{\alpha/2}}{2\sqrt{n}}, \Bar{x}_n + \frac{z_{\alpha/2}}{2\sqrt{n}}\right)$.
+\end{ejem}

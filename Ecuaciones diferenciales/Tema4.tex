@@ -503,8 +503,12 @@ Como vemos $\ds X_k(t) = \left(\sum_{j=0}^k A^j \frac{t^j}{j!}\right)X_0 \xright
 \end{teo}
 
 \fecha{23/04/2024}
-\[e^{J_i} = e^{\alpha_i I + N_i} = e^{\alpha_i} e^{N_i} \tex{ porque } e^{\lambda I} = \sum_{j=0}^{\infty} \frac{\lambda^j}{j!} I = \left(\sum_{j=0}^{\infty} \frac{\lambda^j}{j!}\right) I = e^{\lambda} I\]
-Además $N_i^k = 0$ para algún $k \in \N$. Por tanto, $\ds e^{N_i} = \sum_{j=0}^{\infty} \frac{N_i^j}{j!} = \sum_{j=0}^{k-1} \frac{N_i^j}{j!}$
+
+Puesto que la solución general es de la forma $X(t) = e^{At}X_0$, nos interesa calcular $e^{At}$. Para $A$ no diagonalizable, nos interesa primero estudiar $e^{J}$ con $J$ matriz de la forma canónica de Jordan de $A$.
+
+Como vimos, $e^J$ es también una matriz por bloques de la forma $e^{J_i}$ donde $J_i$ son los bloques de $J$ de la forma $J_i = \alpha_i I + N_i$.
+\[\implies e^{J_i} = e^{\alpha_i I + N_i} = e^{\alpha_i} e^{N_i} \tex{ porque } e^{\lambda I} = \sum_{j=0}^{\infty} \frac{\lambda^j}{j!} I = \left(\sum_{j=0}^{\infty} \frac{\lambda^j}{j!}\right) I = e^{\lambda} I\]
+Además $N_i^k = 0$ para algún $k \in \N$ (nilpotentes). Por tanto, $\ds e^{N_i} = \sum_{j=0}^{\infty} \frac{N_i^j}{j!} = \sum_{j=0}^{k-1} \frac{N_i^j}{j!}$
 \[\implies e^{J_i} = e^{\alpha_i} e^{N_i} = e^{\alpha_i} \sum_{j=0}^{k-1} \frac{N_i^j}{j!} = e^{\alpha_i} \begin{pmatrix}
 		1      & 1      & \frac{1}{2!} & \cdots & \frac{1}{(k-1)!} \\
 		0      & 1      & 1            & \cdots & \frac{1}{(k-2)!} \\
@@ -512,17 +516,12 @@ Además $N_i^k = 0$ para algún $k \in \N$. Por tanto, $\ds e^{N_i} = \sum_{j=0}
 		\vdots & \vdots & \vdots       & \ddots & \vdots           \\
 		0      & 0      & 0            & \cdots & 1
 	\end{pmatrix}\]
-Sin embargo, lo que nos interesa es $e^{tA} = Ce^{J}C^{-1}$.
-\[\implies e^{tA} = C \begin{pmatrix}
+Sin embargo, lo que nos interesa es $e^{tA} = Ce^{J}C^{-1} = C \begin{pmatrix}
 		e^{t J_1} & \dots  & 0         \\
 		\vdots    & \ddots & \vdots    \\
 		0         & \dots  & e^{t J_k}
-	\end{pmatrix} C^{-1} = \begin{pmatrix}
-		e^{t J_1} & \dots  & 0         \\
-		\vdots    & \ddots & \vdots    \\
-		0         & \dots  & e^{t J_k}
-	\end{pmatrix}\]
-\[\implies e^{t J_i} = e^{t\alpha_i}e^{tN_i} = e^{t\alpha_i} \sum_{j=0}^{k-1} \frac{t^j}{j!} N_i^j = e^{t\alpha_i} \begin{pmatrix}
+	\end{pmatrix} C^{-1}$
+\[\tex{donde }e^{t J_i} = e^{t\alpha_i}e^{tN_i} = e^{t\alpha_i} \sum_{j=0}^{k-1} \frac{t^j}{j!} N_i^j = e^{t\alpha_i} \begin{pmatrix}
 		1      & t      & \frac{t^2}{2!} & \cdots & \frac{t^{k-1}}{(k-1)!} \\
 		0      & 1      & t              & \cdots & \frac{t^{k-2}}{(k-2)!} \\
 		0      & 0      & 1              & \cdots & \frac{t^{k-3}}{(k-3)!} \\
@@ -575,11 +574,11 @@ Sea $x^{(d)} = a_1(t) x + a_2(t) x' + \dots + a_d(t) x^{(d-1)}$, con $\appl{a_1,
 
 Mediante el cambio de variables $y^1 = x, y^2 = x', \dots, y^d = x^{(d-1)}$, podemos reescribir la EDO como un sistema de EDOs de primer orden:
 \[\begin{cases}
-		(y^)1' = y^2 \\
-		(y^2)' = y^3 \\
-		\vdots       \\
+		(y^1)' = y^2                \\
+		(y^2)' = y^3                \\
+		\quad \quad \, \, \, \vdots \\
 		(y^d)' = a_1(t) y^1 + \dots + a_d(t) y^d
-	\end{cases} \iff Y'(t) = AY \tex{ donde } A= \begin{pmatrix}
+	\end{cases} \hspace{-2cm} \iff Y'(t) = A(t)Y, A(t)= \begin{pmatrix}
 		0      & 1      & 0      & \dots  & 0      \\
 		0      & 0      & 1      & \dots  & 0      \\
 		\vdots & \vdots & \vdots & \ddots & \vdots \\
@@ -587,3 +586,27 @@ Mediante el cambio de variables $y^1 = x, y^2 = x', \dots, y^d = x^{(d-1)}$, pod
 		a_1(t) & a_2(t) & a_3(t) & \dots  & a_d(t)
 	\end{pmatrix}\]
 
+\fecha{24/04/2024}
+
+Si $a_1, \dots, a_d \in \R$, entonces la EDO es de coeficientes constantes. En este caso, hay un par de ``trucos'' para encontrar una base de soluciones explícitas.
+\begin{enumerate}
+	\item El polinomio característico de $A$ es $p(\lambda) = \lambda^d - a_d \lambda^{d-1} - \dots - a_2\lambda - a_1 = 0$.
+	\item Como $Y= e^{At}Y_0$, y solo me interesa encontrar la primera componente (porque $Y^1 = x$, y las demás son derivadas de $x$), basta con calcular la primera fila de $e^{At}$. De hecho, por lo lo visto con formas de Jordan, todos los elementos de la primera fila son de la forma $Y_0t^k e^{\lambda t}$ con $\lambda \in \C$ autovalor de $A$.
+
+	      Como buscamos soluciones reales, solo pueden ser de la forma
+	      \[Y_0t^k e^{\operatorname{Re}(\lambda) t} \cos(\operatorname{Im}(\lambda) t), \quad Y_0t^k e^{\operatorname{Re}(\lambda) t} \sin(\operatorname{Im}(\lambda) t)\]
+
+	      Por ``prueba y error'', buscamos $d$ soluciones linealmente independientes con esa forma.
+\end{enumerate}
+
+\begin{ejem}
+	Sea la EDO $x''' - 3x'' + 3x' - x = 0$. Definimos $y^1 = x, y^2 = x', y^3 = x''$. Entonces, el SLH asociado es $Y'(t) = AY \tex{ donde la matriz asociada es } A = \begin{pmatrix}
+			0 & 1  & 0 \\
+			0 & 0  & 1 \\
+			1 & -3 & 3
+		\end{pmatrix}$
+	\[\implies p(\lambda) = \lambda^3 - 3\lambda^2 + 3\lambda - 1 = 0 \implies p(\lambda) = 0 \iff \lambda = 1 \tex{ (triple)}\]
+	\[\implies \tex{Las soluciones son de la forma } X(t) = t^k e^{t}\]
+	Por tanto, tenemos $X_1(t) = e^t, X_2(t) = te^t, X_3(t) = t^2 e^t$ soluciones l.i. y como el espacio de soluciones es de $\dim = 3$, $\{X_1, X_2, X_3\}$ forman una base.
+	\[\implies \tex{La solución general es } X(t) = \left(c_1 +tc_2 + t^2c_3\right) e^t\]
+\end{ejem}
