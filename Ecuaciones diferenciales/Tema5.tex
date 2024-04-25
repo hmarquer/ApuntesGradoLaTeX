@@ -1,0 +1,46 @@
+\section{Comportamiento cualitativo de sistemas autónomos en el plano}
+
+Estudiamos sistemas de la forma $\boxed{X'=F(X)}$ donde $\appl{X}{I\subset \R}{\R^2}$ y $\appl{F}{\Omega\subset \R^2}{\R^2}$ $\mathcal{C}^1$ con $\Omega$ abierto.
+
+Para cada $X_0 \in \Omega$, el sistema con dato inicial $X(0)=X_0$ tiene solución única definida en un intervalo maximal.
+
+De cada solución $X = (x_1, x_2)$ podemos representar:
+\begin{enumerate}
+	\item La gráfica de cada componente, es decir, $x_1$ frente a $t$ y $x_2$ frente a $t$.
+	\item La traza de la curva en $\R^2$, es decir, el conjunto imagen $\Gamma = \left\{\left(x_1(t), x_2(t)\right) : t\in I\right\} \subset \R^2$.
+
+	      El conjunto $\Gamma$ se llama \textbf{órbita} o \textbf{trayectoria} de $X$. El espacio donde vive $\Gamma$ se llama \textbf{espacio de fases} (o plano de fases si $\dim = 2$).
+\end{enumerate}
+
+\subsection{Comportamiento cualitativo de sistemas autónomos lineales en el plano}
+
+Consideramos el sistema $\boxed{X'=AX}$ con $A\in \mathcal{M}_{2\times 2}(\R)$, $X=(x_1, x_2)\in \R^2$. Queremos esbozar las órbitas de las soluciones dependiendo de cómo sean los autovalores de $A$.
+
+Suponemos que 0 no es autovalor de $A$ (si lo fuera, el sistema sería degenerado). Por tanto, el único equilibrio es el origen.
+
+\begin{itemize}
+	\item \allbold{Caso 1: $\lambda_1 > 0 > \lambda_2$}$\implies $la solución general es $\ds X(t) = \left(c_1 e^{\lambda_1 t}\right) \xi_1 + \left(c_2 e^{\lambda_2 t}\right) \xi_2$
+	      donde $\xi_1$, $\xi_2$ son los autovectores asociados a $\lambda_1, \lambda_2$ respectivamente.
+	      \begin{enumerate} %TODO: Insertar diagrama
+		      \item Si $X(0) = c_1 \xi_1 \implies c_2 = 0 \implies \forall t \in \R : X(t) = c_1 e^{\lambda_1 t} \xi_1$.
+		      \item Si $X(0) = c_2 \xi_2 \implies c_1 = 0 \implies \forall t \in \R : X(t) = c_2 e^{\lambda_2 t} \xi_2$.
+		      \item Si $X(0)$ no está en ninguna de las dos rectas de los casos anteriores
+		            \[\abs{X(t) - c_1 e^{\lambda_1 t} \xi_1} = \abs{c_2} e^{\lambda_2 t} \abs{\xi_2} \longrightarrow \begin{cases}
+				            0, t\to\infty \\
+				            \infty, t\to-\infty
+			            \end{cases}\]
+		            \[\abs{X(t) - c_2 e^{\lambda_2 t} \xi_2} = \abs{c_1} e^{\lambda_1 t} \abs{\xi_1} \longrightarrow \begin{cases}
+				            0, t\to-\infty \\
+				            \infty, t\to\infty
+			            \end{cases}\]
+		            \hspace*{\fill} El equilibrio 0 es un \underline{punto de silla} (inestable).
+	      \end{enumerate}
+	\item \allbold{Caso 2: $\lambda_1 > \lambda_2 > 0$}$\implies \abs{X(t)} \xrightarrow{t\to-\infty} 0$ y
+	      \[\abs{X(t)} = e^{\lambda_1 t} \abs{c_1 \xi_1 + c_2 e^{(\lambda_2 - \lambda_1)t} \xi_2} \xrightarrow{t\to\infty} \infty\]
+	      \hspace*{\fill} El equilibrio 0 es un \underline{nodo inestable} (o fuente).
+	\item \allbold{Caso 3: $\lambda_1 < \lambda_2 < 0$}$\implies \abs{X(t)} \xrightarrow{t\to\infty} 0$ y $\abs{X(t)} \xrightarrow{t\to-\infty} 0$.
+
+	      \hspace*{\fill} El 0 es un \underline{nodo estable} (o sumidero).
+
+\end{itemize}
+

@@ -165,3 +165,17 @@ Vamos a tipificar $\ds S_n\defeq \sum_{i=1}^{n} X_i$ y $\ds Z_n \defeq \frac{1}{
 		\end{aligned}\]
 	Tenemos confianza $1-\alpha$ de que $p$ está en el intervalo $\left(\Bar{x}_n - \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}, \Bar{x}_n + \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}\right)$ donde $\Bar{x}_n$ es el valor observado de $\Bar{X}_n$. Sin embargo, este intervalo depende de $p$, pero podemos acotarlo por $\ds \left(\Bar{x}_n - \frac{z_{\alpha/2}}{2\sqrt{n}}, \Bar{x}_n + \frac{z_{\alpha/2}}{2\sqrt{n}}\right)$.
 \end{ejem}
+
+\fecha{25/04/2024}
+
+\begin{ejer}[4 b del examen]
+	Sea $(X, Y) \sim \\operatorname{2-dim}\normal{0,1}$ con correlación $\rho$. Calcula la varianza de $X\cdot Y$.
+	\[V(X\cdot Y) = E\left(X^2\cdot Y^2\right) - E\left(X\cdot Y\right)^2 = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} x^2y^2\frac{1}{2\pi\sqrt{1-\rho^2}}e^{-\frac{1}{2(1-\rho^2)}(x^2-2\rho xy + y^2)}\odif{x} \odif{y} - \rho\]
+	Completando cuadrados, obtenemos
+	\[\begin{aligned} %TODO: Terminar ejercicio / revisar
+			V(X\cdot Y) & = \frac{1}{2\pi\sqrt{1-\rho^2}}\int_{-\infty}^{\infty} x^2 e^{-\frac{x^2}{2}} \left(\int_{-\infty}^{\infty} y^2 e^{-\frac{1}{2}\left(\frac{y-\rho x}{\sqrt{1-\rho^2}}\right)^2}\odif{y}\right)\odif{x} -                     \rho           \\
+			            & = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} x^2 e^{-\frac{x^2}{2}} \left(\int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}\sqrt{1-\rho^2}}y^2 e^{-\frac{1}{2}\left(\frac{y-\rho x}{\sqrt{1-\rho^2}}\right)^2}\odif{y}\right) \odif{x} - \rho
+		\end{aligned}\]
+	El término entre paréntesis es la varianza de una $\normal{\rho x, 1-\rho^2}$, que es $1-\rho^2$.
+	\[V(X\cdot Y) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} x^2 e^{-\frac{x^2}{2}}(1-\rho^2)\odif{x} - \rho = (1-\rho^2) - \rho = 1-\rho^2-\rho\]
+\end{ejer}
