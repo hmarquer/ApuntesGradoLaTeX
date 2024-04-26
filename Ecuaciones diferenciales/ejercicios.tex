@@ -442,3 +442,164 @@ Si $\exists x \in \R : \det \neq 0 \implies a_1 = a_2 = 0$ es la única solució
 Sea $x^2y'' - 4xy'+(x^2+6)y = 0$ una EDO de segundo orden. Si además $y(0) = y'(0) = 0$ tenemos que $y_1(x)=x^2\sin{x} \we y_2(x)= 0$ son soluciones de la EDO. Definimos $z\defeq y' \implies z' = y'' = \frac{4z}{x} - \frac{6y}{x^2}$.\\
 
 Como la función no es continua en $x=0$, no podemos aplicar el teorema de Picard-Lindelöf.
+
+\fecha{26/04/2024}
+
+\textbf{Caracterización de soluciones de sistemas de EDOs autónomas de dimensión 2}
+
+Sea $X'(t) = A X(t)$ con $A =\begin{pmatrix}
+		a & b \\
+		c & d
+	\end{pmatrix} \in \mathcal{M}_{2\times 2}(\R)$ con $a,b,c,d \in \R$.
+
+Si $\lambda \in \C$ y $\vec{v} \in \C^2 : A\vec{v} = \lambda \vec{v}$, entonces $X_1(t) = e^{\lambda t} \vec{v}$ es solución del sistema porque:
+\[X_1'(t) = \lambda e^{\lambda t} \vec{v} = e^{\lambda t} A\vec{v} = e^{\lambda t} \lambda \vec{v} = A e^{\lambda t} \vec{v} = A X_1(t)\]
+
+Si tienes dos soluciones linealmente independientes $X_1$, $X_2$, entonces generan todas las soluciones que son de la forma $X(t) = c_1 X_1(t) + c_2 X_2(t)$.
+
+Calculamos los autovalores de $A$:
+\[0= \det (A - \lambda I) = \begin{vmatrix}
+		a-\lambda & b         \\
+		c         & d-\lambda
+	\end{vmatrix} = \lambda^2 - (a+d)\lambda + ad - bc = \lambda^2 - \trz{A} \lambda + \det(A)\]
+\[\implies \tex{Los autovalores son: } \lambda_{\pm} = \frac{\trz{A} \pm \sqrt{\trz{A}^2 - 4\det(A)}}{2}\]
+Definimos $T\defeq \trz{A}$ y $D\defeq \det(A)$. %TODO: Sustituirlo todo
+\begin{itemize}
+	\item \allbold{Caso 1:} $T^2 - 4D > 0 \implies \lambda_+, \lambda_- \in \R \we \lambda_+ > \lambda_-$.
+
+	      Sean $\vec{v}_+, \vec{v}_-$ autovectores asociados a $\lambda_+, \lambda_-$ respectivamente. Por tanto, la solución general del sistema es: $\vec{X}(t) = c_1 e^{\lambda_+ t} \vec{v}_+ + c_2 e^{\lambda_- t} \vec{v}_-$ con $c_1, c_2 \in \R$.
+	      \begin{enumerate}
+		      \item Consideramos $T, D > 0$
+		            \[\implies \sqrt{T^2 - 4D} < \sqrt{T^2} = T \implies \lambda_{\pm} > 0\]
+		            Esto implica que cuando $t\to \infty$, $\vec{X}(t)$ se ``parece'' cada vez más a $\vec{v}_+$ en dirección. Análogamente, cuando $t\to -\infty$, $\vec{X}(t)$ se ``parece'' cada vez más a $\vec{v}_-$ en dirección.
+		      \item Consideramos $T < 0 \we D > 0 \implies \lambda_- < \lambda_+ < 0$.
+
+		            Esto implica que cuando $t\to \infty$, $\vec{X}(t) \to \vec{0}$, con un diagrama de fases idéntico al caso anterior pero con todas las flechas apuntando hacia el origen.
+		      \item Consideramos $D < 0 \implies \sqrt{T^2 - 4D} > \sqrt{T^2} = \abs{T}$.
+		            \[\begin{aligned}
+				            \lambda_+ & = \frac{T + \sqrt{T^2 - 4D}}{2} > \frac{T + \abs{T}}{2} \\
+				            \lambda_- & = \frac{T - \sqrt{T^2 - 4D}}{2} < \frac{T - \abs{T}}{2}
+			            \end{aligned} \implies \lambda_+ > 0 > \lambda_-\]
+		      \item Consideramos $D = 0$
+		            \begin{enumerate}
+			            \item $T > 0 \implies \lambda_+ = T \we \lambda_- = 0$. Es decir, hay soluciones estacionarias en la dirección de $\vec{v}_-$ y todo el movimiento ocurre en la dirección de $\vec{v}_+$.
+			            \item $T < 0 \implies \lambda_+ = 0 \we \lambda_- = T$. Es decir, hay soluciones estacionarias en la dirección de $\vec{v}_+$ y todo el movimiento ocurre en la dirección de $\vec{v}_-$.
+		            \end{enumerate}
+
+	      \end{enumerate}
+	\item \allbold{Caso 2:} $T^2 - 4D = 0 \implies \lambda_+ = \lambda_- = \frac{T}{2}$. Veamos un ejemplo concreto: \vspace{-0.5cm}
+	      \begin{ejem}[$y'' - dy - cy = 0$]
+		      En forma de sistema queda: $\begin{pmatrix}
+				      y' \\
+				      z'
+			      \end{pmatrix} = \begin{pmatrix}
+				      0 & 1 \\
+				      c & d
+			      \end{pmatrix} \begin{pmatrix}
+				      y \\
+				      z
+			      \end{pmatrix}$
+		      \[\implies T = d \we D = -c = \frac{T^2}{4} \implies c = -\frac{d^2}{4}\]
+		      Por tanto, una solución es $y(t) = e^{\frac{d}{2}t}$ y $z(t) = \frac{d}{2} e^{\frac{d}{2}t} \implies \vec{X}_1(t) = e^{\frac{d}{2}t} \begin{pmatrix}
+				      1 \\
+				      \frac{d}{2}
+			      \end{pmatrix}$.
+
+		      Otra solución es $y(t) = t e^{\frac{d}{2}t} \implies \vec{X}_2(t) = \begin{pmatrix}
+				      te^{\frac{d}{2}t} \\
+				      e^{\frac{d}{2}t} + \frac{d}{2}te^{\frac{d}{2}t}
+			      \end{pmatrix} = e^{\frac{d}{2}t} \left[\begin{pmatrix}
+					      0 \\
+					      1
+				      \end{pmatrix} + t \begin{pmatrix}
+					      1 \\
+					      \frac{d}{2}
+				      \end{pmatrix}\right]$.
+
+		      Por tanto, la solución general es: $\ds \vec{X}(t) = c_1 e^{\frac{d}{2}t} \begin{pmatrix}
+				      1 \\
+				      \frac{d}{2}
+			      \end{pmatrix} + c_2 e^{\frac{d}{2}t} \left[\begin{pmatrix}
+					      0 \\
+					      1
+				      \end{pmatrix} + t \begin{pmatrix}
+					      1 \\
+					      \frac{d}{2}
+				      \end{pmatrix}\right]$
+	      \end{ejem}
+	\item \allbold{Caso 3:} $T^2 - 4D < 0 \implies \lambda_{\pm} = \frac{T}{2} \pm i\frac{\sqrt{4D - T^2}}{2} \eqdef \alpha \pm \beta i$ cuyos autovectores son:
+	      \[\begin{pmatrix}
+			      a-\lambda_+ & b           \\
+			      c           & d-\lambda_+
+		      \end{pmatrix} \begin{pmatrix}
+			      v_+^1 \\
+			      v_+^2
+		      \end{pmatrix} = \begin{pmatrix}
+			      0 \\
+			      0
+		      \end{pmatrix} \implies (a - \lambda_+)v_+^1 + bv_+^2 = 0 \implies \vec{v}_+ = \begin{pmatrix}
+			      b \\
+			      (\alpha-a) + \beta i
+		      \end{pmatrix}\]
+	      \[\begin{pmatrix}
+			      a-\lambda_- & b           \\
+			      c           & d-\lambda_-
+		      \end{pmatrix} \begin{pmatrix}
+			      v_-^1 \\
+			      v_-^2
+		      \end{pmatrix} = \begin{pmatrix}
+			      0 \\
+			      0
+		      \end{pmatrix} \implies (a - \lambda_-)v_-^1 + bv_-^2 = 0 \implies \vec{v}_- = \begin{pmatrix}
+			      b \\
+			      (\alpha-a) - \beta i
+		      \end{pmatrix}\]
+	      Vemos que, tanto $\lambda_+$ y $\lambda_-$, como $\vec{v}_+$ y $\vec{v}_-$ son conjugados.
+
+	      Por tanto, hemos encontrado dos soluciones complejas $\begin{cases}
+			      \tilde{X}_1(t) = e^{(\alpha + \beta i)t} \vec{v}_+ \\
+			      \tilde{X}_2(t) = e^{(\alpha - \beta i)t} \vec{v}_-
+		      \end{cases}$ \\ que, nuevamente, son conjugadas entre sí.
+
+	      Como consecuencia, podemos encontrar soluciones reales de la forma:
+	      \[\begin{cases}
+			      X_1(t) = \operatorname{Re}\left(\tilde{X}_1(t)\right) = \frac{\tilde{X}_1(t) + \tilde{X}_2(t)}{2} \\
+			      X_2(t) = \operatorname{Im}\left(\tilde{X}_1(t)\right) = \frac{\tilde{X}_1(t) - \tilde{X}_2(t)}{2i}
+		      \end{cases}\]
+	      \[\begin{aligned}%TODO: Terminar 
+			      \implies \til{X}_1(t) & = e^{\alpha t} \left(\cos{\beta t} + i \sin{\beta t}\right) \begin{pmatrix}
+				                                                                                          b \\
+				                                                                                          (\alpha-a) + \beta i
+			                                                                                          \end{pmatrix}             \\
+			                            & = e^{\alpha t} \begin{pmatrix}
+				                                             b\cos{\beta t} \\
+				                                             (\alpha-a)\cos{\beta t} - \beta b \sin{\beta t}
+			                                             \end{pmatrix} + i e^{\alpha t} \begin{pmatrix}
+				                                                                            b\sin{\beta t} \\
+				                                                                            \beta \cos {\beta t} + (\alpha-a)\sin{\beta t}
+			                                                                            \end{pmatrix}
+		      \end{aligned}\]
+
+
+
+\end{itemize}
+
+\begin{center}
+	\begin{tikzpicture}
+		\begin{axis}[
+				xlabel=$\trz{A}$,
+				ylabel=$\det(A)$,
+				xmin=-5,
+				xmax=5,
+				ymin=-5,
+				ymax=5,
+				grid=none,
+				axis lines=middle,
+				width=8cm,
+				height=6cm,
+				samples=100
+			]
+			\addplot[blue, domain=-5:5] {(x^2)/4};
+		\end{axis}
+	\end{tikzpicture}
+\end{center}
