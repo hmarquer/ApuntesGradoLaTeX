@@ -18,6 +18,7 @@ Consideramos el sistema $\boxed{X'=AX}$ con $A\in \mathcal{M}_{2\times 2}(\R)$, 
 
 Suponemos que 0 no es autovalor de $A$ (si lo fuera, el sistema sería degenerado). Por tanto, el único equilibrio es el origen.
 
+Consideramos primero $\lambda_1 \neq \lambda_2$ autovalores distintos de $A$.
 \begin{itemize}
 	\item \allbold{Caso 1: $\lambda_1 > 0 > \lambda_2$}$\implies $la solución general es $\ds X(t) = \left(c_1 e^{\lambda_1 t}\right) \xi_1 + \left(c_2 e^{\lambda_2 t}\right) \xi_2$
 	      donde $\xi_1$, $\xi_2$ son los autovectores asociados a $\lambda_1, \lambda_2$ respectivamente.
@@ -37,10 +38,46 @@ Suponemos que 0 no es autovalor de $A$ (si lo fuera, el sistema sería degenerad
 	      \end{enumerate}
 	\item \allbold{Caso 2: $\lambda_1 > \lambda_2 > 0$}$\implies \abs{X(t)} \xrightarrow{t\to-\infty} 0$ y
 	      \[\abs{X(t)} = e^{\lambda_1 t} \abs{c_1 \xi_1 + c_2 e^{(\lambda_2 - \lambda_1)t} \xi_2} \xrightarrow{t\to\infty} \infty\]
-	      \hspace*{\fill} El equilibrio 0 es un \underline{nodo inestable} (o fuente).
+	      \hspace*{\fill} El equilibrio 0 es un \underline{nodo inestable} (o fuente). Es asintóticamente estable a pasado.
 	\item \allbold{Caso 3: $\lambda_1 < \lambda_2 < 0$}$\implies \abs{X(t)} \xrightarrow{t\to\infty} 0$ y $\abs{X(t)} \xrightarrow{t\to-\infty} 0$.
 
 	      \hspace*{\fill} El 0 es un \underline{nodo estable} (o sumidero).
-
 \end{itemize}
 
+\fecha{29/04/2024}
+
+En el caso de que $\lambda_1 = \lambda_2 = \lambda \in \R$, la solución general es
+\[X(t) = c_1 e^{\lambda t} \xi_1 + c_2 e^{\lambda t} \xi_2 = e^{\lambda t} (c_1 \xi_1 + c_2 \xi_2)\]
+\begin{itemize}
+	\item \allbold{Caso 1: $\lambda < 0$} $\implies \abs{X(t)} \xrightarrow{t\to\infty} 0$. El origen es asintóticamente estable.
+	\item \allbold{Caso 2: $\lambda > 0$} $\implies \abs{X(t)} \xrightarrow{t\to\infty} \infty$. El origen es inestable.
+\end{itemize}
+
+Si $\lambda_1 = \overline{\lambda_2} = \alpha \pm \beta i$, la solución general es
+\[X(t) = c_1 \operatorname{Re}\left(e^{(\alpha + \beta i)t} \xi\right) + c_2 \operatorname{Im}\left(e^{(\alpha + \beta i)t} \xi\right)\]
+donde $\xi = (\xi_1, \xi_2)$ es un autovector asociado a $\alpha + \beta i$. Denominamos $v_1 = \operatorname{Re}(\xi)\in \R^2$ y $v_2 = \operatorname{Im}(\xi) \in \R^2$.
+\[\begin{aligned}
+		 & \begin{aligned}
+			   \implies e^{(\alpha + \beta i)t} \xi & = e^{\alpha t} \left(\cos(\beta t) + i\sin(\beta t)\right) (v_1 + iv_2)                                                              \\
+			                                        & = e^{\alpha t} \left[\left(\cos(\beta t) v_1 - \sin(\beta t) v_2\right) + i\left(\sin(\beta t) v_1 + \cos(\beta t) v_2\right)\right]
+		   \end{aligned}    \\
+		 & \begin{aligned}
+			   \implies X(t) & = c_1 e^{\alpha t} \left(\cos(\beta t) v_1 - \sin(\beta t) v_2\right) + c_2 e^{\alpha t} \left(\sin(\beta t) v_1 + \cos(\beta t) v_2\right)  \\
+			                 & = e^{\alpha t} \left(c_1 \cos(\beta t) + c_2 \sin(\beta t)\right) v_1 + e^{\alpha t} \left(-c_1 \sin(\beta t) + c_2 \cos(\beta t)\right) v_2 \\
+			                 & \eqdef y_1(t) v_1 + y_2(t) v_2
+		   \end{aligned}
+	\end{aligned}\]
+Entonces $y_1(t) = e^{\alpha t} \left(c_1 \cos(\beta t) + c_2 \sin(\beta t)\right)$. Si $(c_1, c_2) \neq (0, 0)$, lo erscribo como $(c_1, c_2) \eqdef r(\cos(\theta), \sin(\theta)) \implies y_1(t) = e^{\alpha t} r \left(\cos(\theta) \cos(\beta t) + \sin(\theta) \sin(\beta t)\right) = e^{\alpha t} r \cos(\theta - \beta t)$.
+
+De manera similar, $\ds y_2(t) = e^{\alpha t} r \sin(\theta - \beta t) \implies X(t) = e^{\alpha t} r \left(\cos(\theta - \beta t) v_1 + \sin(\theta - \beta t) v_2\right)$
+\begin{itemize}
+	\item \allbold{Caso 1: $\alpha < 0$} $\implies \abs{X(t)} \xrightarrow{t\to\infty} 0$. El origen es asintóticamente estable.
+	\item \allbold{Caso 2: $\alpha > 0$} $\implies \abs{X(t)} \xrightarrow{t\to\infty} \infty$. El origen es inestable (asintóticamente estable a pasado).
+\end{itemize}
+
+\subsection{Sistemas no lineales en el plano}
+
+Sea $\appl{F}{\Omega\subset \R^2}{\R^2}$ $\mathcal{C}^1$ con $\Omega$ abierto. Consideramos el sistema $\boxed{X'=F(X)}$.
+
+$X_0$ es un equilibrio $\iff F(X_0) = 0$. Desarrollando por Taylor $F$ en $X_0$:
+\[F(X) = F(X_0) + DF(X_0)(X-X_0) + \cdots\]

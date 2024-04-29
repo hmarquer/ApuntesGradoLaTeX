@@ -122,16 +122,15 @@ Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ v.a. 
 	\hspace*{\fill} $(*)$ $F_X$ debe ser continua en $t$.
 \end{defn}
 
+\subsubsection{Teorema del límite central / central del límite}
+
 Vamos a tipificar $\ds S_n\defeq \sum_{i=1}^{n} X_i$ y $\ds Z_n \defeq \frac{1}{n}\sum_{i=1}^{n} X_i$ con $\left(X_n\right)_{n\in \N}$ i.i.d. con $X$ de referencia.
-\[W_n \defeq \frac{S_n - n\mu}{\sigma \sqrt{n}} \quad \we \quad V \defeq \frac{Z_n - \mu}{\sigma/\sqrt{n}}\]
+\[W_n \defeq \frac{S_n - n\mu}{\sigma \sqrt{n}} \quad \we \quad V_n \defeq \frac{Z_n - \mu}{\sigma/\sqrt{n}}\]
 
 \begin{teo}[del límite central]
 	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ de referencia.
 	\[\implies \forall t \in \R : P\left(\frac{S_n - n\mu}{\sigma \sqrt{n}} \leq t\right) \xrightarrow{n\to\infty} \Phi(t) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{t} e^{-\frac{x^2}{2}}dx\]
 	Es decir, este teorema nos dice que $\ds \frac{S_n - n\mu}{\sigma \sqrt{n}} \xlongrightarrow{d} U$ donde $U\sim\normal{0,1}$
-	\begin{dem}
-
-	\end{dem}
 \end{teo}
 
 \begin{ejem}
@@ -156,14 +155,16 @@ Vamos a tipificar $\ds S_n\defeq \sum_{i=1}^{n} X_i$ y $\ds Z_n \defeq \frac{1}{
 		\end{aligned}\]
 \end{ejem}
 
-\begin{ejem}
-	Sea $X\sim \ber{p}$ de referencia con $p$ desconocido de $\left(X_n\right)_{n\in\N}$ i.i.d. y $\Bar{X}_n$ el promedio de las $X_i$. Fijamos $\alpha \in \R$ ``pequeño'' y definimos $\ds z_{\alpha/2} \defeq \Phi^{-1}\left(1-\frac{\alpha}{2}\right)$.
+\begin{ejem}[Intervalo de confianza]
+	Sea $X\sim \ber{p}$ de referencia con $p$ desconocido de $\left(X_n\right)_{n\in\N}$ i.i.d. y $\overline{X}_n$ el promedio de las $X_i$. Fijamos $\alpha \in \R$ ``pequeño'' y definimos $\ds z_{\alpha/2} \defeq \Phi^{-1}\left(1-\frac{\alpha}{2}\right)$.
 	\[\begin{aligned}
-			\implies P\left(-z_{\alpha/2} \leq \frac{\Bar{X}_n - p}{\sqrt{\sfrac{p(1-p)}{n}}} \leq z_{\alpha/2}\right) & \approx 1-\alpha                                                                                                                          \\
-			                                                                                                           & = P\left(-\frac{-z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}} \leq \Bar{X}_n - p \leq \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}\right)           \\
-			                                                                                                           & = P\left(\Bar{X}_n - \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}} \leq p \leq \Bar{X}_n + \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}\right)
+			 & \implies P\left(-z_{\alpha/2} \leq \frac{\overline{X}_n - p}{\sqrt{\sfrac{p(1-p)}{n}}} \leq z_{\alpha/2}\right) \approx 1-\alpha                    \\
+			 & = P\left(-\frac{-z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}} \leq \overline{X}_n - p \leq \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}\right)                \\
+			 & = P\left(\overline{X}_n - \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}} \leq p \leq \overline{X}_n + \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}\right)
 		\end{aligned}\]
-	Tenemos confianza $1-\alpha$ de que $p$ está en el intervalo $\left(\Bar{x}_n - \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}, \Bar{x}_n + \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}\right)$ donde $\Bar{x}_n$ es el valor observado de $\Bar{X}_n$. Sin embargo, este intervalo depende de $p$, pero podemos acotarlo por $\ds \left(\Bar{x}_n - \frac{z_{\alpha/2}}{2\sqrt{n}}, \Bar{x}_n + \frac{z_{\alpha/2}}{2\sqrt{n}}\right)$.
+	Tenemos confianza $1-\alpha$ de que $p$ está en el intervalo $\left(\overline{x}_n - \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}, \overline{x}_n + \frac{z_{\alpha/2}\sqrt{p(1-p)}}{\sqrt{n}}\right)$ donde $\overline{x}_n$ es el valor observado de $\overline{X}_n$. Sin embargo, este intervalo depende de $p$, pero podemos acotarlo por $\ds \left(\overline{x}_n - \frac{z_{\alpha/2}}{2\sqrt{n}}, \overline{x}_n + \frac{z_{\alpha/2}}{2\sqrt{n}}\right)$.
+
+	Por tanto, el error sería $\ds \frac{z_{\alpha/2}}{2\sqrt{n}}$. Si queremos que sea menor que $\varepsilon$, necesitamos que $\ds n \geq \frac{\left(z_{\alpha/2}\right)^2}{4\varepsilon^2}$.
 \end{ejem}
 
 \fecha{25/04/2024}
@@ -179,3 +180,50 @@ Vamos a tipificar $\ds S_n\defeq \sum_{i=1}^{n} X_i$ y $\ds Z_n \defeq \frac{1}{
 	El término entre paréntesis es la varianza de una $\normal{\rho x, 1-\rho^2}$, que es $1-\rho^2$.
 	\[V(X\cdot Y) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} x^2 e^{-\frac{x^2}{2}}(1-\rho^2)\odif{x} - \rho = (1-\rho^2) - \rho = 1-\rho^2-\rho\]
 \end{ejer}
+
+\fecha{29/06/2024}
+
+\subsubsection{Variaciones del TCL}
+
+Si consideramos $\left(X_n\right)_{n\in \N}$ v.a. no idénticas con medias y varianzas $E(X_i) = \mu_i \we V(X_i) = \sigma_i^2$ e independientes.
+\[\implies \tex{La suma tipificada es } T_n \defeq \frac{\frac{1}{n} \sum_{i=1}^{n} X_i - \frac{1}{n}\sum_{i=1}^{n} \mu_i}{\sqrt{\frac{1}{n^2}\sum_{i=1}^{n} \sigma_i^2}}\]
+Ahora, según las condiciones de Lyapunov, definimos $\ds S_n^2 \defeq \sum_{i=1}^{n} \sigma_i^2$ y si
+\[\exists \delta > 0 : \frac{1}{S_n^{2+\delta}} \sum_{i=1}^{n} E\left(\abs{X_i - \mu_i}^{2+\delta}\right) \xrightarrow{n\to\infty} 0 \implies T_n \xlongrightarrow{d} \normal{0,1}\]
+
+\begin{teo}[Cota de Berry-Esseen]
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. con $E(X) = 0 \we V(X) = \sigma^2 < \infty$ y $E\left(\abs{X}^3\right) < \infty$.
+	\[\implies \sup_{t\in \R} \abs{P\left(\frac{\sum X_i - n\mu}{\sigma \sqrt{n}} \leq t\right) - \Phi(t)} \leq C \frac{E\left(\abs{X}^3\right)}{\sigma^3}\frac{1}{\sqrt{n}} \tex{ con } C \tex{ constante universal}\]
+\end{teo}
+
+\subsection{Funciones generatrices de momentos (y función característica)}
+
+\allbold{Recordamos:} Sea $X$ v.a. que toma valores en $\{0, 1, \dots\}$ con probabilidades $p_0, p_1, \dots$, entonces la función generatriz de probabilidad de $X$ es $\ds G_X(s) \defeq \sum_{n=0}^{\infty} p_n s^n = E\left(s^X\right)$.
+
+\begin{defn}
+	Sea $X$ v.a., su función generatriz de momentos  es $\ds M_X(t) \defeq E\left(e^{tX}\right)$.
+\end{defn}
+
+\begin{obs}
+	\begin{itemize}
+		\item Si $X$ toma valores en $\{0, 1, \dots\}$, entonces $M_X(t) = G_X(e^t)$.
+		      \[\tex{porque }M_X(t) = E\left(e^{tX}\right) = \sum_{n=0}^{\infty} e^{tn}p_n = \sum_{n=0}^{\infty} p_n (e^t)^n = G_X(e^t)\]
+		\item Si $X$ es discreta $\ds \implies E\left(e^{tX}\right) = \sum_{x \in X(\Omega)} e^{tx}P(X=x)$.
+
+		      Si $X$ es continua $\ds \implies E\left(e^{tX}\right) = \int_{-\infty}^{\infty} e^{tx}f_X(x)\odif{x}$.
+	\end{itemize}
+\end{obs}
+
+\begin{ejem}
+	\begin{itemize}
+		\item $\ds X\sim \EXP{\lambda} \implies M_X(t) = \int_{0}^{\infty} e^{tx}\lambda e^{-\lambda x}\odif{x} = \begin{cases}
+				      \frac{\lambda}{\lambda - t} & \tex{ si } t < \lambda    \\
+				      \infty                      & \tex{ si } t \geq \lambda
+			      \end{cases}$
+		      \[\tex{porque } E\left(e^{tX}\right) = \int_{0}^{\infty} e^{tx}\lambda e^{-\lambda x}\odif{x} = \lambda \int_{0}^{\infty} e^{-(\lambda - t)x}\odif{x} = \begin{cases}
+				      \frac{\lambda}{\lambda - t} & \tex{ si } t < \lambda    \\
+				      \infty                      & \tex{ si } t \geq \lambda
+			      \end{cases}\]
+		\item $\ds X\sim \normal{0,1} \implies M_X(t) = \int_{-\infty}^{\infty} e^{tx}\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\odif{x} = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty} e^{tx-\frac{x^2}{2}}\odif{x}$
+		      \[\implies M_X(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left(x-t\right)^2} e^{\frac{t^2}{2}}\odif{x} = e^{\frac{t^2}{2}} \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left(x-t\right)^2}\odif{x} = e^{\frac{t^2}{2}}\]
+	\end{itemize}
+\end{ejem}
