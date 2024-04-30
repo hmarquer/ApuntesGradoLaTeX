@@ -227,3 +227,77 @@ Ahora, según las condiciones de Lyapunov, definimos $\ds S_n^2 \defeq \sum_{i=1
 		      \[\implies M_X(t) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left(x-t\right)^2} e^{\frac{t^2}{2}}\odif{x} = e^{\frac{t^2}{2}} \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} e^{-\frac{1}{2}\left(x-t\right)^2}\odif{x} = e^{\frac{t^2}{2}}\]
 	\end{itemize}
 \end{ejem}
+
+\fecha{30/04/2024}
+
+\begin{ejem}
+	$X$ sigue una distribución de Cauchy $\iff \forall x \in \R : f_X(x) = \frac{1}{\pi} \frac{1}{1+x^2}$.
+	\[\implies M_X(t) = \int_{-\infty}^{\infty} e^{tx} \frac{1}{\pi} \frac{1}{1+x^2}\odif{x} \tex{ que solo converge cuando }t=0\]
+	Es decir, muchas veces $M_X$ genera problemas porque $e^{tX}$ se hace grande. \\
+	Por tanto, se define la transformada de Fourier de $X$ como $\ds \hat{f}_X(t) \defeq \int_{-\infty}^{\infty} e^{itx}f_X(x)\odif{x}$. En este caso, $\forall t, x \in \R : \abs{e^{itx}} = 1$.
+\end{ejem}
+
+\subsubsection{¿Por qué ese nombre?}
+
+Si tenemos en cuenta el desarrollo de Taylor de $\ds e^{z} = \sum_{n=0}^{\infty} \frac{z^n}{n!}$, entonces
+\[\begin{aligned}
+		\forall t\in \R : M_X(t) & = E\left(e^{tX}\right) = E\left(1 + tx + \frac{t^2x^2}{2} + \frac{t^3x^3}{3!} + \dots\right)                           \\
+		                         & = 1 + tE(X) + \frac{t^2E(X^2)}{2} + \frac{t^3E(X^3)}{3!} + \dots = \sum_{n=0}^{\infty} \frac{E\left(X^n\right)t^n}{n!}
+	\end{aligned}\]
+Es decir, $M_X(t)$ es función generatriz (exponencial) de la sucesión de momentos.
+
+\begin{teo}
+	Sea $X$ v.a. con función generatriz de momentos $M_X(t)$.
+	\[M_X(t) \tex{ converge en }\abs{t}< \delta \tex{ para cierto }\delta \implies \forall k \in \Z_{\geq 0} : E\left(X^k\right) = M^{(k)}_X (0)\]
+\end{teo}
+
+\begin{ejem}
+	Sea $X\sim\normal{0,1} \implies M_X(t) = e^{\frac{t^2}{2}}$.
+	\[\begin{aligned}
+			M'_X(t)      & = te^{\frac{t^2}{2}}                                                & \implies M'_X(0) = 0      \\
+			M''_X(t)     & = e^{\frac{t^2}{2}} + t^2e^{\frac{t^2}{2}}                          & \implies M''_X(0) = 1     \\
+			M'''_X(t)    & = 2te^{\frac{t^2}{2}} + t^3e^{\frac{t^2}{2}}                        & \implies M'''_X(0) = 0    \\
+			M^{(4)}_X(t) & = 3e^{\frac{t^2}{2}} + 3t^2e^{\frac{t^2}{2}} + t^4e^{\frac{t^2}{2}} & \implies M^{(4)}_X(0) = 3
+		\end{aligned}\]
+\end{ejem}
+
+\subsubsection{La gracia}
+
+\begin{itemize}
+	\item Sea $X$ v.a. con función generatriz de momentos $M_X(t)$. Definimos $Y\defeq aX+b$ con $a,b\in \R \implies M_Y(t) = E\left(e^{tY}\right) = E\left(e^{t(aX+b)}\right) = e^{tb}E\left(e^{(at)X}\right) = e^{tb}M_X(at)$.
+
+	\item Sean $X$ e $Y$ v.a. independientes con funciones generatrices de momentos $M_X(t)$ y $M_Y(t) \implies M_{X+Y}(t) = E\left(e^{t(X+Y)}\right) = E\left(e^{tX}e^{tY}\right) = E\left(e^{tX}\right)E\left(e^{tY}\right) = M_X(t)M_Y(t)$.
+
+	      Si, en su lugar, tenemos $X_1, \dots, X_n$ v.a. independientes con funciones generatrices de momentos $M_{X_i}(t)$, entonces $M_{X_1 + \dots + X_n}(t) = M_{X_1}(t) \cdots M_{X_n}(t)$.
+\end{itemize}
+
+\subsubsection{El problema de los momentos}
+
+Supongamos que para $X$ v.a. tenemos todos sus momentos, ¿podemos recuperar $X$?
+
+La respuesta es que no. Por ejemplo, si $X$ sigue una distribución dada por la función de densidad $\ds \forall x > 0 : f_X(x) = \frac{1}{x\sqrt{2\pi}} e^{-\frac{1}{2}\ln^2(x)}$.
+
+Entonces, la familia de variables aleatorias $\{X_a : a \in (-1, 1)\}$ dada por la familia de funciones de densidad $\left\{f_{X_a}(x) = (1+a\sin{(2\pi \ln{x}) f_X(x)} : a \in (-1, 1)\right\}$ tiene los mismos momentos. %TODO: Comprobarlo
+
+\begin{teo}(Unicidad)
+	Sea $M_X(t) = E\left(e^{tX}\right) < \infty$ para $\abs{t} < \delta$ para cierto $\delta > 0$.
+	\[\implies \exists ! X \tex{ v.a. con función generatriz de momentos }M_X\]
+	En este caso, además, $\forall k \in \Z_{\geq 0} : E\left(X^k\right) < \infty$ y $\ds \forall t : \abs{t} < \delta : M_X(t) = \sum_{k=0}^{\infty} \frac{E\left(X^k\right)t^k}{k!}$.
+\end{teo}
+
+\begin{ejem}
+	Sean $X_1\sim \normal{\mu_1, \sigma_1^2}$ y $X_2\sim \normal{\mu_2, \sigma_2^2}$ v.a. independientes.
+	\[\begin{aligned}
+			 & \implies M_{X_1+X_2}(t) = M_{X_1}(t)M_{X_2}(t) = e^{\mu_1t + \frac{1}{2}\sigma_1^2t^2}e^{\mu_2t + \frac{1}{2}\sigma_2^2t^2} = e^{(\mu_1+\mu_2)t + \frac{1}{2}(\sigma_1^2+\sigma_2^2)t^2} \\
+			 & \implies X_1 + X_2 \sim \normal{\mu_1+\mu_2, \sigma_1^2+\sigma_2^2}
+		\end{aligned}\]
+
+	Sean $a, b \in \R$, definimos $Z\defeq aX_1 + bX_2$.
+	\[\begin{aligned}
+			 & \begin{aligned}
+				   \implies M_Z(t) & = M_{aX_1+bX_2}(t) = M_{X_1}(at)M_{X_2}(bt) = e^{a\mu_1t + \frac{1}{2}a^2\sigma_1^2t^2}e^{b\mu_2t + \frac{1}{2}b^2\sigma_2^2t^2} \\
+				                   & = e^{(a\mu_1+b\mu_2)t + \frac{1}{2}(a^2\sigma_1^2+b^2\sigma_2^2)t^2}
+			   \end{aligned} \\
+			 & \implies Z \sim \normal{a\mu_1+b\mu_2, a^2\sigma_1^2+b^2\sigma_2^2}
+		\end{aligned}\]
+\end{ejem}

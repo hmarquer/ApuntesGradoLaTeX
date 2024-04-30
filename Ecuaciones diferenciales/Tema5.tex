@@ -75,9 +75,74 @@ De manera similar, $\ds y_2(t) = e^{\alpha t} r \sin(\theta - \beta t) \implies 
 	\item \allbold{Caso 2: $\alpha > 0$} $\implies \abs{X(t)} \xrightarrow{t\to\infty} \infty$. El origen es inestable (asintóticamente estable a pasado).
 \end{itemize}
 
-\subsection{Sistemas no lineales en el plano}
+\fecha{30/04/2024}
+
+\subsection{El caso general (sistemas no lineales)}
 
 Sea $\appl{F}{\Omega\subset \R^2}{\R^2}$ $\mathcal{C}^1$ con $\Omega$ abierto. Consideramos el sistema $\boxed{X'=F(X)}$.
 
-$X_0$ es un equilibrio $\iff F(X_0) = 0$. Desarrollando por Taylor $F$ en $X_0$:
-\[F(X) = F(X_0) + DF(X_0)(X-X_0) + \cdots\]
+Empezamos con una propiedad general de las órbitas: o nunca se cruzan, o son idénticas.
+
+\begin{prop}
+	Sean $\appl{X_1}{I_1}{\Omega}$, $\appl{X_2}{I_2}{\Omega}$ soluciones de $X'=F(X)$ con $I_1, I_2$ intervalos maximales. Entonces solo puede darse una de las siguientes alternativas:
+	\begin{enumerate}
+		\item $\left\{X_1(t) : t\in I_1\right\} \cap \left\{X_2(t) : t\in I_2\right\} = \phi$.
+		\item $\left\{X_1(t) : t\in I_1\right\} = \left\{X_2(t) : t\in I_2\right\}$.
+	\end{enumerate}
+	\begin{dem}
+		Supongamos que no se cumple (1). \\
+		Entonces $\exists t_1 \in I_1, t_2 \in I_2 : X_1(t_1) = X_2(t_2)$. Sea $\forall t \in (I_2 +t_1 - t_2) : \til{X}(t) = X_2(t-t_1 +t_2)$.
+
+		Claramente, $\Tilde{X}$ y $X_1$ son soluciones de $X'=F(X)$ y $X(t_1) = X_0$. \\
+		Por unicidad, $\forall t \in (I_2 + t_1 - t_2) \cap I_1 : \til{X}(t) = X_1(t)$.
+
+		Como los intervalos son maximales, necesariamente $I_1 = I_2 + t_1 - t_2$ y \\
+		$\forall t \in I_1 = I_2 + t_1 - t_2 : X_1(t) = \til{X}(t) = X_2(t - t_1 + t_2)$. Por tanto, $X_1(I_1) = X_2(I_2)$.
+	\end{dem}
+\end{prop}
+
+Queremos estudiar la estabilidad de los equilibrios, es decir, los $X_0\in\Omega : F(X_0) = 0$.
+
+Empezamos observando que solo se puede llegar a (o a partir de) un equilibrio en tiempo infinito.
+
+\begin{prop}
+	Sea $\appl{X}{I}{\Omega}$ solución de $X'=F(X)$ con $I$ intervalo maximal.
+	\begin{enumerate}
+		\item Si $X(t) \xrightarrow{t\to t_0} X_0 \in \Omega$ y $X\not\equiv X_0$, entonces $F(X_0)\ne 0$.
+		\item Si $X(t) \xrightarrow{t\to\pm\infty} X_0 \in \Omega$, entonces $F(X_0) = 0$.
+	\end{enumerate}
+	\begin{dem}
+		\begin{enumerate}
+			\item Supongamos por contradicción que $F(X_0) = 0$. \\
+			      Como $X(t_0) = X_0$, se tiene que $X$ es solución de $X'=F(X) \we X(t_0) = X_0$.
+
+			      Como también $X_0$ es solución de ese PVI, por unicidad, $X\equiv X_0 \quad  \contr$
+
+			\item Vamos a demostrarlo en el caso $t\to \infty$ (el otro es análogo).
+
+			      Sea $t\in I$. Por el teorema de valor medio, para $k =1, 2 : \exists \sigma_k (t) \in (t, t+1)$ tales que
+			      \[X(t+1) - X(t) = \begin{pmatrix}
+					      \left(X^1\right)'(\sigma_1(t)) \\
+					      \left(X^2\right)'(\sigma_2(t))
+				      \end{pmatrix} = \begin{pmatrix}
+					      F^1(X(\sigma_1(t))) \\
+					      F^2(X(\sigma_2(t)))
+				      \end{pmatrix}\]
+			      Por un lado, $\ds X(t+1) - X(t) \xrightarrow{t\to\infty} X_0 - X_0 = 0$.
+
+			      Por otro lado, $\ds \sigma_k(t) \xrightarrow{t\to\infty} \infty$. Así, $\ds F^k\left(X\left(\sigma_k(t)\right)\right) \xrightarrow{t\to\infty} F^k(X_0)$.
+
+			      Por unicidad del límite en $\R^2$, $F(X_0) = 0$.
+		\end{enumerate}
+	\end{dem}
+\end{prop}
+
+Intuitivamente, si $X_0 \in \Omega$ es un equilibrio, entonces en un entorno de $X_0$
+\[F(X) \approx \cancelto{0}{F(X_0)} + \operatorname{J}_F(X_0)(X-X_0)\]
+Si llamamos $Y\defeq X-X_0$, entonces $\ds Y' = \left(X-X_0\right)' = F(X) \approx \operatorname{J}_F(X_0)Y$ en un entorno de $0$.
+
+\begin{teo}[Estabilidad lineal]
+	Sea $X_0 \in \Omega$ un equilibrio de $X'=F(X)$ y $\operatorname{J}_F(X_0)$ la matriz jacobiana de $F$ en $X_0$. Si $\operatorname{J}_F(X_0)$ no tiene autovalores con \underline{parte real nula}, el diagrama de fases del sistema en un entorno de $X_0$ es una ``deformación diferenciable'' del diagrama de fases de $Y' = \operatorname{J}_F(X_0)Y$ cerca del 0.
+
+	Esto significa que hay una biyección de clase $\mathcal{C}^1$, con inversa de clase $\mathcal{C}^1$, entre un entorno de $X_0$ y un entorno de 0, que lleva órbitas de $X'=F(X)$ en órbitas de $Y' = \operatorname{J}_F(X_0)Y$ conservando la orientación.
+\end{teo}
