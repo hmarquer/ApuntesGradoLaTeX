@@ -301,3 +301,59 @@ Entonces, la familia de variables aleatorias $\{X_a : a \in (-1, 1)\}$ dada por 
 			 & \implies Z \sim \normal{a\mu_1+b\mu_2, a^2\sigma_1^2+b^2\sigma_2^2}
 		\end{aligned}\]
 \end{ejem}
+
+\fecha{06/05/2024}
+
+\begin{dem}[del TCL]
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. con $X$ de referencia y $E(X) = \mu \we V(X) = \sigma^2$.
+
+	Suponemos, \underline{además}, que $M_X(t)$ está bien definida en $\abs{t} < \delta$ para cierto $\delta > 0$. (esto no estaba entre las hipótesis del teorema).
+
+	Definimos $\ds \left(U_n\right)_{n\in \N}$ como $\ds \forall n \in \N : U_n \defeq X_n - \mu \implies E(U_n) = 0 \we V(U_n) = \sigma^2$ y son i.i.d.
+
+	Definimos $\ds S_n \defeq \sum_{i=1}^{n} X_i \implies E(S_n) = n\mu \we V(S_n) = n\sigma^2$
+	\[\implies \til{S}_n = \frac{\sum_{i=1}^{n} X_i - n\mu}{\sigma\sqrt{n}} = \frac{1}{\sigma\sqrt{n}}\sum_{i=1}^{n} U_i \implies E(\til{S}_n) = 0 \we V(\til{S}_n) = 1\]
+	\[\implies M_{\til{S}_n}(t) = E\left(e^{t\til{S}_n}\right) = E\left(e^{\frac{t}{\sigma\sqrt{n}}\sum_{i=1}^{n} U_i}\right) = E\left(e^{\frac{t}{\sigma\sqrt{n}}U_1} \cdots e^{\frac{t}{\sigma\sqrt{n}}U_n}\right) = \left(M_U\left(\frac{t}{\sigma\sqrt{n}}\right)\right)^n\]
+	\[M_U(x) = \sum_{k=0}^{\infty} \frac{E(U^k)}{k!}x^k = 1 + \cancelto{0}{E(U)} x + \frac{E(U^2)}{2}x^2 + o(x^2) = 1 + \frac{\sigma^2}{2}x^2 + o(x^2)\]
+	\[\implies \forall t \in \R : M_{\til{S}_n}(t) = \left(1 + \frac{\cancel{\sigma^2}}{2}\frac{t^2}{\cancel{\sigma^2}n} + o\left(\frac{1}{n}\right)\right)^n = \left(1 + \frac{\sfrac{t^2}{2}}{n} + o\left(\frac{1}{n}\right)\right)^n \xrightarrow{n\to\infty} e^{\frac{t^2}{2}}\]
+	Como $e^{\frac{t^2}{2}}$ es la función generatriz de momentos de una $\normal{0,1}$, entonces $\til{S}_n \xlongrightarrow{d} \normal{0,1}$.
+\end{dem}
+
+Para que la demostración anterior fuese válida, habría que primero haber demostrado el siguiente teorema.
+\begin{teo}
+	Sean $Z_1, Z_2, \dots$ v.a. con funciones generatrices de momentos $M_{Z_i}(t)$ definidas entorno al origen. Si $\forall t \in \R : \lim_{n\to\infty} M_{Z_n}(t) = M(t)$, entonces $exists Z$ v.a. con función generatriz de momentos $M(t) : Z_n \xlongrightarrow{d} Z$
+\end{teo}
+
+\subsection{Función característica}
+
+\begin{defn}[Función característica]
+	Sea $X$ v.a., $\forall t \in \R : \phi_X(t) \defeq E\left(e^{itX}\right)$.
+\end{defn}
+
+\allbold{¿Cómo se calcula?} Suponemos que $X$ tiene función de densidad $f_X(x)$.
+\[\implies E\left(e^{itX}\right) = \int_{-\infty}^{\infty} e^{itx}f_X(x)\odif{x} \tex{ que es una función de $\R$ a $\C$}\]
+
+\begin{ejem}
+	Sea $X\sim\ber{p}$ con $p\in(0,1)$.
+	\[\implies \phi_X(t) = E\left(e^{itX}\right) = e^{it\cdot 0}(1-p) + e^{it\cdot 1}p = (1-p) + p e^{it}\] %TODO: Dibujo
+\end{ejem}
+
+\allbold{¿Por qué esto mola?}
+\begin{enumerate}
+	\item $\ds \forall t \in \R : \abs{\phi_X(t)} \leq 1$.
+	\item Siempre está bien definida.
+	\item Sean $X$ e $Y$ v.a. independientes con funciones características $\phi_X(t)$ y $\phi_Y(t)$.
+	      \[\implies \phi_{aX+b}(t) = E\left(e^{it(aX+b)}\right) = e^{itb}E\left(e^{iatX}\right) = e^{itb}\phi_X(at)\]
+	      \[\implies \phi_{X+Y}(t) = E\left(e^{it(X+Y)}\right) = E\left(e^{itX}e^{itY}\right) = E\left(e^{itX}\right)E\left(e^{itY}\right) = \phi_X(t)\phi_Y(t)\]
+	\item (Unicidad) Sean $X$ e $Y$ con funciones características $\phi_X(t)$ y $\phi_Y(t)$.
+	      \[\forall t \in \R :  \phi_X(t) = \phi_Y(t) \iff \tex{$X$ e $Y$ tienen la misma distribución}\]
+	\item (Continuidad) Sean $\left(Z_n\right)_{n\geq 1}$ v.a. con funciones características $\phi_{Z_n}(t)$.
+	      \[z_n \xrightarrow{d} Z \iff \forall t \in \R : \lim_{n\to\infty} \phi_{Z_n}(t) = \phi_Z(t)\]
+\end{enumerate}
+
+\begin{ejem}
+	\begin{itemize} %TODO: Comprobar los resultados
+		\item $\ds X\sim\EXP{\lambda} \implies \phi_X(t) = \int_{0}^{\infty} e^{itx}\lambda e^{-\lambda x}\odif{x} = \frac{\lambda}{\lambda - it}$
+		\item $X\sim\normal{0,1} \implies \phi_X(t) = \int_{-\infty}^{\infty} e^{itx}\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\odif{x} = e^{-\frac{t^2}{2}}$
+	\end{itemize}
+\end{ejem}

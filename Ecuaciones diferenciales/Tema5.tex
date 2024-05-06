@@ -146,3 +146,42 @@ Si llamamos $Y\defeq X-X_0$, entonces $\ds Y' = \left(X-X_0\right)' = F(X) \appr
 
 	Esto significa que hay una biyección de clase $\mathcal{C}^1$, con inversa de clase $\mathcal{C}^1$, entre un entorno de $X_0$ y un entorno de 0, que lleva órbitas de $X'=F(X)$ en órbitas de $Y' = \operatorname{J}_F(X_0)Y$ conservando la orientación.
 \end{teo}
+
+\fecha{06/05/2024}
+
+% \begin{teo}[Estabilidad lineal]
+% 	Sea $X_0 \in \Omega$ un equilibrio de $X'=F(X)$ con los autovalores de $\operatorname{J}_F(X_0)$ con parte real no nula. Entonces, el comportamiento cualitativo de las soluciones del sistema en un entorno de $X_0$ es ``equivalente'' al comportamiento cualitativo de las soluciones de $Y' = \operatorname{J}_F(X_0)Y$ cerca del 0.
+% \end{teo}
+\begin{ejem}
+	$u'' - \mu(u^2 - 1)u' + u = 0$ con $\mu \in \R$ y $\appl{u}{I\subset \R}{\R}$.
+	\[\begin{cases}
+			u' = v \\
+			v' = \mu(u^2 - 1)v - u
+		\end{cases} \implies f_1(u, v) \defeq v \we f_2(u, v) \defeq \mu(u^2 - 1)v - u\]
+	\[X = \begin{pmatrix}
+			u \\
+			v
+		\end{pmatrix} F(u, v) = (f_1(u, v), f_2(u, v)) = (v, \mu(u^2 - 1)v - u)\]
+	Vemos que $F(X) = 0 \iff v = 0 = u$, por tanto, el único equilibrio es el origen.
+	\[\operatorname{J}_F(u, v) = \begin{pmatrix}
+			0           & 1            \\
+			2\mu uv - 1 & \mu(u^2 - 1)
+		\end{pmatrix} \implies \operatorname{J}_F(0, 0) = \begin{pmatrix}
+			0  & 1  \\
+			-1 & -1
+		\end{pmatrix} \eqdef A\]
+	\[p(\lambda) = \det(A - \lambda I) = \begin{vmatrix}
+			-\lambda & 1          \\
+			-1       & -1-\lambda
+		\end{vmatrix} = \lambda^2 + \mu \lambda + 1 = 0 \implies \lambda = \frac{-\mu}{2} \pm \sqrt{\frac{\mu^2}{4} - 1}\]
+	\begin{itemize}
+		\item $\mu > 2$ $\implies \lambda_- < \lambda_+ < 0 \implies$ el origen es un nodo estable.
+		\item $\mu = 2$ $\implies \lambda_- = \lambda_+ = -1 < 0 \implies$ el origen es un equilibrio asintóticamente estable (caso no diagonalizable).
+		\item $\mu < -2$ $\implies 0 < \lambda_+ < \lambda_- \implies$ el origen es un nodo inestable.
+		\item $\mu = -2$ $\implies \lambda_+ = \lambda_- = 1 > 0 \implies$ el origen es un equilibrio inestable (caso no diagonalizable).
+		\item $\mu \in (0,2)$ $\implies \lambda_+, \lambda_- \in \C$ con parte real negativa $\implies$ el origen es una espiral asintóticamente estable.
+		\item $\mu \in (-2, 0)$ $\implies \lambda_+, \lambda_- \in \C$ con parte real positiva $\implies$ el origen es una espiral inestable.
+		\item $\mu = 0$ $\implies \lambda_+ = i \we \lambda_- = -i \implies$ el teorema no es aplicable. Sin embargo, con $\mu = 0$ el sistema es lineal y se puede resolver explícitamente.
+		      \[u(t) = c_1 \sin{t} + c_2 \cos{t} \we v(t) = c_1 \cos{t} - c_2 \sin{t} \implies \tex{el origne es un centro}\]
+	\end{itemize}
+\end{ejem}
