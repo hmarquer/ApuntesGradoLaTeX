@@ -114,8 +114,17 @@ Es decir, si queremos estar $\delta$ seguros de que el estimador está a una dis
 Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ v.a. de referencia.
 \begin{enumerate}
 	\item \allbold{$X\sim \ber{p}$} $\implies S_n \sim \bin{n,p}$ y $Z_n \in \left\{0, \frac{1}{n}, \frac{2}{n}, \dots, 1\right\}$ con las mismas probabilidades que una $\bin{n,p}$.
-	\item \allbold{$X\sim \poisson{\lambda}$} $\implies S_n \sim \poisson{n\lambda}$
+	\item \allbold{$X\sim \poisson{\lambda}$} $\implies S_n \sim \poisson{n\lambda}$. Ya vimos que la suma de dos poisson es poisson. Ahora, por inducción asumimos que se cumple para $n-1$.
+	      \[\begin{aligned}
+			      P(S_n = k) & = P\left(\sum_{i=1}^{n} X_i = k\right) = \sum_{i=0}^k P\left(\sum_{i=1}^{n-1} X_i = k-i \we X_n = i\right)                                                                          \\
+			                 & = \sum_{i=0}^k P\left(\sum_{i=1}^{n-1} X_i = k-i\right)P(X_n = i) = \sum_{i=0}^k \frac{(n-1)^{k-i} \lambda^{k-i}}{(k-i)!}e^{-(n-1)\lambda}\frac{\lambda^i}{i!}e^{-\lambda}          \\
+			                 & = e^{-n\lambda} \lambda^k \sum_{i=0}^k \frac{(n-1)^{k-i}}{(k-i)!i!} = \frac{\lambda^k}{k!}e^{-n\lambda} \sum_{i=0}^k \binom{k}{i}(n-1)^{k-i} = \frac{(n\lambda)^k}{k!}e^{-n\lambda}
+		      \end{aligned}\]
 	\item \allbold{$X\sim \geom{p}$} $\implies S_n \sim \operatorname{binomial negativa}(n,p)$.
+	      %   \[\begin{aligned}
+	      % 	      P(S_n = k) & = P\left(\sum_{i=1}^{n} X_i = k\right) = \sum_{i=0}^{k} P\left(\sum_{i=1}^{n-1} X_i = k-i \we X_n = i\right) \\
+	      % 	                 & = \sum_{i=0}^{k} p(1-p)^{k-i-1}p = \binom{k-1}{n-1}p^n(1-p)^{k-n}
+	      %       \end{aligned}\]
 	\item \allbold{$X\sim \normal{\mu, \sigma^2}$} $\implies S_n \sim \normal{n\mu, n\sigma^2}$.
 	\item \allbold{$X\sim \EXP{\lambda}$} $\implies S_n \sim \operatorname{Gamma}(n,\lambda)$.
 \end{enumerate}
