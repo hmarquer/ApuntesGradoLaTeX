@@ -2,55 +2,60 @@
 
 \section{Convergencia de variables aleatorias}
 
-Partimos de una sucesión de variables aleatorias en un espacio de probabilidad $(\Omega, \F, P)$, $\ds \left(X_n\right)_{n \in \N}$, y queremos estudiar las series
-\[\big(S_n\big)_{n\in \N} = \left(\sum_{i=1}^{n} X_i\right)_{n \in \N} \quad \we \quad \big(Z_n\big)_{n\in \N} = \left(\frac{1}{n}\sum_{i=1}^{n} X_i\right)_{n \in \N}\]
+Sea $\ds \left(X_n\right)_{n \in \N}$ una sucesión de variables aleatorias en un espacio de probabilidad $(\Omega, \F, P)$, queremos estudiar las series
+\[\big(S_n\big)_{n\in \N}  \defeq\left(\sum_{i=1}^{n} X_i\right)_{n \in \N} \quad \we \quad \big(Z_n\big)_{n\in \N} \defeq \left(\frac{1}{n}\sum_{i=1}^{n} X_i\right)_{n \in \N}\]
 Interesan, específicamente, los límites cuando $n\to \infty$ de estas series.
 \begin{enumerate}
-	\item Sabemos que significa $\ds \lim_{n\to\infty} E(S_n)$ y $\ds \lim_{n\to\infty} V(S_n)$.
-
-	      Pero, ¿qué significa $\ds \lim_{n\to\infty} S_n = S$? Requerimos de técnicas más avanzadas que se denominan \textbf{modos de convergencia}.
-	\item Casi siempre asumiremos que $\{X_n\}_{n\in \N}$ son \textbf{independientes e idénticamente distribuidas (i.i.d.)}.
+	\item Sabemos que significa $\ds \lim_{n\to\infty} E(S_n)$ y $\ds \lim_{n\to\infty} V(S_n)$ pero, ¿qué significa $\ds \lim_{n\to\infty} S_n = S$? \\
+	      Requerimos de técnicas más avanzadas que se denominan \textbf{modos de convergencia}.
+	\item Asumiremos que $\{X_n\}$ son \textbf{independientes e idénticamente distribuidas (i.i.d.)}.
 	      \begin{itemize}
 		      \item Todas las $X_i$ tienen la misma distribución. Por tanto, es habitual definir una \allbold{$X$ de referencia} que tenga la misma distribución que todas las $X_i$.
-		      \item Las $X_i$ son completamente independientes, es decir, para todo subconjunto finito $I \subset \N$, $\{X_i\}_{i\in I}$ son independientes.
+		      \item Las $X_i$ son \allbold{completamente independientes}, es decir, para todo subconjunto finito $I \subset \N$, $\{X_i\}_{i\in I}$ son independientes.
 	      \end{itemize}
 	\item Descubriremos que, para $n$ grande y $X$ de referencia, $Z_n$ se comporta como $E(X)$. Además, veremos el teorema central del límite, que nos dice que $\ds \frac{Z_n-E(X)}{\sfrac{\sigma(Z_n)}{\sqrt{n}}} \approx \normal{0,1}$.
 \end{enumerate}
 \subsection{Medias y varianzas de las sumas y las medias}
+Las medias de $S_n$ y $Z_n$ resultan sencillas de calcular.
 \[\begin{aligned}
 		E(S_n) & = E\left(\sum_{i=1}^{n} X_i\right) = \sum_{i=1}^{n} E(X_i) \stackrel{(\star)}{=} nE(X)                      \\
 		E(Z_n) & = E\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) = \frac{1}{n}\sum_{i=1}^{n} E(X_i) \stackrel{(\star)}{=} E(X)
 	\end{aligned}\]
 \hspace*{\fill} $(\star)$ Si $X_i$ tienen la misma media.
 
+Nótese que, en la mayoría de casos, $E(S_n) \xrightarrow{n\to\infty} \infty$ mientras que $E(Z_n)$ tenderá a al promedio de las medias de las $X_i$.
+
+Las varianzas de $S_n$ y $Z_n$ son más intricadas de calcular y debemos tener en cuenta, no solo el caso de que las $X_i$ tengan la misma varianza, sino también si son incorreladas.
+
 \[\begin{aligned}
-		V(S_n) & = V\left(\sum_{i=1}^{n} X_i\right) = V(X_1) + V\left(\sum_{i=2}^{n} X_i\right) + 2 \cov{X_1, \sum_{i=2}^{n} X_i}                                                            \\
-		       & = V(X_1) + 2 \sum_{i=2}^{n} \cov{X_1, X_i} + V\left(\sum_{i=2}^{n} X_i\right)                                                                                               \\
-		       & = V(X_1) + 2 \sum_{i=2}^{n} \cov{X_1, X_i} + V(X_2) + 2 \sum_{i=3}^{n} \cov{X_2, X_i} + V\left(\sum_{i=3}^{n} X_i\right)                                                    \\
-		       & = \sum_{i=1}^{n} V(X_i) + 2 \sum_{1\leq i < j \leq n} \cov{X_i,X_j} \stackrel{(*)_1}{=} \sum_{i=1}^{n} V(X_i) \stackrel{(*)_2}{=} n(\sigma(X))^2                            \\
-		V(Z_n) & = V\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) \stackrel{(*)_1}{=} \frac{1}{n^2}\sum_{i=1}^{n} V(X_i) \stackrel{(*)_2}{=} \frac{(\sigma(X))^2}{n} \xrightarrow{n\to\infty} 0
+		V(S_n) & = V\left(\sum_{i=1}^{n} X_i\right) = V(X_1) + V\left(\sum_{i=2}^{n} X_i\right) + 2 \cov{X_1, \sum_{i=2}^{n} X_i}                                                                                                             \\
+		       & = V(X_1) + 2 \sum_{i=2}^{n} \cov{X_1, X_i} + V\left(\sum_{i=2}^{n} X_i\right)                                                                                                                                                \\
+		       & = V(X_1) + 2 \sum_{i=2}^{n} \cov{X_1, X_i} + V(X_2) + 2 \sum_{i=3}^{n} \cov{X_2, X_i} + V\left(\sum_{i=3}^{n} X_i\right)                                                                                                     \\
+		       & = \sum_{i=1}^{n} V(X_i) + 2 \sum_{1\leq i < j \leq n} \cov{X_i,X_j} \stackrel{(*)_1}{=} \sum_{i=1}^{n} V(X_i) \stackrel{(*)_2}{=} n(\sigma(X))^2                                                                             \\
+		V(Z_n) & = V\left(\frac{1}{n}\sum_{i=1}^{n} X_i\right) = \frac{1}{n^2} V\left(\sum_{i=1}^{n} X_i\right) \stackrel{(*)_1}{=} \frac{1}{n^2}\sum_{i=1}^{n} V(X_i) \stackrel{(*)_2}{=} \frac{(\sigma(X))^2}{n} \xrightarrow{n\to\infty} 0
 	\end{aligned}\]
-\hspace*{\fill} $(*)_1$ Si $X_i$ incorreladas, $(*)_2$ Si $X_i$ tienen la misma varianza.
+\hspace*{\fill} $(*)_1$ Si $X_i$ incorreladas, $(*)_2$ Si (además) $X_i$ tienen la misma varianza.
+
+De forma similar a como ocurre con las medias, (en la mayoría de casos) la varianza de $S_n$ tiende a infinito mientras que la de $Z_n$ tiende a 0 cuando $n\to\infty$.
 
 \subsection{Convergencia cuadrática}
 
 \begin{defn}[Convergencia cuadrática]
-	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ y $X$ v.a. en $(\Omega, \F, P)$, $\left(X_n\right)_{n\in \N}$ \textbf{converge cuadráticamente} a $X$ $\left(X_n \xrightarrow{\tex{cuad.}} X\right)$
-	\[\iff E\left(\abs{X_n - X}^2\right) \xrightarrow{n\to\infty} 0\]
+	Sea $\left(X_n\right)_{n\in \N}$ una sucesión de v.a. y $X$ v.a. en el mismo espacio de probabilidad $(\Omega, \F, P)$, $\ds \boxed{X_n \xrightarrow{\tex{cuad.}} X \iff E\left(\abs{X_n - X}^2\right) \xrightarrow{n\to\infty} 0}$
 \end{defn}
 
 \begin{teo}
-	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ v.a. de referencia
-	\[\implies Z_n\xrightarrow{\tex{cuad.}} E(X)\]
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. con $X$ v.a. de referencia $\ds \implies Z_n\xrightarrow{\tex{cuad.}} E(X)$
 	\begin{dem}
 		Si denominamos $\mu = E(X) \we V(X) = \sigma^2$, entonces
-		\[V(Z_n)=\frac{\sigma^2}{n} \implies E\left(\abs{Z_n - \mu}^2\right) = V(Z_n) \xrightarrow{n\to\infty} 0\]
+		\[E\left(\abs{Z_n - \mu}^2\right) = E\left(\abs{Z_n - E(Z_n)}^2\right) = V(Z_n) = \frac{\sigma^2}{n} \xrightarrow{n\to\infty} 0\]
 	\end{dem}
-	Quitando hipótesis: basta con que sean incorreladas y tengan la misma media y varianza.
 \end{teo}
 
+Basta con que sean incorreladas y tengan la misma media y varianza porque es lo único que se ha usado en la demostración. Podemos incluso ofrecer un teorema más general que no requiera que tengan la misma media y varianza.
+
 \begin{teo}
-	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ con $E(X_i) = \mu_i$ y $V(X_i) = \sigma_i^2$. Suponemos que $\ds \mu_n \defeq \frac{1}{n}\sum_{i=1}^{\infty} \mu_i \to \mu \in \R$ y $\ds V(Z_n) = \frac{1}{n^2}\sum_{i=1}^{\infty} \sigma_i^2 \to 0 \implies Z_n \xrightarrow{\tex{cuad.}} \mu$
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ con $E(X_i) = \mu_i$ y $V(X_i) = \sigma_i^2$. Suponemos que $\ds \mu_n \defeq \frac{1}{n}\sum_{i=1}^{n} \mu_i \xrightarrow{n\to\infty} \mu \in \R$ y $\ds V(Z_n) = \frac{1}{n^2}\sum_{i=1}^{\infty} \sigma_i^2 \to 0 \implies Z_n \xrightarrow{\tex{cuad.}} \mu$
 	\begin{dem} (Buen ejercicio de examen)%TODO: terminar demostración
 		\[\begin{aligned}
 				E\left(\abs{Z_n - \mu}^2\right) & = E\left(\abs{Z_n - \mu_n + \mu_n - \mu}^2\right)                                                \\
@@ -61,19 +66,21 @@ Interesan, específicamente, los límites cuando $n\to \infty$ de estas series.
 	\end{dem}
 \end{teo}
 
+Es decir, si el promedio de las medias tiende a un número finito y la varianza del promedio tiende a 0, entonces el promedio tiende al límite del promedio de las medias.
+
+\fecha{23/04/2024}
+
 \subsection{Convergencia en probabilidad (ley débil)}
 
 J.Bernoulli (1713) Ars Conjectandi: Si tienes un dado regular, cuantas más veces lo lances, más se aproximará la frecuencia relativa de un número a su probabilidad.
 
-\fecha{23/04/2024}
 \begin{defn}[Convergencia en probabilidad]
-	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ y $X$ v.a. en $(\Omega, \F, P)$, $\left(X_n\right)_{n\in \N}$ \textbf{converge en probabilidad} a $X$ $\left(X_n \xlongrightarrow{P} X\right)$
-	\[\iff \forall \varepsilon > 0 : \lim_{n\to\infty} P\left(\abs{X_n - X} > \varepsilon\right) = 0\]
+	Sea $\left(X_n\right)_{n\in \N}$ una sucesión de v.a. y $X$ v.a. en el mismo espacio de probabilidad $(\Omega, \F, P)$,
+	\[ X_n \xlongrightarrow{P} X \iff \forall \varepsilon > 0 : \lim_{n\to\infty} P\left(\abs{X_n - X} > \varepsilon\right) = 0\]
 \end{defn} %TODO: Añadir dibujo
 
 \begin{teo}[Ley débil de los grandes números]
-	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ v.a. de referencia tal que $\mu \defeq E(X) < \infty \we \sigma^2 \defeq V(X) < \infty$.
-	\[\implies Z_n \defeq \frac{1}{n} \sum_{j=1}^{n} X_j \xlongrightarrow{P} \mu\]
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. en $(\Omega, \F, P)$ con $X$ v.a. de referencia tal que $\mu \defeq E(X) < \infty \we \sigma^2 \defeq V(X) < \infty \ds \implies Z_n \defeq \frac{1}{n} \sum_{j=1}^{n} X_j \xlongrightarrow{P} \mu$
 	\begin{dem}
 		Dado $\varepsilon > 0$, por la desigualdad de Chebyshev
 		\[P\left(\abs{Z_n - \mu} > \varepsilon \right) \leq \frac{V(Z_n)}{\varepsilon^2} = \frac{\sigma^2}{n\varepsilon^2} \xrightarrow{n\to\infty} 0\]
@@ -90,14 +97,17 @@ J.Bernoulli (1713) Ars Conjectandi: Si tienes un dado regular, cuantas más vece
 \end{obs}
 
 \begin{teo}
-	Sean $\left(X_n\right)_{n\in \N}$ v.a. en $(\Omega, \F, P)$ con $E(X_i) = \mu_i$ y $V(X_i) = \sigma_i^2$. Suponemos $\ds V(Z_n) = \frac{1}{n^2}\sum_{i=1}^{\infty} \sigma_i^2 \to 0 \implies Z_n \xlongrightarrow{P} \frac{1}{n} \sum_{i=1}^{n} \mu_i$
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. incorreladas en $(\Omega, \F, P)$ con $E(X_i) = \mu_i$ y $V(X_i) = \sigma_i^2$. Suponemos $\ds V(Z_n) = \frac{1}{n^2}\sum_{i=1}^{n} \sigma_i^2 \xrightarrow{n\to\infty} 0 \implies Z_n \xlongrightarrow{P} \frac{1}{n} \sum_{i=1}^{n} \mu_i$
 	\begin{dem} Por la desigualdad de Chebyshev
 		\[P\left(\abs{Z_n - \frac{1}{n} \sum_{i=1}^{n} \mu_i} > \varepsilon \right) \leq \frac{V\left(Z_n\right)}{\varepsilon^2} = \frac{1}{n^2\varepsilon^2}\sum_{i=1}^{\infty} \sigma_i^2 \xrightarrow{n\to\infty} 0\]
 	\end{dem}
 \end{teo}
 
+Es decir, si la varianza del promedio tiende a 0, entonces el promedio tiende al promedio de las medias.
+
 \allbold{Usos en estadística:} Sean $X_1, \ldots, X_n$ v.a. i.i.d. con $X\sim \ber{p}$ de referencia. Queremos estimar $p$ (desconocido), ¿cuánto de grande tiene que ser $n$ para estar razonablemente seguros que el estimador $\ds \Bar{X}_n \defeq \frac{1}{n}\sum_{i=1}^{n} X_i$ está cerca de $p$?
-\[P\left(\abs{\Bar{N}_n - p} > \varepsilon\right) \leq \frac{p(1-p)}{n\varepsilon^2} \leq \frac{1}{4n\varepsilon^2} \leq \delta \implies n \geq \frac{1}{4\varepsilon^2\delta}\]
+\[P\left(\abs{\Bar{X}_n - p} > \varepsilon\right) \leq \frac{p(1-p)}{n\varepsilon^2} \leq \frac{1}{4n\varepsilon^2} \leq \delta \implies n \geq \frac{1}{4\varepsilon^2\delta}\]
+Es decir, si queremos estar $\delta$ seguros de que el estimador está a una distancia menor que $\varepsilon$ de $p$, necesitamos que $n$ sea mayor que $\ds \frac{1}{4\varepsilon^2\delta}$.
 
 \subsection{Cálculo de la distribución de la suma y el promedio}
 
