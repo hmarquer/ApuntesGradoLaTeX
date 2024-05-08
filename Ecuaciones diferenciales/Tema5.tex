@@ -161,7 +161,7 @@ Si llamamos $Y\defeq X-X_0$, entonces $\ds Y' = \left(X-X_0\right)' = F(X) \appr
 	\[X = \begin{pmatrix}
 			u \\
 			v
-		\end{pmatrix} F(u, v) = (f_1(u, v), f_2(u, v)) = (v, \mu(u^2 - 1)v - u)\]
+		\end{pmatrix} \we F(u, v) = (f_1(u, v), f_2(u, v)) = (v, \mu(u^2 - 1)v - u)\]
 	Vemos que $F(X) = 0 \iff v = 0 = u$, por tanto, el único equilibrio es el origen.
 	\[\operatorname{J}_F(u, v) = \begin{pmatrix}
 			0           & 1            \\
@@ -182,6 +182,44 @@ Si llamamos $Y\defeq X-X_0$, entonces $\ds Y' = \left(X-X_0\right)' = F(X) \appr
 		\item $\mu \in (0,2)$ $\implies \lambda_+, \lambda_- \in \C$ con parte real negativa $\implies$ el origen es una espiral asintóticamente estable.
 		\item $\mu \in (-2, 0)$ $\implies \lambda_+, \lambda_- \in \C$ con parte real positiva $\implies$ el origen es una espiral inestable.
 		\item $\mu = 0$ $\implies \lambda_+ = i \we \lambda_- = -i \implies$ el teorema no es aplicable. Sin embargo, con $\mu = 0$ el sistema es lineal y se puede resolver explícitamente.
-		      \[u(t) = c_1 \sin{t} + c_2 \cos{t} \we v(t) = c_1 \cos{t} - c_2 \sin{t} \implies \tex{el origne es un centro}\]
+		      \[u(t) = c_1 \sin{t} + c_2 \cos{t} \we v(t) = c_1 \cos{t} - c_2 \sin{t} \implies \tex{el origen es un centro}\]
+		      La solución $u(t)$ es una circunferencia en el plano $U-V$. Hay que ver en qué sentido gira:
+		      $(u,v) = (1,1) \implies u ' = 1 > 0 \implies v ' = -1 < 0 \implies \text{gira en sentido horario.}$
+	\end{itemize}
+\end{ejem}
+
+\fecha{07/05/2024}
+
+\begin{ejem}
+	En el primer cuadrante, queremos estudiar el comportamiento cualitativo de
+	\[\begin{cases}
+			x' = x(60-4x-3y) \\y ' = y (42 - 3x-2y)
+		\end{cases}\iff X' = \begin{pmatrix}
+			x(60-4x-3y) \\y (42-3x-2y)
+		\end{pmatrix} X\]
+	\[\implies \left(f_1 (x,y) = 0 \iff x = 0 \ve y = 20 - \frac{4}{3}x \right) \we \left(f_2 (x,y) = 0 \iff y = 0 \ve y = 21 - \frac{3}{2}x \right)\]
+	\[\operatorname{J}_F(x,y) = \begin{pmatrix}
+			60 - 8x - 3y & -3x          \\
+			-3y          & 42 - 3x - 4y
+		\end{pmatrix}\]
+	\begin{itemize}
+		\item $\operatorname{J}_F(0,0) = \begin{pmatrix}
+				      60 & 0  \\
+				      0  & 42
+			      \end{pmatrix} \implies \lambda_1 = 60 > \lambda_2 = 42 > 0 \implies$ el origen es un nodo inestable.
+		\item $\operatorname{J}_F(0, 21) = \begin{pmatrix}
+				      -3  & 0   \\
+				      -63 & -42
+			      \end{pmatrix} \implies \lambda_1 = -42 < \lambda_2 = -3 < 0 \implies$ el $(0, 21)$ es un nodo estable.
+		\item $\operatorname{J}_F(15, 0) = \begin{pmatrix}
+				      -60 & -45 \\
+				      0   & -3
+			      \end{pmatrix} \implies \lambda_1 = -60 < \lambda_2 = -3 < 0 \implies$ el $(15, 0)$ es un nodo estable.
+		\item $\operatorname{J}_F(6, 12) = \begin{pmatrix}
+				      -24 & -18 \\
+				      -36 & -24
+			      \end{pmatrix} \implies \trz{\operatorname{J}_F(6, 12)} = -48 \we \det{\operatorname{J}_F(6, 12)} = -72$.
+
+		      Por la gráfica traza-determinante, tenemos que el $(6, 12)$ es un punto de silla estable.
 	\end{itemize}
 \end{ejem}

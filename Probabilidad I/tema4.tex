@@ -373,6 +373,38 @@ Para que la demostración anterior fuese válida, habría que primero haber demo
 \begin{ejem}
 	\begin{itemize} %TODO: Comprobar los resultados
 		\item $\ds X\sim\EXP{\lambda} \implies \phi_X(t) = \int_{0}^{\infty} e^{itx}\lambda e^{-\lambda x}\odif{x} = \frac{\lambda}{\lambda - it}$
-		\item $X\sim\normal{0,1} \implies \phi_X(t) = \int_{-\infty}^{\infty} e^{itx}\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\odif{x} = e^{-\frac{t^2}{2}}$
+		\item $\ds X\sim\normal{0,1} \implies \phi_X(t) = \int_{-\infty}^{\infty} e^{itx}\frac{1}{\sqrt{2\pi}}e^{-\frac{x^2}{2}}\odif{x} = e^{-\frac{t^2}{2}}$
 	\end{itemize}
 \end{ejem}
+
+\fecha{07/05/2024}
+
+\[\phi_X(t) = E\left(e^{itX}\right) = \int_{-\infty}^{\infty} e^{itx}f_X(x)\odif{x} = \int_{-\infty}^{\infty} \cos(tx)f_X(x)\odif{x} + i\int_{-\infty}^{\infty} \sin(tx)f_X(x)\odif{x}\]
+
+\begin{teo}
+	Sea $X$ v.a. con función generatriz de momentos $M_X(t)$ definida en un entorno del origen $\implies \phi_X(t) = M_X(it)$.
+\end{teo}
+
+Por ejemplo, $\ds X \sim \normal{\mu, \sigma^2} \implies \phi_X(t) = e^{i\mu t - \frac{\sigma^2t^2}{2}}$.
+
+\begin{dem}[del TCL]
+	Sean $\left(X_n\right)_{n\in \N}$ v.a. i.i.d. con $X$ de referencia y $E(X) = \mu \we V(X) = \sigma^2$.
+	\[\phi_{Z_n}(t) = \phi_{S_n}\left(\frac{t}{n}\right) = \phi_X\left(\frac{t}{n}\right)^n\]
+	Desarrollando por Taylor tenemos: $\ds \phi_X(w) = 1 + it E(X) + o(w)$.
+	\[\implies \phi_{Z_n}(t) = \left(1 + \frac{it\mu}{n} + o\left(\frac{1}{n}\right)\right)^n \xrightarrow{n\to\infty} e^{it\mu}\]
+	Si $X$ es una v.a. constante $(X=\mu) \implies \phi_X(t) = e^{it\mu}$. Por tanto, $Z_n \xlongrightarrow{d} \mu$.
+
+	Ahora, podemos demostar la ley débil de los grandes números.\\
+	Basta ver que $Z_n \xlongrightarrow{d} \mu \implies Z_n \xlongrightarrow{P} \mu$ cuando $\mu$ es constante (ejs 7 y 9 de la hoja 5).
+
+	Definimos $U_n \defeq X_n - \mu \implies E(U_n) = 0 \we V(U_n) = \sigma^2$ y son i.i.d. Estudiemos
+	\[ \til{S}_n \defeq \frac{\sum_{j=1}^n X_j - n\mu}{\sigma \sqrt{n}} = \frac{1}{\sigma\sqrt{n}}\sum_{j=1}^n U_j \implies \phi_{\til{S}_n}(t) = \left(\phi_U\left(\frac{t}{\sigma\sqrt{n}}\right)\right)^n\]
+	Por Taylor tenemos $\ds \phi_U(w) = 1 + iw E(U) + \frac{(iw)^2}{2!}E(U^2) + o(w^2) $.
+	\[\implies \phi_{\til{S}_n}(t) = \left(1 - \frac{t^2}{2n} + o\left(\frac{1}{n}\right)\right)^n \xrightarrow{n\to\infty} e^{-\frac{t^2}{2}}\]
+\end{dem}
+
+Sea $X\sim\operatorname{Cauchy} \iff \forall x \in \R : f_X(x) = \frac{1}{\pi} \frac{1}{1+x^2}$. Queremos calcular su función característica.
+\[\implies \phi_X(t) = \int_{-\infty}^{\infty} e^{itx} \frac{1}{\pi} \frac{1}{1+x^2}\odif{x} = \cdots = e^{-\abs{t}}\]
+
+Veamos una técnica de variable compleja para calcular la integral. \\
+Definimos $\ds \forall z \in \C : f(z) \defeq \frac{e^{itz}}{1+z^2}$. Esta función tiene dos polos en $i$ y $-i$.
