@@ -403,8 +403,19 @@ Por ejemplo, $\ds X \sim \normal{\mu, \sigma^2} \implies \phi_X(t) = e^{i\mu t -
 	\[\implies \phi_{\til{S}_n}(t) = \left(1 - \frac{t^2}{2n} + o\left(\frac{1}{n}\right)\right)^n \xrightarrow{n\to\infty} e^{-\frac{t^2}{2}}\]
 \end{dem}
 
+\subsubsection{Función característica para distribución de Cauchy: Variable compleja}
+
 Sea $X\sim\operatorname{Cauchy} \iff \forall x \in \R : f_X(x) = \frac{1}{\pi} \frac{1}{1+x^2}$. Queremos calcular su función característica.
 \[\implies \phi_X(t) = \int_{-\infty}^{\infty} e^{itx} \frac{1}{\pi} \frac{1}{1+x^2}\odif{x} = \cdots = e^{-\abs{t}}\]
 
 Veamos una técnica de variable compleja para calcular la integral. \\
-Definimos $\ds \forall z \in \C : f(z) \defeq \frac{e^{itz}}{1+z^2}$. Esta función tiene dos polos en $i$ y $-i$.
+Definimos $\ds \forall z \in \C : g(z) \defeq \frac{e^{itz}}{1+z^2}$ con un $t\in\R$ fijo. Esta función tiene dos polos en $i$ y $-i$ y hay un teorema en variable compleja que dice que si $f$ es holomorfa en un entorno de un camino cerrado $\gamma$ y $f$ no tiene polos en el interior de $\gamma$, entonces $\int_{\gamma} f(z)\odif{z} = 0$. Si $f$ tiene un polo en $z_0$
+\[\implies \int_{\gamma} f(z)\odif{z} = 2\pi i \operatorname{Res}(f, z_0) \tex{ donde }\operatorname{Res}(f, z_0) = \lim_{z\to z_0} (z-z_0)f(z)\]
+
+Definimos $\Gamma_R \subset \C$ como el camino que va de $-R$ a $R$ por la recta real y luego vuelve a $-R$ por la semicircunferencia superior de radio $R$ en el plano complejo donde $R\in \R_{>0}$. Podemos separar este camino en dos partes: $\Gamma_R = \Gamma_R^1 \cup \Gamma_R^2$ donde $\Gamma_R^1$ es la parte de la recta real y $\Gamma_R^2$ es la semicircunferencia superior y se cumple que:
+\[\int_{\Gamma_R} g(z)\odif{z} = \int_{\Gamma_R^1} g(z)\odif{z} + \int_{\Gamma_R^2} g(z)\odif{z} = 2\pi i \operatorname{Res}(g, i)\]
+Como $\ds \operatorname{Res}(g, i) = \lim_{z\to i} \cancel{(z-i)}\frac{e^{itz}}{(z+i)\cancel{(z-i)}} = \frac{e^{-t}}{2i} \implies \int_{\Gamma_R} g(z)\odif{z} = 2\pi i \frac{e^{-t}}{2i} = \pi e^{-t}$.
+
+Observamos que, claramente, $\ds \lim_{R\to\infty} \int_{\Gamma_R^1} g(z)\odif{z} = \int_{-\infty}^{\infty} e^{itx} \frac{1}{1+x^2}\odif{x} = \pi \cdot \phi_X(t)$. Ahora
+\[\abs{\lim_{R\to\infty} \int_{\Gamma_R^2} g(z)\odif{z}} \leq \lim_{R\to\infty} \int_{\Gamma_R^2} \abs{g(z)}\odif{z} \leq \pi R \max_{z\in \Gamma_R^2} \abs{g(z)} = \pi R \max_{z\in \Gamma_R^2} \abs{\frac{e^{itz}}{1+z^2}}\]
+Como $t$ es positivo y $z \in \Gamma_R^2 \implies \abs{z} = R$, entonces $\ds \abs{e^{itz}} \leq \abs{e^{it R e^{i\theta}}} = \abs{e^{itR\cos{\theta}} e^{-tR\sin{\theta}}} $

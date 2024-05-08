@@ -223,3 +223,63 @@ Si llamamos $Y\defeq X-X_0$, entonces $\ds Y' = \left(X-X_0\right)' = F(X) \appr
 		      Por la gráfica traza-determinante, tenemos que el $(6, 12)$ es un punto de silla estable.
 	\end{itemize}
 \end{ejem}
+
+\fecha{08/05/2024}
+
+\subsection{Sistemas hamiltonianos}
+
+\begin{defn}
+	Sea $\appl{H}{\Omega\subset \R^2}{\R}$ una función derivable parcialmente en sus dos variables, $H$ es una integral primera (o cantidad conservada) del sistema $\{x' = f_1(x, y) \we y'=f_2(x, y)\}$ si se conserva a lo largo de la evaluación. Es decir,
+	\[\iff \forall \appl{(x, y)}{I\subset\R}{\R^2}\tex{ solución del sistema} : \forall t\in I : (x(t), y(t)) \in \Omega : \odv{}{t} H(x(t), y(t)) = 0\]
+\end{defn}
+
+\begin{obs}
+	Si $H$ es una intgral primera para el sistema, $\forall \appl{(x, y)}{I\subset\R}{\R^2}$ solución del sistema $\exists c\in\R : \forall t\in I : H(x(t), y(t)) = c$.
+
+	Así las órbitas están contenidas en los conjuntos de nivel de $H$. Recíprocamente, todo conjunto de nivel contiene alguna órbita. En definitiva, sabremos ``dibujar'' el diagrama de fases si sabemos ``dibujar'' los conjuntos de nivel.
+\end{obs}
+
+\begin{defn}[Sistema hamiltoniano]
+	Un sistema del tipo $\{x' = f_1(x, y) \we y'=f_2(x, y)\}$ es hamiltoniano si existe una función $\appl{H}{\Omega\subset \R^2}{\R}$ derivable parcialmente en sus dos variables tal que $f_1 = \pdv{H}{y}$ y $f_2 = -\pdv{H}{x}$.
+\end{defn}
+
+\begin{obs}
+	Los sistemas hamiltonianos admiten una integral primera, que es $H$.
+	\[\odv{}{t} H(x(t), y(t)) = \pdv{H}{x} x' + \pdv{H}{y} y' = -f_2 f_1 + f_1 f_2 = 0\]
+	Esta integral primera se llama \textbf{hamiltoniano} del sistema.
+\end{obs}
+
+\begin{defn}[Sistema conservativo]
+	Un sistema (``físico'') es conservativo si se rige por una EDO (escalar) del tipo $x'' + U'(x) = 0$.
+\end{defn}
+
+\begin{obs}
+	Transformando la EDO de segundo orden en un sistema de dos EDOs de primer orden, obtenemos un sistema hamiltoniano.
+	\[\begin{cases}
+			x' = y \\
+			y' = -U'(x)
+		\end{cases} \hspace{-0.5cm} \implies H(x, y) = \frac{y^2}{2} + U(x)\tex{ es un hamiltoniano para el sistema.}\]
+	En efecto, $\ds \pdv{H}{y} = y = x'$ y $\pdv{H}{x} = U'(x) = -y'$. En este contexto físico, $H$ es la \allbold{energía}. \\
+	De hecho, $\frac{y^2}{2}$ es la llamada energía cinética y $U(x)$ es la energía potencial.
+
+	Los equilibrios son los puntos de la forma $(x_0, 0)$ con $x_0$ punto crítico de $U$.
+\end{obs}
+
+\begin{obs}
+	$\nabla H (x, y) = (U'(x), y) \neq (0, 0)$ si $(x, y)$ no es punto de equilibrio. En particular, los conjuntos de nivel que no contengan equilibrios son curvas suaves.
+\end{obs}
+
+\allbold{Trucos para dibujar el diagrama de fases}
+
+\begin{enumerate}
+	\item Si una trayectoria pasa por algún punto de la forma $(\bar{x}, 0)$, entonces $\exists c \in \R :$
+	      \[\forall t \in I : c = U(\bar{x}) = H(\bar{x}, 0) = H(x(t), y(t)) = \frac{y(t)^2}{2} + U(x(t)) \geq U(x(t))\]
+	      Es decir, en todo instante, la solución permanece en el \textit{pozo de potencial} $U(x(t)) \leq U(\bar{x})$.
+	\item Puede haber trayectorias que no corten al eje $X$. Esto sucede cuando $U$ es acotada por arriba. En efecto, sea $M = \sup U$, Sea $c> M $ y sea $(x, y)$ una solución con energía $c$, es decir, $U(x(t)) + \frac{y(t)^2}{2} = H(x(t), y(t)) = c$.
+
+	      Claramente, $y\neq 0$ porque, si no, en algún instante $U(x(t)) = c > M \contr$.
+
+	\item A medida que $\abs{y}$ crece, $U(x)$ decrece y viceversa (para que $H$ se mantenga constante).
+
+	\item Por la paridad de $H$ en $y$, los conjuntos de nivel son simétricos respecto al eje $X$.
+\end{enumerate}
