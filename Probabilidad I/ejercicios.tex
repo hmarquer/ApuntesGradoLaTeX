@@ -152,46 +152,50 @@ Si ahora tenemos $X_1, \dots, X_n$ independientes con $F_i, f_i$, $\begin{aligne
 	\end{tikzpicture}
 \end{center}
 
-\allbold{13.} Sean $(X_1, X_2) \sim$ normal bidimensional con $\mu_1, \mu_2, \sigma_1, \sigma_2, \rho$. Hacemos el cambio de variable $Z_1 \defeq \frac{X_1-\mu_1}{\sigma_1} \we Z_2 \defeq \frac{X_2-\mu_2}{\sigma_2}$: %TODO: ver que sale (Z_1, Z_2) ~ normal bidimensional (0, 1, \rho)
+\subsection{Hoja 5}
 
-\allbold{14.} Sean $X, Y \sim \normal{0, 1}$ independientes. Definimos $W\defeq 2X-Y$ y queremos ver que $W\sim\normal{0, 5}$.
-\[f_{X, Y} (x,y) = \frac{1}{2\pi} e^{-\frac{x^2+y^2}{2}}\]
-Hacemos el cambio de variable $U = X \we W=2X-Y$ y sale %TODO: terminar
+\allbold{17.} Sea $\left(X_n\right)_{n\in\N}$ una sucesión de v.a. independientes con $E(X_i) = m_i \we V(X_i) = \sigma_i^2 < R \in \R$. Definimos $M_n = \frac{1}{n} \sum_{i=1}^{n} M_i$ y queremos ver que
+\[P\left(\abs{\frac{1}{n} \sum_{i=1}^{n} X_i - M_n} < \varepsilon\right) \xrightarrow{n\to\infty} 1\]
+Por la desigualdad de Chebyshev:
+\[P\left(\abs{\frac{1}{n} \sum_{i=1}^{n} X_i - M_n} > \varepsilon\right) \leq \frac{V\left(\frac{1}{n} \sum_{i=1}^{n} X_i)\right)}{\varepsilon^2} = \frac{\frac{1}{n^2} \sum_{j=1}^n \sigma_j^2}{\varepsilon^2} \leq \frac{R}{n^2}\frac{n}{\varepsilon^2} = \frac{R}{n\varepsilon^2} \xrightarrow{n\to\infty} 0\]
 
-Otro camino, por convolución $W=2X+(-Y)$:
-\[\begin{aligned}
-		f_{W} (w) & = \int_{-\infty}^{\infty} f_{X, Y} (x, w-2x) \odif{x} = \int_{-\infty}^{\infty} \frac{1}{2\pi} e^{-\frac{x^2+(w-2x)^2}{2}} \odif{x}                                       \\
-		          & = \int_{-\infty}^{\infty} \frac{1}{2\pi} e^{-\frac{5x^2-2wx+w^2}{2}} \odif{x} = \frac{1}{2\pi} e^{-\frac{w^2}{2}} \int_{-\infty}^{\infty} e^{-\frac{5x^2}{2}+wx} \odif{x}
-	\end{aligned}\]
-\[\begin{aligned}
-		\int_{-\infty}^{\infty} e^{-\frac{5x^2}{2}+wx} \odif{x} & = \int_{-\infty}^{\infty} e^{-\frac{5}{2}\left(x-\frac{w}{5}\right)^2+\frac{w^2}{10}} \odif{x} = e^{\frac{w^2}{10}} \int_{-\infty}^{\infty} e^{-\frac{5}{2}\left(x-\frac{w}{5}\right)^2} \odif{x} \\
-		                                                        & = e^{\frac{w^2}{10}} \sqrt{\frac{2\pi}{5}} = e^{\frac{w^2}{10}} \sqrt{\frac{2\pi}{5}} \implies f_W(w) = \frac{1}{\sqrt{10\pi}} e^{-\frac{w^2}{10}}
-	\end{aligned}\]
+\allbold{9.} Sean $\left(Z_n\right)_{n\in\N}$ una sucesión de v.a. y quiero probar que $Z_n \xrightarrow[n\to\infty]{\tex{cuad}} \implies Z_n \xrightarrow[n\to\infty]{P} Z$.
+\begin{dem} Por la desigualdad de Markov:
+	\[P\left(\abs{Z_n - Z} > \varepsilon\right) = P\left(\abs{Z_n - Z}^2 > \varepsilon^2\right) \leq \frac{E\left(\abs{Z_n - Z}^2\right)}{\varepsilon^2} \xrightarrow{n\to\infty} 0\]
+\end{dem}
+Ahora queremos demostrar que $Z_n \xrightarrow[n\to\infty]{P} Z \implies Z_n \xrightarrow[n\to\infty]{d} Z$.
+\begin{dem} Sea $t\in\R$ un punto de continuidad de $F_Z$:
+	\[\begin{aligned}
+			\forall \varepsilon > 0 : P\left(Z_n \leq t\right) & = P\left(Z_n \leq t \we Z \leq t+\varepsilon\right) + P\left(Z_n \leq t \we Z > t+\varepsilon\right) \\
+			                                                   & \leq P\left(Z \leq t+\varepsilon\right) + P\left(\abs{Z_n - Z} > \varepsilon\right)
+		\end{aligned}\]
+	Porque $F_Z$ es continua en $t$. Análogamente:
+	\[\begin{aligned}
+			\forall \varepsilon > 0 : P\left(Z \leq t -\varepsilon\right) & = P\left(Z \leq t -\varepsilon \we Z_n \leq t\right) + P\left(Z \leq t -\varepsilon \we Z_n > t\right) \\
+			                                                              & \leq P\left(Z_n \leq t\right) + P\left(\abs{Z_n - Z} > \varepsilon\right)
+		\end{aligned}\]
+	Para todo $t\in\R$ punto de continuidad de $F_Z$ y para todo $\varepsilon > 0$:
+	\[P\left(Z \leq t - \varepsilon\right) + P\left(\abs{Z_n - Z} > \varepsilon\right) \leq P\left(Z_n \leq t\right) \leq P\left(Z \leq t + \varepsilon\right) + P\left(\abs{Z_n - Z} > \varepsilon\right)\]
+	\[\implies F_Z(t-\varepsilon) = P\left(Z \leq t - \varepsilon\right) \leq \lim_{n\to\infty} P\left(Z_n \leq t\right) \leq P\left(Z \leq t + \varepsilon\right) = F_Z(t+\varepsilon)\]
+	\[\implies \lim_{n\to\infty} F_{Z_n}(t) = F_Z(t) \implies Z_n \xrightarrow[n\to\infty]{d} Z\tex{ porque } F_Z \tex{ es continua en } t\]
+\end{dem}
 
+\allbold{11.} Sean $\left(X_n\right)_{n\in\N}$, $\left(Y_n\right)_{n\in\N}$ dos sucesiones de v.a. tales que $X_n \xrightarrow[n\to\infty]{\tex{cuad}} X \we Y_n \xrightarrow[n\to\infty]{\tex{cuad}} Y$.
 
-\allbold{Experimento:} Sean $X, Y \sim \normal{0, 1}$ independientes. Definimos $Z\defeq \sqrt{X^2 + Y^2}$.
-\[E(Z) = \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \sqrt{x^2 + y^2} \frac{1}{2\pi} e^{-\frac{x^2+y^2}{2}} \odif{x}\odif{y}\]
-Mediante el cambio a polares:
-\[\begin{aligned}
-		\begin{cases}
-			x = r\cos{\theta} \\
-			y = r\sin{\theta}
-		\end{cases} \implies \begin{cases}
-			                     \odif{x} = \cos{\theta}\odif{r} - r\sin{\theta}\odif{\theta} \\
-			                     \odif{y} = \sin{\theta}\odif{r} + r\cos{\theta}\odif{\theta}
-		                     \end{cases} \implies \odif{x}\odif{y} = r\odif{r}\odif{\theta}
-	\end{aligned}\]
-\[E(Z) = \frac{1}{2\pi}\int_{0}^{2\pi} \int_{0}^{\infty} r^2e^{-\frac{r^2}{2}} \odif{r}\odif{\theta} \]
-Desarrollando por partes:
-\[\begin{aligned}
-		\int_{0}^{\infty} r^2e^{-\frac{r^2}{2}} \odif{r} & = \left[-r e^{-\frac{r^2}{2}}\right]_{0}^{\infty} + \int_{0}^{\infty} e^{-\frac{r^2}{2}} \odif{r} = \int_{0}^{\infty} e^{-\frac{r^2}{2}} \odif{r} = \sqrt{2\pi}
-	\end{aligned} \implies E(Z) = \frac{1}{\sqrt{2\pi}}\]
+Queremos ver que $X_n + Y_n \xrightarrow[n\to\infty]{\tex{cuad}} X + Y$.
+\begin{dem} %TODO: Revisarr
+	\[E\left(\abs{X_n + Y_n - X - Y}^2\right) = E\left(\abs{X_n - X}^2\right) + E\left(\abs{Y_n - Y}^2\right) + 2E\left((X_n - X)(Y_n - Y)\right)\]
+	Ahora, por Cauchy-Schwarz:
+	\[2E\left((X_n - X)(Y_n - Y)\right) \leq \sqrt{E\left(\abs{X_n - X}^2\right)E\left(\abs{Y_n - Y}^2\right)}\]
+\end{dem}
 
-\allbold{Contenido adicional:}
+Ahora queremos demostrar que $X_n \xrightarrow[n\to\infty]{P} X \we Y_n \xrightarrow[n\to\infty]{P} Y \implies X_n + Y_n \xrightarrow[n\to\infty]{P} X + Y$.
+\begin{dem}%TODO: Por terminarrr
+	\[\begin{aligned}
+			\forall \varepsilon > 0 : P\left(\abs{X_n + Y_n - X - Y} > \varepsilon\right) & = P\left(\abs{X_n - X + Y_n - Y} > \varepsilon\right)                                                            \\
+			                                                                              & \leq P\left(\{\abs{X_n - X} > \sfrac{\varepsilon}{2}\} \cup \{\abs{Y_n - Y} > \sfrac{\varepsilon}{2}\}\right)    \\
+			                                                                              & \leq P\left(\abs{X_n - X} > \sfrac{\varepsilon}{2}\right) + P\left(\abs{Y_n - Y} > \sfrac{\varepsilon}{2}\right)
+		\end{aligned}\]
 
-Crear un modelo de normal bidimensional con $\rho$ dado a partir de un modelo de normal bidimensional $(X_1, X_2)$ con $\rho = 0$:
-\[\begin{cases}
-		Y_1 = X_1 \\
-		Y_2 = \rho X_1 + \sqrt{1-\rho^2}X_2
-	\end{cases} \implies E(Y_1)=E(Y_2) = 0 \we V(Y_1)=V(Y_2) = 1\]
-\[\rho(Y_1, Y_2) = \frac{E(Y_1Y_2) - E(Y_1)E(Y_2)}{\sqrt{V(Y_1)V(Y_2)}} = \frac{E(X_1(\rho X_1 + \sqrt{1-\rho^2}X_2))}{\sqrt{1\cdot 1}} = \rho\]
+	Como $X_n \xrightarrow[n\to\infty]{P} X \we Y_n \xrightarrow[n\to\infty]{P} Y$:
+\end{dem}
