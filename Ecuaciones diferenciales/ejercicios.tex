@@ -603,3 +603,94 @@ Definimos $T\defeq \trz{A}$ y $D\defeq \det(A)$. %TODO: Sustituirlo todo
 		\end{axis}
 	\end{tikzpicture}
 \end{center}
+
+\subsection{Hoja 5}
+
+\textbf{3.8} $\ds \begin{cases}
+		k' = 2k\left(1-\frac{k}{2}\right) - dk \\
+		d' = -d\left(\frac{9}{4} - d^2\right) -k^2d
+	\end{cases} \iff \begin{cases}
+		k' = 2k\left(1-\frac{k}{2} - \frac{d}{2}\right) \\
+		d' = -d\left(\frac{9}{4} - d^2 - k^2\right)
+	\end{cases} \quad k,d \geq 0$
+
+Lo primero es sacar una interpretación cualitativa del sistema. Vemos que la cantidad de ambas especies está limitada por el entorno y por la cantidad de la otra especie. Por tanto, podemos pensar en un sistema de competición.
+
+a) Veamos que pasa si una de las especies es eliminada.
+\begin{enumerate}
+	\item Vemos que $k=0$ es solución de la primera ecuación.
+	      \[\implies d'=d\left(\frac{9}{4} - d^2\right) \implies \left(d'= 0 \iff d = \frac{3}{2} \ve d= 0\right) \implies d' \begin{cases}
+			      = 0, & d = \frac{3}{2}                   \\
+			      < 0, & d \in \left(0, \frac{3}{2}\right) \\
+			      > 0, & d > \frac{3}{2}
+		      \end{cases}\]
+	\item Vemos que $d=0$ es solución de la segunda ecuación.
+	      \[\implies k' = 2k\left(1-\frac{k}{2}\right) \implies \left(k'=0 \iff k = 0 \ve k = 2\right) \implies k' \begin{cases}
+			      = 0, & k = 2                   \\
+			      < 0, & k \in \left(0, 2\right) \\
+			      > 0, & k > 2
+		      \end{cases}\]
+\end{enumerate}
+Es decir, si una de las especies es eliminada, la otra sigue un modelo logístico.
+
+\allbold{Nota:} $\begin{cases}
+		\tex{estabilidad unidimensional$\nimplies$estabilidad multidimensional} \\
+		\tex{inestabilidad unidimensional$\implies$inestabilidad multidimensional}
+	\end{cases}$
+
+¿Hay más puntos críticos aparte de $(0,0), (2,0), (0,3/2)$? Asumimos $k,d \neq 0$.
+\[k'=0=d'\implies \begin{cases}
+		k(2-k-d) = 0 \\
+		d\left(\frac{9}{4} - d^2 - k^2\right) = 0
+	\end{cases}\hspace{-0.5cm}\implies \begin{cases}
+		2-k-d = 0 \\
+		\frac{9}{4} - d^2 - k^2 = 0
+	\end{cases}\hspace{-0.5cm}\implies \begin{cases}
+		k = 2-d \\
+		\frac{9}{4} - d^2 - (2-d)^2 = 0
+	\end{cases}\]
+\[\implies d = 1 \pm \frac{1}{2\sqrt{2}} \implies k = 1 \mp \frac{1}{2\sqrt{2}}\implies \left(1 + \frac{1}{2\sqrt{2}}, 1 - \frac{1}{2\sqrt{2}}\right) \we \left(1 - \frac{1}{2\sqrt{2}}, 1 + \frac{1}{2\sqrt{2}}\right)\]
+
+b) Analicemos los lugares geométricos donde $k'=0 \ve d'=0$.
+\[k'=0 \implies k(2-k-d) = 0 \implies k = 0 \ve k+d = 2\]
+\[d'=0 \implies d\left(\frac{9}{4} - d^2 - k^2\right) = 0 \implies d = 0 \ve \frac{9}{4} - d^2 - k^2 = 0\]
+\begin{center}
+	\includegraphics[width=12cm]{img/diam3-8_contodo.png}
+\end{center}
+
+c) Entonces tenemos los siguientes puntos críticos:
+\[\begin{cases}
+		\tex{Inestables: } (0,0), \left(1+\frac{1}{2\sqrt{2}}, 1-\frac{1}{2\sqrt{2}}\right), \left(0,\frac{3}{2}\right) \\
+		\tex{Estables: } (2,0), \left(1-\frac{1}{2\sqrt{2}}, 1+\frac{1}{2\sqrt{2}}\right)
+	\end{cases}\]
+Calculamos la Jacobiana del sistema:
+\[\operatorname{J}(k, d) = \begin{pmatrix}
+		\pdv{k'}{k} & \pdv{k'}{d} \\
+		\pdv{d'}{k} & \pdv{d'}{d}
+	\end{pmatrix} = \begin{pmatrix}
+		2-2k-d & -k                       \\
+		-2kd   & \frac{9}{4} - 3d^2 - k^2
+	\end{pmatrix}\]
+\begin{enumerate}
+	\item $\ds \operatorname{J}(2,0) = \begin{pmatrix}
+			      -2 & -2           \\
+			      0  & -\frac{7}{4}
+		      \end{pmatrix} \implies \lambda_1, \lambda_2 < 0 \implies \tex{Estable}$
+	\item $\ds \operatorname{J}\left(0, \frac{3}{2}\right) = \begin{pmatrix}
+			      \frac{1}{2} & 0            \\
+			      0           & -\frac{9}{2}
+		      \end{pmatrix} \implies \lambda_1 = \frac{1}{2} \we \lambda_2 = -\frac{9}{2} \implies \tex{Inestable}$
+\end{enumerate}
+
+e) Queremos $\left(k(t_0), d(t_0)\right)$ tal que los dodos y los kiwis no se extinguen.
+
+Si $\left(k(t_0), d(t_0)\right) \in C \ve B$, entonces no pueden escapar$\implies$ coexisten para siempre.
+
+Si el punto inicial está en $D \implies$ Los dodos tienden a extinguirse.
+
+Pero si el punto inicial está en $A$ se requiere un análisis más detallado.
+
+f) En la región $E$ tenemos:$\ds k^2 + d^2 > \frac{9}{4} \we k+2 > 2 \implies k' < 0 \we d' > 0$.
+\[\forall (k, d) \in E : V(k, d) \defeq k^2 + d^2 \implies \odv{}{t}V(k, d) = 2k k' + 2d d' < 0\]
+\[\implies \forall t \in \R : k^2(t) + d^2(t) < k^2(t_0) + d^2(t_0) = C\]
+Por tanto, $k^2+d^2$ es una cantidad disipativa y tenemos existencia global.
