@@ -154,11 +154,6 @@ Si ahora tenemos $X_1, \dots, X_n$ independientes con $F_i, f_i$, $\begin{aligne
 
 \subsection{Hoja 5}
 
-\allbold{17.} Sea $\left(X_n\right)_{n\in\N}$ una sucesión de v.a. independientes con $E(X_i) = m_i \we V(X_i) = \sigma_i^2 < R \in \R$. Definimos $M_n = \frac{1}{n} \sum_{i=1}^{n} M_i$ y queremos ver que
-\[P\left(\abs{\frac{1}{n} \sum_{i=1}^{n} X_i - M_n} < \varepsilon\right) \xrightarrow{n\to\infty} 1\]
-Por la desigualdad de Chebyshev:
-\[P\left(\abs{\frac{1}{n} \sum_{i=1}^{n} X_i - M_n} > \varepsilon\right) \leq \frac{V\left(\frac{1}{n} \sum_{i=1}^{n} X_i)\right)}{\varepsilon^2} = \frac{\frac{1}{n^2} \sum_{j=1}^n \sigma_j^2}{\varepsilon^2} \leq \frac{R}{n^2}\frac{n}{\varepsilon^2} = \frac{R}{n\varepsilon^2} \xrightarrow{n\to\infty} 0\]
-
 \allbold{9.} Sean $\left(Z_n\right)_{n\in\N}$ una sucesión de v.a. y quiero probar que $Z_n \xrightarrow[n\to\infty]{\tex{cuad}} \implies Z_n \xrightarrow[n\to\infty]{P} Z$.
 \begin{dem} Por la desigualdad de Markov:
 	\[P\left(\abs{Z_n - Z} > \varepsilon\right) = P\left(\abs{Z_n - Z}^2 > \varepsilon^2\right) \leq \frac{E\left(\abs{Z_n - Z}^2\right)}{\varepsilon^2} \xrightarrow{n\to\infty} 0\]
@@ -169,7 +164,7 @@ Ahora queremos demostrar que $Z_n \xrightarrow[n\to\infty]{P} Z \implies Z_n \xr
 			\forall \varepsilon > 0 : P\left(Z_n \leq t\right) & = P\left(Z_n \leq t \we Z \leq t+\varepsilon\right) + P\left(Z_n \leq t \we Z > t+\varepsilon\right) \\
 			                                                   & \leq P\left(Z \leq t+\varepsilon\right) + P\left(\abs{Z_n - Z} > \varepsilon\right)
 		\end{aligned}\]
-	Porque $F_Z$ es continua en $t$. Análogamente:
+	Análogamente:
 	\[\begin{aligned}
 			\forall \varepsilon > 0 : P\left(Z \leq t -\varepsilon\right) & = P\left(Z \leq t -\varepsilon \we Z_n \leq t\right) + P\left(Z \leq t -\varepsilon \we Z_n > t\right) \\
 			                                                              & \leq P\left(Z_n \leq t\right) + P\left(\abs{Z_n - Z} > \varepsilon\right)
@@ -199,3 +194,9 @@ Ahora queremos demostrar que $X_n \xrightarrow[n\to\infty]{P} X \we Y_n \xrighta
 
 	Como $X_n \xrightarrow[n\to\infty]{P} X \we Y_n \xrightarrow[n\to\infty]{P} Y$:
 \end{dem}
+
+
+\allbold{17.} Sea $\left(X_n\right)_{n\in\N}$ una sucesión de v.a. independientes con $E(X_i) = m_i \we V(X_i) = \sigma_i^2 < R \in \R$. Definimos $M_n = \frac{1}{n} \sum_{i=1}^{n} M_i$ y queremos ver que
+\[P\left(\abs{\frac{1}{n} \sum_{i=1}^{n} X_i - M_n} < \varepsilon\right) \xrightarrow{n\to\infty} 1\]
+Por la desigualdad de Chebyshev:
+\[P\left(\abs{\frac{1}{n} \sum_{i=1}^{n} X_i - M_n} > \varepsilon\right) \leq \frac{V\left(\frac{1}{n} \sum_{i=1}^{n} X_i)\right)}{\varepsilon^2} = \frac{\frac{1}{n^2} \sum_{j=1}^n \sigma_j^2}{\varepsilon^2} \leq \frac{R}{n^2}\frac{n}{\varepsilon^2} = \frac{R}{n\varepsilon^2} \xrightarrow{n\to\infty} 0\]
