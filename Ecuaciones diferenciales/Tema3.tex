@@ -32,7 +32,7 @@ Pero necesitamos formalizar todo esto.
 	\item $\ds \lim_{k\to\infty} \int_{t_0}^t f(s, x_k(s)) \odif{s} \stackrel{?}{=} \int_{t_0}^t \lim_{k\to\infty} f(s, x_k(s)) \odif{s}$
 	\item $\ds \lim_{k\to\infty} f(s, x_k(s)) \stackrel{?}{=} f\left(s, \lim_{k\to\infty} x_k(s)\right)$
 \end{enumerate}
-Los dos últimos puntos son equivalentes a $\ds \lim_{k\to\infty} T\left[x_k\right] \stackrel{?}{=} T\left[\lim_{k\to\infty} x_k\right]$
+Los dos últimos puntos (conjuntamente) son equivalentes a $\ds \lim_{k\to\infty} T\left[x_k\right] \stackrel{?}{=} T\left[\lim_{k\to\infty} x_k\right]$
 \subsection{Conceptos de análisis}
 \subsubsection{Convergencia puntual y uniforme}
 \begin{defn}[Convergencia puntual]
@@ -111,16 +111,16 @@ Los dos últimos puntos son equivalentes a $\ds \lim_{k\to\infty} T\left[x_k\rig
 \end{prop}
 
 \fecha{13/03/2024}
-\begin{ejem} %TODO: gráfica
-	Consideramos la sucesión $x_k(t) = \begin{cases}
-			\frac{1}{k} & \tex{ si } t\leq k \\
-			0           & \tex{ si } t>k
-		\end{cases}$
-	\[\implies \int_{0}^{\infty} x_k(t) \odif{t} = \int_{0}^{k} \frac{1}{k} \odif{t} = 1 \we \lim_{k\to\infty} x_k(t) = 0\]
-\end{ejem}
+% \begin{ejem} %TODO: gráfica
+% 	Consideramos la sucesión $x_k(t) = \begin{cases}
+% 			\frac{1}{k} & \tex{ si } t\leq k \\
+% 			0           & \tex{ si } t>k
+% 		\end{cases}$
+% 	\[\implies \int_{0}^{\infty} x_k(t) \odif{t} = \int_{0}^{k} \frac{1}{k} \odif{t} = 1 \we \lim_{k\to\infty} x_k(t) = 0\]
+% \end{ejem}
 \subsubsection{Espacios normados y contracciones}
 Sea $\mathcal{C}([a,b], \R)=\mathcal{C}([a,b]) \defeq \left\{\appl{x}{[a,b]}{\R} : x\tex{ continua}\right\}$ el espacio vectorial de funciones continuas.
-\[\tex{con la norma }\forall x \in \mathcal{C}([a,b]) : \norm{x}_{\infty} \defeq \max_{t\in [a,b]} \abs{x(t)} \tex{ es un espacio vectorial normado }\]
+\[\tex{Con la norma }\forall x \in \mathcal{C}([a,b]) : \norm{x}_{\infty} \defeq \max_{t\in [a,b]} \abs{x(t)} \tex{ es un espacio vectorial normado }\]
 \[\implies \big(\mathcal{C}([a,b]), \norm{\cdot}_\infty\big) \tex{ también es métrico con } \operatorname{d}(x,y)\defeq\norm{x-y}_\infty\]
 \[\operatorname{d}(x_k, x) = \norm{x_k-x}_\infty=\max_{t\in [a,b]} \abs{x_k(t)-x(t)} \rightarrow0 \iff x_k\to x \tex{ uniformemente}\]
 \begin{teo}
@@ -227,7 +227,7 @@ Es como si en cada punto $(x, f(x))$ de la gráfica se abriese un ``cono'' (dos 
 \begin{prop}
 	\begin{enumerate}
 		\item[]
-		\item Sean $\appl{f, g}{\R^m}{\R^d}$ dos funciones Lipschitz con constantes de Lipschitz $L_f, L_g$ y sean $\alpha, \beta \in \R \implies \alpha f + \beta g \tex{ es Lipschitz.}$
+		\item Sean $\appl{f, g}{\R^m}{\R^d}$ dos funciones Lipschitz con constantes de Lipschitz $L_f, L_g$ y sean $\alpha, \beta \in \R \implies \alpha f + \beta g \tex{ es Lipschitz}$ con constante $\abs{\alpha}L_f + \abs{\beta}L_g$.
 		\item Sean $\appl{f}{\R^m}{\R^l}$ y $\appl{f}{\R^l}{\R^d}$ dos funciones Lipschitz con constantes de Lipschitz $L_f, L_g \implies g\circ f \tex{ es Lipschitz con constante } L_fL_g$.
 	\end{enumerate}
 	\begin{dem}
@@ -246,13 +246,13 @@ Es como si en cada punto $(x, f(x))$ de la gráfica se abriese un ``cono'' (dos 
 \end{prop}
 \begin{defn}[Función Lipschitz en la segunda variable]  \mbox{} \\
 	Sea $\appl{f}{(a,b)\times \Omega \subset \R^n}{\R^d}$ una función, $f$ es Lipschitz respecto a su segunda variable, y uniforme con respecto a la primera
-	\[\iff \exists L \in \R : \forall x, \hat{x} \in \Omega : |f(t,x)-f(t,\hat{x})| \leq L |x-\hat{x}|\]
+	\[\iff \exists L \in \R : \forall t \in (a,b) : \forall x, \hat{x} \in \Omega : |f(t,x)-f(t,\hat{x})| \leq L |x-\hat{x}|\]
 \end{defn}
 
 \subsection{Existencia y unicidad de soluciones}
 \begin{teo}[Existencia y unicidad global de soluciones]
-	Sea $\appl{f}{[a,b]\times \R^n}{\R^n}$ con $a, b \in \R \we a < b$ una función continua y Lipschitz en la segunda variable y uniforme en la primera
-	\[\implies \forall t_0\in [a,b] : \forall x \in \R : \exists! \, x \in \mathcal{C}^1\left([a,b]\right) : \begin{cases}
+	Sea $\appl{f}{[a,b]\times \R^n}{\R^n}$ con $a, b \in \R \we a < b$ una función Lipschitz en la segunda variable, uniforme en la primera
+	\[\implies \forall t_0\in [a,b] : \forall \hat{x} \in \R : \exists! \, x \in \mathcal{C}^1\left([a,b]\right) : \begin{cases}
 			\forall t \in [a,b] : x'(t)=f(t, x(t)) \\
 			x(t_0) = \hat{x}
 		\end{cases}\]
@@ -279,7 +279,7 @@ Es como si en cada punto $(x, f(x))$ de la gráfica se abriese un ``cono'' (dos 
 
 \begin{cor}
 	Sea $\appl{f}{\R\times \R^d}{\R^d}$ una función continua y Lipschitz en la segunda variable y uniforme en la primera
-	\[implies \forall \hat{x} \in \R^d : \forall t_0 \in \R : \exists! \, x \in \mathcal{C}^1(\R) : \begin{cases}
+	\[\implies \forall \hat{x} \in \R^d : \forall t_0 \in \R : \exists! \, x \in \mathcal{C}^1(\R) : \begin{cases}
 			\forall t \in \R : x'(t) = f(t, x(t)) \\
 			x(t_0) = \hat{x}
 		\end{cases}\]
@@ -293,7 +293,7 @@ Es como si en cada punto $(x, f(x))$ de la gráfica se abriese un ``cono'' (dos 
 \end{defn}
 \begin{defn}
 	Sea $\appl{f}{\Omega \tex{ abto }\subset \R \times \R^m}{\R^d}$ una función, $f$ es localmente Lipschitz en la segunda variable y uniforme en la primera
-	\[\iff \forall K \subset \Omega : \exists L_K \in \R : \forall (t, x), (\hat{t}, \hat{x}) \in K : \abs{f(t, x) - f(\hat{t}, \hat{x})} \leq L_K \abs{x-\hat{x}}\]
+	\[\iff \forall K \subset \Omega : \exists L_K \in \R : \forall (t, x), (t, \hat{x}) \in K : \abs{f(t, x) - f(t, \hat{x})} \leq L_K \abs{x-\hat{x}}\]
 \end{defn}
 \begin{teo}[Picard-Lindelöf]
 	Sea $\appl{f}{\Omega \subset \R \times \R^d}{\R^d}$ una función continua y localmente Lipschitz en la segunda variable y uniforme en la primera
@@ -307,7 +307,7 @@ Es como si en cada punto $(x, f(x))$ de la gráfica se abriese un ``cono'' (dos 
 		Como $f$ es continua, $\ds \implies \abs{f(t, x)} \leq \max_{(t, x) \in \mathcal{R}_{\rho, \delta}} \abs{f(t, x)} \eqdef C_{\rho, \delta}$.
 
 		Como $f$ es localmente Lipschitz en la segunda variable,
-		\[\implies \exists L_{\rho, \delta} \in \R : \forall (t, x), (\hat{t}, \hat{x}) \in \mathcal{R}_{\rho, \delta} : \abs{f(t, x) - f(\hat{t}, \hat{x})} \leq L_{\rho, \delta} \abs{x-\hat{x}}\]
+		\[\implies \exists L_{\rho, \delta} \in \R : \forall (t, x), (t, \hat{x}) \in \mathcal{R}_{\rho, \delta} : \abs{f(t, x) - f(t, \hat{x})} \leq L_{\rho, \delta} \abs{x-\hat{x}}\]
 
 		Para cada $\varepsilon \in (0, \rho]$ consideramos el conjunto
 		\[\mathcal{X}_{\rho, \delta} \defeq \big\{x \in \mathcal{C}([t_0-\varepsilon, t_0+\varepsilon]) : \forall t \in [t_0-\varepsilon, t_0 + \varepsilon] :x(t) \in B_\delta(\bar{x})\big\}\]
@@ -344,7 +344,7 @@ Es como si en cada punto $(x, f(x))$ de la gráfica se abriese un ``cono'' (dos 
 
 \begin{teo}[Cauchy-Peano]
 	Sea $(t_0, x) \in \R\times\R^d$ y sea $\appl{f}{\R}{\R}$ una función continua en un entorno $\Omega \subset \R\times\R^d$ de $(t_0, x)$
-	\[\implies \exists \appl{x}{\R}{\R} : \forall t \in [t_0 - \varepsilon, t_0 - \varepsilon] : \begin{cases}
+	\[\implies \exists \appl{x}{\R}{\R^d} : \forall t \in [t_0 - \varepsilon, t_0 - \varepsilon] : \begin{cases}
 			x' = f(t, x) \\
 			x(t_0) = x
 		\end{cases}\]
@@ -353,8 +353,8 @@ Es como si en cada punto $(x, f(x))$ de la gráfica se abriese un ``cono'' (dos 
 \subsection{Prolongabilidad}
 
 Bajo las condiciones del teorema Picard-Lindelöf, $\forall (t_0, x) \in \Omega : \exists \varepsilon > 0 : \exists $ una única solución $x \in \mathcal{C}^1([t_0-\varepsilon, t_0+\varepsilon])$ del PVI. Entonces, podemos definir
-\[T_+(t_0, x) = \sup\{T > t_0 : \tex{ el PVI tiene sol única definida en } [t_0, T)\}\]
-\[T_-(t_0, x) = \inf\{T < t_0 : \tex{ el PVI tiene sol única definida en } (T, t_0]\}\]
+\[T_+(t_0, x) = \sup\{T > t_0 : \tex{el PVI tiene sol única definida en } [t_0, T)\}\]
+\[T_-(t_0, x) = \inf\{T < t_0 : \tex{el PVI tiene sol única definida en } (T, t_0]\}\]
 
 \begin{teo}
 	Bajo las condiciones del teorema Picard-Lindelöf, existe una única solución maximal del PVI definida en el intervalo maximal $I = (T_-(t_0, x), T_+(t_0, x))$.
@@ -369,8 +369,8 @@ Sea $\appl{f}{\Omega}{\R^d}$ una función continua localmente Lipstchiz en $x$ u
 \begin{teo}[Escape de compactos]
 	Sea $(a, b) \times U \eqdef \Omega$, con $U \subset \R^d$ abierto, sea $\appl{f}{\Omega}{\R^d}$ con las hipótesis del teorema de Picard-Lindelöf, sea $(t_0, x) \in \Omega$
 	\[\implies \begin{cases}
-			T_+< b \implies \forall K \subset U \tex{ compacto} : \exists t_+ \in (t_0, T_+) : \forall t \in (t_+, T_+) : x(t) \notin K  \\
-			T_->a b \implies \forall K \subset U \tex{ compacto} : \exists t_- \in (T_-, t_0) : \forall t \in (T_-, t_-) : x(t) \notin K \\
+			T_+< b \implies \forall K \subset U \tex{ compacto} : \exists t_+ \in (t_0, T_+) : \forall t \in (t_+, T_+) : x(t) \notin K \\
+			T_->a \implies \forall K \subset U \tex{ compacto} : \exists t_- \in (T_-, t_0) : \forall t \in (T_-, t_-) : x(t) \notin K  \\
 		\end{cases}\]
 	\begin{dem}
 		Suponemos por contradicción que existe un $K \subset U$ compacto y que existe $(t_k)_{k\in \N} \subset (t_0, T_+)$ tal que $t_k\xrightarrow{k\to\infty} T_+$ y $\forall k \in \N : x(t_k) \in K$.
@@ -380,30 +380,30 @@ Sea $\appl{f}{\Omega}{\R^d}$ una función continua localmente Lipstchiz en $x$ u
 
 		Si no es cierto que $\ds \lim_{t\to T_+} x(t) = \bar{x}$, entonces existen $\gamma \in (0, \delta)$ y $(\tau_k)_{k\in\N}\subset (t_0, T_+)$ tales que $\tau_k \xrightarrow{k\to\infty} T_+$ y $\abs{x(\tau_k) - \bar{x}} \geq \gamma$.
 
-		Se puede elegir $\tau_k$ de forma que $\abs{x(\tau_k) - \bar{x}} = \gamma \we \forall t \in [\min\{t_k, \tau_k\}, \max{t_k, \tau_k}] : \abs{x(\tau_k) - \bar{x}} \leq \gamma < \delta$
+		Elegimos $\tau_k$ tal que $\abs{x(\tau_k) - \bar{x}} = \gamma \we \forall t \in \big[\min\{t_k, \tau_k\}, \max\{t_k, \tau_k\}\big] : \abs{x(\tau_k) - \bar{x}} \leq \gamma < \delta$
 		\[\begin{aligned}
-			0 < \gamma &\leq \abs{x(\tau_k) - \bar{x}} \leq \abs{x(\tau_k) - x(t_k)} + \abs{x(t_k) - \bar{x}} \\
-			\xi_k \in (\min\{\tau_k, t_k\}, \max\{t_k, \tau_k\}) \implies &= \abs{x'(\xi_k)}\abs{\tau_k - t_k} + \abs{x(t_k) - \bar{x}} 
-		\end{aligned}\]
+				0 < \gamma \leq \abs{x(\tau_k) - \bar{x}} \leq \abs{x(\tau_k) - x(t_k)} + \abs{x(t_k) - \bar{x}}                             \\
+				\xi_k \in (\min\{\tau_k, t_k\}, \max\{t_k, \tau_k\}) \implies & = \abs{x'(\xi_k)}\abs{\tau_k - t_k} + \abs{x(t_k) - \bar{x}}
+			\end{aligned}\]
 		\[= \abs{f(\xi_k, x(\xi_k))}\abs{\tau_k - t_k} + \abs{x(t_k) - \bar{x}} \leq M\abs{\tau_k - t_k} + \abs{x(t_k) - \bar{x}} \xrightarrow{k\to\infty} 0\]
 		Por tanto, concluimos que efectivamente $\ds \lim_{t\to T_+} x(t) = \bar{x} \in K$.
 
 		Paso 3: Hemos probado que $x$ se extiende de manera continua a $(T_-, T_+]$. Ahora consideramos el problema $\{x'=f(t, x) \we x(T_+) = \bar{x}\}$. Por el teorema de Picard-Lindelöf, existe una solución $\appl{y}{(T_+ - \varepsilon, T_+ + \varepsilon)}{U}$. Por unicidad local, $\forall t \in (T_+-\varepsilon, T_+ + \varepsilon) : y(t) = x(t)$.
 
-		Como $x$ e $y$ se ``pegan'' bien, hemos construido una solución de $\{x'=f(t, x) \we x(t_0) = x_0\}$ definida en $(T_-, T_+ + \varepsilon)$. Esto contradice la maximalidad de $(T_-, T_+)$. 
+		Como $x$ e $y$ se ``pegan'' bien, hemos construido una solución de $\{x'=f(t, x) \we x(t_0) = x_0\}$ definida en $(T_-, T_+ + \varepsilon)$. Esto contradice la maximalidad de $(T_-, T_+)$.
 	\end{dem}
 \end{teo}
 
 \begin{cor}
 	Bajo las condiciones del teorema de escape de compactos, si $\Omega = (a, b) \times \R^d$
 	\[\implies \begin{cases}
-		T_+ < b \implies \abs{x(t)} \xrightarrow{t\to T_+} \infty \\
-		T_- > a \implies \abs{x(t)} \xrightarrow{t\to T_+} \infty \\
-	\end{cases}\]
+			T_+ < b \implies \abs{x(t)} \xrightarrow{t\to T_+} \infty \\
+			T_- > a \implies \abs{x(t)} \xrightarrow{t\to T_-} \infty \\
+		\end{cases}\]
 	\fecha{08/04/2024}
 	\begin{dem}
 		Para cada $M>0$, definimos $K_M\defeq \{x \in \R^d : |x|\leq M \} = \overline{B_M(0)}$.\\
-		Si $T_+<b$, el teorema de escape de compactos dice que 
+		Si $T_+<b$, el teorema de escape de compactos dice que
 		\[\exists \, t_+ \in (t_0,T_+) : \forall t \in (t_+,T_+) : x(t)\notin K_M\]
 		Esto es lo mismo que decir que $\forall t \in (t_+,T_+) : |x(t)|>M$.\\
 		Como M es arbitraria, se concluye el primer apartado (el segundo es análogo).
@@ -412,20 +412,20 @@ Sea $\appl{f}{\Omega}{\R^d}$ una función continua localmente Lipstchiz en $x$ u
 
 \begin{ejem}
 	Sea $\Omega = (0, \infty ) \times \R$ y sea $\appl{f}{\Omega}{\R}$ definida por $\ds \forall (t,x) \in \Omega : f(t,x)\defeq\frac{x^2}{t}$.
-	
+
 	Comprobamos que $f$ satisface las condiciones del Teorema de Picard-Lindelöf. En efecto, sea $K \subset \Omega$ compacto; entonces:
 	\[\begin{aligned}
-		\abs{f(t,x)-f(t,\Tilde{x})} &= \left | \frac{x^2-\Tilde{x}^2}{t}\right | = \left | \frac{|x+\Tilde{x}|\cdot|x-\Tilde{x}|}{t}\right | \\
-		&\leq \frac{|x|+|\Tilde{x}| + |x-\Tilde{x}|}{t} \leq \ds \max_{(s,y)\in K}\left [ \frac{|y|-|\Tilde{y}|}{s}\right ] |x-\Tilde{x}|
-	\end{aligned}\]
+			\abs{f(t,x)-f(t,\Tilde{x})} & = \left | \frac{x^2-\Tilde{x}^2}{t}\right | = \left | \frac{|x+\Tilde{x}|\cdot|x-\Tilde{x}|}{t}\right |                          \\
+			                            & \leq \frac{|x|+|\Tilde{x}| + |x-\Tilde{x}|}{t} \leq \ds \max_{(s,y)\in K}\left [ \frac{|y|-|\Tilde{y}|}{s}\right ] |x-\Tilde{x}|
+		\end{aligned}\]
 	Por el Teorema de Picard-Lindelöf
 	\[\forall (t_0,x_0)\in \Omega : \exists ! \tex{ solución local del PVI }\ds \begin{cases} x'=\frac{x^2}{t} \\ x(t_0)=x_0 \end{cases} \tex{para } t \in (T_-,T_+)\]
 	En realidad, la única solución es explícita:
 	$\ds x(t)=\frac{1}{\frac{1}{x_0}-\log \left(\frac{t}{t_0} \right)}, \, (t_0,x_0)\in \Omega, t>0$.
-	
+
 	\begin{itemize}
-    	\item $T_-=0=a$ por lo que el corolario no nos dice nada. En nuestro caso, $\ds \lim_{t\to T_-^+} |x(t)| = 0$.
-    	\item $T_+=t_0 e^{1/x_0} < + \infty = b$, dice que $\ds \lim_{t\to T_-^-}|x(t)| = + \infty$ también en la expresión explícita. 
+		\item $T_-=0=a$ por lo que el corolario no nos dice nada. En nuestro caso, $\ds \lim_{t\to T_-^+} |x(t)| = 0$.
+		\item $T_+=t_0 e^{1/x_0} < + \infty = b$, dice que $\ds \lim_{t\to T_-^-}|x(t)| = + \infty$ también en la expresión explícita.
 	\end{itemize}
 \end{ejem}
 
@@ -438,15 +438,15 @@ Sea $\appl{f}{\Omega}{\R^d}$ una función continua localmente Lipstchiz en $x$ u
 	\[\implies \forall (t,x) , (t,\Tilde{x}) \in K : |f(t,x)-f(t,\Tilde{x})| = \left |\frac{\partial f }{\partial x}(t,x) \right | |x-\Tilde{x}| \leq L_K |x-\Tilde{x}| \]
 	\[\implies \forall (t_0,x_0)\in \Omega : \exists ! \tex{ solución local del PVI } \begin{cases}x'=\sqrt{1-x^2} \\ x(t_0)=x_0 \end{cases}\tex{ ara } t \in (T_-,T_+)\]
 	De hecho, en este caso, la única solución es explícita: $x(t)=\sin t, t \in (T_-,T_+)=\left ( - \frac{\pi}{2}, \frac{\pi}{2} \right )$.
-% 
+	% 
 	Aquí, en lugar de explosión cuando $t \to T_-$ ó $t \to T_+$, lo que sucede es que $(t,x(t)) \to \partial \Omega$, y por tanto puede perderse (y de hecho se pierde) la unicidad local.
 \end{ejem}
 
 \begin{ejem}
 	Sea $\Omega = \R \times (0, + \infty)$ y sea $\ds f(t,x) \defeq - \frac{1}{2x}$.
-	
+
 	Claramente se cumplen las condiciones de Picard-Lindelöf. Entonces, hay existencia y unicidad local de solución del PVI $\{ x'=f(t,x(t)) \we x(t_0)=x_0 \}, t \in (T_-,t_+)$.
-	
+
 	De hecho, para $(t_0,x_0)\in \Omega$, se tiene que $\ds \forall t \in (-\infty , x_0^2 + t_0) : x(t)=\sqrt{(x_0^2+t_0)-t}$.
 
 	Cuando la $t \to T_+$ no hay ni explosión ni pérdida de unicidad, sino que no puedo extender la solución porque no existe.
@@ -455,7 +455,7 @@ Sea $\appl{f}{\Omega}{\R^d}$ una función continua localmente Lipstchiz en $x$ u
 \fecha{09/04/2024}
 \begin{cor}
 	En las condiciones del teorema de escape de compactos, sea $\Omega = (a, b) \times \R^d$ y sean $\alpha, \beta \in \R$ tales que $a \leq \alpha < \beta \leq b$. Sea $\appl{v}{(\alpha, \beta)}{[0, \infty)}$ continua, y sea $(t_0, x_0) \in (\alpha, \beta) \times \R^d$ de forma que $\abs{x_0} \leq v(t_0)$.
-	
+
 	Supongamos que la solución de $\{x'=f(t, x) \we x(t_0) < x_0\}$ cumple que
 	\[\forall t \in (\alpha, \beta) \cap (T_-(t_0, x_0), T_+(t_0, x_0)) : \abs{x(t)} \leq v(t) \implies (\alpha, \beta) \subset (T_-, T_+)\]
 	\begin{dem}
@@ -473,15 +473,15 @@ Sea $x'=f(t, x)$ una EDO. Supongamos que $\appl{f}{\Omega}{\R^d}$ con $\Omega \s
 
 Consideramos los PVI $\{x'=f(t, x) \we x(t_0) = x_0\}$ y $\{x'=f(t, x) \we x(t_0) = \hat{x}_0\}$ con $(t_0, x_0), (t_0, \hat{x}_0) \in \Omega$. Supongamos que las soluciones son $x$ y $\hat{x}$ respectivamente.
 \[\begin{aligned}
-	\abs{x(t) - \hat{x}(t)} &= \abs{x_0 + \int_{t_0}^{t} f(s, x(s)) \odif{s} - \hat{x}_0 - \int_{t_0}^{t} f(s, \hat{x}(s)) \odif{s}} \\
-	&\stackrel{t\geq t_0}{\leq} \abs{x_0 - \hat{x}_0} + \int_{t_0}^{t} \abs{f(s, x(s)) - f(s, \hat{x}(s))} \odif{s} \\
-	&\leq \abs{x_0 - \hat{x}_0} + L\int_{t_0}^{t} \abs{x(s) - \hat{x}(s)} \odif{s} \eqdef y(t)
-\end{aligned}\]
+		\abs{x(t) - \hat{x}(t)} & = \abs{x_0 + \int_{t_0}^{t} f(s, x(s)) \odif{s} - \hat{x}_0 - \int_{t_0}^{t} f(s, \hat{x}(s)) \odif{s}}        \\
+		                        & \stackrel{t\geq t_0}{\leq} \abs{x_0 - \hat{x}_0} + \int_{t_0}^{t} \abs{f(s, x(s)) - f(s, \hat{x}(s))} \odif{s} \\
+		                        & \leq \abs{x_0 - \hat{x}_0} + L\int_{t_0}^{t} \abs{x(s) - \hat{x}(s)} \odif{s} \eqdef g(t)
+	\end{aligned}\]
 \begin{itemize}
 	\item $\forall (s, y), (s, \hat{y}) \in K\subset \Omega : \abs{f(s, y) - f(s, \hat{y})} \leq L \abs{y-\hat{y}}$
 	\item $\forall t \in [t_0, t_0 + T] : (s, x(s)), (s, \hat{x}(s)) \in K$
 \end{itemize}
-\[\abs{x(t) - \hat{x}(t)} \leq g(t) \implies g'(t) = L\abs{x(t) - \hat{x}(t)} \implies g(t) \implies e^{-Lt}g'(t) \leq e^{-Lt}Lg(t) \]
+\[\abs{x(t) - \hat{x}(t)} \leq g(t) \implies g'(t) = L\abs{x(t) - \hat{x}(t)} = L g(t)\implies e^{-Lt}g'(t) \leq e^{-Lt}Lg(t) \]
 \[\iff \odv{}{t} \left(e^{-Lt} g(t)\right) \leq 0 \implies e^{-Lt}g(t) - e^{-Lt_0}g(t_0) \leq 0\]
 \[\implies \abs{x(t) - \hat{x}(t)} \leq g(t) \leq e^{L(t-t_0)} \abs{x_0-\hat{x}_0}\]
 \[t\in [t_0 - T, t_0] \implies \abs{x(t) - \hat{x}(t)} \leq e^{L(t_0-t)} \abs{x_0-\hat{x}_0}\]
@@ -495,3 +495,39 @@ En efecto, en el intervalo $[t_0-T, t_0+T]$
 	\[\implies \forall t \in \R : \abs{x(t) - \hat{x}(t)} \leq e^{2\abs{t-t_0}}\abs{x_0 - \hat{x}_0}\]
 	Si $t\in [t_0 - T, t_0 + T] \implies \abs{x(t) - \hat{x}(t)} \leq e^{2T}\abs{x_0 - \hat{x}_0}$
 \end{ejem}
+
+\fecha{10/04/2024}
+
+Ahora vamos a ver qué ocurre cuando variamos un poco el lado derecho de la EDO (con mismo dato inicial) y tenemos: \[(1) \begin{cases}
+		x'=f(t,x) \\ x(t_0)=x_0
+	\end{cases} \qquad (2) \begin{cases}
+		x'=f(t,x)+\varepsilon(t,x) \\ x(t_0)=x_0
+	\end{cases}\]
+
+Sea $\Omega = (a,b) \times U$, con  $U \subset \R^d$ abierto. Supongamos que $\appl{f, \varepsilon}{\Omega}{\R^d}$ son continuas y localmente Lipschitz en $x$, uniformemente en $t$.
+
+Sean $x: I (t_0,x_0) \to \R^d$ solución de $(1)$ y sea $\hat{x}: \hat{I}(t_0,x_0)\to \R^d$ la solución de $(2)$. Queremos ver, de nuevo, qué pasa con $|x(t)-\hat{x}(t)|$. Sea $K \subset U$ compacto $ : x_0 \in K$ (por ejemplo $K = \overline{B_\delta (x_0)}$) y sea $T>0$ tal que:
+\[[t_0-T,t_0+T] \subset \left[ I(t_0,x_0) \cap \hat{I} (t_0,x_0) \right] \,\, \we \,\, \forall t \in [t_0-T,t_0+T] : x(t), \hat{x}(t) \in K\]
+
+$\forall y, \hat{y} \in K : \forall t \in [t_0-T,t_0+T] :\tex{sea } L=L_k > 0 : |f(t,y)-f(t,\hat{y}) | \leq L |y-\hat{y}|$
+
+También vamos a usar que $\forall y \in K : \forall t \in [t_0-T,t_0+T] : |\varepsilon(t,y) | \leq E$.
+
+Teniendo en cuenta todo esto, vamos a trabajar lo que queríamos cuando $t \in [t_0-T, t_0]$:
+\[\begin{aligned}
+		|x(t)-\hat{x}(t)| & = \left | \int_{t_0}^t (f(s,x(s))-f(s,\hat{x}(s))-\varepsilon(s,\hat{x}(s))) ds \right |       \\
+		                  & \leq \int_{t_0}^t |f(s,x(s))-f(s,\hat{x}(s))| ds + \int_{t_0}^t |\varepsilon(s,\hat{x}(s))| ds \\
+		                  & \leq L \int_t^{t_0} |x(s)-\hat{x}(s)| ds + E(t_0-t) =: g(t)
+	\end{aligned}\]
+De este modo, $g'(t) = -L |x(t)-\hat{x}(t)| - E \geq -Lg(t) - E \implies g'(t)+Lg(t)\geq - E$
+\[\begin{aligned}
+		 & \implies \frac{d}{dt} \left ( g(t) e^{Lt} \right ) \geq -E e^{Lt} \implies g(t_0) e^{Lt_0} - g(t)e^{Lt} \geq - \frac{E}{L} \left( e^{Lt_o} - e^{Lt} \right) \\
+		 & \implies \forall t \in [t_0-T,t_0] : g(t)\leq \frac{E}{L}\left ( e^{L(t_0-t)}-1\right )                                                                     \\
+		 & \implies \forall t \in [t_0-T,t_0] : |x(t)-\hat{x}(t)| \leq \frac{E}{L}  \left ( e^{L(t_0-t)}-1 \right )
+	\end{aligned}\]
+Análogamente trabajamos en el intervalo $[t_0,t_0+T]$
+\[\implies \forall t \in [t_0-T,t_0+T] : \boxed{|x(t)-\hat{x}(t)| \leq \frac{E}{L}  \left ( e^{L|t_0-t|}-1 \right )}\]
+
+En particular, $\ds \forall t \in [t_0-T,t_0+T] : |x(t)-\hat{x}(t)| \leq \frac{E}{L}\left (e^{LT} - 1 \right )$
+
+Volviendo al PVI, $\ds |f(t,x)-(f(t,x)+\varepsilon_k(t,x))| = |\varepsilon_k (t,x)| \leq E_k$. Si conseguimos que $E_k \to 0$, entonces tendríamos convergencia uniforme.

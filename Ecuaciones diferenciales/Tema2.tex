@@ -7,26 +7,25 @@
 	\[\iff \tex{es de la forma } y'=f(y)\]
 \end{defn}
 
-\begin{prop}[Propiedades de EDOs autónomas]
-	\begin{enumerate}
-		\item[]
-		\item \textbf{Isoclinas:} Todos los puntos de cada recta horizontal $y=c$ pertenecen a la misma isoclina. ¡Cuidado! A veces una isoclina puede contener más de una recta horizontal.
-		      \begin{ejem}[$y'=y^2$]
-			      \[\{(x,y)\in \R:y^2=c\}=\{(x,\sqrt{c}):x\in\R\}\cup\{(x,-\sqrt{c}):x\in\R\}\]
-		      \end{ejem}
-		\item \textbf{Traslaciones:} Si y es solución $\implies \forall c \in \R : w(x)\defeq y(x+c)$ es solución.
-		      \begin{dem}
-			      $w'(x)=y'(x+c)=f(y(x+c))=f(w(x))$
-		      \end{dem}
-		\item \textbf{Soluciones triviales:} Si $\exists \, a \in \operatorname{Dom}(f) : f(a)=0 \implies y(x)=a$ es solución.
-		      \begin{dem}
-			      $y'(x)=0=f(a)=f(y(x))$
-		      \end{dem}
-	\end{enumerate}
-\end{prop}
+\allbold{Propiedades de EDOs autónomas}
+\begin{enumerate}
+	\item \textbf{Isoclinas:} Todos los puntos de cada recta horizontal $y=c$ pertenecen a la misma isoclina. ¡Cuidado! A veces una isoclina puede contener más de una recta horizontal.
+	      \begin{ejem}[$y'=y^2$]
+		      \[\{(x,y)\in \R:y^2=c\}=\{(x,\sqrt{c}):x\in\R\}\cup\{(x,-\sqrt{c}):x\in\R\}\]
+	      \end{ejem}
+	\item \textbf{Traslaciones:} Si y es solución $\implies \forall c \in \R : w(x)\defeq y(x+c)$ es solución.
+	      \begin{dem}
+		      $w'(x)=y'(x+c)=f(y(x+c))=f(w(x))$
+	      \end{dem}
+	\item \textbf{Soluciones triviales:} Si $\exists \, a \in \operatorname{Dom}(f) : f(a)=0 \implies y(x)=a$ es solución.
+	      \begin{dem}
+		      $y'(x)=0=f(a)=f(y(x))$
+	      \end{dem}
+\end{enumerate}
+
 \subsection{Teorema de existencia de soluciones}
-Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua $ \we y_0 \in (a,b) : f(y_0) \ne 0$
-\[\implies \exists \, \varepsilon : (y_0-\varepsilon, y_0+\varepsilon) \subset (a,b) \quad \we \quad \forall z \in (y_0-\varepsilon, y_0+\varepsilon) : f(z)\ne 0\]
+Sean $a\in [-\infty, \infty) \we b\in (-\infty, \infty] \we \appl{f}{(a,b)}{\R}$ continua$ \we y_0 \in (a,b) : f(y_0) \ne 0$
+\[\implies \exists \, \varepsilon : \bigg((y_0-\varepsilon, y_0+\varepsilon) \subset (a,b) \we \forall z \in (y_0-\varepsilon, y_0+\varepsilon) : f(z)\ne 0\bigg)\]
 
 Sea $\appl{y}{I}{(a,b)}$ una función derivable con $I\subset \R$ intervalo abierto tal que
 \[\forall x \in I : y'(x)=f(y(x)) \quad \we \quad y(x_0)=y_0 \tex{ para algún }x_0 \in I\]
@@ -34,9 +33,12 @@ Sea $\appl{y}{I}{(a,b)}$ una función derivable con $I\subset \R$ intervalo abie
 Como $y$ es continua, $\exists \, \delta > 0 : \forall x \in (x_0-\delta, x_0+\delta) :y(x)\in(y_0-\varepsilon, y_0+\varepsilon)$
 \[\implies \forall x \in (x_0-\delta, x_0+\delta) : f(y(x))\ne 0\]
 
-Así, $\ds \forall x \in (x_0-\delta, x_0+\delta) : \frac{y'(x)}{f(y(x))}=1 \implies \forall x \in (x_0-\delta, x_0+\delta) : \int_{x_0}^{x} \frac{y'(z)}{f(y(z))}\odif{z} = x-x_0$
-\[\implies \boxed{\forall x \in (x_0-\delta, x_0+\delta) : \int_{y_0}^{y(x)} \frac{1}{f(z)} \odif{z} + x_0 = x}\]
-\pagebreak
+Así, $\ds \forall x \in (x_0-\delta, x_0+\delta) : \frac{y'(x)}{f(y(x))}=1 \implies \forall x \in (x_0-\delta, x_0+\delta) : \int_{x_0}^{x} \frac{y'(z)}{f(y(z))}\odif{z} = x-x_0$.
+
+Por tanto, mediante el cambio de variable $y(z) = s$, obtenemos
+\[\implies \boxed{\forall x \in (x_0-\delta, x_0+\delta) : \int_{y_0}^{y(x)} \frac{1}{f(s)} \odif{s} + x_0 = x}\]
+Es decir, si tenemos $f(y(x_0)) \ne 0$, entonces en un entorno de $x_0$ tenemos $x$ en función de $y$. $\ds x(y) = \int_{y(x_0)}^{y} \frac{1}{f(s)} \odif{s} + x_0$. Por tanto, tenemos una ``inversa'' de $y$.
+
 \fecha{22/02/2024}
 
 % \begin{teo}[Existencia de soluciones]
@@ -66,8 +68,8 @@ Así, $\ds \forall x \in (x_0-\delta, x_0+\delta) : \frac{y'(x)}{f(y(x))}=1 \imp
 		Supongamos sin pérdida de generalidad que $\forall x \in (a,b) : f(x)>0$
 		\[\implies \forall x \in (a,b) : F'(x)=\frac{1}{f(x)}>0 \implies F \tex{ es estrictamente creciente en }(a,b)\]
 		\[\implies F \tex{ tiene inversa en } (a, b) \implies \exists\, x\defeq \appl{F^{-1}}{(T_-,T_+)}{(a,b)}\]
-		\[\implies \begin{aligned}\tex{Por un lado, }   & \quad x'(t) = \left(F^{-1}\right)'(t)=\frac{1}{F'(F^{-1}(t))}=\frac{1}{F'(x(t))} = f(x(t)) \\
-               \tex{Por otro lado, } & \quad F(x_0)=0 \implies x_0= F^{-1}(F(x_0))=F^{-1}(0)=x(0)\end{aligned}\]
+		\[\implies \begin{aligned}         & \tex{Por un lado, } x'(t) = \left(F^{-1}\right)'(t)=\frac{1}{F'(F^{-1}(t))}=\frac{1}{F'(x(t))} = f(x(t)) \\
+                        & \tex{Por otro lado, } F(x_0)=0 \implies x_0= F^{-1}(F(x_0))=F^{-1}(0)=x(0)\end{aligned}\]
 	\end{dem}
 \end{teo}
 
@@ -112,8 +114,8 @@ Así, $\ds \forall x \in (x_0-\delta, x_0+\delta) : \frac{y'(x)}{f(y(x))}=1 \imp
 
 \begin{cor}
 	Con las hipótesis del corolario anterior, si $\ds \lim_{x\to a^+} \int_{k}^{x} \frac{1}{f(s)} \odif{s} \in \R$ \[\implies \exists \, \appl{x}{[0, \infty)}{(a,b)} \tex{ solución no trivial del PVI con } x(0) = a\]
-	\begin{dem}
-	\end{dem}
+	% \begin{dem}
+	% \end{dem}
 \end{cor}
 
 \fecha{27/02/2024}
@@ -126,8 +128,8 @@ Así, $\ds \forall x \in (x_0-\delta, x_0+\delta) : \frac{y'(x)}{f(y(x))}=1 \imp
 	Si $y(0)\eqdef y_0 \in (-1, 1)$, entonces existe una única solución del PVI. Esa solución está definida en $(T_-, T_+)$, donde
 	\[T_-=\lim_{y\to -1^+}\int_{y_0}^{y} \frac{1}{\sqrt{1-s^2}}\odif{s}=\lim_{y\to -1^+}\arcsin(y)-\arcsin(y_0)=-\frac{\pi}{2}-\arcsin(y_0)\]
 	\[T_+=\lim_{y\to 1^-}\int_{y_0}^{y} \frac{1}{\sqrt{1-s^2}}\odif{s}=\frac{\pi}{2}-\arcsin(y_0)\]
-	\[\tex{Si $y_0=1$, }\lim_{y\to 1^-} \int_{k}^{y} \frac{1}{\sqrt{1-s^2}} \odif{s} = \frac{\pi}{2} -\arcsin(k) \in \R \implies \exists \tex{ un solución \underline{no trivial} del PVI}\]
-	\[\tex{Si $y_0=-1$, }\lim_{y\to -1^+} \int_{k}^{y} \frac{1}{\sqrt{1-s^2}} \odif{s}  \in \R \implies \exists \tex{ un solución \underline{no trivial} del PVI}\]
+	\[\tex{Si $y_0=1$, }\lim_{y\to 1^-} \int_{k}^{y} \frac{1}{\sqrt{1-s^2}} \odif{s} = \frac{\pi}{2} -\arcsin(k) \in \R \implies \exists \tex{ una solución \underline{no trivial} del PVI}\]
+	\[\tex{Si $y_0=-1$, }\lim_{y\to -1^+} \int_{k}^{y} \frac{1}{\sqrt{1-s^2}} \odif{s}  \in \R \implies \exists \tex{ una solución \underline{no trivial} del PVI}\]
 	Por tanto, la solución general del PVI es
 	\[y_k(x)=\begin{cases}
 			-1        & \iff x\leq -\frac{\pi}{2}-k                               \\
@@ -203,7 +205,7 @@ Sea $\appl{f}{(\alpha,\beta)}{\R}$ continua, con el PVI $\{y'=f(y) \, \we \, y(x
 \end{defn}
 
 \begin{defn}[Estabilidad]
-	Si $\forall y_0 \in (\alpha, \beta)$ el PVI tiene solución única, la solución $\appl{y}{[x_0, \infty)}{\R}$ es estable a futuro
+	Si $\forall y_0 \in (\alpha, \beta)$ el PVI tiene solución única, la solución $\appl{y}{[x_0, \infty)}{\R}$ es estable
 	\[\iff \forall \varepsilon >0 : \exists \delta > 0 : \bigg(y_0^*\in (\alpha, \beta) : \abs{y_0^*-y_0} < \delta \implies \forall x \geq x_0 :\abs{y(x)-y^*(x)}<\varepsilon\bigg)\]
 	donde $\appl{y^*}{[x_0, \infty)}{\R}$ es cualquier solución del PVI con $y^*(x_0)=y_0^*$.
 \end{defn}
@@ -231,7 +233,7 @@ Sea $\appl{f}{(\alpha,\beta)}{\R}$ continua, con el PVI $\{y'=f(y) \, \we \, y(x
 			y \equiv 1 \\
 		\end{cases}\tex{ son de equilibrio}\]
 	\[\xRightarrow{\tex{H2: ej. 1}} \big(\forall y < 0 :f(y) < 0\big) \we \big(\forall y \in (0, 1) : f(y) > 0\big) \we \big(\forall y > 1 : f(y) < 0\big)\]
-	Por tanto, cualquier solución estable es asintóticamente estable (para EDOs autónomas). Además, si una solución tiene límite, entonces ese límite es sol estable.
+	Por tanto, si una solución tiene límite, entonces ese límite es solución estable.
 
 	$\boxed{y_0 < 0}$ \hspace{1cm}$\ds \forall y < 0 : F(y)=\int_{y_0}^{y}\frac{1}{s(1-s)}\odif{s} \implies \forall y<0 : F'(y)<0$
 

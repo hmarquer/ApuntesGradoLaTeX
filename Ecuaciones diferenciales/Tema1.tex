@@ -331,8 +331,8 @@ satisface (localmente) una EDO $y'=f(x,y)$ de primer orden.
 \begin{ejem}[$x'=x^2-t^2$]
 	\begin{enumerate}
 		\item[]
-		\item La función $y=-x(-t)$ también es solución porque
-		      \[\forall t \in \R : y'=x'(-t)=(-x(-t))^2-(-t)^2=(y(t))^2-t^2\]
+		\item La función $y(t)=-x(-t)$ también es solución porque
+		      \[\forall t \in \R : y'(t)=x'(-t)=(-x(-t))^2-(-t)^2=(y(t))^2-t^2\]
 		\item Existe $t\in \R : x(t)>-t$. Razonando por contradicción, sup. que $\forall t\in \R:x(t)\leq -t$. \\
 		      En particular, $\forall t \geq 0: x(t) \leq -t$.
 		      Entonces, $\forall t \geq 0 : x^2(t)\geq t^2$. \\
@@ -340,17 +340,18 @@ satisface (localmente) una EDO $y'=f(x,y)$ de primer orden.
 		      Integrando $x(t)-x(0)\geq 0$. Entonces $\forall t \geq 0: x(0) \leq x(t) \leq -t$, pero tomando $t\geq -x(0)$, llegamos a una contradicción.
 		\item Si $x(t_0)=-t_0$ para algún $t_0\in \R$, entonces $x(t)\geq-t$ para todo $t\geq t_0$.
 		      \begin{obs}
-			      Se puede pensar que $b(t)=-t$ actúa como una barrera que no se puede atravesar. De hecho, $b(t)$ es una isoclina (porque $b(t)^2-t^2=cte$).\\
+			      Se puede pensar que $b(t)=-t$ actúa como una barrera que no se puede atravesar. De hecho, $b(t)$ es una isoclina (porque $b(t)^2-t^2=0=\tex{cte}$).\\
 			      Estas son candidatas a barreras.
 		      \end{obs}
 		      Definimos $\forall t \geq t_0 : \varphi(t) \defeq x(t)-(-t)=x(t)+t$.\\
 		      Por un lado, $\varphi(t_0)=x(t_0)-t_0=0$. \\
 		      Por otro lado, $\varphi'(t)=x'(t)+1=(x(t)^2-t^2)+1 \implies \varphi'(t_0) = 1 >0$ \\
-		      Entonces, existe $\varepsilon > 0 : \forall t\in (t_0, t_0+\varepsilon) \varphi(t) > 0$.
+		      Entonces, $\forall \varepsilon > 0 : \forall t\in (t_0, t_0+\varepsilon) \varphi(t) > 0$.
 
 		      Razonando por contradicción, supongamos que $\exists t_1 > t_0$ tal que $\varphi (t_1)=0$. Podemos asumir que $t_1$ es el más pequeño que lo cumple y, por tanto, $\forall t \in (t_0, t_1):\varphi (t)>0$.
 		      \[\implies \varphi'(t_1)=x(t_1)^2-t_1^2+1=(-t_1)^2-t_1^2+1=1>0 \]
 	\end{enumerate}
+	\input{graphs/slopefield4 copy.tex}
 \end{ejem}
 
 \begin{ejem}[$x'=x^2\arctan(x)$]
@@ -388,4 +389,5 @@ satisface (localmente) una EDO $y'=f(x,y)$ de primer orden.
 			      \[\implies \frac{1}{x_0}>\lambda(t-t_0) \implies t < t_0+\frac{1}{\lambda x_0}\]
 		      \end{dem}
 	\end{enumerate}
+	\input{graphs/slopefield4 copy 2.tex}
 \end{ejem}
