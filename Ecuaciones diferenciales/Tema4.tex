@@ -51,13 +51,17 @@ Sea $X'=A(t)X$ un sistema lineal homogéneo (SLH). Sean $X(t)$ y $Y(t)$ solucion
 	\[\iff \left(\forall t \in (a, b) : \sum_{j=1}^{k} \alpha_i X_i (t) = 0 \implies \alpha_1 = \cdots = \alpha_k = 0 \right)\]
 \end{defn}
 
-Si $X_1(\Bar{t}) , \dots , X_k(\Bar{t})$ para algún $\Bar{t} \in (a,b)$, tenemos que las funciones son linealmente independientes:
-\[\forall t \in (a,b) : \sum_{i=1}^k \alpha_i X_i(t) = 0 \implies \sum_{i=1}^k \alpha_i X_i(\Bar{t}) = 0 \implies \forall i \implies X_i : \forall i : \alpha_i = 0  \text{ linealmente independiente }\]
+\begin{prop}
+	Si $\exists \, \Bar{t} \in (a,b) : X_1(\Bar{t}) , \dots , X_k(\Bar{t}) \tex{ l.i.}\implies X_i$ linealmente independientes.
+	\begin{dem}
+		\[\forall t \in (a,b) : \sum_{i=1}^k \alpha_i X_i(t) = 0 \implies \sum_{i=1}^k \alpha_i X_i(\Bar{t}) = 0 \implies \forall i : \alpha_i = 0 \implies X_i  \text{ l.i.}\]
+	\end{dem}
+\end{prop}
 
 \fecha{15/04/2024}
 
 \begin{prop}
-	Sean $A(t) = \left(a^i_j(t)\right) \we a^i_j \in \mathcal{C}((a,b)) \we i,j=1,\ldots,d$
+	Sean $A(t) = \left(a^i_j(t)\right) \we a^i_j \in \mathcal{C}((a,b))$ con $i,j=1,\ldots,d$
 	\[\implies \dim{\{\appl{X}{(a,b)}{\R^d} : X'=A(t)X\}} = d\]
 	\begin{dem}
 		Para cada $j=1, \dots, d$, sea $\Pi_j(t;t_0)$ la solución (única) de
@@ -77,29 +81,27 @@ Si $X_1(\Bar{t}) , \dots , X_k(\Bar{t})$ para algún $\Bar{t} \in (a,b)$, tenemo
 \end{prop}
 
 Supongamos que tenemos un conjunto $\left\{\phi_1, \dots, \phi_d\right\}$ de soluciones del SLH. ¿Cómo sabemos si son linealmente independientes?
-\[\exists \Bar(t) \in (a,b) : \det{\left(\phi_1, \dots, \phi_d\right)} \neq 0 \iff \{\phi_j(\Bar(t))\}_{j=1}^d\tex{ son vectores l.i.}\]
+\[\exists \, \Bar{t} \in (a,b) : \det{\left(\phi_1\left(\Bar{t}\right), \dots, \phi_d\left(\Bar{t}\right)\right)} \neq 0 \iff \{\phi_j\left(\Bar{t}\right)\}_{j=1}^d\tex{ son vectores l.i.}\]
 
 \begin{defn}[Wronskiano]
-	Sean $\appl{X_j}{(a,b)}{\R^d}, j=1, \dots, d$ funciones $W\left[X_1, \dots, X_d\right]$ es su wronskiano
+	Sean $\appl{X_j}{(a,b)}{\R^d}$ con $j=1, \dots, d$ funciones, \\ $W\left[X_1, \dots, X_d\right]$ es su wronskiano
 	\[\iff \forall t \in (a,b) : W\left[X_1, \dots, X_d\right](t) = \det{\left(X_1(t), \dots, X_d(t)\right)}\]
 \end{defn}
 
 Ya sabemos que si $W\left[X_1, \dots, X_d\right](\Bar{t}) \neq 0$ para algún $\Bar{t}\in(a,b)$ entonces $\{X_1, \dots, X_d\}$ son l.i. Sin embargo, si $W\left[X_1, \dots, X_d\right](t)$ se anula en algún punto (o en todos), no podemos afirmar que sean linealmente dependientes.
+\[\boxed{\begin{aligned}
+			\exists \, \Bar{t} \in (a,b) : X_i(\Bar{t}) \tex{ l.i.} \iff \exists \, \Bar{t} \in (a,b) : W[X_1, \dots, X_d](\Bar{t}) \ne 0 \stackrel{\nimpliedby}{\implies} X_i \tex{ l.i.} \\
+			\forall \Bar{t} \in (a,b) : X_i(\Bar{t}) \tex{ l.d.}\iff \forall \Bar{t} \in (a, b) : W[X_1, \dots, X_d](\Bar{t}) = 0 \stackrel{\nimplies}{\impliedby} X_i \tex{ l.d.}
+		\end{aligned}}\]
 
 \begin{ejem}
 	Sea $X_1 = \begin{pmatrix}
 			t^3 \\
 			3t^2
-		\end{pmatrix} \we X_2 = \begin{cases}
-			\begin{pmatrix}
-				-t^3 \\
-				-3t^2
-			\end{pmatrix} & t \in (-1, 0] \\
-			\begin{pmatrix}
-					t^3 \\
-					3t^2
-				\end{pmatrix} & t \in [0, 1)
-		\end{cases} \implies X_1, X_2 \in \mathcal{C}((-1, 1), \R^2)$.
+		\end{pmatrix}, X_2 = \begin{cases}
+			\left(-t^3, -3t^2\right) & t \in (-1, 0] \\
+			\left(t^3, 3t^2\right)   & t \in [0, 1)
+		\end{cases} \in \mathcal{C}((-1, 1), \R^2)$.
 	\[\forall t \in (-1, 0] : W\left[X_1, X_2\right](t) = \det{\begin{pmatrix}
 					t^3  & -t^3  \\
 					3t^2 & -3t^2
@@ -127,7 +129,7 @@ Ya sabemos que si $W\left[X_1, \dots, X_d\right](\Bar{t}) \neq 0$ para algún $\
 
 \begin{prop}
 	Sean $X_1, \dots, X_d$ soluciones del SLH.
-	\[\implies \bigg(\forall t \in (a, b) : W\left[X_1, \dots, X_d\right](t) = 0 \niff  \forall t \in (a, b) : W\left[X_1, \dots, X_d\right](t) \neq 0\bigg)\]
+	\[\implies \bigg(\forall t \in (a, b) : W\left[X_1, \dots, X_d\right](t) = 0\, \vebar \, \forall t \in (a, b) : W\left[X_1, \dots, X_d\right](t) \neq 0\bigg)\]
 \end{prop}
 
 \fecha{16/04/2024}
@@ -147,7 +149,7 @@ A partir de $\Phi$ podemos encontrar cualquier solución de $\{X'=A(t)X \we X(t_
 		c_1    \\
 		\vdots \\
 		c_d
-	\end{pmatrix} = \sum_{j=1}^{d} c_j \phi_j \tex{ con }c \in \R^d \we X(t_0) = \Phi(t_0) = c=X_0 \]
+	\end{pmatrix} = \sum_{j=1}^{d} c_j \phi_j \tex{ con }c \in \R^d \we X(t_0) = \Phi(t_0) \cdot c=X_0 \]
 \[\implies c = \left(\Phi(t_0)\right)^{-1} X_0 \implies \boxed{X(t) = \Phi(t) \left(\Phi(t_0)\right)^{-1} X_0}\]
 
 \subsection{Sistema no homogéneo}
@@ -157,7 +159,7 @@ A partir de $\Phi$ podemos encontrar cualquier solución de $\{X'=A(t)X \we X(t_
 	Sea $X_p$ una sol. particular del SL y sea $\{X_1, \dots, X_d\}$ una base del espacio de sol. del SLH.
 	\[\implies X \tex{ sol. del SL} \iff \exists \{\alpha_i\}_{i=1}^d \subset \R :\forall t \in (a, b) : X(t) = X_p(t) + \sum_{i=1}^{d} \alpha_i X_i(t)\]
 	\begin{dem} % TODO: completar detalles
-		El cambio de variable $Y = X - X_p$ transforma el SL en un SLH. Es decir, el conjunto de soluciones del SL se caracteriza mediante el del SLH.
+		El cambio de variable $Y = X - X_p$ transforma el SL en un SLH. \\ Es decir, el conjunto de soluciones del SL se caracteriza mediante el del SLH.
 	\end{dem}
 \end{prop}
 
@@ -290,42 +292,45 @@ Por tanto, la solución general del SLH es $\ds \boxed{X(t) = \sum_{i=1}^d c_i X
 			e^t
 		\end{pmatrix}$.
 	\[X(t) = X_p + \Phi(t) c \we X_p(t) = \Phi(t) \int_{t_0}^{t} \left(\Phi(s)\right)^{-1} g(s) \odif{s}\]
-	\[\implies X_p = \frac{1}{2} \begin{pmatrix}
-			e^{3t} & e^{-t}  \\
-			e^{3t} & -e^{-t}
-		\end{pmatrix} \int_{0}^{t} \begin{pmatrix}
-			e^{-3s} & e^{3s} \\
-			e^{s}   & -e^{s}
-		\end{pmatrix} \begin{pmatrix}
-			s \\
-			e^s
-		\end{pmatrix} \odif{s} = \frac{1}{2} \begin{pmatrix}
-			e^{3t} & e^{-t}  \\
-			e^{3t} & -e^{-t}
-		\end{pmatrix} \int_{0}^{t} \begin{pmatrix}
-			s e^{-3s} + e^{-2s} \\
-			s e^{s} - e^{2s}    \\
-		\end{pmatrix} \odif{s}\]
-	\[\implies X_p = \frac{1}{2} \begin{pmatrix}
-			e^{3t} & e^{-t}  \\
-			e^{3t} & -e^{-t}
-		\end{pmatrix} \begin{pmatrix}
-			\int_{0}^{t} s e^{-3s} + e^{-2s} \odif{s} \\
-			\int_{0}^{t} s e^{s} - e^{2s} \odif{s}
-		\end{pmatrix} = \cdots = c_1 \begin{pmatrix}
-			e^{3t} \\
-			e^{3t}
-		\end{pmatrix} + c_2 \begin{pmatrix}
-			e^{-t} \\
-			-e^{-t}
-		\end{pmatrix}\]
+	\[\begin{aligned}
+			\implies X_p & = \frac{1}{2} \begin{pmatrix}
+				                             e^{3t} & e^{-t}  \\
+				                             e^{3t} & -e^{-t}
+			                             \end{pmatrix} \int_{0}^{t} \begin{pmatrix}
+				                                                        e^{-3s} & e^{3s} \\
+				                                                        e^{s}   & -e^{s}
+			                                                        \end{pmatrix} \begin{pmatrix}
+				                                                                      s \\
+				                                                                      e^s
+			                                                                      \end{pmatrix} \odif{s}                                                                                                    \\
+			             & = \frac{1}{2} \begin{pmatrix}
+				                             e^{3t} & e^{-t}  \\
+				                             e^{3t} & -e^{-t}
+			                             \end{pmatrix} \int_{0}^{t} \begin{pmatrix}
+				                                                        s e^{-3s} + e^{-2s} \\
+				                                                        s e^{s} - e^{2s}    \\
+			                                                        \end{pmatrix} \odif{s}                                            = \frac{1}{2} \begin{pmatrix}
+				                                                                                                                                        e^{3t} & e^{-t}  \\
+				                                                                                                                                        e^{3t} & -e^{-t}
+			                                                                                                                                        \end{pmatrix} \begin{pmatrix}
+				                                                                                                                                                      \int_{0}^{t} s e^{-3s} + e^{-2s} \odif{s} \\
+				                                                                                                                                                      \int_{0}^{t} s e^{s} - e^{2s} \odif{s}
+			                                                                                                                                                      \end{pmatrix} \\
+			             & = \frac{1}{2} \begin{pmatrix}
+				                             e^{3t} & e^{-t}  \\
+				                             e^{3t} & -e^{-t}
+			                             \end{pmatrix} \begin{pmatrix}
+				                                           te^{-3t} + \frac{1}{9} - \frac{1}{9} e^{-3t} -\frac{1}{2}e^{-2t} + \frac{1}{2} \\
+				                                           te^{t} - e^{t} + 1 - \frac{1}{2}e^{2t} + \frac{1}{2}
+			                                           \end{pmatrix}
+		\end{aligned}\]
 \end{ejem}
 
 \fecha{18/04/2024}
 
 \allbold{Diagonalizable con autovalores complejos}
 
-Partimos de una base de autovectores en $C^d$. A partir de ella, construimos una en $\R^d$.
+Partimos de una base de autovectores en $\C^d$. A partir de ella, construimos una en $\R^d$.
 
 Sea $\lambda = \alpha + \beta i$ autovalor de $A$ y $\xi = u + i v$, con $u, v \in \R^d$, autovector asociado. Observamos que $A\xi = \lambda \xi \implies A \bar{\xi} = \bar{\lambda} \bar{\xi}$.
 
@@ -383,11 +388,11 @@ Como $X_1$ y $X_2$ son l.i., $\ds \frac{c_1}{2} + \frac{c_2}{2i} = 0 = \frac{c_1
 				      0 \\
 				      0
 			      \end{pmatrix} \implies \begin{cases}
-				      \xi_2 = (i, 1, 1+i)             \\
-				      \overline{\xi_1} = (-i, 1, 1-i) \\
+				      \xi_2 = (\hphantom{-}i, 1, 1+i) \\
+				      \overline{\xi_2} = (-i, 1, 1-i) \\
 			      \end{cases}$.
 		      \[\implies \begin{cases}
-				      X_2(t) = \xi_2 e^{it} = (i, 1, 1+i) e^{it} \\
+				      X_2(t) = \xi_2 e^{it\hphantom{-}} = (\hphantom{-}i, 1, 1+i) e^{it} \\
 				      X_3(t) = \overline{\xi_2} e^{-it} = (-i, 1, 1-i) e^{-it}
 			      \end{cases}\]
 		      \[X_2(t) = \begin{pmatrix}
@@ -438,15 +443,15 @@ Como $X_1$ y $X_2$ son l.i., $\ds \frac{c_1}{2} + \frac{c_2}{2i} = 0 = \frac{c_1
 
 Sea el PVI $\left\{X' = AX \we X(0) = 0\right\}$ con $A \in \mathcal{M}_d(\R)$ y $A$ no diagonalizable. Definimos las iteraciones de Picard:
 \[\begin{aligned}
-		X_0(t)  & = X_0                                                                                                                                                         \\
-		X_1 (t) & = X_0 +\int_0^t A X_0 \odif{s} = X_0 + AX_0t = (I + At)X_0                                                                                                    \\
-		X_2 (t) & = X_0 + \int_0^{t} AX_1(s) \odif{s} = X_0 + \int_0^{t} AX_0 + A^2 X_0 s \odif{s} = X_0 + AX_0 t + \frac{1}{2} A^2 X_0 t^2 = (I + At + \frac{1}{2} A^2 t^2)X_0
+		X_0(t)  & = X_0                                                                                                                     \\
+		X_1 (t) & = X_0 +\int_0^t A X_0 \odif{s} = X_0 + AX_0t = (I + At)X_0                                                                \\
+		X_2 (t) & = X_0 + \int_0^{t} AX_1(s) \odif{s} = X_0 + \int_0^{t} AX_0 + A^2 X_0 s \odif{s} = X_0 + AX_0 t + \frac{1}{2} A^2 X_0 t^2 \\
+		        & = (I + At + \frac{1}{2} A^2 t^2)X_0
 	\end{aligned}\]
 Como vemos $\ds X_k(t) = \left(\sum_{j=0}^k A^j \frac{t^j}{j!}\right)X_0 \xrightarrow{k\to \infty} \left(\sum_{j=0}^{\infty} A^j \frac{t^j}{j!}\right)X_0$.
 
 \begin{defn}[Exponencial de una matriz]
-	Sea $A \in \mathcal{M}_d(\R)$, $e^A$ es su exponencial
-	\[\iff e^A \defeq \sum_{j=0}^{\infty} A^j \frac{t^j}{j!}\]
+	Sea $A \in \mathcal{M}_d(\R)$, $\ds e^A \defeq \sum_{j=0}^{\infty} A^j \frac{t^j}{j!}$.
 \end{defn}
 
 \fecha{22/04/2024}
