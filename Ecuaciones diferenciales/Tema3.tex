@@ -435,8 +435,8 @@ Sea $\appl{f}{\Omega}{\R^d}$ una función continua localmente Lipstchiz en $x$ u
 	Veamos de nuevo que se cumplen las condiciones del Teorema de Picard-Lindelöf: \[\forall (t,x) \in \Omega : \pdv{f}{x}(t,x)=\frac{x}{\sqrt{1-x^2}}\]
 	Sea $K \subset \Omega$. Obviamente, $\ds \left |\frac{\partial f }{\partial x}(t,x) \right | \leq \displaystyle \max_{(x,y)\in K} \left |\frac{\partial f }{\partial x}(t,x) \right |$.
 	Teniendo esto, en cuenta
-	\[\implies \forall (t,x) , (t,\Tilde{x}) \in K : |f(t,x)-f(t,\Tilde{x})| = \left |\frac{\partial f }{\partial x}(t,x) \right | |x-\Tilde{x}| \leq L_K |x-\Tilde{x}| \]
-	\[\implies \forall (t_0,x_0)\in \Omega : \exists ! \tex{ solución local del PVI } \begin{cases}x'=\sqrt{1-x^2} \\ x(t_0)=x_0 \end{cases}\tex{ ara } t \in (T_-,T_+)\]
+	\[\implies \forall (t,x) , (t,\Tilde{x}) \in K : |f(t,x)-f(t,\Tilde{x})| \leq \max_{(x,y)\in K} \left |\frac{\partial f }{\partial x}(t,x) \right | |x-\Tilde{x}| \leq L_K |x-\Tilde{x}| \]
+	\[\implies \forall (t_0,x_0)\in \Omega : \exists ! \tex{ solución local del PVI } \begin{cases}x'=\sqrt{1-x^2} \\ x(t_0)=x_0 \end{cases}\tex{para } t \in (T_-,T_+)\]
 	De hecho, en este caso, la única solución es explícita: $x(t)=\sin t, t \in (T_-,T_+)=\left ( - \frac{\pi}{2}, \frac{\pi}{2} \right )$.
 	% 
 	Aquí, en lugar de explosión cuando $t \to T_-$ ó $t \to T_+$, lo que sucede es que $(t,x(t)) \to \partial \Omega$, y por tanto puede perderse (y de hecho se pierde) la unicidad local.
@@ -445,7 +445,7 @@ Sea $\appl{f}{\Omega}{\R^d}$ una función continua localmente Lipstchiz en $x$ u
 \begin{ejem}
 	Sea $\Omega = \R \times (0, + \infty)$ y sea $\ds f(t,x) \defeq - \frac{1}{2x}$.
 
-	Claramente se cumplen las condiciones de Picard-Lindelöf. Entonces, hay existencia y unicidad local de solución del PVI $\{ x'=f(t,x(t)) \we x(t_0)=x_0 \}, t \in (T_-,t_+)$.
+	Claramente se cumplen las condiciones de Picard-Lindelöf. Entonces, hay existencia y unicidad local de solución del PVI $\{ x'=f(t,x(t)) \we x(t_0)=x_0 \}, t \in (T_-,T_+)$.
 
 	De hecho, para $(t_0,x_0)\in \Omega$, se tiene que $\ds \forall t \in (-\infty , x_0^2 + t_0) : x(t)=\sqrt{(x_0^2+t_0)-t}$.
 
@@ -481,7 +481,7 @@ Consideramos los PVI $\{x'=f(t, x) \we x(t_0) = x_0\}$ y $\{x'=f(t, x) \we x(t_0
 	\item $\forall (s, y), (s, \hat{y}) \in K\subset \Omega : \abs{f(s, y) - f(s, \hat{y})} \leq L \abs{y-\hat{y}}$
 	\item $\forall t \in [t_0, t_0 + T] : (s, x(s)), (s, \hat{x}(s)) \in K$
 \end{itemize}
-\[\abs{x(t) - \hat{x}(t)} \leq g(t) \implies g'(t) = L\abs{x(t) - \hat{x}(t)} = L g(t)\implies e^{-Lt}g'(t) \leq e^{-Lt}Lg(t) \]
+\[\abs{x(t) - \hat{x}(t)} \leq g(t) \implies g'(t) = L\abs{x(t) - \hat{x}(t)} \leq L g(t)\implies e^{-Lt}g'(t) \leq e^{-Lt}Lg(t) \]
 \[\iff \odv{}{t} \left(e^{-Lt} g(t)\right) \leq 0 \implies e^{-Lt}g(t) - e^{-Lt_0}g(t_0) \leq 0\]
 \[\implies \abs{x(t) - \hat{x}(t)} \leq g(t) \leq e^{L(t-t_0)} \abs{x_0-\hat{x}_0}\]
 \[t\in [t_0 - T, t_0] \implies \abs{x(t) - \hat{x}(t)} \leq e^{L(t_0-t)} \abs{x_0-\hat{x}_0}\]

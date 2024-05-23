@@ -247,7 +247,7 @@ Queremos una función $\appl{g}{\R}{\R} : y(x) \leq g(x)$.
 	\item Supongamos por un momento que $\abs{f(x, y)}\leq K$.
 	      \[\ds \begin{aligned}
 			      y(x)=y(x_0) + \int_{x_0}^x f(s, y(s)) \odif{s}\implies
-			      \abs{y(x)} & \leq \abs{y(x_0)} + \int \abs{f(s,y(s))} \odif{s} \\
+			      \abs{y(x)} & \leq \abs{y(x_0)} + \int_{x_0}^x \abs{f(s,y(s))} \odif{s} \\
 			                 & \leq \abs{y(x_0)} + K\abs{x-x_0}
 		      \end{aligned}\]
 	      \[\implies \forall x \in \R : 0 < y(x) \leq \abs{y(x_0)} + K\abs{x-x_0} \eqdef g(x)\]
@@ -442,7 +442,6 @@ Si $\exists x \in \R : \det \neq 0 \implies a_1 = a_2 = 0$ es la única solució
 Sea $x^2y'' - 4xy'+(x^2+6)y = 0$ una EDO de segundo orden. Si además $y(0) = y'(0) = 0$ tenemos que $y_1(x)=x^2\sin{x} \we y_2(x)= 0$ son soluciones de la EDO. Definimos $z\defeq y' \implies z' = y'' = \frac{4z}{x} - \frac{6y}{x^2}$.\\
 
 Como la función no es continua en $x=0$, no podemos aplicar el teorema de Picard-Lindelöf.
-
 
 \subsection{Hoja 5}
 
