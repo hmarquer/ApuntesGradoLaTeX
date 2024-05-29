@@ -17,7 +17,7 @@
 	\[\implies \appl{\mu}{J}{\R^3} : \mu(u)=\gamma\left(g(u)\right)\tex{ es una curva de misma traza que } \gamma\]
 \end{obs}
 \begin{defn}[Velocidad y rapidez]
-	Sea $\appl{\gamma}{I}{\R^3}$ una curva, el vector velocidad (velocidad) de $\gamma$ en $t$ es $\gamma'(t)=\nabla\gamma(t)\in \R^3$. La norma $\norm{\gamma'(t)}$ se conoce como la rapidez.
+	Sea $\appl{\gamma}{I}{\R^3}$ una curva, el vector velocidad (\allbold{velocidad}) de $\gamma$ en $t$ es $\gamma'(t)=\nabla\gamma(t)\in \R^3$. La norma $\norm{\gamma'(t)}$ se conoce como la \allbold{rapidez}.
 \end{defn}
 \begin{defn}[Curva regular]
 	Sea $\appl{\gamma}{I}{\R^3}$, es regular $\iff \forall t \in I : \gamma'(t)\ne 0$
@@ -32,10 +32,10 @@
 
 \subsection{Longitud de curvas y reparametrizaciones}
 \subsubsection{Poligonales}
-Sea $\appl{\gamma}{I}{\R^3}$ una curva (no necesariamente regular) y $\left[c, d\right] \subset I$. Definimos una poligonal de $\gamma$ entre $\gamma(c)$ y $\gamma(d)$ tomando una partición de $\left[c, d\right]$:
-\[c=t_0<t_1<\cdots<t_{n-1}<t_n=d\]
+Sea $\appl{\gamma}{I}{\R^3}$ una curva (no necesariamente regular) y $\left[c, d\right] \subset I$. Definimos una poligonal de $\gamma$ entre $\gamma(c)$ y $\gamma(d)$ tomando una partición de $\left[c, d\right]$: $c=t_0<t_1<\cdots<t_{n-1}<t_n=d$.
+
 La poligonal $\Pi$ asociada a esa partición es la lista de segmentos:
-\[\Pi=\left(\left[\gamma(t_0), \gamma(t_1)\right], \left[\gamma(t_1), \gamma(t_2)\right], \dots, \left[\gamma(t_{n-1}), \gamma(t_n)\right]\right)\]
+\[\Pi\defeq\left(\left[\gamma(t_0), \gamma(t_1)\right], \left[\gamma(t_1), \gamma(t_2)\right], \dots, \left[\gamma(t_{n-1}), \gamma(t_n)\right]\right)\]
 La longitud de la poligonal $\Pi$ se denota $L(\Pi)$ se define entonces de forma natural como:
 \[L(\Pi)=\sum_{j=1}^n \norm{\gamma(t_j)-\gamma(t_{j-1})}\]
 
@@ -47,8 +47,7 @@ La longitud de la poligonal $\Pi$ se denota $L(\Pi)$ se define entonces de forma
 
 \subsubsection{Teorema de cálculo de longitud}
 \begin{teo}
-	Sea $\appl{\gamma}{I}{\R^3}$ una curva regular y $\left[c,d\right] \subset  I$
-	\[\implies L(\gamma; c, d) = \int_c^d\norm{\gamma'(t)}\odif{t}\]
+	Sea $\appl{\gamma}{I}{\R^3}$ una curva regular y $\ds \left[c,d\right] \subset  I \implies L(\gamma; c, d) = \int_c^d\norm{\gamma'(t)}\odif{t}$.
 	\begin{dem}
 		En la demostración denotamos
 		\begin{itemize}
@@ -67,34 +66,35 @@ La longitud de la poligonal $\Pi$ se denota $L(\Pi)$ se define entonces de forma
 		\end{dem}
 		$\mathbf{\left[L\leq J\right]}$ Para una poligonal $\Pi$ con partición $t_0=c<t_1<\cdots<t_n=d$, se tiene que
 		\[L(\Pi)=\sum_{j=1}^n\norm{\gamma(t_j)-\gamma(t_{j-1})} = \sum_{j=1}^n\norm{\int_{t_{j- 1}}^{t_j}\gamma'(t)\odif{t}}\]
-		Por el Lema \ref{lem1}, se tiene \[\ds L(\Pi) \leq \sum_{j=1}^n\int_{t_{j-1}}^{t_j}\norm{\gamma'(t)}\odif{t} =   \int_{t_0}^{t_n}\norm{\gamma'(t)}\odif{t} = J \implies L \leq J\]
-		$\mathbf{\left[L\leq J\right]}$ Fijemos $\varepsilon > 0$. Por la continuidad uniforme de $\gamma'\in C^0$, tenemos  $\delta>0$ tal que si $c\leq t\leq t'\leq d$ \\
+		Por el Lema \ref{lem1}, se tiene $\ds L(\Pi) \leq \sum_{j=1}^n\int_{t_{j-1}}^{t_j}\norm{\gamma'(t)}\odif{t} =   \int_{t_0}^{t_n}\norm{\gamma'(t)}\odif{t} = J \implies L \leq J$.
+
+		$\mathbf{\left[L\leq J\right]}$ Fijemos $\varepsilon > 0$. Por la continuidad uniforme de $\gamma'\in C^0$, $\exists \delta>0 : c\leq t\leq t'\leq d$ \\
 		\centerline{\begin{itemize*}[itemjoin=\hspace{1cm}]
-			\item son tales que $|t'-t|\leq \delta$
-			\item entonces $\norm{\gamma(t')-\gamma(t)}\leq \varepsilon$
-		\end{itemize*}}
-		(El $\delta$ no depende de los puntos $t$ y $t'$, sólo de $\varepsilon$). \\
+				\item son tales que $|t'-t|\leq \delta$
+				\item entonces $\norm{\gamma(t')-\gamma(t)}\leq \varepsilon$
+			\end{itemize*}}
+		(El $\delta$ no depende de los puntos $t$ y $t'$, sólo de $\varepsilon$).
+
 		Tomamos una partición $\ds t_0=c<t_1<\cdots <t_n=d$ para la que cumpla que $\ds t_j-t_{j-1}<\delta$ para $\ds j=1, \dots, n$. \\
 		Sea $\Pi$ la poligonal dada por esa partición. Entonces:
 		\[L(\Pi)=\sum_{j=0}^{n-1}\norm{\gamma(t_{j+1})-\gamma(t_j)}=\sum_{j=0}^{n-1}\norm{\int_{t_{j-1}}^{t_j}\gamma'(t)\odif{t}}\]
 		Sea $\ds u_j\in \left[t_{j-1}, t_j\right]$ tal que $\ds\norm{\gamma'(u_j)}=\max_{t\in \left[t_{j-1}, t_j\right]}\norm{\gamma'(t)}$. \\
 		Por un lado, $\ds J=\int_c^d\norm{\gamma'(t)}\odif{t} = \sum_{j=1}^n \int_{t_{j-1}}^{t_j}\norm{\gamma'(t)}\odif{t} \leq \sum_{j=1}^n\norm{\gamma'(u_j)}(t_j-t_{j-1}) \hspace{0.5cm} (\star)$ \\
 		Por otro lado, \[\ds \gamma(t_{j+1})-\gamma(t_j) = \int_{t_j}^{t_{j+1}}\gamma'(t)\odif{t}=\left(\int_{t_j}^{t_{j+1}}(\gamma'(t)-\gamma'(u_j))\odif{t}\right)+\gamma'(u_j)(t_{j+1}-t_j)\]
-		Así que \begin{equation*}
+		\begin{equation*}
 			\begin{split}
-				\norm{\gamma(t_{j+1})-\gamma(t_j)} & \geq  \norm{\gamma'(u_j)}|t_{j+1}-t_j|-\norm{\int_{t_j}^{t_{j+1}}(\gamma'(t)-\gamma'(u_j))\odif{t}} \\ & \geq  \norm{\gamma'(u_j)}|t_{j+1}-t_j|-\varepsilon(t_{j+1}-t_j)
+				\implies \norm{\gamma(t_{j+1})-\gamma(t_j)} & \geq  \norm{\gamma'(u_j)}|t_{j+1}-t_j|-\norm{\int_{t_j}^{t_{j+1}}(\gamma'(t)-\gamma'(u_j))\odif{t}} \\ & \geq  \norm{\gamma'(u_j)}|t_{j+1}-t_j|-\varepsilon(t_{j+1}-t_j)
 			\end{split}
 		\end{equation*}
 		usando el Lema \ref{lem1} y las condiciones de la partición.
 		Por lo tanto, \begin{equation*}\begin{split}
-			L(\Pi) &=\sum_{j=0}^{n-1}\norm{\gamma(t_{j+1}-\gamma(t_j))}
-			\geq \sum_{j=0}^{n-1}\norm{\gamma'(u_j)}(t_{j+1}-t_j)-\varepsilon\sum_{j=0}^{n-1}(t_{j+1}-t_j) \geq J -\varepsilon(d-c)
-		\end{split}\end{equation*}
-		donde se ha usado $(\star)$. En suma
-		\[\forall \varepsilon > 0 : J\leq L(\Pi) + \varepsilon(d-c)\geq L + \varepsilon(d-c) \implies J \leq L\]
+				L(\Pi) & =\sum_{j=0}^{n-1}\norm{\gamma(t_{j+1}-\gamma(t_j))}
+				\geq \sum_{j=0}^{n-1}\norm{\gamma'(u_j)}(t_{j+1}-t_j)-\varepsilon\sum_{j=0}^{n-1}(t_{j+1}-t_j) \geq J -\varepsilon(d-c)
+			\end{split}\end{equation*}
+		donde se ha usado $(\star)$. En suma $\ds \forall \varepsilon > 0 : J\leq L(\Pi) + \varepsilon(d-c)\geq L + \varepsilon(d-c) \implies J \leq L$.
 	\end{dem}
 \end{teo}
-\begin{ejem}[Longitud gráfica de una función] 
+\begin{ejem}[Longitud gráfica de una función]
 	$\ds \forall t \in \left[c, d\right] : \gamma(t)=(t, f(t))$ donde $\appl{f}{\left[c, d\right]}{\R}$ es una función deribable.
 	\[\norm{\gamma'(t)}=\sqrt{1+(f'(t))^2} \implies \tex{Long gráfica }=\int_c^d \sqrt{1+(f'(t))^2} \odif{t}\]
 \end{ejem}
@@ -112,7 +112,7 @@ Dada una curva $\appl{\gamma}{I}{\R^3}$, queremos recorrer su traza con otra cur
 		\item $\eta$ y $\gamma$ tienen la misma traza $(\trz{\eta}=\trz{\gamma})$.
 		\item $\gamma$ es también reparametrización de $\eta$, pues $\gamma = \eta \circ h^{-1}$.
 		\item $\eta$ regular $\iff \gamma$ regular, pues $\eta(u) = h'(u)\cdot\gamma'(h(u))$.
-		\item En coordenadas, $\ds \frac{d}{du}\eta(u)=\left(x'(h(u))h'(u), y'(h(u))h'(u), z'(h(u))h'(u)\right)$
+		\item En coordenadas, $\ds \frac{d}{du}\eta(u)=\big(\gamma_1'(h(u))\cdot h'(u),\, \gamma_2'(h(u))\cdot h'(u),\, \gamma_3'(h(u))\cdot h'(u)\big)$
 	\end{itemize}
 \end{defn}
 \noindent \textbf{Orientación:}
@@ -127,22 +127,23 @@ Supongamos que $h$ es creciente. Sean $\left[p, q\right]\subset J$. Llamamos $h(
 \begin{defn}[Curva parametrizada por longitud de arco]
 	Sea $\appl{\eta}{I}{\R^3}$ una curva regular, es parametrizada por longitud de arco
 	\[\iff \forall s_1, s_2 \in I : s_1<s_2 : s_2-s_1=L(\eta; s_1, s_2)\]
-	\[\iff \forall s_1, s_2 \in I : s_1<s_2 : s_2-s_1=\int_{s_1}^{s_2}\norm{\eta'(d)}\odif{s} \iff \forall s \in I : \norm{\eta'(s)}=1\]
+	\[\iff \forall s_1, s_2 \in I : s_2-s_1=\int_{s_1}^{s_2}\norm{\eta'(d)}\odif{s} \iff \forall s \in I : \norm{\eta'(s)}=1\]
 \end{defn}
 \begin{teo}
 	Toda curva regular se puede reparametrizar por longitud de arco.
 	\begin{dem}
 		Sea $\appl{\gamma}{I}{\R^3}$ una curva regular, fijamos $t_0\in I$ y defininimos: \[\forall t \in I : g(t)\defeq\int_{t_0}^t\norm{\gamma'(u)}\odif{u}\]
 		\[\begin{cases}
-			\tex{Para } t >t_0\tex{, se tiene que } g(t) \tex{ es la longitud de la curva } \gamma \tex{ entre } \gamma(t_0) \tex{ y } \gamma(t).\\
-			\tex{Para } t <t_0\tex{, la función } g(t) \tex{ nos da el negativo de la longitud entre } \gamma(t_0) \tex{ y } \gamma(t).
-		\end{cases}\]
+				\tex{Para } t >t_0\tex{, se tiene que } g(t) \tex{ es la longitud de la curva } \gamma \tex{ entre } \gamma(t_0) \tex{ y } \gamma(t). \\
+				\tex{Para } t <t_0\tex{, la función } g(t) \tex{ nos da el negativo de la longitud entre } \gamma(t_0) \tex{ y } \gamma(t).
+			\end{cases}\]
 		Queremos usar $s \defeq g(t)$ como etiqueta del punto $\gamma(t)$, en otras palabras, queremos despejar $t$ en términos de $s$, es decir, invertir $g$.
 		\begin{itemize}
 			\item Como $\gamma$ es regular, se tiene $g'(t)=\norm{\gamma'(t)}>0$. Así que $g$ es función creciente.
-			\item Supongamos que $I=(a,b)$. Llamaremos $\ds c\defeq \lim_{t \rightarrow a}g(t)$ y $\ds d\defeq \lim_{t \rightarrow b}g(t)$ 
+			\item Supongamos que $I=(a,b)$. Llamaremos $\ds c\defeq \lim_{t \rightarrow a}g(t)$ y $\ds d\defeq \lim_{t \rightarrow b}g(t)$
 		\end{itemize}
 		\[\implies \tex{La función $g$ es difeomorfismo entre $I=(a,b)$ y $J\defeq(c,d)$}\]
+		\vspace{-1cm}
 		\begin{lem}
 			Sea $\appl{\alpha}{I}{\R^3}$ una función $C^\infty : \forall t\in I : \alpha(t)\ne 0 \implies \norm{\alpha(t)} \tex{es }C^\infty$
 			\begin{dem}
@@ -166,15 +167,14 @@ La curvatura de una curva en un punto mide
 La torsión de una curva en un punto mide
 \begin{itemize}[topsep=1pt, itemsep=1pt,parsep=3pt]
 	\item cuán próxima está la curva a ser curva plana en ese punto.
-	\item cuan rápidamente está cambiando su plano “osculador” en ese punto.
+	\item cuán rápidamente está cambiando su plano “osculador” en ese punto.
 \end{itemize}
 \begin{lem}
 	\begin{enumerate}[topsep=0pt, itemsep=1pt,parsep=3pt]
-		\item[] 
 		\item Sea $\appl{u}{I}{\R^3}$ una aplicación derivable tal que $\norm{u(t)}$ es constante en $I$.
-		\[\implies \forall t \in I : u'(t)\cdot u(t)=0 \iff \forall t \in I : u'(t) \perp u(t)\]
+		      \[\implies \forall t \in I : u'(t)\cdot u(t)=0 \iff \forall t \in I : u'(t) \perp u(t)\]
 		\item Sean $\appl{u}{I}{\R^3}, \appl{v}{I}{\R^3}$ aplicaciones derivables tales que $u(t)\cdot v(t)=\tex{cte}$ en $I$.
-		\[\implies \forall t \in I : u'(t) \cdot v(t)=-u(t)\cdot v'(t)\]
+		      \[\implies \forall t \in I : u'(t) \cdot v(t)=-u(t)\cdot v'(t)\]
 	\end{enumerate}
 	Uso típico: $\norm{u(t)}=1 \we u(t)\cdot v(t)=0$.
 	\begin{dem}
@@ -191,11 +191,27 @@ La torsión de una curva en un punto mide
 \end{defn}
 
 \begin{ejem}[Curvatura nula significa que la traza es (parte de) una recta]
-	
+	\mbox{ } \\
+	Tenemos que $\kappa \equiv 0 \iff \tngnt' \equiv 0 \iff \tngnt = \gamma' \equiv \tex{cte} \iff \gamma(s) = \gamma(0) + s\tngnt(0)$ \[\iff \gamma \tex{ es parte de una recta.}\]
 \end{ejem}
 
 \begin{prop}
-	Una curva en el plano de curvatura constante $M > 0$ está contenida en una circunferencia de radio $\sfrac{1}{M}$
+	Una curva en el plano de curvatura constante $M > 0$ está contenida en una circunferencia de radio $\sfrac{1}{M}$.
+	\begin{dem}
+		Sea $\appl{\gamma}{I}{\R^2}$ una curva parametrizada por longitud de arco en el plano con curvatura constante $M > 0$. Es decir, $\forall s \in I : \big(\norm{\gamma'(s)}=1 \we \norm{\gamma''(s)}=M\big)$.
+		\begin{itemize}
+			\item Como $\gamma'(s) \cdot \gamma'(s) \equiv 1$, se tiene $(\star)$ $\gamma''(s) \cdot \gamma'(s) \equiv 0$, es decir, $\gamma''(s) \perp \gamma'(s)$.
+			\item Como $\gamma''(s) \cdot \gamma''(s) \equiv M^2$, se tiene que $\gamma''(s) \cdot \gamma'''(s) = 0$, es decir, $\gamma''(s) \perp \gamma'''(s)$.
+		\end{itemize}
+		Como $\gamma''(s) \neq 0$ (y dado que estamos en el plano), esto significa que $\gamma'''(s) \parallel \gamma'(s)$, \\
+		es decir, $\gamma'''(s) = \lambda(s) \gamma'(s)$ para alguna función $\lambda(s)$ (de hecho, $\lambda(s) = \gamma'''(s) \cdot \gamma'(s)$).
+
+		Derivamos en $(\star)$: $\gamma'''(s)\cdot \gamma'(s) + \gamma''(s)\cdot \gamma''(s) = 0 \implies \lambda(s) + M^2 = 0$.
+		\[\implies \gamma'''(s) + M^2\gamma'(s)\equiv 0 \implies \frac{1}{M^2}\gamma'''(s) + \gamma'(s)\equiv 0 \implies \left(\gamma(s) + \frac{1}{M^2}\gamma''(s)\right)'\equiv 0\]
+		De manera que existe un cierto $p\in \R^2$ tal que para todo $s\in I$
+		\[\gamma(s) + \frac{1}{M^2}\gamma''(s) = p \implies \norm{\gamma(s) - p} = \frac{1}{M^2} \norm{\gamma''(s)} = \frac{1}{M}\]
+		Concluimos que todos los puntos de la curva están a distancia $\sfrac{1}{M}$ de un cierto punto $p$, es decir, la curva está contenida en una circunferencia de radio $\sfrac{1}{M}$.
+	\end{dem}
 \end{prop}
 
 \begin{defn}[Curva birregular]
@@ -203,15 +219,20 @@ La torsión de una curva en un punto mide
 \end{defn}
 
 \begin{prop}
-	Una curva regular $\appl{\gamma}{I}{\R^3}$ (no necesariamente parametrizada por longitud de arco) es birregular \[\iff \tex{su reparametrización por longitud de arco es birregular.}\]
+	Una curva regular $\appl{\gamma}{I}{\R^3}$ (no necesariamente parametrizada por longitud de arco) es birregular $\iff \tex{su reparametrización por longitud de arco es birregular.}$
 	\[\iff \forall i \in I : \gamma'(t)\tex{ y }\gamma''(t) \tex{ son linealmente independientes.}\]
 	\begin{dem}
-		
+		Sea $\eta(s) = \gamma(h(s))$ una reparametrización de $\gamma$ por longitud de arco.
+		\[\implies \eta'(s) = h'(s)\gamma'(h(s)) \,\, \we \,\, \eta''(s) = {h'(s)}^2\gamma''(h(s)) + h''(s)\gamma'(h(s))\]
+		Si $\gamma$ es birregular, entonces $\eta$ también lo será y, por tanto, $\eta''(s) \ne 0$. \\
+		Además, $\eta'(s)\cdot\eta''(s) = 0$, así que $\eta'(s)$ y $\eta''(s)$ son linealmente independientes. Mirando las expresiones de arriba, esto supone que $\gamma'(h(s))$ y $\gamma''(h(s))$ son linealmente independientes.
+
+		Si $\gamma'(h(s))$ y $\gamma''(h(s))$ son linealmente independientes, entonces $\eta''(s)$ no puede ser el vector nulo, pues en la combinación lineal de arriba $h'(s) \ne 0$.
 	\end{dem}
 \end{prop}
 \begin{defn}[Vector normal] \label{defnNormal}
 	Sea $\appl{\gamma}{I}{\R^3}$ una curva birregular parametrizada por longitud de arco, $\nrml(s)$ es el vector normal a $\gamma$ en $s\in I$
-	\[\iff\nrml(s)\defeq\frac{\tngnt'(s)}{\norm{\tngnt'(s)}}= \frac{\gamma''(s)}{\norm{\gamma''(s)}}=\frac{\gamma''(s)}{\kappa(s)}\]
+	\[\iff\boxed{\nrml(s)\defeq\frac{\tngnt'(s)}{\norm{\tngnt'(s)}}= \frac{\gamma''(s)}{\norm{\gamma''(s)}}=\frac{\gamma''(s)}{\kappa(s)}}\]
 	La aplicación $\appl{\operatorname{n}}{I}{\R^3}$ es $C^\infty$, pues $\kappa$ es $C^\infty$ y no se anula. \\
 	Como $\norm{\tngnt}=1\implies \tngnt'(s)\perp \tngnt(s) \implies \boxed{\nrml(t) \perp \tngnt(s)}$ \\
 	El vector $\nrml(s)$ es unitario y perpendicular a $\tngnt(s)$. Hay infinitos vectores en $\R^3$ (toda una circunferencia) con esa propiedad: $\nrml(s)$ es uno de ellos, pero canónico.
@@ -221,7 +242,7 @@ La torsión de una curva en un punto mide
 	\[\iff \pi = \mathcal{L}\left\{\tngnt(s)=\gamma'(s), \nrml(s)=\frac{\gamma''(s)}{\kappa(s)}\right\} + \gamma(s) \]
 	Para una curva en $\R^2$, el plano osculador es $\R^2$.
 \end{defn}
-Sea $\appl{\gamma}{I}{\R^3}$ una curva birregular parametrizada por longitud de arco y supongamos $0 \in I$. \\
+Sea $\appl{\gamma}{I}{\R^3}$ una curva birregular parametrizada por longitud de arco y $0 \in I$. \\
 La aproximación de primer orden a $\gamma$ en $\gamma(0)$ es la recta tangente a $\gamma$ en $\gamma(0)$:
 \[\gamma(s)\approx\gamma(0) + s\gamma'(0)=\gamma(0)+s\tngnt()\]
 La aproximación de segundo orden a $\gamma$ en $\gamma(0)$ se denomina \textbf{parábola osculatriz}:
@@ -229,7 +250,7 @@ La aproximación de segundo orden a $\gamma$ en $\gamma(0)$ se denomina \textbf{
 Entonces, ``hasta orden $2$'' la curva está contenida en su plano osculador.
 \begin{defn}[Vector binormal]
 	Sea $\appl{\gamma}{I}{\R^3}$ una curva birregular, $\bnrml(s)$ es el vector binormal a $\gamma$ en $s\in I \iff \boxed{\bnrml(s)\defeq\tngnt(s)\times\nrml(s)}$ \\
-	\[\tex{Por las propiedades del producto vectorial } \implies \bnrml(s) \perp \tngnt(s) \we \bnrml(s) \perp \nrml(s) \we \norm{\bnrml(s)}=1\]
+	Por las propiedades del producto vectorial $ \implies \bnrml(s) \perp \tngnt(s) \we \bnrml(s) \perp \nrml(s) \we \norm{\bnrml(s)}=1$.
 	Entonces, el vector binormal es vector unitario normal al plano osculador a la curva en $s$.
 \end{defn}
 \begin{defn}[Triedro de Frenet]
@@ -243,14 +264,14 @@ La torsión de $\gamma$ en $s$ va a medir cómo varía el plano osculador a $\ga
 
 Como $\bnrml(s)$ es el vector normal al plano osculador a $\gamma$ en $s$, se trata de estudiar $\bnrml'(s)$. Sabiendo que $\bnrml(s)=\tngnt(s)\times\nrml(s)$, al derivar obtenemos:
 \[\begin{aligned}
-	\bnrml'(s)&=\tngnt'(s)\times\nrml(s)+\tngnt(s)\times\nrml'(s) \\
-	&= \kappa(s)\nrml(s)\times\nrml(s)+\tngnt(s)\times\nrml'(s) = \tngnt(s)\times\nrml'(s)
-\end{aligned}\]
+		\bnrml'(s) & =\tngnt'(s)\times\nrml(s)+\tngnt(s)\times\nrml'(s)                                    \\
+		           & = \kappa(s)\nrml(s)\times\nrml(s)+\tngnt(s)\times\nrml'(s) = \tngnt(s)\times\nrml'(s)
+	\end{aligned}\]
 Se deduce que $\bnrml'(s) \perp \tngnt(s)$. Además, como $\bnrml(s)\cdot\bnrml(s)\equiv1 \implies \bnrml'(s)\perp\bnrml(s) \implies \bnrml'(s) \parallel \nrml(s)$.
 
 \begin{defn}[Torsión] \label{defnTorsion}
 	Sea $\appl{\gamma}{I}{\R^3}$ una curva birregular, $\tau(s)$ es la torsión de $\gamma$ en $\ds s\in I \iff \boxed{\bnrml'(s)=\tau(s)\nrml(s)} \implies \boxed{\tau(s)=\bnrml'(s)\cdot\nrml(s)} \we \norm{\bnrml(s)}=\abs{\tau(s)}$
-	
+
 	Para una curva birregular la curvatura es siempre positiva, pero la torsión en un punto dado puede ser positiva, negativa o 0. El signo de la torsión tiene significado geométrico.
 \end{defn}
 \begin{prop}[Torsión $\equiv 0$]
@@ -259,39 +280,41 @@ Se deduce que $\bnrml'(s) \perp \tngnt(s)$. Además, como $\bnrml(s)\cdot\bnrml(
 	\begin{dem}
 		$(\implies)$ Si la curva está contenida en un plano, entonces $\bnrml$ es constantemente uno de los dos vectores normales a dicho plano, por lo que $\bnrml' \equiv 0 \implies \tau \equiv 0$.
 
-		$(\impliedby)$ Si $\tau \equiv 0$, entonces $\bnrml' \equiv 0 \implies \bnrml$ es constante. Por tanto, si fijamos $s_0\in I \implies \forall s \in I : b(s)=b(s_0)$. Queremos probar ahora que $\forall s \in I : (\gamma(s)- \gamma(s_0)) \perp b(s_0)$. \\
-		Pero derivando el producto escalar,
+		$(\impliedby)$ Si $\tau \equiv 0$, entonces $\bnrml' \equiv 0 \implies \bnrml$ es constante. Por tanto, si fijamos $s_0\in I \implies \forall s \in I : \bnrml(s)=\bnrml(s_0)$. Queremos probar ahora que $\forall s \in I : (\gamma(s)- \gamma(s_0)) \perp \bnrml(s_0)$. \\
+		Pero, derivando el producto escalar,
 		\[\begin{aligned}
-			((\gamma(s)-\gamma(s_0))\cdot\bnrml(s_0))' &= \gamma'(s)\cdot\bnrml(s_0) \\
-			&= \tngnt(s)\cdot\bnrml(s_0) =  \tngnt(s)\cdot\bnrml(s) = 0, \quad \forall s \in I
-		\end{aligned}\]
+				((\gamma(s)-\gamma(s_0))\cdot\bnrml(s_0))' & = \gamma'(s)\cdot\bnrml(s_0)                                                      \\
+				                                           & = \tngnt(s)\cdot\bnrml(s_0) =  \tngnt(s)\cdot\bnrml(s) = 0, \quad \forall s \in I
+			\end{aligned}\]
 		Por tanto, $(\gamma(s)-\gamma(s_0))\cdot\bnrml(s_0)$ es una constante cuando $s$ recorre $I$. Como en $s=s_0$ se anula, se tiene que $\forall s \in I : (\gamma(s)-\gamma(s_0))\perp\bnrml(s_0)$ y $\gamma$ está contenida en un plano.
 	\end{dem}
 \end{prop}
 \begin{defn}[Planos]
 	Sean $\appl{\gamma}{I}{\R^3}$ una curva parametrizada por longitud de arco y $(\tngnt, \nrml, \bnrml)$ su triedro de Frenet. Se definen
 	\[\begin{aligned}
-		\tex{Plano osculador, } & \tex{determinado por} & \tngnt \we \nrml \\
-		\tex{Plano normal, } & \tex{determinado por} & \nrml \we \bnrml \\
-		\tex{Plano rectificante, } & \tex{determinado por} & \tngnt \we \bnrml \\
-	\end{aligned}\]
+			\tex{Plano osculador, }    & \tex{determinado por} & \tngnt \we \nrml  \\
+			\tex{Plano normal, }       & \tex{determinado por} & \nrml \we \bnrml  \\
+			\tex{Plano rectificante, } & \tex{determinado por} & \tngnt \we \bnrml \\
+		\end{aligned}\]
 \end{defn}
 \subsubsection{Fórmulas de Frenet-Serret}
-Vamos a expresar las derivadas $\tngnt'(s), \nrml'(s), \bnrml'(s)$ respecto de la base ortonormal $\beta = \{\tngnt(s), \nrml(s), \bnrml(s)\}$.
+Vamos a expresar las derivadas $\tngnt'(s), \nrml'(s), \bnrml'(s)$ respecto de la base $\{\tngnt(s), \nrml(s), \bnrml(s)\}$.
 
 Ya tenemos $\tngnt'(s) = \kappa(s)\nrml(s) \we \bnrml'(s)=\tau(s)\nrml(s)$ de las definiciones \ref{defnCurvatura}, \ref{defnTorsion} y \ref{defnNormal}.
 \[\bnrml(s)=\tngnt(s)\times\nrml(s) \implies \nrml(s) = \bnrml(s)\times\tngnt(s)\]
-\[\implies \nrml'(s)=\bnrml'(s)\times\tngnt(s) + \bnrml(s)\times\tngnt'(s) = \tau(s)\nrml(s)\times\tngnt(s) + \kappa(s)\bnrml(s)\times\nrml(s)\]
-\[\implies \nrml'(s)=-\tau(s)\bnrml(s)-\kappa(s)\tngnt(s)\]
+\[\begin{aligned}
+		\implies \nrml'(s) & =\bnrml'(s)\times\tngnt(s) + \bnrml(s)\times\tngnt'(s) = \tau(s)\nrml(s)\times\tngnt(s) + \kappa(s)\bnrml(s)\times\nrml(s) \\
+		                   & =-\tau(s)\bnrml(s)-\kappa(s)\tngnt(s)
+	\end{aligned}\]
 \[\implies \begin{pmatrix}
-	\tngnt'(s) \\ \nrml'(s) \\ \bnrml'(s)
-\end{pmatrix} = \underbrace{\begin{pmatrix}
-	0 & \kappa(s) & 0 \\
-	-\kappa(s) & 0 & -\tau(s) \\
-	0 & \tau(s) & 0
-\end{pmatrix}}_{\eqdef FS}\begin{pmatrix}
-	\tngnt(s) \\ \nrml(s) \\ \bnrml(s)
-\end{pmatrix}\]
+		\tngnt'(s) \\ \nrml'(s) \\ \bnrml'(s)
+	\end{pmatrix} = \underbrace{\begin{pmatrix}
+			0          & \kappa(s) & 0        \\
+			-\kappa(s) & 0         & -\tau(s) \\
+			0          & \tau(s)   & 0
+		\end{pmatrix}}_{\eqdef FS}\begin{pmatrix}
+		\tngnt(s) \\ \nrml(s) \\ \bnrml(s)
+	\end{pmatrix}\]
 Estas son las ecuaciones de Frenet-Serret donde la matriz escalar $FS$ es antisimétrica.
 
 Si escribimos los vectores de arriba en coordenadas $(\tngnt=(t_1, t_2, t_3), \tngnt'=(t_1', t_2', t_3'), \tex{ etc.})$, la matriz anterior es de dimensiones $9\times9$: cada símbolo en la matriz $FS$ se ha de sustituir por una caja diagonal.
@@ -300,58 +323,57 @@ Si escribimos los vectores de arriba en coordenadas $(\tngnt=(t_1, t_2, t_3), \t
 Sea $\appl{\gamma}{I}{\R^3}$ una curva birregular parametrizada por longitud de arco. Supongamos por comodidad que $I = (-a, a) \implies 0\in I$ para $a>0$.
 
 Consideramos la curva $\bar{\gamma}(s)\defeq\gamma(-s)$, que recorre la misma traza que $\gamma$, pero en sentido contrario. Queremos relacionar el tiedro de $\bar{\gamma}$ y su curvatura $\bar{\kappa}$ y torsión $\bar{\tau}$ con los de $\gamma$ en $0$, como $\bar{\gamma} (0)=\gamma(0)$:
-\[\bar{\tngnt}(0)=-\tngnt(0) \we \bar{\nrml}(0)=\nrml(0) \we \bar{\kappa}(0)=\kappa(0) \we \bar{\bnrml}(0)=\bnrml(0) \we \bar{\tau}(0)=-\tau(0)\] 
+\[\bar{\tngnt}(0)=-\tngnt(0) \we \bar{\nrml}(0)=\nrml(0) \we \bar{\kappa}(0)=\kappa(0) \we \bar{\bnrml}(0)=-\bnrml(0) \we \bar{\tau}(0)=-
+	\tau(0)\]
 
 \subsubsection{Movimientos rígidos y triedros}
 Los movimientos rígidos de $\R^3$ se obtienen componiendo traslaciones con rotaciones. Si $M$ es movimiento rígido de $\R^3$, entonces $M$ viene dado por un vector $p$ y una matriz ortogonal $O$ $\left(O^T=O^{-1}\right)$ con determinante $1$:
 \[\forall v \in \R^3 : M(v)=Ov+p\]
 Como $|O|=1$, se tiene que $u, v \in \R^3 \implies Ou\times Ov=O(u\times v)$.
 \begin{enumerate}
-	\item Traslaciones \\
-	Sea $\gamma$ una curva birregular parametrizada por longitud de arco y $\bar{\gamma}$ la curva $\bar{\gamma}(s)\defeq\gamma(s)+p$.
-
-	Como $\bar{\gamma}'(s)=\gamma'(s)$, se tiene que $\bar{\gamma}$ está parametrizada por longitud de arco y que $\forall s \in I : \bar{\tngnt}(s) = \tngnt(s) \implies \forall s \in I : \bar{\kappa}(s)=\kappa(s) \we \bar{\nrml}(s)=\nrml(s) \we \bar{\tau}(s)=\tau(s) \we \bar{\bnrml}(s)=\bnrml(s)$
-	\item Rotaciones \\
-	Consideremos ahora la curva $\bar{\gamma}(s)=O\gamma(s)$.
-
-	Se tiene $\forall s \in I : \bar{\gamma}'(s)=O\gamma'(s)$. Así que $\bar{\gamma}$ está parametrizada por longitud de arco y $\forall s \in I : \bar{\tngnt}(s)=O\tngnt(s)$.
-
-	Además, $\forall s \in I : \bar{\tngnt}'(s)=O\tngnt'(s) \implies \bar{\kappa}(s)=\kappa(s) \we \bar{\nrml}(s)=O\nrml(s)$
-	\[\bar{\bnrml}(s)=\bar{\tngnt}(s)\times\bar{\nrml}(s) = O\tngnt(s)\times O\nrml(s)=O\left(\tngnt(s)\times \nrml(s)\right)=O\bnrml(s) \implies \bar{\tau}(s)=\tau(s)\]
+	\item \allbold{Traslaciones:} Sea $\gamma$ una curva birregular parametrizada por longitud de arco, definimos la curva $\bar{\gamma}(s)\defeq\gamma(s)+p$. \\
+	      Como $\bar{\gamma}'(s)=\gamma'(s)$, se tiene que está parametrizada por longitud de arco \[\implies \forall s \in I : \bar{\tngnt}(s) = \tngnt(s) \we \bar{\kappa}(s)=\kappa(s) \we \bar{\nrml}(s)=\nrml(s) \we \bar{\tau}(s)=\tau(s) \we \bar{\bnrml}(s)=\bnrml(s)\]
+	\item \allbold{Rotaciones:} Consideremos ahora la curva $\bar{\gamma}(s)=O\gamma(s)$. Se tiene $\bar{\gamma}'(s)=O\gamma'(s)$. \\Así que $\bar{\gamma}$ está parametrizada por longitud de arco y $\forall s \in I : \bar{\tngnt}(s)=O\tngnt(s)$.\\
+	      Además, $\forall s \in I : \bar{\tngnt}'(s)=O\tngnt'(s) \implies \bar{\kappa}(s)=\kappa(s) \we \bar{\nrml}(s)=O\nrml(s)$
+	      \[\bar{\bnrml}(s)=\bar{\tngnt}(s)\times\bar{\nrml}(s) = O\tngnt(s)\times O\nrml(s)=O\left(\tngnt(s)\times \nrml(s)\right)=O\bnrml(s) \implies \bar{\tau}(s)=\tau(s)\]
 \end{enumerate}
 Es decir, al trasladar o rotar la curva, sin deformarla, las longitudes se conservan: los triedros van en triedros y sus variaciones $(\kappa, \tau)$ se conservan.
 
 \subsubsection{Otros triedros sobre curvas}
-Sea $\appl{\gamma}{I}{\R^3}$ una curva parametrizada por longitud de arco. Sea $\left[P(s), Q(s), R(s)\right]$ un triedro positivo sobre la curva $\gamma$.
-\[\iff \begin{cases}
-	\appl{P, Q, R}{I}{\R^3} \quad C^\infty \\
-	\forall s \in I : \norm{P(s)}=\norm{Q(s)}=\norm{R(s)}=1 \\
-	\forall s \in I : P(s) \perp Q(s) \perp R(s) \we P(s) \perp P(s)
-\end{cases}\]
-Para cada $s \in I$ tenemos una base ortonormal $[P(s), Q(s), R(s)]$ de $\R^3$ positivamente orientada, i.e. $\forall s \in I : R(s)=P(s)\times Q(s)$.
+
+\begin{defn}[Tiedro positivo]
+	Sea $\appl{\gamma}{I}{\R^3}$ una curva parametrizada por longitud de arco, $\left[P(s), Q(s), R(s)\right]$ es un triedro positivo sobre la curva $\gamma$.
+	\[\iff \begin{cases}
+			\appl{P, Q, R}{I}{\R^3} \quad C^\infty                  \\
+			\forall s \in I : \norm{P(s)}=\norm{Q(s)}=\norm{R(s)}=1 \\
+			\forall s \in I : P(s) \perp Q(s) \perp R(s) \we R(s) \perp P(s)
+		\end{cases}\]
+	Para cada $s \in I$ tenemos una base ortonormal $[P(s), Q(s), R(s)]$ de $\R^3$ positivamente orientada, i.e. $\forall s \in I : R(s)=P(s)\times Q(s)$.
+\end{defn}
 
 Vamos a expresar la variación de $[P(s), Q(s), R(s)]$ respecto de sí mismo.
 \[\begin{pmatrix}
-	P'(s) \\ Q'(s) \\ P'(s)
-\end{pmatrix} = \begin{pmatrix}
-	\star & \star & \star \\
-	\star & \star & \star \\
-	\star & \star & \star \\
-\end{pmatrix}\begin{pmatrix}
-	P(s) \\ Q(s) \\ R(s)
-\end{pmatrix}\]
+		P'(s) \\ Q'(s) \\ P'(s)
+	\end{pmatrix} = \begin{pmatrix}
+		\star & \star & \star \\
+		\star & \star & \star \\
+		\star & \star & \star \\
+	\end{pmatrix}\begin{pmatrix}
+		P(s) \\ Q(s) \\ R(s)
+	\end{pmatrix}\]
 Como $\norm{P(s)}\equiv1$, tenemos que $P'(s)\cdot P(s)=0$, análogamente para $Q$ y $R$. Así que la matriz tiene ceros en la diagonal.
 
 Por otro lado, como $P(s)\cdot Q(s)=0 \implies P'(s)\cdot Q(s)=-Q'(s)\cdot P(s)$ y análogamente para $P(s)\cdot R(s)=0$ y $Q(s)\cdot R(s)=0$. Así que la matriz es antisimétrica.
 \[\implies \begin{pmatrix}
-	P'(s) \\ Q'(s) \\ P'(s)
-\end{pmatrix} = \begin{pmatrix}
-	0 & A(s) & B(s) \\
-	-A(s) & 0 & C(s) \\
-	-B(s) & -C(s) & 0 \\
-\end{pmatrix}\begin{pmatrix}
-	P(s) \\ Q(s) \\ R(s)
-\end{pmatrix}\]
+		P'(s) \\ Q'(s) \\ P'(s)
+	\end{pmatrix} = \begin{pmatrix}
+		0     & A(s)  & B(s) \\
+		-A(s) & 0     & C(s) \\
+		-B(s) & -C(s) & 0    \\
+	\end{pmatrix}\begin{pmatrix}
+		P(s) \\ Q(s) \\ R(s)
+	\end{pmatrix}\]
+El el triedro de Frenet es un caso especialmente sencillo de tiedro positivo.
 
 \subsection{Curvatura y torsión. Complementos}
 \subsubsection{Curvas no parametrizadas por longitud de arco}
@@ -359,7 +381,7 @@ Sea $\appl{\gamma}{I}{\R}$ una curva con parámetro natural $t$ pero que no es l
 
 La parametrización $\eta$ por longitud de arco viene dada por $\forall t \in I : \gamma(t) = \eta(s(t))$ donde $s=s(t)$ es la longitud de arco de $\gamma$ desde $\gamma(t_0)$ hasta $\gamma(t)$.
 \begin{center}
-	\includegraphics[width=8cm]{img/longarco}	
+	\includegraphics[width=8cm]{img/longarco}
 \end{center}
 Cuando $t$ recorre el intervalo $I$, el parámetro $s$ recorre un intervalo $J$. En notación general de (re)parametrización, la función $t \to s(t)$ se denota por $g(t)$.
 
@@ -369,9 +391,9 @@ Como $\tngnt, \nrml, \bnrml, \kappa, \tau$ se expresan y calculan a través de d
 \[\odv{\gamma}{t}(t)=\odv{\eta}{s}\cdot\odv{s}{t}(t)=\odv{s}{t}\cdot\tngnt(s)\]
 \[\implies \odv[2]{\gamma}{t} (t) = \odv{s}{t}\cdot\odv{\tngnt}{s}(s) + \odv[2]{s}{t}\cdot\tngnt(s) = \kappa(s) {\left(\odv{s}{t}\right)}^2\nrml(s) + \odv[2]{s}{t}\cdot\tngnt(s)\]
 \[\begin{aligned}
-	\implies \odv[3]{\gamma}{t}(t) &= \kappa(s){\left(\odv{s}{t}\right)}^3\odv{n}{s}(s) &+ \tex{ combinación lineal de $\tngnt$ y $\nrml$} \\
-	&= - \kappa(s){\left(\odv{s}{t}\right)}^3\tau(s)\bnrml(s) &+ \tex{ combinación lineal de $\tngnt$ y $\nrml$}
-\end{aligned}\]
+		\implies \odv[3]{\gamma}{t}(t) & = \kappa(s){\left(\odv{s}{t}\right)}^3\odv{n}{s}(s)      & + \tex{ combinación lineal de $\tngnt$ y $\nrml$} \\
+		                               & = - \kappa(s){\left(\odv{s}{t}\right)}^3\tau(s)\bnrml(s) & + \tex{ combinación lineal de $\tngnt$ y $\nrml$}
+	\end{aligned}\]
 
 \textbf{Fórmula general para la curvatura}
 \[\left(\odv{\gamma}{t}\right)\times\left(\odv[2]{\gamma}{t}\right)=\kappa(s)\left(\odv{s}{t}\right)\bnrml(s) \implies \boxed{\kappa(s)=\frac{\gamma'\times \gamma''}{\norm{\gamma'}^3}}\]
@@ -379,9 +401,9 @@ Para $\gamma$ parametrizada por longitud de arco $\implies \norm{\gamma'}=1 \we 
 
 \textbf{Fórmula general para la torsión}
 \[\begin{aligned}
-	\left(\odv{\gamma}{t}\times\odv[2]{\gamma}{t}\right) \cdot \odv[3]{\gamma}{t} &= \left(\kappa(s)\left(\odv{s}{t}\right)^3\bnrml(s)\right)\cdot\left(-\kappa(s)\left(\odv{s}{t}\right)^3\tau(s)\bnrml(s) + \tex{ combinacnión lineal de $\tngnt$ y $\nrml$}\right) \\
-	&= - \kappa^2\left(\odv{s}{t}\right)^6\tau=-\tau\norm{\odv{\gamma}{t}\times\odv[2]{\gamma}{t}}^2
-\end{aligned}\]
+		\left(\odv{\gamma}{t}\times\odv[2]{\gamma}{t}\right) \cdot \odv[3]{\gamma}{t} & = \left(\kappa(s)\left(\odv{s}{t}\right)^3\bnrml(s)\right)\cdot\left(-\kappa(s)\left(\odv{s}{t}\right)^3\tau(s)\bnrml(s) + \tex{ combinacnión lineal de $\tngnt$ y $\nrml$}\right) \\
+		                                                                              & = - \kappa^2\left(\odv{s}{t}\right)^6\tau=-\tau\norm{\odv{\gamma}{t}\times\odv[2]{\gamma}{t}}^2
+	\end{aligned}\]
 \[\implies \boxed{\tau(s)=-\frac{(\gamma'\times\gamma'')\cdot\gamma'''}{\norm{\gamma'\times\gamma''}^2}}\]
 En cuanto a $\tngnt$, $\nrml$, $\bnrml$:
 \[\boxed{t=\frac{\gamma'}{\norm{\gamma'}}} \we \boxed{\bnrml=\frac{\gamma'\times\gamma''}{\norm{\gamma'\times\gamma''}}} \we \boxed{\nrml=\bnrml\times\tngnt=\frac{\left(\gamma'\times\gamma''\right)\times\gamma'}{\norm{\gamma'\times\gamma''}}\norm{\gamma'}}\]
@@ -401,7 +423,7 @@ La curvatura con signo solo requiere que la curva sea regular.
 \[\implies \boxed{\hat{\kappa}(s)=\tngnt'(S)\cdot\hat{\nrml}(s)} \we \abs{\hat{\kappa}(s)}=\kappa(s)\]
 El correspondiente vector binormal sería $\hat{\bnrml}=\tngnt\times\hat{\nrml}=\tngnt\times\tngnt^\perp=(0, 0, 1) \perp \R^2$.
 \begin{center}
-	\includegraphics[width=10cm]{img/curvaturaR2}	
+	\includegraphics[width=10cm]{img/curvaturaR2}
 \end{center}
 Para una gráfica en el plano $t\mapsto (t, f(t))$ que se recorre de izquierda a derecha ($t$ creciente) la convexidad $(f'' > 0)$ corresponde con $\hat{\kappa} > 0$ y la concavidad corresponde con $\hat{\kappa} < 0$.
 
@@ -424,7 +446,7 @@ Sea $\appl{\gamma}{I}{\R^2}$ una curva plana parametrizada por longitud de arco 
 Consideremos la curva $\bar{\gamma}$ dada por $\forall s \in I : \bar{\gamma}(s)=M\gamma(s)$. Como $M$ es movimiento rígido, se tiene que $\bar{\gamma}(s)$ está parametrizada por longitud de arco y $\forall s \in I : \hat{\bar{\kappa}}(s)=\hat{\kappa}(s)$.
 
 Ahora, como $\hat{\kappa}(s)=\theta'(s)$ y partimos de $\theta(0)=0$:
-\[\implies \theta(s)=\int_{0}^{s}\theta'(u)\odif{u} = \int_0^s\hat{\kappa}(u) \odif{u}\] 
+\[\implies \theta(s)=\int_{0}^{s}\theta'(u)\odif{u} = \int_0^s\hat{\kappa}(u) \odif{u}\]
 Como $\gamma'(s)=\tngnt(s)=(\cos{\theta(s)}, \sin{\theta(s)})$, si establecemos $\gamma(0)=(0, 0)$
 \[\implies\gamma(s)=\left(\int_0^s\cos{\theta(u)} \odif{u},\int_0^s\sin{\theta(u)} \odif{u}\right) \, \implies \, \boxed{\hat{\kappa} \Rrightarrow \theta' \Rrightarrow \theta \Rrightarrow \tngnt \Rrightarrow \gamma}\]
 En general si conocemos la función $\ds \hat{\kappa}(s) \implies \theta(s) = \int \hat{\kappa}(s)\odif{s} + c_1$ para cierta constante $c_1$.
@@ -441,10 +463,10 @@ Tras un movimiento rígido o con cambio de sistema de referencia, suponemos que
 \[\gamma(0)=0 \we \tngnt(0)=i \we \nrml(0)=j \we \bnrml(0)=k\]
 Si $\gamma(s)=(x(s), y(s), z(s))$ y si $E(s)=(e_x(s), e_y(s), e_z(s))$, entonces
 \[\begin{cases}
-	\ds x(s) &= s - \frac{\kappa(0)^2s^3}{6} + e_x(s) \\
-	\ds y(s) &= \frac{\kappa(0)s^2}{2} + \frac{\kappa'(0)s^3}{6} + e_y(s) \\
-	\ds z(s) &= -\frac{\kappa(0)\tau(0)s^3}{6} + e_z(s)
-\end{cases}\]
+		\ds x(s) & = s - \frac{\kappa(0)^2s^3}{6} + e_x(s)                     \\
+		\ds y(s) & = \frac{\kappa(0)s^2}{2} + \frac{\kappa'(0)s^3}{6} + e_y(s) \\
+		\ds z(s) & = -\frac{\kappa(0)\tau(0)s^3}{6} + e_z(s)
+	\end{cases}\]
 Esta es la forma canónica local de $\gamma$ cerca de $s=0$.
 
 La torsión $\tau$ solo aparece en $z(s)$:
@@ -459,9 +481,9 @@ Sea $\appl{\gamma}{I}{\R^2}$ una curva parametrizada por longitud de arco con $0
 \[\implies \gamma(s)=\gamma(0)+s\tngnt(0)+\frac{s^2}{2}\hat{\kappa}(0)\hat{\nrml}(0) + F(s), \tex{ con } \lim_{s\to 0}\frac{\norm{F(s)}}{s^2} = 0\]
 Con $\gamma(s)=(x(s), y(s)) \we \gamma(0)=(0,0) \we \tngnt(0)=(1, 0) \we \nrml(0)=(0,1)$ se tiene:
 \[\begin{cases}
-	x(s)=s-\frac{\kappa(0)s^3}{6}+o(s^3) \\
-	y(s)=\frac{\kappa(0)}{2}s^2 + o(s^2)
-\end{cases}\]
+		x(s)=s-\frac{\kappa(0)s^3}{6}+o(s^3) \\
+		y(s)=\frac{\kappa(0)}{2}s^2 + o(s^2)
+	\end{cases}\]
 
 \textbf{Circunferencia osculatriz}
 
@@ -475,12 +497,12 @@ La circunferencia osculatriz aproxima a la curva $\gamma$ cerca de $s=0$:
 \textbf{Curvatura y comparación arco/cuerda en el plano}
 \[D(s)=\norm{\gamma(s_0+s) - \gamma(s_0)}\]
 \[\implies \begin{cases}
-	\ds D(s) \leq \tex{longitud de $\gamma$ entre $s_0$ y $s_0+s$} = s \\
-	\ds \lim_{s\to 0} \frac{D(s)}{s} = \norm{\gamma'(s_0)} = 1
-\end{cases}\]
+		\ds D(s) \leq \tex{longitud de $\gamma$ entre $s_0$ y $s_0+s$} = s \\
+		\ds \lim_{s\to 0} \frac{D(s)}{s} = \norm{\gamma'(s_0)} = 1
+	\end{cases}\]
 Poniendo $s_0=0$, y $\gamma(0)=(0,0) \we \tngnt(0)=(1, 0) \we \nrml(0)=(0, 1)$ se tiene
-\[\begin{aligned} D(s)^2 = x(s)^2+y(s)^2 &= s^2-2\frac{\kappa^2}{6}s^4 + \frac{\kappa^2}{4}s^4 + o(s^4) \\
-&= s^2\left(1-\frac{1}{12}\kappa^2s^2+o(s^2)\right)\end{aligned}\]
+\[\begin{aligned} D(s)^2 = x(s)^2+y(s)^2 & = s^2-2\frac{\kappa^2}{6}s^4 + \frac{\kappa^2}{4}s^4 + o(s^4) \\
+                                       & = s^2\left(1-\frac{1}{12}\kappa^2s^2+o(s^2)\right)\end{aligned}\]
 Así que $\ds \frac{D(s)^2}{s^2} = 1-\frac{1}{12}\kappa^2s^2+o(s^2)$. Cuando más grande es $\kappa$, más pequeño es $\ds \frac{D(s)}{s}$
 
 \subsection{Teorema fundamental de la teoría de curvas}

@@ -66,7 +66,7 @@ Sea $X'=A(t)X$ un sistema lineal homogéneo (SLH). Sean $X(t)$ y $Y(t)$ solucion
 	\begin{dem}
 		Para cada $j=1, \dots, d$, sea $\Pi_j(t;t_0)$ la solución (única) de
 		\[\forall t \in (a,b) : X'=A(t)X \we X(t_0) = e_j\]
-		donde $e_j$ es el vector $j$-ésimo de la base canónica de $\R^d$. Sabemos que $\ds \left\{\Pi_j(t_0; t_0)\right\}_{j=1}^d \,(*)$ es linealmente independiente. Por tanto, $\ds \left\{\Pi_j\right\}_{j=1}^d$ es linealmente independiente. \\
+		donde $e_j$ es el vector $j$-ésimo de la base canónica de $\R^d$. Sabemos que $\ds \left\{\Pi_j(t; t_0)\right\}_{j=1}^d \,(*)$ es linealmente independiente. Por tanto, $\ds \left\{\Pi_j\right\}_{j=1}^d$ es linealmente independiente. \\
 		\hspace*{\fill} $(*)$ Se denominan soluciones principales del SLH.
 
 		Veamos ahora que $\ds \left\{\Pi_j\right\}_{j=1}^d$ es un sistema generador de las soluciones del SLH. Sea $X(t)$ una solución del SLH. Denotamos $X_0=X(t_0) \in \R^d$. Escribimos $X_0$ como combinación lineal de la base canónica de $\R^d$: $\ds X_0 = \sum_{j=1}^{d} X_0^j e_j$.
@@ -521,7 +521,7 @@ Además $N_i^k = 0$ para algún $k \in \N$ (nilpotentes). Por tanto, $\ds e^{N_i
 		\vdots & \vdots & \vdots       & \ddots & \vdots           \\
 		0      & 0      & 0            & \cdots & 1
 	\end{pmatrix}\]
-Sin embargo, lo que nos interesa es $e^{tA} = Ce^{J}C^{-1} = C \begin{pmatrix}
+Sin embargo, lo que nos interesa es $e^{tA} = Ce^{tJ}C^{-1} = C \begin{pmatrix}
 		e^{t J_1} & \dots  & 0         \\
 		\vdots    & \ddots & \vdots    \\
 		0         & \dots  & e^{t J_k}

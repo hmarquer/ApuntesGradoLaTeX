@@ -5,15 +5,15 @@
 \contentsline {subsubsection}{\numberline {1.2.2}Definición de longitud de curva}{2}{subsubsection.1.2.2}%
 \contentsline {subsubsection}{\numberline {1.2.3}Teorema de cálculo de longitud}{2}{subsubsection.1.2.3}%
 \contentsline {subsubsection}{\numberline {1.2.4}Reparametrizaciones}{4}{subsubsection.1.2.4}%
-\contentsline {subsubsection}{\numberline {1.2.5}Parametrización por longitud de arco}{5}{subsubsection.1.2.5}%
-\contentsline {subsection}{\numberline {1.3}Curvatura y torsión}{6}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.2.5}Parametrización por longitud de arco}{4}{subsubsection.1.2.5}%
+\contentsline {subsection}{\numberline {1.3}Curvatura y torsión}{5}{subsection.1.3}%
 \contentsline {subsubsection}{\numberline {1.3.1}Fórmulas de Frenet-Serret}{9}{subsubsection.1.3.1}%
-\contentsline {subsubsection}{\numberline {1.3.2}Cambio de sentido y Triedro de Frenet}{9}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\numberline {1.3.2}Cambio de sentido y Triedro de Frenet}{10}{subsubsection.1.3.2}%
 \contentsline {subsubsection}{\numberline {1.3.3}Movimientos rígidos y triedros}{10}{subsubsection.1.3.3}%
-\contentsline {subsubsection}{\numberline {1.3.4}Otros triedros sobre curvas}{10}{subsubsection.1.3.4}%
+\contentsline {subsubsection}{\numberline {1.3.4}Otros triedros sobre curvas}{11}{subsubsection.1.3.4}%
 \contentsline {subsection}{\numberline {1.4}Curvatura y torsión. Complementos}{11}{subsection.1.4}%
 \contentsline {subsubsection}{\numberline {1.4.1}Curvas no parametrizadas por longitud de arco}{11}{subsubsection.1.4.1}%
-\contentsline {subsubsection}{\numberline {1.4.2}Curvatura de curvas planas}{12}{subsubsection.1.4.2}%
+\contentsline {subsubsection}{\numberline {1.4.2}Curvatura de curvas planas}{13}{subsubsection.1.4.2}%
 \contentsline {subsubsection}{\numberline {1.4.3}Forma canónica local}{14}{subsubsection.1.4.3}%
-\contentsline {subsection}{\numberline {1.5}Teorema fundamental de la teoría de curvas}{15}{subsection.1.5}%
-\contentsline {subsection}{\numberline {1.6}Desigualdad isoperimétrica. Geometría global de curvas planas}{15}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.5}Teorema fundamental de la teoría de curvas}{16}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Desigualdad isoperimétrica. Geometría global de curvas planas}{16}{subsection.1.6}%
