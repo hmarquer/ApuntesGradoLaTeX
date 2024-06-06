@@ -49,4 +49,126 @@ Esta matriz simétrica es la matriz de la forma cuadrática $I_p$ respecto de la
 
 \subsubsection{Longitudes}
 
-Sea $\appl{\alpha}{I}{\R^3}$ una curva y $a, b \in I, a < b$, se tiene que la longitud de la traza de $\alpha$ entre $\alpha(a)$ y $\alpha(b)$ es $\ds L(\alpha) = \int_{a}^{b} \norm{\alpha'(t)} \odif{t}$.
+Sea $\appl{\alpha}{I}{\R^3}$ una curva y $a, b \in I, a < b$, se tiene que la longitud de la traza de $\alpha$ entre $\alpha(a)$ y $\alpha(b)$ es longitud $\ds = L(\alpha) = \int_{a}^{b} \norm{\alpha'(t)} \odif{t}$.
+
+Si la traza de $\alpha$ está contenida en una superficie regular $S$, de hecho, en $\X(U)$, entonces:
+\[\forall t \in I : \alpha(t) = \X(u(t), v(t)) \implies \alpha'(t) = u'(t)\X_u(u(t), v(t)) + v'(t)\X_v(u(t), v(t))\]
+\[I_{\alpha(t)}(\alpha'(t)) = \norm{\alpha'(t)}^2 = \left[u'(t)\right]^2E(u(t), v(t)) + 2u'(t)v'(t)F(u(t), v(t)) + \left[v'(t)\right]^2G(u(t), v(t))\]
+Por tanto, la longitud de $\alpha$ se escribe, obviando la variable $t$:
+\[L(\alpha) = \int_{a}^{b} \sqrt{(u')^2E(u,v) + 2u'v'F(u,v) + (v')^2G(u,v)} \odif{t}\]
+Con cierto abuso de notación se escribe $\odif{s}^2 = E \odif{u}^2 + 2F\odif{u}\odif{v} + G\odif{v}^2$ y se le llama primera forma fundamental.
+
+\begin{defn}[Primera forma fundamental]
+	Sea $\appl{\alpha}{I}{S}$ una curva regular en una superficie regular $S$ y sea $\appl{\X}{U\subset \R^2}{\R^3}$ una carta de $S$ tal que $\alpha(I) \subset \X(U)$ y $\alpha(t) = \X(u(t), v(t))$.
+
+	La primera forma fundamental de $S$ en $\alpha(t)$ es la forma cuadrática $I_{\alpha(t)}$ evaluada en $\alpha'(t)$ y se denota por $\odif{s}^2 = E\odif{u}^2 + 2F\odif{u}\odif{v} + G\odif{v}^2$.
+\end{defn}
+
+\subsubsection{Ángulos}
+
+Sean $\alpha_1$ y $\alpha_2$ dos curvas regulares en una superficie regular $S$ tales que $\alpha_1(t_1) = p = \alpha_2(t_2)$.
+
+Se tiene que el ángulo $\omega$ entre $\alpha_1$ y $\alpha_2$ en $p$ cumple $\ds \cos\omega = \frac{\langle \alpha_1'(t_1), \alpha_2'(t_2) \rangle}{\norm{\alpha_1'(t_1)}\norm{\alpha_2'(t_2)}}$.
+
+Sea $\X(u,v)$ una carta de $S$ en $p$, tenemos $\begin{cases}
+		\alpha_1(t) = \X(u_1(t), v_1(t)) \\
+		\alpha_2(t) = \X(u_2(t), v_2(t))
+	\end{cases} \hspace{-0.5cm}$.
+\[\implies \begin{cases}
+		\alpha_1'(t) = u_1'(t)\X_u(u_1(t), v_1(t)) + v_1'(t)\X_v(u_1(t), v_1(t)) \\
+		\alpha_2'(t) = u_2'(t)\X_u(u_1(t), v_1(t)) + v_2'(t)\X_v(u_1(t), v_1(t))
+	\end{cases}\hspace{-0.5cm}\]
+\[(u_1(t_1), v_1(t_1)) = (u_0, v_0) = (u_2(t_2), v_2(t_2)) \implies \begin{cases}
+		\alpha_1'(t_1) = u_1'(t_1)\X_u(u_0, v_0) + v_1'(t_1)\X_v(u_0, v_0) \\
+		\alpha_2'(t_2) = u_2'(t_2)\X_u(u_0, v_0) + v_2'(t_2)\X_v(u_0, v_0)
+	\end{cases}\]
+\[\implies \langle \alpha_1'(t_1), \alpha_2'(t_2) \rangle = \begin{aligned}
+		  & u_1'(t_1)u_2'(t_2)E(u_0, v_0) + (u_1'(t_1)v_2'(t_2) + v_1'(t_1)u_2'(t_2))F(u_0, v_0) \\
+		+ & v_1'(t_1)v_2'(t_2)G(u_0, v_0)
+	\end{aligned}\]
+Por tanto, obviando las variables $t_1, t_2$:
+\[\cos\omega = \frac{Eu_1'u_2' + F(u_1'v_2' + v_1'u_2') + Gv_1'v_2'}{\sqrt{(u_1')^2E + 2u_1'v_1'F + (v_1')^2G}\sqrt{(u_2')^2E + 2u_2'v_2'F + (v_2')^2G}}\]
+Las funciones $E$, $F$ y $G$ se evalúan en $(u_0, v_0) = (u_1(t_1), v_1(t_1)) = (u_2(t_2), v_2(t_2))$. \\Las derivadas $u_1'$ y $v_1'$ se evalúan en $t_1$, mientras que las derivadas $u_2'$ y $v_2'$ se evalúan en $t_2$.
+
+\subsubsection{Áreas}
+
+Sea $S$ una superficie regular con $\appl{X}{U\subset\R^2}{V\subset S}$ carta de $S$.
+\[\implies \tex{Área de }\X(U) = \iint_U \norm{\X_u(u, v)\times \X_v(u, v)} \odif{u} \odif{v}\]
+Como se tiene que $\forall v, w \in \R^3 :\norm{v \times w}^2=\norm{v}^2 \norm{w}^2 - {\langle v, w \rangle}^2$, se deduce que
+\[\norm{\X_u \times \X_v} = \sqrt{EG -F^2} \implies \tex{Área}(\X(U)) = \iint_U \sqrt{E(u,v)G(u,v) - F^2(u,v)} \odif{u} \odif{v}\]
+
+\subsection{Loxodromas}
+
+\begin{defn}[Loxodroma]
+	Sea $\appl{\alpha}{I\subset\R^2}{\R^3}$ una curva contenida en una esfera, $\alpha$ es un loxodroma $\iff$ corta a los meridianos de la esfera con ángulo $\beta$ fijo.
+\end{defn}
+
+Si consideramos la parametrización de la esfera $S$ de radio $R$ en coordenadas esféricas dada por $\X(\theta, \varphi) = (R\cos\theta \sin\varphi, R\sin\theta \sin\varphi, R\cos\varphi)$ con $\theta \in (0, 2\pi)$ y $\varphi \in (0, \pi)$, tenemos que la primera forma fundamental viene dada por: $E(\theta, \varphi)=R^2\sin^2\phi$, $F(\theta, \varphi)=0$ y $G(\theta, \varphi)=R^2$.
+
+Fijamos un $\beta \in [0, \sfrac{\pi}{2})$ y un punto $p = \X(\theta_0, \varphi_0)$ en la esfera. Sea $\gamma(t) = \X(\theta_0, t)$ el meridiano que pasa por $p$ y $\omega = \X(\theta(t), \varphi(t))$ una loxodroma que corta a $\gamma$ con ángulo $\beta$ y que $\omega(t_0) = p$.
+
+Dado que $\odv{}{t} \theta_0 = 0 \we \odv{}{t} t = 1 \we \odv{}{t} \theta(t) = \theta'(t) \we \odv{}{t} \varphi(t) = \varphi'(t)$, se tiene que:
+\[\implies \langle \omega'(t), \gamma'(t) \rangle =	R^2\sin^2\varphi \cdot 0 \cdot \theta'(t) + 0 \cdot (0\cdot \varphi'(t) + 1\cdot \theta'(t)) + R^2\cdot 1\cdot \varphi'(t) = R^2\varphi'(t)\]
+\[\begin{aligned}
+		\norm{\varphi'(t)} & = \sqrt{0^2\cdot R^2\sin^2\varphi_0 + 2 \cdot 0 \cdot 1 \cdot 0 + 1^2\cdot R^2} = R                                                                          \\
+		\norm{\omega'(t)}  & = \sqrt{(\theta'(t))^2 R^2 \sin^2\varphi_0 + 2\theta'(t)\varphi'(t) \cdot 0 + (\varphi'(t))^2 R^2} = R\sqrt{(\theta'(t))^2\sin^2\varphi_0 + (\varphi'(t))^2}
+	\end{aligned}\]
+\[\implies \cos\beta = \frac{\cancel{R^2}\varphi'(t)}{\cancel{R^2}\sqrt{(\theta'(t))^2\sin^2\varphi_0 + (\varphi'(t))^2}} = \frac{\varphi'(t)}{\sqrt{(\theta'(t))^2\sin^2\varphi_0 + (\varphi'(t))^2}}\]
+
+Pero queremos que $\omega$ corte a todos los meridianos con el mismo ángulo $\beta$. Observando que, en la fórmula anterior $\varphi_0 = \varphi(t_0)$, concluimos que las funciones $\theta(t)$ y $\varphi(t)$ que determinan la curva $\omega$ deben cumplir la siguiente ecuación direncial:
+\[\forall t : \boxed{\cos\beta = \frac{\varphi'(t)}{\sqrt{(\theta'(t))^2\sin^2(\varphi(t)) + (\varphi'(t))^2}}}\]
+\[\implies \frac{(\varphi'(t))^2}{\cos^2\beta} = \sin^2(\varphi(t))(\theta'(t))^2 + (\varphi'(t))^2 \implies \varphi'(t)\left(\frac{1}{\cos^2\beta} - 1\right) = \sin^2(\varphi(t))(\theta'(t))^2\]
+\[\implies (\varphi'(t))^2\tan^2\beta = \sin^2 (\varphi(t))(\theta'(t))^2 \implies \frac{(\varphi'(t))^2}{\sin^2(\varphi(t))} = \frac{(\theta'(t))^2}{\tan^2\beta}\implies \frac{\varphi'(t)}{\sin(\varphi(t))} = \pm\frac{\theta'(t)}{\tan\beta}\]
+\[\implies \boxed{\tan\beta \cdot \ln\left(\tan\left(\frac{\varphi(t)}{2}\right)\right) = \pm \theta(t) + C}\]
+
+\subsection{Isometrías}
+
+\begin{defn}
+	Sea $S$ una superficie regular, $S_*$ es una trozo de $S \iff S_* \subset S$ y $S_*$ es una superficie regular.
+\end{defn}
+
+\allbold{Nota:} La intersección de un abierto de $\R^3$ con una superficie regular es un trozo de la superficie.
+
+\begin{defn}
+	Sean $S$ y $S_*$ dos superficies regulares, $\appl{f}{S}{S_*}$ es una isometría
+	\[\iff\begin{cases}
+			f \tex{ es un difeomorfismo, i.e. $f$ es suave, biyectiva y con inversa suave} \\
+			f \tex{ preserva longitudes }\forall C \subset S \tex{ curva regular} : L(f(C)) = L(C)
+		\end{cases}\]
+\end{defn}
+
+\begin{teo}
+	No existe una isometría entre un trozo de una esfera y un trozo de un plano.
+	\begin{dem}
+		Asumimos que una isometría preserva también ángulos y áreas. Por contradicción, asumimos que existe una isometría $f$ entre un trozo de una esfera y un trozo de un plano.
+
+		Tomamos un triángulo $T$ de vértices $A, B, C$ dentro del trozo de un plano y su imagen $T'$ de vértices $A', B', C'$ en el trozo de la esfera. Los segmentos que conforman los lados del triángulo son las curvas de longitud mínima entre los vértices. En el caso del plano, rectas, y en el caso de la esfera, circunferencias máximas.
+
+		Esto quiere decir que los lados del triángulo deben transformarse en trozos de circunferencias máximas en la esfera. Como se conservan los ángulos tenemos que
+		\[\pi = \hat{A}+\hat{B}+\hat{C} = \hat{A'}+\hat{B'}+\hat{C'} = \pi + \frac{\tex{Área}(T')}{R^2} > \pi \contr\]
+		Aquí se ha usado el teorema Girard (la suma de los ángulos de un triángulo en la esfera unidad es $\pi + \tex{Área del triángulo}$).
+	\end{dem}
+\end{teo}
+
+\begin{lem}
+	Sean $S$ y $S_*$ dos superficies regulares y $\appl{f}{S}{S_*}$ una aplicación de tipo $C^\infty$.
+	\[f\tex{ preserva longitudes} \iff f \tex{ preserva la primera forma fundamental }\]
+	\begin{dem}
+		($\Longleftarrow$) Sea $\appl{\X}{U}{S}$ una carta de $S$ tal que $\X(U) = S$ y sea $\appl{\alpha}{I}{S}$ una curva regular en $S$ tal que $\forall t \in (a, b) : \alpha(t) = \X(u(t), v(t))$.
+
+		Como se conserva la primera forma fundamental, se tiene que
+		\[\begin{aligned}
+				I_{\alpha(t)}(\alpha'(t)) & = \left[u'(t)\right]^2E(u(t), v(t)) + 2u'(t)v'(t)F(u(t), v(t)) + \left[v'(t)\right]^2G(u(t), v(t))       \\
+				                          & = \left[u'(t)\right]^2E^*(u(t), v(t)) + 2u'(t)v'(t)F^*(u(t), v(t)) + \left[v'(t)\right]^2G^*(u(t), v(t)) \\
+				                          & = I^*_{(f\circ \alpha)(t)}((f\circ\alpha)'(t))
+			\end{aligned}\]
+		Donde $E^*, F^*, G^*$ componen la primera forma fundamental de $S_*$ con la carta $f\circ\X$.
+
+		Dado que $\norm{\alpha'(t)}^2= I_{\alpha(t)}(\alpha(t))$, se tiene que
+		\[L(\alpha) = \int_{a}^{b} \norm{\alpha'(t)} \odif{t} = \int_{a}^{b} \sqrt{I_{\alpha(t)}(\alpha'(t))} \odif{t} = \int_{a}^{b} \sqrt{I^*_{(f\circ \alpha)(t)}((f\circ\alpha)'(t))} \odif{t} = L(f\circ\alpha)\]
+		Es decir, $f$ preserva longitudes.
+
+		($\Longrightarrow$) Sea $\appl{\X}{U}{S}$ una blabla... \textbf{TO BE CONTINUED}
+	\end{dem}
+\end{lem}
+
