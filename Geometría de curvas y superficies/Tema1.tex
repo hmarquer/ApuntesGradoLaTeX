@@ -1,4 +1,4 @@
-\section{Tema 1: Curvas}
+\section{Curvas}
 
 \subsection{Curvas regulares, trazas, velocidades y tangencias}
 \begin{defn}[Curva]
@@ -388,39 +388,38 @@ Cuando $t$ recorre el intervalo $I$, el parámetro $s$ recorre un intervalo $J$.
 Como $\tngnt, \nrml, \bnrml, \kappa, \tau$ se expresan y calculan a través de derivadas de $\eta$ y queremos hacerlo en términos de $\gamma$, aplicamos la regla de la cadena.
 
 \[\forall t \in I : s(t) = \int_{t_0}^t \norm{\odv{\gamma}{t}(u)}\odif{u} \implies \forall t \in I : \odv{s}{t}(t)=\norm{\odv{\gamma}{t}(t)}\]
-\[\odv{\gamma}{t}(t)=\odv{\eta}{s}\cdot\odv{s}{t}(t)=\odv{s}{t}\cdot\tngnt(s)\]
-\[\implies \odv[2]{\gamma}{t} (t) = \odv{s}{t}\cdot\odv{\tngnt}{s}(s) + \odv[2]{s}{t}\cdot\tngnt(s) = \kappa(s) {\left(\odv{s}{t}\right)}^2\nrml(s) + \odv[2]{s}{t}\cdot\tngnt(s)\]
+\[\odv{\gamma}{t}(t)=\odv{\eta}{s}(s(t))\cdot\odv{s}{t}(t)=\odv{s}{t}(t)\cdot\tngnt(s(t))\]
+\[\implies \odv[2]{\gamma}{t} (t) = \left[\odv{s}{t}(t)\right]^2\cdot\odv{\tngnt}{s}(s) + \odv[2]{s}{t}(t)\cdot\tngnt(s) = \left[\odv{s}{t}(t)\right]^2 \kappa(s) \nrml(s) + \odv[2]{s}{t}(t)\cdot\tngnt(s)\]
 \[\begin{aligned}
-		\implies \odv[3]{\gamma}{t}(t) & = \kappa(s){\left(\odv{s}{t}\right)}^3\odv{n}{s}(s)      & + \tex{ combinación lineal de $\tngnt$ y $\nrml$} \\
-		                               & = - \kappa(s){\left(\odv{s}{t}\right)}^3\tau(s)\bnrml(s) & + \tex{ combinación lineal de $\tngnt$ y $\nrml$}
+		\implies \odv[3]{\gamma}{t}(t) & = \kappa(s){\left(\odv{s}{t}(t)\right)}^3\odv{n}{s}(s)      & + \tex{ combinación lineal de $\tngnt$ y $\nrml$} \\
+		                               & = - \kappa(s){\left(\odv{s}{t}(t)\right)}^3\tau(s)\bnrml(s) & + \tex{ combinación lineal de $\tngnt$ y $\nrml$}
 	\end{aligned}\]
 
 \textbf{Fórmula general para la curvatura}
-\[\left(\odv{\gamma}{t}\right)\times\left(\odv[2]{\gamma}{t}\right)=\kappa(s)\left(\odv{s}{t}\right)\bnrml(s) \implies \boxed{\kappa(s)=\frac{\gamma'\times \gamma''}{\norm{\gamma'}^3}}\]
-Para $\gamma$ parametrizada por longitud de arco $\implies \norm{\gamma'}=1 \we \gamma'\perp\gamma'' \implies \kappa(s)=\norm{\gamma''(s)}$.
+\[\left(\odv{\gamma}{t}(t)\right)\times\left(\odv[2]{\gamma}{t}(t)\right)=\kappa(s)\left(\odv{s}{t}(t)\right)^3\bnrml(s) \implies \boxed{\kappa(s)=\frac{\norm{\gamma'\times \gamma''}}{\norm{\gamma'}^3}}\]
+Para $\gamma$ parametrizada por longitud de arco $\norm{\gamma'}=1 \we \gamma'\perp\gamma'' \implies \kappa(s)=\norm{\gamma''(s)}$.
 
 \textbf{Fórmula general para la torsión}
 \[\begin{aligned}
-		\left(\odv{\gamma}{t}\times\odv[2]{\gamma}{t}\right) \cdot \odv[3]{\gamma}{t} & = \left(\kappa(s)\left(\odv{s}{t}\right)^3\bnrml(s)\right)\cdot\left(-\kappa(s)\left(\odv{s}{t}\right)^3\tau(s)\bnrml(s) + \tex{ combinacnión lineal de $\tngnt$ y $\nrml$}\right) \\
-		                                                                              & = - \kappa^2\left(\odv{s}{t}\right)^6\tau=-\tau\norm{\odv{\gamma}{t}\times\odv[2]{\gamma}{t}}^2
+		\left(\odv{\gamma}{t}(t)\times\odv[2]{\gamma}{t}(t)\right) \cdot \odv[3]{\gamma}{t}(t) & = \left(\kappa(s)\left(\odv{s}{t}(t)\right)^3\bnrml(s)\right)\cdot\left(-\kappa(s)\left(\odv{s}{t}(t)\right)^3\tau(s)\bnrml(s) + \dots \right) \\
+		                                                                                       & = - \kappa^2\left(\odv{s}{t}(t)\right)^6\tau(s)=-\tau(s)\norm{\odv{\gamma}{t}(t)\times\odv[2]{\gamma}{t}(t)}^2
 	\end{aligned}\]
 \[\implies \boxed{\tau(s)=-\frac{(\gamma'\times\gamma'')\cdot\gamma'''}{\norm{\gamma'\times\gamma''}^2}}\]
 En cuanto a $\tngnt$, $\nrml$, $\bnrml$:
-\[\boxed{t=\frac{\gamma'}{\norm{\gamma'}}} \we \boxed{\bnrml=\frac{\gamma'\times\gamma''}{\norm{\gamma'\times\gamma''}}} \we \boxed{\nrml=\bnrml\times\tngnt=\frac{\left(\gamma'\times\gamma''\right)\times\gamma'}{\norm{\gamma'\times\gamma''}}\norm{\gamma'}}\]
+\[\boxed{t=\frac{\gamma'}{\norm{\gamma'}}} \we \boxed{\bnrml=\frac{\gamma'\times\gamma''}{\norm{\gamma'\times\gamma''}}} \we \boxed{\nrml=\bnrml\times\tngnt=\frac{\left(\gamma'\times\gamma''\right)\times\gamma'}{\norm{\gamma'\times\gamma''}\norm{\gamma'}}}\]
 
 \subsubsection{Curvatura de curvas planas}
 
-Para curvas planas: podemos darle signo a la curvatura, y darle a ese signo un significado geométrico.
+Para curvas planas: podemos darle signo a la curvatura, y darle un significado geométrico.
 \begin{defn}
-	Sea $u \in \R^2$ un vector unitario $(\norm{u}=1)$, $u^\perp$ es el vector que se obtiene al girarlo $\sfrac{\pi}{2}$ en sentido positivo (antihorario) $$\iff u=(\cos{\theta}, \sin{\theta}) \implies u^\perp=(-\sin{\theta}, \cos{\theta})$$
+	Sea $u \in \R^2$ un vector unitario $(\norm{u}=1)$, $u^\perp$ es el vector que se obtiene al girarlo $\sfrac{\pi}{2}$ en sentido positivo (antihorario) $\iff u=(\cos{\theta}, \sin{\theta}) \implies u^\perp=(-\sin{\theta}, \cos{\theta})$.
 \end{defn}
-
 Sea $\gamma$ una curva regular en $\R^2$ parametrizada por longitud de arco. \\
 Denotamos con $\hat{\nrml}(s)\defeq{\tngnt(s)}^\perp$.
 \[\implies \appl{\hat{\nrml}}{I}{\R^2} \quad C^\infty \we \forall s \in I : \left(\tngnt(s) \perp \hat{\nrml}(s)\right) \we \left(\nrml(s)=\pm \hat{\nrml}(s)\right)\]
 Como $\tngnt'(s) \perp \tngnt(s)$, tenemos que $\tngnt'(s) \parallel \hat{\nrml}(s) \implies \tngnt'(s) = \hat{\kappa}(s) \cdot \hat{\nrml}(s)$. Donde $\hat{\kappa}(s)$ es la curvatura con signo de $\gamma$ en $s$.
 La curvatura con signo solo requiere que la curva sea regular.
-\[\implies \boxed{\hat{\kappa}(s)=\tngnt'(S)\cdot\hat{\nrml}(s)} \we \abs{\hat{\kappa}(s)}=\kappa(s)\]
+\[\implies \boxed{\hat{\kappa}(s)=\tngnt'(s)\cdot\hat{\nrml}(s)} \we \abs{\hat{\kappa}(s)}=\kappa(s)\]
 El correspondiente vector binormal sería $\hat{\bnrml}=\tngnt\times\hat{\nrml}=\tngnt\times\tngnt^\perp=(0, 0, 1) \perp \R^2$.
 \begin{center}
 	\includegraphics[width=10cm]{img/curvaturaR2}
@@ -429,10 +428,10 @@ Para una gráfica en el plano $t\mapsto (t, f(t))$ que se recorre de izquierda a
 
 \textbf{Relación entre curvatura y ángulo con eje $OX$}
 
-Vamos a describir la relación entre la curvatura $\hat{\kappa}$ y (la variación de) el ángulo que (el vector tangente de) la curva con el eje $OX$.
+Vamos a describir la relación entre la curvatura $\hat{\kappa}$ y (la variación de) el ángulo que (el vector tangente de) la curva forma con el eje $OX$.
 
 \begin{lem}
-	Sea $\appl{I}{\R^2}$ una aplicación $C^\infty : \forall t\in I : \norm{u(t)} = 1$.
+	Sea $\appl{u}{I}{\R^2}$ una aplicación $C^\infty : \forall t\in I : \norm{u(t)} = 1$.
 	\[\implies \exists\, \appl{\theta}{I}{\R^2} \quad C^\infty : \forall t \in I : u(t)=(\cos{\theta(t)}, \sin{\theta(t)})\]
 	La función $\theta$ es única salvo por adición de un múltiplo entero de $2\pi$. Por tanto, la derivada $\theta'$ está unívocamente determinada.
 \end{lem}
@@ -445,7 +444,7 @@ Sea $\appl{\gamma}{I}{\R^2}$ una curva plana parametrizada por longitud de arco 
 
 Consideremos la curva $\bar{\gamma}$ dada por $\forall s \in I : \bar{\gamma}(s)=M\gamma(s)$. Como $M$ es movimiento rígido, se tiene que $\bar{\gamma}(s)$ está parametrizada por longitud de arco y $\forall s \in I : \hat{\bar{\kappa}}(s)=\hat{\kappa}(s)$.
 
-Ahora, como $\hat{\kappa}(s)=\theta'(s)$ y partimos de $\theta(0)=0$:
+Ahora, como $\hat{\kappa}(s)=\theta'(s)$ y partimos de $\theta(0)=0 \implies \tngnt(0)=(1,0)$:
 \[\implies \theta(s)=\int_{0}^{s}\theta'(u)\odif{u} = \int_0^s\hat{\kappa}(u) \odif{u}\]
 Como $\gamma'(s)=\tngnt(s)=(\cos{\theta(s)}, \sin{\theta(s)})$, si establecemos $\gamma(0)=(0, 0)$
 \[\implies\gamma(s)=\left(\int_0^s\cos{\theta(u)} \odif{u},\int_0^s\sin{\theta(u)} \odif{u}\right) \, \implies \, \boxed{\hat{\kappa} \Rrightarrow \theta' \Rrightarrow \theta \Rrightarrow \tngnt \Rrightarrow \gamma}\]
@@ -456,7 +455,7 @@ Los valores de $c_1, c_2, c_3$ quedan determinados, por ejemplo, por los valores
 \subsubsection{Forma canónica local}
 
 Sea $\appl{\gamma}{I}{\R^3}$ una curva birregular parametrizada por longitud de arco.
-Analizamos localmente, mediante aproximación de Taylor de tercer orden, la curva $\gamma$ en un entorno de $0 \in I$ centrada en $0$.
+Analizamos localmente, mediante aproximación de Taylor de tercer orden, la curva $\gamma$ en un entorno de $0 \in I$ centrado en $0$.
 \[\gamma(s)=\gamma(0) + s\gamma'(0) + \frac{s^2}{2} \gamma''(0) + \frac{s^3}{6}\gamma'''(0) + E(s), \tex{ con }\lim_{s\to0}\frac{\norm{E(s)}}{s^3} = 0\]
 \[\gamma(s)=\gamma(0) + \left(s-\frac{\kappa(0)^2s^3}{6}\right)\tngnt(0) + \left(\frac{\kappa(0)s^2}{2} + \frac{\kappa'(0)s^3}{6}\right)\nrml(0) + \left(-\frac{\kappa(0)\tau(0)s^3}{6}\right)\bnrml(0) + E(s)\]
 Tras un movimiento rígido o con cambio de sistema de referencia, suponemos que
@@ -488,23 +487,145 @@ Con $\gamma(s)=(x(s), y(s)) \we \gamma(0)=(0,0) \we \tngnt(0)=(1, 0) \we \nrml(0
 \textbf{Circunferencia osculatriz}
 
 \begin{itemize}
-	\item Centro de curvatura $\gamma(0) + \frac{1}{\kappa(0)}\nrml(0)$
-	\item Radio de curvatura $\frac{1}{\kappa(0)}$
+	\item Centro de curvatura $\ds \gamma(0) + \frac{1}{\kappa(0)}\nrml(0)$
+	\item Radio de curvatura $\ds \frac{1}{\kappa(0)}$
 \end{itemize}
 La circunferencia osculatriz aproxima a la curva $\gamma$ cerca de $s=0$:
 \[\norm{\gamma(s)-\left(\gamma(0) + \frac{1}{\kappa}\nrml(0)\right)}=\frac{1}{\kappa(0)} + o(s^2)\]
 
 \textbf{Curvatura y comparación arco/cuerda en el plano}
-\[D(s)=\norm{\gamma(s_0+s) - \gamma(s_0)}\]
+
+Definimos $D(s)$ como la longitud del segmento (cuerda) que une $\gamma(s_0)$ con $\gamma(s)$: \[D(s)\defeq \norm{\gamma(s_0+s) - \gamma(s_0)}\]
 \[\implies \begin{cases}
-		\ds D(s) \leq \tex{longitud de $\gamma$ entre $s_0$ y $s_0+s$} = s \\
-		\ds \lim_{s\to 0} \frac{D(s)}{s} = \norm{\gamma'(s_0)} = 1
+		\ds D(s) \leq \left[\tex{longitud de $\gamma$ entre $s_0$ y $s_0+s$}\right] = s \\
+		\ds \lim_{s\to 0} \textstyle \frac{D(s)}{s} = \norm{\gamma'(s_0)} = 1
 	\end{cases}\]
 Poniendo $s_0=0$, y $\gamma(0)=(0,0) \we \tngnt(0)=(1, 0) \we \nrml(0)=(0, 1)$ se tiene
-\[\begin{aligned} D(s)^2 = x(s)^2+y(s)^2 & = s^2-2\frac{\kappa^2}{6}s^4 + \frac{\kappa^2}{4}s^4 + o(s^4) \\
-                                       & = s^2\left(1-\frac{1}{12}\kappa^2s^2+o(s^2)\right)\end{aligned}\]
+\[\begin{aligned} D(s)^2 = x(s)^2+y(s)^2 = s^2-2\frac{\kappa^2}{6}s^4 + \frac{\kappa^2}{4}s^4 + o(s^4) = s^2\left(1-\frac{1}{12}\kappa^2s^2+o(s^2)\right)\end{aligned}\]
 Así que $\ds \frac{D(s)^2}{s^2} = 1-\frac{1}{12}\kappa^2s^2+o(s^2)$. Cuando más grande es $\kappa$, más pequeño es $\ds \frac{D(s)}{s}$
 
 \subsection{Teorema fundamental de la teoría de curvas}
 
+El \textbf{teorema fundamental de la teoría de curvas} afirma:
+\begin{itemize}
+	\item \textbf{Existencia:} Para cualesquiera posibles curvatura y torsión, hay una curva que las tiene como tales.
+	\item \textbf{Unicidad:} La curvatura y la torsión de una curva la definen completamente salvo por la acción de un movimiento rígido.
+\end{itemize}
+
+\begin{teo}[Existencia]
+	Sea $I$ un intervalo abierto y sean $\kappa (s)$ y $\tau (s)$ dos funciones $C^{\infty}$ en $I$ tales que $\forall s \in I : \kappa (s) >0$.
+
+	Entonces, $\exists \appl{\gamma}{I}{\R^3}$ curva birregular parametrizada por longitud de arco tal que $\forall s \in I$ la curvatura y torsión de $\gamma$ en $s$ son $\kappa(s)$ y $\tau(s)$.
+	\begin{dem}
+		Apelaremos al siguiente resultado de ecuaciones diferenciales ordinarias: \vspace{-0.5cm}
+		\begin{lem}
+			Sea $I$ un intervalo abierto y, por comodidad, supongamos $0\in I$. Para cada $t\in I$, sea $\ds A(t)=\left(a_{ij}(t)\right)_{1\leq i, j\leq n}$ una matriz cuadrada de dimensiones $n\times n$ tal que las entradas $a_{ij}(t)$ son funciones $C^\infty$ en $I$. Sea $\bnrml_0 = (b_0, \dots, b_n)^T$ un vector $1\times n$.
+
+			Entonces existe una única solución $\appl{X}{I}{\R^n}$ del problema de valores iniciales \[\ds \left\{X'(t)=A(t)X(t) \we X(0)=\bnrml_0\right\}\]
+		\end{lem}
+		Por comodidad, suponemos que $0\in I$. Sea $\left[P(s), Q(s), R(s)\right]$ solución del PVI de 9 ecuaciones diferenciales con 9 incógnitas:
+		\[\begin{pmatrix}
+				P'(s) \\ Q'(s) \\ R'(s)
+			\end{pmatrix} = \begin{pmatrix}
+				0          & \kappa(s) & 0        \\
+				-\kappa(s) & 0         & -\tau(s) \\
+				0          & \tau(s)   & 0
+			\end{pmatrix}\begin{pmatrix}
+				P(s) \\ Q(s) \\ R(s)
+			\end{pmatrix} \,\, \we \,\, \begin{pmatrix}
+				P(0) \\ Q(0) \\ R(0)
+			\end{pmatrix} = \begin{pmatrix}
+				(1,0,0) \\ (0,1,0) \\ (0,0,1)
+			\end{pmatrix}\]
+		Consideramos los seis productos escalares:
+		\[\begin{pmatrix} (P \cdot Q)' \\ (P \cdot R)' \\ (Q \cdot R)' \\ (P \cdot P)' \\ (Q \cdot Q)' \\ (R \cdot R)' \end{pmatrix} = \begin{pmatrix} 0        & - \tau   & 0      & - \kappa & \kappa & 0      \\
+                \tau     & 0        & \kappa & 0        & 0      & 0      \\
+                0        & - \kappa & 0      & 0        & \tau   & - \tau \\
+                2\kappa  & 0        & 0      & 0        & 0      & 0      \\
+                -2\kappa & 0        & -2\tau & 0        & 0      & 0      \\
+                0        & 0        & 2\tau  & 0        & 0      & 0
+			\end{pmatrix}\begin{pmatrix} (P \cdot Q) \\ (P \cdot R) \\ (Q \cdot R) \\ (P \cdot P) \\ (Q \cdot Q) \\ (R \cdot R) \end{pmatrix} \we \begin{pmatrix}
+				(P \cdot Q)(0) \\ (P \cdot R)(0) \\ (Q \cdot R)(0) \\ (P \cdot P)(0) \\ (Q \cdot Q)(0) \\ (R \cdot R)(0)
+			\end{pmatrix} = \begin{pmatrix}
+				0 \\ 0 \\ 0 \\ 1 \\ 1 \\ 1
+			\end{pmatrix}\]
+		Por unicidad de este sistema de ecuaciones diferencias, se tiene que
+		\[(P\cdot Q) = 0 \we (P\cdot R) = 0 \we (Q\cdot R) = 0 \we (P\cdot P) = 1 \we (Q\cdot Q) = 1 \we (R\cdot R) = 1\]
+		Por tanto, $\left[P(s), Q(s), R(s)\right]$ es un triedro ortonormal positivo.
+
+		Sea ahora $\gamma$ dada por $\gamma'(s) = P(s)$ y $\gamma(0)=0$. \\
+		Como $\norm{P} \equiv 1$, se tiene que $\gamma$ está parametrizada por longitud de arco. \\
+		Además, como $\gamma''\equiv P \equiv \kappa Q$ y $\norm{Q}\equiv 1$, se tiene que $\kappa$ es la curvatura de $\gamma$ y $\nrml = Q$. \\
+		Como $R\equiv P \times Q$, por ser triedro positivo, se tiene que $\bnrml = R$. \\
+		Por último, como $\bnrml' = R' = \tau \nrml$, se tiene que $\tau$ es la torsión de $\gamma$.
+	\end{dem}
+\end{teo}
+
+\begin{teo}[Unicidad salvo movimiento rígido]
+	Sean $\gamma$ y $\Bar{\gamma}$ dos curvas definidas en $I$ y parametrizadas por longitud de arco.
+	\[\forall s \in I : \kappa(s)=\Bar{\kappa}(s) \we \tau(s) = \Bar{\tau}(s) \iff \exists M \tex{ movimiento rígido} : \forall s \in I : \bar\gamma (s) = M \gamma (s)\]
+	\begin{dem}
+		$(\impliedby)$ Ya se ha visto.
+
+		$(\implies)$ Suponemos sin pérdida de generalidad y por comodidad que $0\in I$. \\
+		Suponemos, además, que $\gamma(0)=\bar{\gamma}(0)$, $\tngnt(0)=\bar{\tngnt}(0)$, $\nrml(0)=\bar{\nrml}(0)$ y $\bnrml(0)=\bar{\bnrml}(0)$.
+		\begin{itemize}
+			\item Tras esta normalización, queremos probar que $\gamma(s)=\bar{\gamma}(s)$ para todo $s\in I$.
+			\item Comprobaremos que $\forall s \in I : \tngnt(s)=\bar{\tngnt}'(s)$. Con esto bastará porque integrando y usando que $\gamma(0)=\bar{\gamma}(0)$ se tiene que $\gamma(s)=\bar{\gamma}(s)$.
+			\item De hecho, probaremos simultáneamente que $\forall s \in I : \nrml(s)=\bar{\nrml}(s) \we \bnrml(s)=\bar{\bnrml}(s)$.
+		\end{itemize}
+		Consideramos la función real $h$ definida en el intervalo $I$.
+		\[h(s)\defeq \frac{1}{2} \left(\norm{\tngnt(s)-\bar{\tngnt}(s)}^2 + \norm{\nrml(s)-\bar{\nrml}(s)}^2 + \norm{\bnrml(s)-\bar{\bnrml}(s)}^2\right)\]
+		Queremos ver que $h(s)\equiv 0$. Como $h(0)=0$, basta probar que $h'(s)\equiv 0$.
+
+		Derivando y usando las fórmulas de Frenet-Serret y que $\kappa(s)=\bar{\kappa}(s)$ y $\tau(s)=\bar{\tau}(s)$, se tiene que (obviando el parámetro $s$):
+		\[\begin{aligned}
+				h' & = (\tngnt' - \bar{\tngnt}')\cdot(\tngnt - \bar{\tngnt}) + (\nrml' - \bar{\nrml}')\cdot(\nrml - \bar{\nrml}) + (\bnrml' - \bar{\bnrml}')\cdot(\bnrml - \bar{\bnrml})                                                                    \\
+				   & = \kappa(\nrml - \bar{\nrml})\cdot(\tngnt - \bar{\tngnt}) - \kappa (\tngnt - \bar{\tngnt})\cdot(\nrml - \bar{\nrml}) - \tau (\bnrml - \bar{\bnrml})\cdot(\nrml - \bar{\nrml}) + \tau (\nrml - \bar{\nrml})\cdot(\bnrml - \bar{\bnrml}) \\
+				   & = 0 \implies h' \equiv 0
+			\end{aligned}\]
+	\end{dem}
+\end{teo}
+
 \subsection{Desigualdad isoperimétrica. Geometría global de curvas planas}
+
+\allbold{Problema isoperimétrico:} de entre todas las figuras planas con idéntico perímetro, ¿cuál es la que encierra mayor área?
+
+La desigualdad afirma que dada la longitud $L$ de una curva simple cerrada $\gamma$, hay una cota superior $\ds \varphi(L) = \frac{\pi}{4}L^2$ para el área $A$ encerrada por $\gamma$.
+
+Pero no queremos una cota, queremos la mejor cota posible.
+\[\Phi (L) \defeq \sup\{A : A \tex{ es el área encerrada por una curva simple cerrada de longitud }L\}\]
+\begin{itemize}
+	\item Cota superior para $\Phi$: ya sabemos que $\Phi \leq \varphi$.
+	\item Cota inferior para $\Phi$: pongamos que $\gamma$ es una circunferencia de radio $R$. En este caso, $L=2\pi R$ y $A=\pi R^2$. Así que $\Phi(L) \geq \frac{1}{4\pi}L^2$.
+\end{itemize}
+\[\implies \frac{1}{4\pi}L^2 \leq \Phi(L) \leq \frac{\pi}{4}L^2\]
+Vamos a comprobar que la función $\Phi$ tiene que ser $\Phi(L) = C L^2$ para alguna constante $C$.
+
+Una homotecia de razón $r>0$ lleva la curva $\gamma$ en la curva $r\gamma$ y el área encerrada y la longitud de la curva se transforman como $r^2$ y $r$ respectivamente. Así que:
+\[r^2A \leq \Phi(rL) \implies r^2\Phi(L) \leq \Phi(rL) \implies \frac{1}{r^2}\Phi(rL) \leq \Phi(L) \implies r^2\Phi(L) \geq \Phi(rL)\]
+Con $r=\sfrac{1}{L}$ se tiene que $\ds \Phi(1) \leq \frac{1}{L} \Phi(L) \leq \Phi(1) \implies \Phi(L) = \Phi(1) L^2$.
+
+\subsubsection{Conceptos varios}
+\begin{enumerate}
+	\item Una \textbf{curva simple cerrada plana} $\gamma$ de periodo $a>0$ es una curva \\$\appl{\gamma}{\R}{\R^{3}}$ tal que $\ds \gamma (t_{1})=\gamma(t_{2}) \iff \frac{t_{1}-t_{2}}{a}\in \Z$.
+	      \begin{itemize}
+		      \item La traza de $\gamma$ es $\gamma (\R)=\gamma ([0,a))$.
+		      \item La aplicación $\gamma$ es inyectiva en el intervalo $[u,u+a)$ sea cual sea $u$.
+		      \item La longitud $L$ de $\gamma$ es $\ds \int_{0}^{a}\|\gamma '(t)\|dt$.
+		      \item Si $\gamma$ es regular y está parametrizada por longitud de arco, entonces $a = L$.
+	      \end{itemize}
+	\item \textbf{Región encerrada: El teorema de la curva de Jordan:}
+
+	      La traza de una curva simple cerrada plana $\gamma$ separa el plano en exactamente dos componentes conexas. Una de ellas es acotada y la otra no.
+
+	\item \textbf{Área encerrada. Fórmula de Green:}
+
+	      La fórmula de Green nos dice que si $\gamma (t)=(x(t),y(t))$ recorrida en sentido positivo encierra la región $\mathcal{I}$, entonces \[\iint_{\mathcal{I}} (Q_{x}-P_{y})\odif{x}\odif{y}=\int_{\gamma}(P\odif{x}+Q\odif{y})\]
+	      Recordamos aquí que si $\gamma (t)=(x(t),y(t)), t\in (a,b)$ entonces \[\int_{\gamma} (P\odif{x}+Q\odif{y})=\int_{a}^{b} (P(x(t),y(t)) \cdot x'(t) + Q(x(t),y(t))\cdot y'(t))\odif{t}\]
+
+	      Si tomamos $\ds Q(x,y)=x \we P\equiv 0 \implies \tex{Área}(\mathcal{I}) = \int_{\gamma} x \odif{y} = \int_{a}^{b} x(t)y'(t)\odif{t}$.
+
+	      Si tomamos $\ds p(x,y)-y \we Q\equiv 0 \implies \tex{Área}(\mathcal{I}) = -\int_{\gamma} y \odif{x} = - \int_{a}^{b} y(t)x'(t)\odif{t}$.
+	      \[\implies \tex{Área}(I)=\frac{1}{2}\int_{\gamma}(xdy-ydx)=\frac{1}{2}\int (x(t)y'(t)-y(t)x'(t)) dt\]
+\end{enumerate}

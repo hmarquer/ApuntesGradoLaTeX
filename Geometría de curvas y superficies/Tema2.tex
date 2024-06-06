@@ -1,0 +1,176 @@
+\section{Superficies}
+\subsection{Superficies regulares}
+\subsubsection{Noción de superficie regular}
+
+\begin{defn}
+	Sea $S \subset \R^3$ un conjunto de puntos, es una superficie regular $\iff \forall p \in S$
+	\[\exists U \subset \R^2 \, \we \, \exists W \subset R^3 \tex{ abiertos} \, \we \, \exists \appl{\mathbb{X}}{U}{\R^3} : \mathbb{X}(U) = W \cap S \tex{ de manera que}\]
+	\begin{enumerate}
+		\item (diferenciabilidad) $\mathbb{X}$ es $C^\infty$.
+		\item (regularidad) $\ds \forall (u, v) \in U : \left(\odv{\mathbb{X}}{u} \times \odv{\mathbb{X}}{v}\right)(u, v) \neq 0$. Es decir, $\odif{\mathbb{X}}$ es de rango 2.
+		\item (homeomorfismo) $\mathbb{X}$ es inyectiva y $\mathbb{X}^{-1}$ es continua.
+	\end{enumerate}
+\end{defn}
+
+A tales $\mathbb{X}$ se les llama cartas, parametrizaciones, mapas, o sistema (local) de coordenadas.
+
+Si $\mathbb{X}$ es carta de $S$ y $\mathbb{X}(U) = S$ (es decir, la carta $\mathbb{X}$ cubre todo $S$), se dice que $\mathbb{X}$ es carta global o parametrización global de $S$.
+
+\allbold{Coordenadas y curvas coordenadas}
+
+Si $q \in X(U)$, entonces $q$ se escribe (de manera única) $q = \mathbb{X}(u_0, v_0)$ con $(u_0, v_0) \in U$. \\
+A $(u_0, v_0)$ se les llama las $\mathbb{X}$-coordenadas de $q$.
+
+Las curvas que describe $\mathbb{X}$ cuando $v$ se deja constante y cuando $u$ se deja constante son las curvas coordenadas: son $u$-curvas y $v$-curvas, respectivamente y denotamos:
+\begin{itemize}
+	\item $\X_u(u_0, v_0)$ por el vector velocidad de la $u$-curva en $\mathbb{X}(u_0, v_0)$.
+	\item $\X_v(u_0, v_0)$ por el vector velocidad de la $v$-curva en $\mathbb{X}(u_0, v_0)$.
+\end{itemize}
+
+\allbold{Sobre las condiciones de superficie regular}
+
+\begin{enumerate}
+	\item Sobre la condición de diferenciabilidad, podemos escribir $\X(u, v) = (x(u, v), y(u, v), z(u, v))$ y entonces las funciones coordenadas de $\X$, es decir, $x, y, z$ son $C^\infty$.
+	\item Sobre la condición de regularidad, escribiendo $\X_u = (x_u, y_u, z_u)$ y $\X_v = (x_v, y_v, z_v)$, son equivalentes:
+	      \begin{itemize}
+		      \item $\forall (u, v) \in U : $ la matriz $\odif{\X}(u, v)$ es inyectiva.
+		      \item $\forall (u, v) \in U : \X_u(u, v)$ y $\X_v(u, v)$ son linealmente independientes.
+		      \item $\forall (u, v) \in U : \X_u(u, v) \times \X_v(u, v) \neq 0$.
+		      \item $\ds \forall (u, v) \in U : \left( \abs{\pdv{{(x, y)}}{{(u,v)}}(u,v)} \neq 0 \ve \abs{\pdv{{(x, z)}}{{(u,v)}}(u,v)} \neq 0 \ve \abs{\pdv{{(y, z)}}{{(u,v)}}(u,v)} \neq 0 \right)$.
+	      \end{itemize}
+	\item Sobre la condición de homeomorfismo, la inyectividad de $\X$ permite ubicar sin ambigüedad los puntos de $\X(U) = W\cap S$ cercanos a $p$ con parámetros $(u, v)$.
+
+	      Que $\X^{-1}$ sea continua es una condición laboriosa de verificar, pero si ya sabemos que $S$ es superficie regular y tenemos un candidato a carta $\X$ que cumple las condiciones anteriores, entonces $\X^{-1}$ es continua automáticamente.
+\end{enumerate}
+
+Por tanto, para comprobar que un conjunto $S$ es una superficie regular, hay que encontrar una carta $\X$ que cumpla las condiciones de superficie regular.
+\begin{enumerate}
+	\item Encontrar una aplicación $\X$ de tipo $C^\infty$ cuya imagen de un abierto $U \subset \R^2$ sea (una parte de) $S$.
+	\item Comprobar que $\forall (u, v) \in U : \X_u(u, v)$ y $\X_v(u, v)$ son linealmente independientes.
+	\item Comprobar que $\X$ es inyectiva.
+	\item Comprobar que $\X(u_n, v_n) \xrightarrow{n \to \infty} \X(u,v) \implies (u_n, v_n) \xrightarrow{n \to \infty} (u, v)$.
+\end{enumerate}
+
+Usando el teorema de la función implícita, podemos demostrar que el conjunto de puntos que satisfacen una ecuación de la forma $F(x, y, z) = a$ (con $F$ $C^\infty$) es una superficie regular si $\nabla F \neq 0$ en los puntos de la superficie.
+\[\forall (x,y,z) \in F^{-1}(a) : F_z(x,y,z) \neq 0 \implies \exists f \tex{ de tipo } C^\infty : F(x, y, f(x, y)) = a\]
+Entonces definimos $\X(u, v) = (u, v, f(u, v))$ que cumple las condiciones de carta.
+
+\subsection{Superficies parametrizadas}
+
+La noción de superficie parametrizada es más general que la que hemos
+manejado de superficie regular. Es extensión directa de la noción de curva regular.Deberíamos quizás adjetivar superficie parametrizada regular, pero no.
+
+\begin{defn}
+	Sea $\appl{X}{U}{\R^3}$ con $U \subset \R^2$ abierto, $\left(\X, U\right)$ es una superficie parametrizada
+	\[\iff \big(\forall (u, v) \in U : \left(\X_u \times \X_v\right)(u, v) \neq 0\big) \we \big(\X \tex{ es de tipo } C^\infty\big)\]
+\end{defn}
+
+\begin{obs}
+	\begin{itemize}
+		\item La traza de la superficie es $\X(U)$.
+		\item Solo hay una carta $\X$ para la superficie y no hay condiciones de homeomorfismo, solo de diferenciabilidad y regularidad.
+		\item $\X$ puede no ser inyectiva y $\X^{-1}$ puede no ser continua. De esta manera, incluimos superficies con auto-intersecciones y con ``bordes''.
+	\end{itemize}
+\end{obs}
+
+\subsubsection{Superficies generadas por curvas}
+
+\begin{enumerate}
+	\item \allbold{Cilindros:} Sea $\forall t \in I : \alpha(t) = \left(a(t), b(t)\right)$ una curva en $\R^2$.
+
+	      Definimos un cilindro parametrizado mediante $\forall t \in I, u \in \R : \X(t, u) = \left(a(t), b(t), u\right)$.
+
+	      La aplicación es de tipo $C^\infty$ y se tiene que $\X_t = \left(a', b', 0\right)$ y $\X_u = \left(0, 0, 1\right)$, que son linealmente independientes. Por tanto, $(\X, I \times \R)$ es una superficie parametrizada.
+	\item \allbold{Superficie de tangentes:} Sea $\gamma(s)$ una curva birregular p.p.a. definida en $s\in I$.
+
+	      Definimos la superficie de tangentes mediante $\forall s \in I, u>0 : \X(s, u) = \gamma(s) + u \gamma'(s)$.
+
+	      Observamos que $\forall s \in \R : \alpha(t) \defeq \X(s, t)$ es una (semir)recta tangente a $\gamma$ en $\gamma(s)$.
+
+	      La aplicación es de tipo $C^\infty$ y se tiene que $\X_s = \gamma'(s) + u\gamma''(s)$ y $\X_u = \gamma'(s)$.
+	      \[\implies \norm{(X_s \times \X_u)(u,v)} = u\norm{\gamma''(s) \times \gamma'(s)} = u \kappa(s) \neq 0 \tex{ por ser $\gamma$ birregular}\]
+	      Por tanto, $(\X, I \times \R_{>0})$ es una superficie parametrizada.
+	\item \allbold{Superficie de revolución:} Sea $\alpha(t) = \left(a(t), b(t)\right)$ con $a(t) > 0$ una curva regular en $\R^2$ definida para $t \in I$.
+
+	      Definimos la superficie de revolución mediante $\X(\theta, t) = \left(a(t) \cos \theta, a(t) \sin \theta, b(t)\right)$ en $(\theta, t) \in [-\pi, \pi) \times I$.
+
+	      La aplicación es de tipo $C^\infty$ y se tiene que
+	      \[\X_\theta(\theta, t) = \left(-a(t) \sin \theta, a(t) \cos \theta, 0\right) \, \we \, \X_t(\theta, t) = \left(a'(t) \cos \theta, a'(t) \sin \theta, b'(t)\right)\]
+	      \[\implies \norm{\X_\theta \times \X_t} = \norm{\left(-a(t) b'(t) \cos \theta, b(t)a'(t)\sin\theta, a(t)a'(t)\right)} = a(t) \norm{\alpha'(t)} \neq 0\]
+	      Por tanto, como $\alpha$ es una curva regular, $(\X, [-\pi, \pi) \times I)$ es una superficie parametrizada.
+\end{enumerate}
+
+\subsection{Complementos}
+
+\subsubsection{Las superficies regulares son localmente gráficas}
+
+Sea $S$ una superficie regular y sea $p$ un punto de $S$.
+
+Entonces, existe un abierto $W$ de $p$ en $\R^3$ de manera que $W\cap S$ es la gráfica de una función de tipo $C^\infty$ de una de las tres formas siguientes: $z = f(x, y)$, $y = f(x, z)$ o $x = f(y, z)$.
+
+Esto se  debe, nuevamente, al teorema de la función implícita.
+
+\subsubsection{Los cambios de carta son difeomorfismos}
+
+Sean $\appl{\X}{U}{\R^3}$ y $\appl{\mathbb{Y}}{V}{\R^3}$ cartas en un punto $p$ de una superficie regular $S$.
+
+Denotamos $A = \X(U) \cap \mathbb{Y}(V)$ y sean $\bar{U} = \X^{-1}(A)$ y $\bar{V} = \mathbb{Y}^{-1}(A)$.
+
+Los puntos de $A$ se pueden describir mediante $\X$-coordenadas en $\bar{U}$ o $\mathbb{Y}$-coordenadas en $\bar{V}$.
+
+La función $\appl{\Phi}{\bar{U}}{\bar{V}}$ definida por $\Phi = \mathbb{Y} \circ \X^{-1}$ es el difeomorfismo \allbold{cambio de carta}.
+\begin{itemize}
+	\item $\X$ y $\mathbb{Y}$ son funciones inyectivas $\implies$ son biyectivas en sus imágenes $\implies \Phi$ es biyectiva.
+	\item $\X$ y $\mathbb{Y}$ de tipo $C^\infty \implies \Phi$ y $\Phi^{-1}$ son de tipo $C^\infty$.
+\end{itemize}
+
+\subsubsection{Sobre la condición de $\mathbb{X}^{-1}$ continua}
+
+Sea $S$ una superficie regular y sea $\appl{\X}{U}{\R^3}$ una aplicación tal que $\X(U) = W \cap S$. Suponemos que $\X$
+\begin{itemize}
+	\item Cumple la condición de diferenciabilidad (es de tipo $C^\infty$).
+	\item Cumple la condición de regularidad (el rango de $\odif{\X}$ es 2).
+	\item Es inyectiva.
+\end{itemize}
+Se concluye que $\X^{-1}$ es continua, y por tanto, $\X$ es una carta de $S$.
+
+\subsubsection{Superficies parametrizadas y superficies regulares}
+
+Sea $\appl{\X}{U}{\R^3}$ una superficie parametrizada y sea $(u_0, v_0) \in U$. Entonces se puede tomar $V$ entorno de $(u_0, v_0)$ tal que $(u_0, v_0) \in V \subset U$ de manera que $S=\X(V)$ es una superficie regular.
+
+Es más, $\appl{\X}{V}{\R^3}$ es parametrización global de $S$.
+
+\subsection{Vectores y plano tangente}
+
+\subsubsection{Vector tangente}
+
+\begin{defn}
+	Sea $S$ una superficie regular y sea $p \in S$. Un vector $v \in \R^3$ es tangente a $S$ en $p \iff \Big(\exists \appl{\alpha}{I \ni 0}{S}$ curva $: \alpha(0) = p \we \alpha(I)\subset S \Big) \we v = \alpha'(0)$.
+
+	Es decir, el que $v$ sea un vector tangente a la superficie regular $S$ en el punto $p$ significa que $v$ es vector tangente (velocidad) a una curva por $p$ con traza en $S$.
+\end{defn}
+
+Sea $\appl{\X}{U}{\R^3}$ una carta de una superficie regular $S$ y sea $p = \X(u_0, v_0)$.
+
+Sea $v$ un vector tangente a $S$ en $p$ y sea $\alpha(t) = \X(u(t), v(t))$ la curva con traza contenida en $S$ y tal que $\alpha(0) = p$ y $\alpha'(0) = v$.
+\[\implies v= \alpha'(0) = u'(0)\cdot\X_u(u_0, v_0) + v'(0)\cdot\X_v(u_0, v_0) \implies v \in \mathcal{L}\{\X_u(u_0, v_0), \X_v(u_0, v_0)\}\]
+Recíprocamente, dada una combinación lineal de $\{\X_u(u_0, v_0), \X_v(u_0, v_0)\}$, consideramos la curva $\alpha(t) = \X(u_0 + ta, v_0 + tb)$, entonces:
+\[\alpha'(t) = a\X_u(u_0 + ta, v_0 + tb) + b\X_v(u_0 + ta, v_0 + tb) \implies \alpha'(0) = a\X_u(u_0, v_0) + b\X_v(u_0, v_0) = v\]
+
+Es decir, $v$ es vector tangente a $S$ en $p \iff v \in \mathcal{L}\{\X_u(u_0, v_0), \X_v(u_0, v_0)\}$.
+
+\subsubsection{Plano tangente}
+
+\begin{defn}
+	Sea $S$ una superficie regular y sea $\X$ una carta con $p = \X(u_0, v_0)$, \\$T_pS$ es el plano tangente a $S$ en $\ds p \iff T_pS = p + \mathcal{L}\{\X_u(u_0, v_0), \X_v(u_0, v_0)\}$.
+\end{defn}
+
+\allbold{Vector normal a $T_pS$}
+
+El vector $\X_u(u_0, v_0) \times \X_v(u_0, v_0)$ es no nulo y perpendicular a $T_pS$, así que $T_pS$ es el plano que pasa por $p$ y tiene como vector normal a $\X_u(u_0, v_0) \times \X_v(u_0, v_0)$.
+
+\begin{defn}[Vector normal unitario]
+	Sea $S$ una superficie regular y sea $p \in S$.
+
+	Definimos $\ds N\defeq \frac{\X_u(u_0, v_0) \times \X_v(u_0, v_0)}{\norm{\X_u(u_0, v_0) \times \X_v(u_0, v_0)}}$ como el vector normal unitario a $S$ en $p$.
+\end{defn}
