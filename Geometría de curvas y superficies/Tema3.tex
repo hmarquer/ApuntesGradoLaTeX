@@ -168,7 +168,241 @@ Pero queremos que $\omega$ corte a todos los meridianos con el mismo ángulo $\b
 		\[L(\alpha) = \int_{a}^{b} \norm{\alpha'(t)} \odif{t} = \int_{a}^{b} \sqrt{I_{\alpha(t)}(\alpha'(t))} \odif{t} = \int_{a}^{b} \sqrt{I^*_{(f\circ \alpha)(t)}((f\circ\alpha)'(t))} \odif{t} = L(f\circ\alpha)\]
 		Es decir, $f$ preserva longitudes.
 
-		($\Longrightarrow$) Sea $\appl{\X}{U}{S}$ una blabla... \textbf{TO BE CONTINUED}
+		($\Longrightarrow$) Sea $\appl{\X}{U}{S}$ una carta de $S$ y $\appl{\alpha}{I}{S}$ una curva regular en $S$ tal que $\forall t \in (a, b) : \alpha(t) = \X(u(t), v(t))$. Supongamos que $f$ preserva longitudes y, por contradicción, que alguno de los coeficientes de la primera forma fundamental es distinto en $I_{\alpha(t)}(\alpha'(t))$ y $I^*_{(f\circ \alpha)(t)}((f\circ\alpha)'(t))$.
+
+		Asumimos primero que $E(u_0, v_0) < E^*(u_0, v_0)$. Por continuidad, existe una bola $B_\varepsilon \subset U$ con $(u_0, v_0) \in B_\varepsilon$ tal que $\forall (u, v) \in B_\varepsilon : E(u, v) < E^*(u, v)$. Tomamos
+		\[C\defeq \{\alpha(t) \defeq \X(u_0+t, v_0) : -\varepsilon < t < \varepsilon\} \subset S\]
+		\[\implies \norm{\alpha'(t)}^2 = \norm{\pdv{\X}{u}(u_0t, v_0)}^2=E(u_0+t, v_0) < E^*(u_0+t, v_0) = \norm{(f\circ\alpha)'(t)}^2\]
+		Por tanto, al considerar longitudes, se tiene que $L(\alpha) < L(f\circ\alpha)$.
+		\[L(C) = \int_{-\varepsilon}^{\varepsilon} \norm{\alpha'(t)} \odif{t} < \int_{-\varepsilon}^{\varepsilon} \norm{(f\circ\alpha)'(t)} \odif{t} = L(f\circ C) \contr\]
+
+		Si $G(u_0, v_0) \neq G^*(u_0, v_0)$, se toma $C\defeq \{\alpha(t) \defeq \X(u_0, v_0+t) : -\varepsilon < t < \varepsilon\}$ y se llega a una contradicción análoga.
+
+		Finalmente, si $E(u_0, v_0) = E^*(u_0, v_0)$ y $G(u_0, v_0) = G^*(u_0, v_0)$ pero $F(u_0, v_0) < F^*(u_0, v_0)$, se toma $C\defeq \{\alpha(t) \defeq \X(u_0+t, v_0+t) : -\varepsilon < t < \varepsilon\}$.
+		\[\alpha' = \pdv{\X}{u} + \pdv{\X}{v} = \X_u + \X_v \implies \norm{\alpha'}^2 = E + 2F + G < E^* + 2F^* + G^* = \norm{(f\circ\alpha)'}^2\]
+		Por tanto y de manera análoga, $L(\alpha) < L(f\circ\alpha) \implies L(C) < L(f\circ C) \contr$.
 	\end{dem}
 \end{lem}
+
+\begin{cor}
+	Sea $S$ una superficie regular y $\appl{f}{S}{S^*}$ una isometría.
+	\begin{itemize}
+		\item $f$ preserva longitudes en $S$ independientemente de la carta que se tome.
+		\item $f$ preserva ángulos y áreas.
+	\end{itemize}
+\end{cor}
+
+\begin{lem}
+	Sea $S$ una superficie regular y $\appl{f}{S}{S^*}$ una aplicación de tipo $C^\infty$ que preserva la primera forma fundamental.
+	\[\implies \forall p \in S : \exists S_1 \ni p \tex{ trozo de }S : \left. f\right|_{S_1} \tex{es una isometría}\]
+	\begin{dem}
+		Se tiene el siguiente diagrama:
+		\[\begin{tikzcd}
+				p \in \hspace{-2.3cm} & S \arrow[r, "f"] & S^* & \hspace{-2.3cm} \ni f(p) \\
+				\X^{-1}(p) \in \hspace{-1.25cm} & U \arrow[u, "\X"] \arrow[r, "g"] & V  \arrow[u, "\mathbb{Y}"'] & \hspace{-1.3cm} \ni \mathbb{Y}^{-1}(f(p))
+			\end{tikzcd}\]
+		\[\tex{Se tiene que }\norm{\pdv{(f\circ \X)}{u} \times \pdv{(f\circ \X)}{v}}^2 = E^*G^* - F^* = EG - F = \norm{\X_u \times \X_v}^2 > 0\]
+		Por tanto, la matriz diferencial de $f\circ \X$ en $\X^{-1}(p)$ y la matriz diferencial de $\mathbb{Y}$ en $\mathbb{Y}^{-1}(f(p))$ tienen rango 2.
+
+		Entonces, la matriz diferencial de $g\defeq \mathbb{Y}^{-1}\circ f\circ \X$ en $\X^{-1}(p)$ tiene rango 2. Por el teorema de la función inversa, $g$ es un difeomorfismo local en un entorno de $\X^{-1}(p)$.
+
+		Por tanto, $\exists S_1 \ni f(p) : \forall q \in S^* : {\left({\left. f \right|}_{S_1}\right)}^{-1}(q) = \big(\X \circ g^{-1}\circ \mathbb{Y}^{-1}\big)(q)$ que es de clase $C^\infty$. Entonces, $\left. f\right|_{S_1}$ es una isometría.
+	\end{dem}
+\end{lem}
+
+\begin{defn}
+	Sea $S$ una superficie regular, $\appl{f}{S}{S^*}$ es una isometría local
+	\[\iff f\tex{ es de clase $C^\infty$ y preserva la primera forma fundamental}\]
+\end{defn}
+
+\begin{lem}
+	Sean $f$ y $g$ dos isometrías, entonces $f\circ g$ es una isometría.
+	\begin{dem}
+		Trivialote.
+	\end{dem}
+\end{lem}
+
+\begin{defn}Sean $S$ y $S^*$ dos superficies regulares.
+	\begin{itemize}
+		\item $S$ y $S^*$ son isométricas $\iff \exists \appl{f}{S}{S^*}$ isometría.
+		\item $S$ y $S^*$ son localmente isométricas
+		      \[\begin{aligned}
+				      \iff & \forall p \in S : \exists S_1 \ni p \tex{ trozo de $S$ isométrico a algún trozo de $S^*$}   \\
+				      \we  & \forall q \in S^* : \exists S_2 \ni q \tex{ trozo de $S^*$ isométrico a algún trozo de $S$}
+			      \end{aligned}\]
+	\end{itemize}
+\end{defn}
+
+\begin{obs}
+	Tanto ser isométricas como ser localmente isométricas es una relación de equivalencia dentro del conjunto de superficies regulares.
+\end{obs}
+
+\subsubsection{Isometrías con formas}
+¿Cómo saber si dos superficies regulares son (localmente) isométricas o no? Veamos un resultado general.
+\begin{lem}
+	Sean $S$ y $S^*$ dos superficies regulares y sean $\appl{\X}{U}{S}$ y $\appl{\mathbb{Y}}{A}{S^*}$ sus respectivas cartas.
+	\[\exists \appl{f}{S}{S^*} \tex{ isometría} \iff \exists \appl{g}{U}{A} \tex{ difeomorfismo tal que}\]
+	La primera forma fundamental de $\X$ $(E, F, G)$ es la misma que la de $\mathbb{Y}\circ g$ $(E_1, F_1, G_1)$.
+
+	\begin{dem}
+		Analicemos la primera forma fundamental de $\mathbb{Y}\circ g$ suponiendo que $\forall (u, v) \in U : g(u, v) = (a(u,v), b(u,v))$:
+		\[\begin{aligned}
+				E_1 & = \norm{\pdv{(\mathbb{Y}\circ g)}{u}}^2 = a_u^2 \norm{\mathbb{Y}_a(a, b)}^2 + 2a_ub_u\left\langle\mathbb{Y}_a(a, b), \mathbb{Y}_b(a, b) \right\rangle  + b_u^2 \norm{\mathbb{Y}_b(a, b)}^2                     \\
+				    & = a_u^2 E^*(a, b) + 2a_ub_u F^*(a,b) + b_u^2 G^*(a,b)                                                                                                                                                          \\
+				F_1 & = \left\langle \pdv{(\mathbb{Y}\circ g)}{u}, \pdv{(\mathbb{Y}\circ g)}{v} \right\rangle = \left\langle a_u\mathbb{Y}_a(a, b) + b_u\mathbb{Y}_b(a,b), a_v\mathbb{Y}_a(a, b) + b_v\mathbb{Y}_b(a,b)\right\rangle \\
+				    & = a_ua_v\norm{\mathbb{Y}_a(a,b)}^2 + (a_ub_v+b_ua_v)\langle \mathbb{Y}_a(a,b), \mathbb{Y}_b(a,b)\rangle + b_ub_v\norm{\mathbb{Y_b}(a,b)}^2                                                                     \\
+				    & = a_ua_vE^*(a, b) + (a_ub_v+b_ua_v)F^*(a,b) + b_ub_vG^*(a, b)                                                                                                                                                  \\
+				G_1 & = \norm{\pdv{(\mathbb{Y}\circ g)}{v}}^2 = a_v^2 \norm{\mathbb{Y}_a(a, b)}^2 + 2a_vb_v\left\langle\mathbb{Y}_a(a, b), \mathbb{Y}_b(a, b) \right\rangle  + b_v^2 \norm{\mathbb{Y}_b(a, b)}^2                     \\
+				    & = a_v^2 E^*(a, b) + 2a_vb_v F^*(a,b) + b_v^2 G^*(a,b)                                                                                                                                                          \\
+			\end{aligned}\]
+		Donde $(E^*, F^*, G^*)$ componen la primera forma fundamental de $\mathbb{Y}$.
+		\[\implies \begin{cases}
+				E & = E_1 \\
+				F & = F_1 \\
+				G & = G_1 \\
+			\end{cases} \iff \begin{cases}
+				E & = a_u^2 E^*(a, b) + 2a_ub_u F^*(a,b) + b_u^2 G^*(a,b)         \\
+				F & = a_ua_vE^*(a, b) + (a_ub_v+b_ua_v)F^*(a,b) + b_ub_vG^*(a, b) \\
+				G & = a_v^2 E^*(a, b) + 2a_vb_v F^*(a,b) + b_v^2 G^*(a,b)
+			\end{cases}\]
+		\[\tex{Se tiene el siguiente diagrama: }\begin{tikzcd}
+				& S \arrow[r, "f"] & S^* \\
+				(u, v) \in \hspace{-1.25cm} & U \arrow[u, "\X"] \arrow[r, "g"] & A  \arrow[u, "\mathbb{Y}"'] & \hspace{-1.3cm} \ni (a, b)
+			\end{tikzcd}\]
+
+		$(\Longrightarrow)$ Como $f$ es una isometría y $\X$ e $\mathbb{Y}$ son cartas, en particular son difeomorfismos.
+		\\ Por tanto, $g = \mathbb{Y}^{-1}\circ f \circ \X$ es un difeomorfismo.
+
+		Además, se tiene que $f\circ \X = \mathbb{Y} \circ g$ y como $f$ es una isometría, la primera forma fundamental de $S^*$ por la carta $f\circ \X$ es la misma que la de $S$ por la carta $\X$. Por tanto, la primera forma fundamental de $\mathbb{Y} \circ g$ es la misma que la de $\X$.
+
+		$(\Longleftarrow)$ Suponemos que $g$ es difeomorfismo tal que se cumple el sistema de arriba. Entonces, tenemos que $f = \mathbb{Y} \circ g \circ \X^{-1}$ es un difeomorfismo por ser composición de ellos.
+
+		Además, se vuelve a cumplir que $f\circ \X = \mathbb{Y}\circ g$ y como la primera forma fundamental de $S^*$ por la carta $\mathbb{Y}\circ g$ es la misma que la de $S$ por la carta $\X$, se concluye que $f$ preserva la primera forma fundamental. Por tanto, $f$ preserva también longitudes.
+
+		Como $f$ es un difeomorfismo que preserva longitudes, $f$ es una isometría.
+	\end{dem}
+\end{lem}
+
+Es decir, para demostrar que dos superficies regulares son isométricas, basta con encontrar un ``cambio de carta'' que mantenga la primera forma fundamental.
+
+El sistema de ecuaciones del lema también puede escribirse en forma matricial:
+\[\begin{pmatrix}
+		E & F \\
+		F & G
+	\end{pmatrix} = \begin{pmatrix}
+		a_u & a_v \\
+		b_u & b_v
+	\end{pmatrix}^T \begin{pmatrix}
+		E^*(a,b) & F^*(a,b) \\
+		F^*(a,b) & G^*(a,b)
+	\end{pmatrix} \begin{pmatrix}
+		a_u & a_v \\
+		b_u & b_v
+	\end{pmatrix} = (\tex{D}g)^T \begin{pmatrix}
+		E^*(g) & F^*(g) \\
+		F^*(g) & G^*(g)
+	\end{pmatrix} \tex{D}g\]
+Que proviene del cambio de carta:
+\[\begin{pmatrix}
+		\odif{a} \\
+		\odif{b}
+	\end{pmatrix} = \begin{pmatrix}
+		a_u & a_v \\
+		b_u & b_v
+	\end{pmatrix} \begin{pmatrix}
+		\odif{u} \\
+		\odif{v}
+	\end{pmatrix} \implies \begin{pmatrix}
+		\odif{u} \\
+		\odif{v}
+	\end{pmatrix} = \begin{pmatrix}
+		a_u & a_v \\
+		b_u & b_v
+	\end{pmatrix}^{-1} \begin{pmatrix}
+		\odif{a} \\
+		\odif{b}
+	\end{pmatrix}\]
+
+\begin{teo}[Janet 1926 - Cartan 1927]
+	Sean $\appl{E, F, G}{U \subset \R^2}{\R}$ funciones de clase $C^\infty$ con $U$ abierto tales que $E > 0$ y $EG - F^2 > 0$ en $U$.
+
+	$\implies \forall (u_0, v_0) \in U : \exists V \subset U : \begin{cases}
+			(u_0, v_0) \in V \tex{ abierto de } \R^2                                         \\
+			\exists \appl{\X}{V}{\R^3} \tex{ carta de }S=\X(V) \tex{ superficie regular con} \\
+			\phantom{\exists \appl{\X}{V}{\R^3}\tex{ }} E = \norm{\X_u}^2 \we F = \langle \X_u, \X_v \rangle \we G = \norm{\X_v}^2
+		\end{cases}$
+\end{teo}
+
+\subsection{Aplicación conformes}
+
+Ya hemos visto que no podemos encontrar una isometría de un trozo de una esfera en un trozo de un plano. Sin embargo, ¿podemos encontrar una aplicación que haga que un dibujo en la esfera se vea de forma ``similar'' en el plano?
+
+\begin{defn}
+	Sea $\appl{f}{S}{S^*}$ un difeomorfismo, es conforme $\iff f$ preserva ángulos entre cualquier pareja de curvas regulares.
+\end{defn}
+
+\begin{lem}
+	Sea $\appl{f}{S}{S^*}$ una aplicación de tipo $C^\infty$ entre dos superficies $S$ y $S^*$.
+	\[f \tex{ es conforme} \iff \exists \appl{\lambda}{U}{\R} : \odif{s_*}^2 = \lambda^2 \odif{s}^2 \tex{ donde}\]
+	$\odif{s}^2 = E\odif{u}^2 + 2F\odif{u}\odif{v} + G\odif{v}^2$ y $\odif{s_*}^2 = E^*\odif{u}^2 + 2F^*\odif{u}\odif{v} + G^*\odif{v}^2$ son las primeras formas fundamentales de $S$ y $S^*$ respectivamente.
+	\begin{dem}
+		$(\Longleftarrow)$ Trivial, ya que el coseno del ángulo entre dos curvas era:
+		\[\cos\omega = \frac{Eu_1'u_2' + F(u_1'v_2' + v_1'u_2') + Gv_1'v_2'}{\sqrt{(u_1')^2E + 2u_1'v_1'F + (v_1')^2G}\sqrt{(u_2')^2E + 2u_2'v_2'F + (v_2')^2G}}\]
+		con $(u_1', v_1')$ y $(u_2', v_2')$ los vectores tangentes a las curvas en $U$. Por tanto, si sustituimos $u_1' = \lambda u_1$ y $v_1' = \lambda v_1$ y $u_2' = \lambda u_2$ y $v_2' = \lambda v_2$, se cancela el factor $\lambda$ y el coseno del ángulo se mantiene.
+
+		$(\Longrightarrow)$ Podemos escribir $\begin{cases}
+				t_1 = \tan w_1 = {v_1'}/{u_1'} \\
+				t_2 = \tan w_2 = {v_2'}/{u_2'}
+			\end{cases}$ con $w_1$ y $w_2$ los ángulos que forman las curvas con respecto al eje $u$ en el plano $uv$. Entonces (si $u_1' >0$ y $u_2' > 0$):
+		\[\cos\omega = \frac{E + F(t_1 + t_2) + Gt_1t_2}{\sqrt{E + 2Ft_1 + Gt_1^2}\sqrt{E + 2Ft_2 + Gt_2^2}}\]
+		Si miramos cuándo las curvas son ortogonales en $S$ queda:
+		\[\cos \omega = 0 \iff E + F(t_1 + t_2) + Gt_1t_2 = 0\iff \tan w_2 = \frac{-E/G -F/G\tan w_1}{F/G + \tan w_1}\]
+		Como $f$ preserva los ángulos, las imágenes de las curvas también son ortogonales en $S^*$:
+		\[\frac{-E^*/G^* -F^*/G^*\tan w_1}{F^*/G^* + \tan w_1} = \frac{-E/G -F/G\tan w_1}{F/G + \tan w_1} \implies \frac{E^*}{G^*} = \frac{E}{G}\]
+	\end{dem}
+\end{lem}
+
+\begin{defn}
+	Sea $\appl{f}{S}{S^*}$ una aplicación conforme, $\appl{\lambda}{U}{\R}$ es el factor de dilatación de $f \iff \odif{s_*}^2 = \lambda^2 \odif{s}^2$ donde $\odif{s}^2$ y $\odif{s_*}^2$ son las primeras formas fundamentales de $S$ y $S^*$ respectivamente.
+
+	Las distancias en $S^*$ cerca del punto corriespondiente a $p \in S$ aumentan por un factor $\lambda(p)$.
+\end{defn}
+
+\subsubsection{Aplicación conforme al plano}
+
+Ahora queremos encontrar una aplicación conforme de $S$ en un plano. Es decir, queremos encontrar $a(u, v)$ y $b(u, v)$ tales que
+\[\odif{s}^2 = E\odif{u}^2 + 2F\odif{u}\odif{v} + G\odif{v}^2 = \lambda^2 \left[\odif{a}^2 + \odif{b}^2\right] = \lambda^2 \odif{s_*}^2\]
+para cierto $\lambda$. Vemos que si se cumple esto, entonces $\odif{s}^2=0 \iff \odif{s_*}^2 = 0$.
+\[\odif{s_*}^2 = 0 \iff \odif{a}^2 + \odif{b}^2 = 0 \iff (\odif{a} + i \odif{b})(\odif{a} - i \odif{b}) = 0\iff \odif{z}\odif{\bar{z}} = 0\]
+donde $z = a + ib$ y $\bar{z}=a-ib$ es su conjugado. Si hacemos lo mismo con $\odif{s}^2$ obtenemos:
+\[\odif{s}^2 = 0 \iff E\odif{u}^2 + 2F\odif{u}\odif{v} + G\odif{v}^2 = 0 \iff E\left(\frac{\odif{u}}{\odif{v}}\right)^2 + 2F\frac{\odif{u}}{\odif{v}} + G = 0\]
+Por tanto, obetenemos $\ds \odif{s}^2= 0 \iff \boxed{\frac{\odif{u}}{\odif{v}} = -\frac{F}{E} \pm i \frac{\sqrt{EG - F^2}}{E}} \quad (*)$, $(EG-F^2> 0)$. Además, podemos escribir
+\[\begin{aligned}
+		\odif{s}^2 & = E^2 \odif{v}^2 \left[\frac{\odif{u}}{\odif{v}} - \left(\frac{-F}{E} + i \frac{\sqrt{EG-F^2}}{E}\right)\right]\left[\frac{\odif{u}}{\odif{v}} - \left(\frac{-F}{E} - i \frac{\sqrt{EG-F^2}}{E}\right)\right] \\
+		           & = E^2 \left[\odif{u} - \left(\frac{-F}{E} + i \frac{\sqrt{EG-F^2}}{E}\right)\odif{v}\right]\left[\odif{u} - \left(\frac{-F}{E} - i \frac{\sqrt{EG-F^2}}{E}\right)\odif{v}\right]                              \\
+		           & = E^2 \left[\odif{u} + \frac{F}{E} \odif{v} + i \frac{\sqrt{EG-F^2}}{E}\odif{v}\right]\left[\odif{u} + \frac{F}{E} \odif{v} - i \frac{\sqrt{EG-F^2}}{E}\odif{v}\right]
+	\end{aligned}\]
+
+Podemos resolver $(*)$ en ciertos casos por separación de variables y, ene general, poniendo $u = a_0 + a_1 v + a_2 v^2 + \dots$ con $a_j \in \C$ y agrupando por grados (si $E, F, G$ están definidas con series de Taylor).
+
+Supongamos que las soluciones son $u = g_\pm(v) + \tex{cte} = g_1(v)\pm ig_2(v) + \tex{cte}$, entonces
+\[u-g_\pm(v) = \tex{cte} \implies \odif{(u-g_\pm(v))} = \odif{u} - g'_\pm (v)\odif{v} = \odif{u} + \frac{F}{E}\odif{v} \pm i \frac{\sqrt{EG-F^2}}{E}\odif{v}\]
+\[\implies \odif{s}^2 = E^2 \odif{\left(u + g_1(v) + i g_2(v)\right)}\odif{\left(u - g_1(v) - ig_2(v)\right)}\]
+Por lo que al hacer el cambio $\begin{cases}
+		U = u -g_1(v) + ig_2(v) \\
+		V = u - g_1(v) - ig_2(v)
+	\end{cases} \hspace{-0.5cm} \implies \boxed{\odif{s}^2 = E^2 \odif{U}\odif{V}}$.
+
+Ahora, como tenemos que $\odif{s_*}^2 = \odif{a}^2 + \odif{b}^2 = \odif{z}\odif{\bar{z}}$, si ponemos $U = z$ y $V = \bar{z}$, obtenemos $\odif{s}^2 = E^2 \odif{s_*}^2$. Por tanto, hemos encontrado una aplicación conforme de $S$ en un plano con $a(u, v) = u - g_1(v)$ y $b(u, v) = g_2(v)$.
+
+En realidad, tenemos muchas más aplicaciones conformes de una superficie en un plano y quedan (todas) dadas por:
+\[\begin{cases}
+		A = f(U) \\
+		B = f_*(V)
+	\end{cases} \hspace{-0.5cm} \implies \odif{s_*}^2 = \frac{\abs{f'(u-g_1(v) + ig_2(v))}^2}{E^2(u, v)}\odif{s}^2\]
+con $f$ dada por su serie de Taylor y $f_*$ dada por la misma serie con coeficientes conjugados.
+
+\begin{obs}
+	Podemos componer aplicaciones conformes entre superficies y el plano para obtener aplicaciones conformes entre superficies generales.
+\end{obs}
 
