@@ -1,10 +1,46 @@
 \section{Curvatura de superficies}
 
-Vamos a buscar máximos y mínimos de $z = f(x,y)$. Si $\nabla f = 0$, podemos estar ante un máximo, mínimo, punto de silla o punto singular. Para estudiar la curvatura, miro la curva que contenga al seccionar la superficie por cada plano perpendicular al tangente.
+Vamos a buscar máximos y mínimos de $z = f(x,y)$. Si $\nabla f = 0$, podemos estar ante un máximo, mínimo, punto de silla o punto singular. Para estudiar la curvatura, miro la curvas resultantes al seccionar la superficie por cada plano perpendicular al tangente.
 
 (Ojo: la curvatura de una de esas curvas no tiene por qué dar información sobre la curvatura de la superficie).
 
 \begin{itemize}
-	\item Queremos estudiar todas las curvaturas a la vez e interesa ver si son positivas (sentido de $\vec{n}$) o negativas al coger siempre la misma normal.
+	\item Queremos estudiar todas las curvaturas a la vez e interesa ver si son positivas (sentido de $\ds N=\frac{\X_u\times\X_v}{\norm{\X_u\times\X_v}}$) o negativas al coger siempre la misma normal.
 	\item En general, vamos a rotar la superficie para obtener una gráfica con plano tangente horizontal. Ahí se calcula la curvatura escalar proque se ha convertido un punto $p$ cualquiera en un crítico. ¡Los giros no afectan a la curvatura!
 \end{itemize}
+
+\subsection{Curvatura con formas cuadráticas}
+
+Sea $\appl{f}{\R^2}{\R^3}$ dada por su expresión de Taylor hasta grado 2 en el $(0,0,0)$:
+\[\begin{aligned}
+		f(x, y) & \approx f(0,0) + f_x(0,0)x + f_y(0,0)y + \frac{1}{2}f_{xx}(0,0)x^2 + f_{xy}(0,0)xy + \frac{1}{2}f_{yy}(0,0)y^2 \\
+		        & \approx 0 + 0x + 0y + \frac{ax^2 + 2bxy + cy^2}{2}
+	\end{aligned}\]
+\[\implies \pdv[2]{f}{x} (x, y) = a \we \pdv{f}{x, y} (x, y) = b \we \pdv[2]{f}{y} (x, y) = c \implies f(x, y) \approx \begin{pmatrix} x & y \end{pmatrix} \begin{pmatrix}
+		\sfrac{a}{2} & \sfrac{b}{2} \\ \sfrac{b}{2} & \sfrac{c}{2}
+	\end{pmatrix} \begin{pmatrix}
+		x \\ y
+	\end{pmatrix}\]
+Definimos el plano $\ds \frac{x}{\cos{\theta_0}}=\frac{y}{\sin{\theta_0}}$ perpendicular al plano tangente a la superficie en $(0,0,0)$ puesto que $\nabla f(0,0) = 0$ y lo intersecamos con la superficie para obtener la curva $\appl{\alpha}{\R}{\R^3}$ dada por $\alpha(r) = (r\cos\theta_0, r\sin\theta_0, z_{\theta_0}(r))$ donde
+\[z_{\theta_0}(r) = \frac{a\cos^2\theta_0 + 2b\cos\theta_0\sin\theta_0 + c\sin^2\theta_0}{2} r^2\]
+\[\implies \begin{cases}
+		z_{\theta_0}'(r) = (a\cos^2\theta_0 + 2b\cos\theta_0\sin\theta_0 + c\sin^2\theta_0)r \\
+		z_{\theta_0}''(r) = a\cos^2\theta_0 + 2b\cos\theta_0\sin\theta_0 + c\sin^2\theta_0
+	\end{cases}\]
+Y como ya sabemos que $\ds \kappa = \frac{\norm{\alpha' \times \alpha''}}{\norm{\alpha'}^3} =\frac{\abs{z_{\theta_0}''}}{(1 + z_{\theta_0}'^2)^{\sfrac{3}{2}}}$, tenemos que en el punto $(0,0,0)$
+\[\begin{aligned}
+		\kappa(\theta_0) & = \frac{\abs{a\cos^2\theta_0 + 2b\cos\theta_0\sin\theta_0 + c\sin^2\theta_0}}{(1 + (a\cos^2\theta_0 + 2b\cos\theta_0\sin\theta_0 + c\sin^2\theta_0)^2(0)^2)^{\sfrac{3}{2}}} \\
+		                 & = \abs{a\cos^2\theta_0 + 2b\cos\theta_0\sin\theta_0 + c\sin^2\theta_0}
+	\end{aligned}\]
+
+Esta fórmula nos indica cómo se curva $S$ en el punto $(0,0,0)$ en función del plano perpendicular al plano tangente que escojamos, indicado por el valor de $\theta_0$.
+
+Podemos encontrar el máximo y el mínimo de $\kappa'(\theta_0)$ si derivamos respecto de $r$ y despejamos.
+\[\implies \kappa'(\theta_0) = 2(c - a)\cos\theta_0\sin\theta_0 + 2b(\cos^2\theta_0 - \sin^2\theta_0)\]
+\[\implies \kappa'(\theta_0)=0 \iff 2(a-c)\cos\theta_0\sin\theta_0 = 2b(\cos^2\theta_0 - \sin^2\theta_0)\]
+\[\iff (a-c)\sin(2\theta_0) = b\cos(2\theta_0) \iff \tan(2\theta_0) = \frac{b}{a-c}\]
+\[\implies \theta_0 = \begin{cases}
+		-\frac{\pi}{2} \ve +\frac{\pi}{2}                                                     & \tex{ si } a=c \vebar b=0 \\
+		\arctan\left(\frac{b}{a-c}\right) \ve \arctan\left(\frac{b}{a-c}\right)+\frac{\pi}{2} & \tex{ si } a\neq c
+	\end{cases}\]
+Es decir, encontramos dos soluciones que pertenecen a planos perpendiculares entre sí \\(a no ser que $a=c \we b=0$, en cuyo caso la curvatura es la misma en todos los planos perpendiculares al plano tangente).
