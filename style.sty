@@ -118,6 +118,15 @@
   \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\impliedby$}}}}
 \newcommand{\niff}{%
   \mathrel{{\ooalign{\hidewidth$\not\phantom{=}$\hidewidth\cr$\iff$}}}}
+\DeclareRobustCommand{\loongrightarrow}{%
+  \DOTSB\relbar\joinrel\relbar\joinrel\rightarrow
+}
+\DeclareRobustCommand{\loongmapsto}{\DOTSB\mapstochar\loongrightarrow}
+\DeclareRobustCommand{\looongrightarrow}{%
+  \DOTSB\relbar\joinrel\relbar\joinrel\relbar\joinrel\rightarrow
+}
+\DeclareRobustCommand{\looongmapsto}{\DOTSB\mapstochar\looongrightarrow}
+
 
   \newcommand{\lbox}[1]{{%
   \let\@frameb@x\l@frameb@x\fbox{$#1$}%

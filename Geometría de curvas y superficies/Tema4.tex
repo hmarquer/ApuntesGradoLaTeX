@@ -1,4 +1,167 @@
-\section{Curvatura de superficies}
+\section{Segunda forma fundamental - Pablo}
+\subsection{El operador de forma}
+
+Sea $S$ una superficie regular y $p \in S$ un punto, sea $T_pS$ el plano tangente a $S$ en $p$ y $N$ un vector unitario normal al $T_pS$.
+
+Sea $\appl{\X}{U\subset\R^2}{\R^3}$ una carta local de $S$ en $p$ tal que $\X(u_0,v_0) = p$,\\
+entonces $\{\X_u(u_0, v_0), \X_v(u_0, v_0)\}$ es una base de $T_pS$ y $N$ (salvo signo) viene dado por
+\[\begin{aligned}
+		N \colon S \subset \R^3 & \loongrightarrow \R^3                                                      \\
+		\X(u, v) = p            & \loongmapsto   N(p)=\frac{\X_u \times \X_v}{\norm{\X_u \times \X_v}}(u, v)
+	\end{aligned}\]
+El objetivo es estudiar la forma de la superficie $S$ cerca del punto $p$, donde ``forma'' se refiere a cómo se curva la superficie. Esto equivale a estudiar la variación del vector normal $N$ en distintas direcciones.
+
+\begin{defn}[Operador de forma]
+	Sea $S$ una superficie regular y $p \in S$ un punto, $\appl{F_p}{T_pS}{\R}$ es el operador de forma de $S$ en $\ds p \iff \forall w \in T_pS : \F_p(w) = -\left.\odv{}{t}N(\alpha(t))\right|_{t=0}$
+	donde $\alpha$ es una curva regular en $S$ tal que $\alpha(0) = p$ y $\alpha'(0) = w$.
+\end{defn}
+
+\subsubsection{Expresión del operador de forma en una carta}
+
+Sea $\appl{\X}{U\subset\R^2}{\R^3}$ una carta local de $S$ superficie regular en $p\in S$ tal que $\X(u_0,v_0) = p$, sea $w \in T_pS = \mathcal{L}\{\X_u(u_0, v_0), \X_v(u_0, v_0)\} \implies w = a\X_u(u_0, v_0) + b\X_v(u_0, v_0)$.
+
+Ahora tomamos una curva regular $\alpha(t) = \X(u(t), v(t))$ en $S$ tal que $\alpha(0) = p$ y $\alpha'(0) = w$. \\
+Es decir, $(u(0), v(0)) = (u_0, v_0)$ y $(u'(0), v'(0)) = (a, b)$.
+
+Por otro lado tenemos $(N\circ \alpha)(t) = N(\X(u(t), v(t))) = (N\circ \X)(u(t), v(t))$
+\[\tex{y el diagrama queda } \begin{tikzcd}[column sep=huge]
+		& S \subset \R^3 \arrow{r}{N} & \R^3 \\
+		I\subset \R \arrow{ru}{\alpha} \arrow{r}{(u, v)} & U \subset \R^2 \arrow{u}{\X} \arrow{ur}{N\circ \X} &
+	\end{tikzcd}\]
+\[\implies \F_p(w) = -\left.\odv{}{t}N(\alpha(t))\right|_{t=0} = - (N\circ \X)_u(u(0), v(0))u'(0) - (N\circ \X)_v(u(0), v(0))v'(0)\]
+\[\implies \F_p(a\X_u(u_0, v_0) + b\X_v(u_0, v_0)) = -a(N\circ \X)_u(u_0, v_0) - b(N\circ \X)_v(u_0, v_0)\]
+O, simplificando notación, $\ds \boxed{\F_p(a\X_u + b\X_v) = -a(N\circ \X)_u - b(N\circ \X)_v}$.
+
+\begin{obs} De la expresión anterior se deduce que
+	\begin{itemize}
+		\item $\F_p(w)$ no depende de las curva $\alpha$ de la definición original.
+		\item Dado $w\in T_pS$, para calcular $\F_p(w)$ basta con conocer las derivadas de $N\circ \X$ en $(u_0, v_0)$.
+		\item De hecho, $\F_p(\X_u) = - (N\circ \X)_u$ y $\F_p(\X_v) = - (N\circ \X)_v$.
+		\item $\F_p$ es lineal porque $\forall \lambda_1, \lambda_2 \in \R, w_1, w_2 \in T_pS : \F_p(\lambda_1w_1 + \lambda_2w_2) = \lambda_1\F_p(w_1) + \lambda_2\F_p(w_2)$.
+		\item $\forall w \in T_pS : \F_p(w) \in T_pS$.
+		\item $\appl{\F_p}{T_pS}{T_pS}$ es una aplicación lineal autoadjunta, es decir,
+		      \[\forall w_1, w_2 \in T_pS : \langle \F_p(w_1), w_2 \rangle = \langle w_1, \F_p(w_2) \rangle\]
+	\end{itemize}
+\end{obs}
+
+\subsubsection{Expresión matricial del operador de forma}
+
+Tomando la base $\{\X_u, \X_v\}$ de $T_pS$, tenemos que $\begin{cases}
+		\F_p(\X_u) = - (N\circ \X)_u \eqdef A \X_u + B\X_v \\
+		\F_p(\X_v) = - (N\circ \X)_v \eqdef C \X_u + D\X_v
+	\end{cases}$.
+\[\forall w = a\X_u + b\X_v \in T_pS : \F_p(w) = x\X_u + y\X_v = a \F_p(\X_u) + b \F_p(\X_v)\]
+\[\implies \begin{pmatrix}
+		x \\ y
+	\end{pmatrix} = \begin{pmatrix}
+		A & C \\ B & D
+	\end{pmatrix} \begin{pmatrix}
+		a \\ b
+	\end{pmatrix} \iff \begin{pmatrix}
+		\F_p(w)_1 \\ \F_p(w)_2
+	\end{pmatrix} = \begin{pmatrix}
+		\F_p(\X_u)_1 & \F_p(\X_v)_1 \\
+		\F_p(\X_u)_2 & \F_p(\X_v)_2
+	\end{pmatrix} \begin{pmatrix}
+		w_1 \\ w_2
+	\end{pmatrix}\]
+donde $\F_p(w) = (\F_p(w)_1, \F_p(w)_2) \we \F_p(\X_u) = (\F_p(\X_u)_1, \F_p(\X_u)_2) \we F_p(\X_v) = (\F_p(\X_v)_1, \F_p(\X_v)_2)$ y $w = (w_1, w_2)$ todos en base $\{\X_u, \X_v\}$.
+
+Para hallar $A, B, C, D$ consideramos los siguientes productos escalares:
+\[\begin{aligned}
+		\F_p(\X_u) \cdot \X_u & = (A\X_u + B\X_v) \cdot \X_u = AE+BF \\
+		\F_p(\X_u) \cdot \X_v & = (A\X_u + B\X_v) \cdot \X_v = AF+BG \\
+		\F_p(\X_v) \cdot \X_u & = (C\X_u + D\X_v) \cdot \X_u = CE+DF \\
+		\F_p(\X_v) \cdot \X_v & = (C\X_u + D\X_v) \cdot \X_v = CF+DG
+	\end{aligned}\]
+Conviene definir las siguientes funciones $\appl{e, f, g}{U}{\R}$:
+\[\begin{aligned}
+		e \defeq \F_p(\X_u) \cdot \X_u & = -(N\circ \X)_u \cdot \X_u                             \\
+		f \defeq \F_p(\X_u) \cdot \X_v & = -(N\circ \X)_u \cdot \X_v = -(N\circ \X)_v \cdot \X_u \\
+		g \defeq \F_p(\X_v) \cdot \X_v & = -(N\circ \X)_v \cdot \X_v
+	\end{aligned}\]
+(Si cambiamos $N$ por $-N$, entonces todas las funciones cambian de signo).
+\[\implies \begin{pmatrix}
+		e & f \\ f & g
+	\end{pmatrix} = \begin{pmatrix}
+		E & F \\ F & G
+	\end{pmatrix} \begin{pmatrix}
+		A & C \\ B & D
+	\end{pmatrix}\implies \begin{pmatrix}
+		A & C \\ B & D
+	\end{pmatrix} = \begin{pmatrix}
+		E & F \\ F & G
+	\end{pmatrix}^{-1} \begin{pmatrix}
+		e & f \\ f & g
+	\end{pmatrix}\]
+\[\implies \tex{matriz de } \F_p = \begin{pmatrix}
+		\F_p(\X_u)_1 & \F_p(\X_u)_2 \\
+		\F_p(\X_v)_1 & \F_p(\X_v)_2
+	\end{pmatrix} = \frac{1}{EG-F^2} \begin{pmatrix}
+		G & -F \\ -F & E
+	\end{pmatrix} \begin{pmatrix}
+		e & f \\ f & g
+	\end{pmatrix}\]
+Esto nos da fórmulas para $A, B, C, D$ en función de $E, F, G$ y $e, f, g$.
+
+\subsubsection{Fórmulas alternativas para \textit{e, f, g}}
+Calcular estas funciones por su definición suele ser laborioso. Observamos que
+\[(N\circ \X) \cdot \X_u \equiv 0 \implies (N\circ \X)_u \cdot \X_u + (N\circ \X) \cdot \X_{uu} \equiv 0\]
+y, por tanto, podemos escribir $e = - (N\circ \X)_u \cdot \X_u =  (N\circ \X) \cdot \X_{uu}$ y, en general, se tiene que
+\[e = (N\circ \X) \cdot \X_{uu} \quad\we\quad f = (N\circ \X) \cdot \X_{uv} \quad\we\quad g = (N\circ \X) \cdot \X_{vv}\]
+
+\subsection{Formas fundamentales}
+Extendemos la definición de primera forma  fundamental que usábamos:
+\begin{defn}[Primera forma fundamental]
+	Sea $S$ una superficie regular y $p \in S$ un punto, $\appl{I_p}{T_pS\times T_pS}{\R}$ es la primera forma fundamental de $S$ en $p$ \[\iff \forall w, w' \in T_pS : I_p(w, w') = \langle w, w' \rangle\]
+	Es una forma bilineal simétrica.\\
+	Si tomamos una carta $\X$ de $S$ en $p$ y $\{\X_u, \X_v\}$ como base de $T_pS$, entonces
+	\[I_p(w, w') = w_1w_1'E + (w_1w_2' + w_2w_1')F + w_2w_2'G\]
+\end{defn}
+
+\begin{defn}[Segunda forma fundamental]
+	Sea $S$ una superficie regular y $p \in S$ un punto, $\appl{II_p}{T_pS\times T_pS}{\R}$ es la segunda forma fundamental de $S$ en $p$ \[\iff \forall w, w' \in T_pS : II_p(w, w') = \langle \F_p(w), w' \rangle\]
+	Es también una forma bilineal simétrica.\\
+	Si tomamos una carta $\X$ de $S$ en $p$ y $\{\X_u, \X_v\}$ como base de $T_pS$, entonces
+	\[II_p(w, w') = w_1w_1'e + (w_1w_2' + w_2w_1')f + w_2w_2'g\]
+\end{defn}
+
+\subsubsection{Expresiones matriciales de las formas fundamentales}
+\[I_p(w, w') = \begin{pmatrix} w_1 & w_2 \end{pmatrix} \begin{pmatrix}
+		E & F \\ F & G
+	\end{pmatrix} \begin{pmatrix}
+		w_1' \\ w_2'
+	\end{pmatrix} \quad\we\quad II_p(w, w') = \begin{pmatrix} w_1 & w_2 \end{pmatrix} \begin{pmatrix}
+		e & f \\ f & g
+	\end{pmatrix} \begin{pmatrix}
+		w_1' \\ w_2'
+	\end{pmatrix}\]
+\[\F_p(w) = \begin{pmatrix}
+		A & C \\ B & D
+	\end{pmatrix}\begin{pmatrix}
+		w_1 \\ w_2
+	\end{pmatrix}\tex{ donde } \begin{pmatrix}
+		e & f \\ f & g
+	\end{pmatrix} = \begin{pmatrix}
+		E & F \\ F & G
+	\end{pmatrix} \begin{pmatrix}
+		A & C \\ B & D
+	\end{pmatrix}\]
+
+\subsubsection{Diagonalización del operador de forma}
+
+Como $\appl{\F_p}{T_pS}{T_pS}$ es una aplicación lineal autoadjunta,
+\begin{enumerate}
+	\item Si $\{\til{e}_1, \til{e}_2\}$ es una base ortonormal de $T_pS$, entonces la matriz de $\F$ en esa base es simétrica.
+	\item Podemos (orto)diagonalizar $\F_p$, i.e., $\exists$ una base ortonormal de $T_pS$ en la que la matriz de $\F_p$ es diagonal.
+\end{enumerate}
+
+Por tanto, $\exists \kappa_1, \kappa_2 \in \R, e_1, e_2 \in T_pS$ tales que $e_1 \perp e_2 \we \F_p(e_1) = \kappa_1e_1 \we \F_p(e_2) = \kappa_2e_2$ donde $k_1, k_2$ son autovalores de $\F_p$ y $e_1, e_2$ son (una base de) autovectores de $\F_p$.
+
+A $\kappa_1, \kappa_2$ se les llama curvaturas principales y a $\pm e_1, \pm e_2$ direcciones principales. Se pueden obtener diagonalizando la matriz de $\F_p$ en la base $\{\X_u, \X_v\}$.
+
+\pagebreak
+\section{Curvatura de superficies - Ubis}
 
 Vamos a buscar máximos y mínimos de $z = f(x,y)$. Si $\nabla f = 0$, podemos estar ante un máximo, mínimo, punto de silla o punto singular. Para estudiar la curvatura, miro la curvas resultantes al seccionar la superficie por cada plano perpendicular al tangente.
 
@@ -40,7 +203,60 @@ Podemos encontrar el máximo y el mínimo de $\kappa'(\theta_0)$ si derivamos re
 \[\implies \kappa'(\theta_0)=0 \iff 2(a-c)\cos\theta_0\sin\theta_0 = 2b(\cos^2\theta_0 - \sin^2\theta_0)\]
 \[\iff (a-c)\sin(2\theta_0) = b\cos(2\theta_0) \iff \tan(2\theta_0) = \frac{b}{a-c}\]
 \[\implies \theta_0 = \begin{cases}
-		-\frac{\pi}{2} \ve +\frac{\pi}{2}                                                     & \tex{ si } a=c \vebar b=0 \\
+		-\frac{\pi}{4} \ve +\frac{\pi}{4}                                                     & \tex{ si } a=c \we b\ne0 \\
 		\arctan\left(\frac{b}{a-c}\right) \ve \arctan\left(\frac{b}{a-c}\right)+\frac{\pi}{2} & \tex{ si } a\neq c
 	\end{cases}\]
 Es decir, encontramos dos soluciones que pertenecen a planos perpendiculares entre sí \\(a no ser que $a=c \we b=0$, en cuyo caso la curvatura es la misma en todos los planos perpendiculares al plano tangente).
+
+Estudiemos ahora la relación que tiene esto con los autovalores de la matriz jacobiana $\ds \tex{J}f (0,0,0) = \begin{pmatrix} a & b \\ b & c \end{pmatrix}$. Si llamamos $(x(r), y(r)) = (r\cos\theta_0, r\sin\theta_0)$, entonces
+\[\kappa(\theta_0) = a\left(\frac{x(r)}{r}\right)^2 + 2b \frac{x(r)}{r} \frac{y(r)}{r} + c\left(\frac{y(r)}{r}\right)^2= \frac{ax^2(r) + 2bx(r)y(r) + cy^2(r)}{x^2(r) + y^2(r)}\]
+\[\implies \tex{(obviando la dependencia de $r$) } \kappa(x, y) =  \frac{
+		\begin{pmatrix} x & y\end{pmatrix} \begin{pmatrix} a & b \\ b & c \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}
+	}{
+		\begin{pmatrix} x & y \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}
+	}
+	\implies \kappa(\vec{w}) = \frac{\vec{w}^T Q \vec{w}}{\norm{\vec{w}}^2}\]
+con $Q$ matriz simétrica de autovectores ortonormales $\vec{w}_1, \vec{w}_2$ y autovalores $\lambda_1, \lambda_2$.
+\[w=a_1\vec{w}_1 + a_2\vec{w}_2 \implies \kappa(w) = \frac{a_1^2\lambda_1 + a_2^2\lambda_2}{a_1^2 + a_2^2} = \lambda_1\frac{a_1^2}{a_1^2 + a_2^2} + \lambda_2\frac{a_2^2}{a_1^2 + a_2^2}\leq \max\{\lambda_1, \lambda_2\}\]
+
+Como la curvatura máxima y mínima son ortogonales, podemos girar los ejes para que coincidan con $X$ e $Y$: $\ds z = f(x, y) = \kappa_1 \frac{x^2}{2} + \kappa_2 \frac{y^2}{2} \tex{ donde } \kappa_1 \geq \kappa_2$ de modo que
+\[\begin{pmatrix}
+		a & b \\ b & c
+	\end{pmatrix} = \begin{pmatrix}
+		\cos{(-\theta_1)} & -\sin{(-\theta_1)} \\ \sin{(-\theta_1)} & \cos{(-\theta_1)}
+	\end{pmatrix} \begin{pmatrix}
+		\kappa_1 & 0 \\ 0 & \kappa_2
+	\end{pmatrix} \begin{pmatrix}
+		\cos{\theta_1} & -\sin{\theta_1} \\ \sin{\theta_1} & \cos{\theta_1}
+	\end{pmatrix}\]
+donde $\vec{w}_1 = (\cos{\theta_1}, \sin{\theta_1})$ y $\vec{w}_2 = (-\sin{\theta_1}, \cos{\theta_1})$.
+
+Las curvaturas $\kappa_1$ y $\kappa_2$ tienen el signo determinado por la orientación relativa de la normal de la curva que resulta al intersecar la superficie con el plano perpendicular al plano tangente con respecto a la normal de la superficie.
+
+Si $\kappa_1 \cdot \kappa_2 > 0$, entonces las curvas de nivel de $z=f(x, y)$ son elipses;\\ si $\kappa_1 \cdot \kappa_2 < 0$, entonces son hipérbolas.
+
+\begin{defn}
+	Sea $S$ una superficie regular y $p\in S$ un punto. Sea $N = \frac{\X_u \times \X_v}{\norm{\X_u \times \X_v}}$ la normal unitaria a $S$ en $p$. $\appl{\hat{\kappa}_p}{T_pS}{\R}$ es la curvatura de $S$ en $p \iff \forall w \in T_pS : \hat{\kappa}_p(w) = \kappa_{\gamma}(t_0)$ donde $\gamma$ es la curva resultante al intersecar $S$ con el plano que contiene a $w$ y es perpendicular a $N$, $t_0$ es tal que $\gamma(t_0) = p$ y $\kappa_{\gamma}$ denota la curvatura de $\gamma$.
+
+	Vemos que $\hat{\kappa}_p(-\vec{w}) = \hat{\kappa}_p(\vec{w})$ y que $\hat{\kappa}_p\left(\frac{\vec{w}}{\norm{\vec{w}}}\right) = \hat{\kappa}_p(\vec{w})$ porque $\forall a \in \R : \hat{\kappa}_p(a\vec{w}) = \hat{\kappa}_p(\vec{w})$.
+\end{defn}
+
+\begin{teo}
+	Sean $S$ una curva regular $\implies \forall p \in S : \exists {w_1}, {w_2} \in T_pS $ ortogonales tales que $ \hat{\kappa}_p(w_1), \hat{\kappa}_p(w_2)$ son las curvaturas máx y mín en $p$.
+\end{teo}
+\begin{obs}
+	\begin{itemize}
+		\item Si la curvatura es constante, esos son los únicos extremos de $\hat{\kappa}_p$.
+		\item Si $w$ forma un ángulo $\theta$ con $w_1$, entonces $\hat{\kappa}(w) = \hat{\kappa}_1 \cos^2\theta + \hat{\kappa}_2\sin^2\theta$.
+		\item $w_1$ y $w_2$ son las direcciones principales y $\hat{\kappa}_1$ y $\hat{\kappa}_2$ las curvaturas principales.
+		\item $\kappa_1 \cdot \kappa_2 > 0 \implies p$ elíptico; $\kappa_1 \cdot \kappa_2 = 0 \implies p$ parabólico; $\kappa_1 \cdot \kappa_2 < 0 \implies p$ umbílico.
+	\end{itemize}
+\end{obs}
+
+\begin{cor}
+	Sea $S$ una superficie regular y $p\in S$ un punto. Entonces, $\exists B$ bola alrededor de $p$ y $\varepsilon_0 > 0$ tales que $S\cap B \cap J$ es una curva que (hasta orden 2) es una elipse o una hipérbola donde $J$ es un plano paralelo a $T_pS$ a distancia menor que $\varepsilon_0$ de $p$.
+\end{cor}
+
+\subsection{Cálculo de curvatura en una carta cualquiera}
+
+Sea $\appl{\X}{U\subset\R^2}{\R^3}$ una carta local de $S$ en $p$ tal que $\X(u_0, v_0) = p$, tomamos la normal unitaria $N = \frac{\X_u \times \X_v}{\norm{\X_u \times \X_v}}$. Sea $w = a\X_u + b\X_v \in T_pS$ y $\gamma(t) = \X(u(t), v(t))$ una curva regular parametrizada por longitud de arco en $S$ tal que $\gamma(0) = p$ y $\gamma'(0) = w$.
