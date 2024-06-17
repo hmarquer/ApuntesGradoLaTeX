@@ -160,6 +160,27 @@ Por tanto, $\exists \kappa_1, \kappa_2 \in \R, e_1, e_2 \in T_pS$ tales que $e_1
 
 A $\kappa_1, \kappa_2$ se les llama curvaturas principales y a $\pm e_1, \pm e_2$ direcciones principales. Se pueden obtener diagonalizando la matriz de $\F_p$ en la base $\{\X_u, \X_v\}$.
 
+En la base ortonormal $\{e_1, e_2\}$ (de autovectores, de direcciones principales), si dos vectores $w, w' \in T_pS$ se escriben como $w = xe_1 + ye_2$ y $w'=x'e_1 + y'e_2$:
+\[\begin{aligned}
+	\implies \F_p(w) &= x\F_p(e_1) + y\F_p(e_2) = x\kappa_1e_1 + y\kappa_2e_2\\
+	I_p(w, w') &= \langle w, w' \rangle = xx' + yy'\\
+	II_p(w, w') &= \langle \F_p(w), w' \rangle = x\kappa_1x' + y\kappa_2y'
+\end{aligned}\]
+Más aún, si $w \in T_pS$ se escribe como
+\begin{center}
+\begin{tabular}{c|c|c}
+	& $w = xe_1 + ye_2$ & $w = w_1\X_u + w_2\X_v$ \\
+	\hline
+	$I_p(w, w) = \norm{w}^2$ & $x^2 + y^2$ & $w_1^2E + 2w_1w_2F + w_2^2G$ \\
+	$II_p(w, w) = \langle \F_p(w), w \rangle$ & $\kappa_1x^2 + \kappa_2y^2$ & $w_1^2e + 2w_1w_2f + w_2^2g$
+\end{tabular}
+\end{center}
+
+\subsection{Curvatura normal}
+\begin{defn}[Curvatura normal]
+	Sea $S$ una superficie regular y $p \in S$ un punto, $\appl{k_p}{T_pS}{\R}$ es la curvatura normal de $S$ en $p$ \[\iff \forall w \in T_pS \tex{ unitario} : k_p(w) = \F_p(w) \cdot w = II_p(w, w)\]
+\end{defn}
+
 \pagebreak
 \section{Curvatura de superficies - Ubis}
 
